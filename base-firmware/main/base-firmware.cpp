@@ -63,7 +63,7 @@ extern "C"{
         CONTROLLER_TASKS *CTobj = new CONTROLLER_TASKS();
         //Boot 
         CTobj -> _init_();
-        STATE *change = new STATE();
+        STATE *change = new STATE();   
         while(1){
             if(DRONE_STATE == 1){ // STANDBY
                 //Display Controller

@@ -1,0 +1,14 @@
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/bin/Debug/net7.0/entity_module
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/bin/Debug/net7.0/entity_module.deps.json
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/bin/Debug/net7.0/entity_module.runtimeconfig.json
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/bin/Debug/net7.0/entity_module.dll
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/bin/Debug/net7.0/entity_module.pdb
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/obj/Debug/net7.0/entity_module.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/obj/Debug/net7.0/entity_module.AssemblyInfoInputs.cache
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/obj/Debug/net7.0/entity_module.AssemblyInfo.cs
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/obj/Debug/net7.0/entity_module.csproj.CoreCompileInputs.cache
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/obj/Debug/net7.0/entity_module.dll
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/obj/Debug/net7.0/refint/entity_module.dll
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/obj/Debug/net7.0/entity_module.pdb
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/obj/Debug/net7.0/entity_module.genruntimeconfig.cache
+/Users/nyameaama/Documents/MARS-Firmware/LIAM/swarm_utility/entity_module/obj/Debug/net7.0/ref/entity_module.dll
