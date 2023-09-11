@@ -1,5 +1,5 @@
 
-def pitchAxisToSweep():
+def pitchAxisToSweep(pitch):
     '''
         When both of the front wings swing backward,
         the shift in the aerodynamic center of the canards leads to a
@@ -10,10 +10,11 @@ def pitchAxisToSweep():
         the rear wings sweep forward, one can trim the flight state without
         an elevator 
     '''
-    c = 1
+    rsweepRange_min = 0
+    rsweepRange_max = 90
+    
 
-
-def rollAxisToSweep():
+def rollAxisToSweep(roll):
     '''
         Under the condition of asymmetric morphing (h2 = h4 = 0,
         h1 =-h3), the shift in the aerodynamic center of the front left

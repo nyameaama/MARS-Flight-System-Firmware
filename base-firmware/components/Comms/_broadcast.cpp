@@ -361,14 +361,19 @@ esp_err_t BroadcastedServer::handle_arm_token_request(httpd_req_t *req) {
         uint32_t seed1 = esp_random();
         uint32_t seed2 = esp_random();
         CONTROLLER_TASKS *cobj = new CONTROLLER_TASKS();
-        std::string packed_data = cobj -> generateRandomAlphanumericToken(seed1, seed2, 6);
-        delete cobj;
-        //UPDATE PTAM REGISTERS
         SharedMemory& sharedMemory = SharedMemory::getInstance();
-        sharedMemory.clearData("arm_token");
-        sharedMemory.storeString("arm_token", packed_data);
-        // Send a response to the client
-        httpd_resp_send(req, packed_data.c_str(), packed_data.length());
+        std::string packed_data = "";
+        if(cobj -> verifyFlightConfiguration() != 0){
+            packed_data = cobj -> generateRandomAlphanumericToken(seed1, seed2, 6);
+            //UPDATE PTAM REGISTERS
+            sharedMemory.clearData("arm_token");
+            sharedMemory.storeString("arm_token", packed_data);
+            // Send a response to the client
+            httpd_resp_send(req, packed_data.c_str(), packed_data.length());
+        }else{
+            //We do not send anything so the request will fail
+        }
+        delete cobj;
         return ESP_OK;
     }
 

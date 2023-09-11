@@ -1,7 +1,7 @@
 import PID
 import utility
 
-def define_pitch_target(initial_values,target_values, min, max):
+def define_target(initial_values,target_values, min, max):
     # Define PID gains
     kp = 0.5
     ki = 0.1
@@ -28,4 +28,8 @@ def define_pitch_target(initial_values,target_values, min, max):
     print("Current values:", initial_values)
     print()
 
-define_pitch_target([76,8,0],[78,88,0],-90,90)
+#Pitch
+define_target([34,0,0],[78,0,0],-90,90)
+
+#Roll
+define_target([56,0,0],[108,0,0],-180,180)
