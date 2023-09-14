@@ -1,4 +1,3 @@
-
 /**
  * @file logger.hpp
  * @brief API toolkit for logger
@@ -80,6 +79,20 @@ public:
      */
     uint64_t get_event_time(std::string formatted_data);
 
-private:
+    /**
+     * @brief Get the event state from log message
+     * 
+     * @param formatted_data 
+     * @return uint8_t 
+     */
+    uint8_t get_event_state(std::string formatted_data);
+
+    /**
+     * @brief Get the event value from log message
+     * 
+     * @param formatted_data 
+     * @return uint8_t 
+     */
+    uint8_t get_event_exptn(std::string formatted_data);
 };
 #endif /* LOGGER_HPP_ */

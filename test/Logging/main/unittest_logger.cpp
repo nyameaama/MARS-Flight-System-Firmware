@@ -41,20 +41,26 @@ extern "C"
                 Logger Log;
                 auto result = Log.EVENT_LOG_SDD();
                 uint64_t time = Log.get_event_time(result);
+                uint8_t state = Log.get_event_state(result);
+                std::cout << state;
                 std::string ID = Log.get_event_id(result);
-                std::cout<<result<<"\n\nTime captured from callback: " << time << "\n\nID: " << ID;
+                std::cout << result << "\n\nTime captured from callback: " << time << "\n\nID: " << ID;
 
                 result = Log.EVENT_LOG_SSL();
-                std::cout<<result;
+                std::cout << result;
                 time = Log.get_event_time(result);
+                uint8_t state = Log.get_event_state(result);
+                std::cout << state;
                 ID = Log.get_event_id(result);
-                std::cout<<result<<"\n\nTime captured from callback: " << time << "\n\nID: " << ID;
-
+                std::cout << result << "\n\nTime captured from callback: " << time << "\n\nID: " << ID;
 
                 result = Log.EVENT_LOG_SEL("UAV-SEL-TEST-HARD-FAIL", mars_exception_t::ROUTINE_HARD_FAIL, "Submodule Down");
-                std::cout<<result;
+                std::cout << result;
 
                 result = Log.EVENT_LOG_SEL("UAV-SEL-TEST-SOFT-FAIL", mars_exception_t::ROUTINE_SOFT_FAIL, "Submodule nonresponsive");
-                std::cout<<result;
+                std::cout << result;
+
+                uint8_t state = Log.get_event_state(result);
+                std::cout << state;
         }
 }

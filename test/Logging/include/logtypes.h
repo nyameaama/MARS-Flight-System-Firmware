@@ -39,14 +39,16 @@
 #include<cstdio> // Include the C standard I/O library for printf
 #include<cstdint> // For uint types
 
-
 /**
  * @brief mars expected return types
+ *
+ * @param ROUTINE_SOFT_FAIL
+ * @param ROUTINE_HARD_FAIL
  *
  */
 struct mars_exception_t
 {
-    enum Type {
+    enum Type : uint8_t {
         ROUTINE_SOFT_FAIL,
         ROUTINE_HARD_FAIL
     };
