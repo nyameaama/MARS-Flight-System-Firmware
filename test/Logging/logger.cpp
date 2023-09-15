@@ -206,3 +206,52 @@ uint64_t Logger::get_event_time(std::string formatted_data)
     }
     return eventTime;
 }
+
+/**
+ * @brief Parses a log to return the machine state of the specifc event
+ *
+ * @param formatted_data 
+ * @return uint8_t 
+ */
+uint8_t Logger::get_event_state(std::string formatted_data)
+{
+    uint8_t eventState = 0;
+
+    size_t start = formatted_data.find("MACHINE-STATE: ");
+    if (start != std::string::npos)
+    {
+        start += 15;
+        size_t end = formatted_data.find("\n", start);
+        if(end!=std::string::npos)
+        {
+            std::string stateStr = formatted_data.substr(start, end-start);
+            eventState = std::stoul(stateStr);
+        }
+    }
+    return eventState;
+}
+
+/**
+ * @brief Parses a SEL log to return the event exception
+ * 
+ * @param formatted_data 
+ * @return uint8_t 
+ */
+uint8_t Logger::get_event_exptn(std::string formatted_data)
+{
+    uint8_t eventEXPT = 0;
+
+    size_t start = formatted_data.find("EXCEPTION-TYPE: ");
+    if (start != std::string::npos)
+    {
+        start += 16;
+        size_t end = formatted_data.find("\n", start);
+        if(end!=std::string::npos)
+        {
+            std::string stateStr = formatted_data.substr(start, end-start);
+            eventEXPT = std::stoul(stateStr);
+        }
+    }
+    return eventEXPT;
+}
+
