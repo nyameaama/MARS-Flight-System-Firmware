@@ -27,34 +27,61 @@
  *          SOFTWARE.
  */
 
-#include"abort.h"
+#include "abort.h"
 
-uint8_t VAMS::VERIFY_PITCH(double accel_x, double accel_y, double accel_z)noexcept
+inline double VAMS::VERIFY_PITCH(double accel_x, double accel_y, double accel_z) noexcept(true)
 {
     double pitch = atan2(-accel_x, sqrt(accel_y * accel_y + accel_z * accel_z));
     if (pitch >= -PITCH_THRESHOLD_DEGREES && pitch <= PITCH_THRESHOLD_DEGREES)
     {
-        return 0;
+        pitch_flag = TRUE;
+        return pitch;
     }
-    return 1;
+    else
+    {
+        pitch_flag = FALSE;
+    }
+    return pitch;
 }
 
-uint8_t VAMS::VERIFY_YAW(double magn_x, double magn_y)noexcept
+inline double VAMS::VERIFY_YAW(double magn_x, double magn_y) noexcept(true)
 {
     double yaw = atan2(magn_y, magn_x);
     if (yaw >= -YAW_THRESHOLD_DEGREES && yaw <= YAW_THRESHOLD_DEGREES)
     {
-        return 0;
+        yaw_flag = TRUE;
+        return yaw;
     }
-    return 1;
+    else
+    {
+        yaw_flag = FALSE;
+    }
+    return yaw;
 }
 
-uint8_t VAMS::VERIFY_ROLL(double accel_x, double accel_y, double accel_z)noexcept
+inline double VAMS::VERIFY_ROLL(double accel_x, double accel_y, double accel_z) noexcept(true)
 {
     double roll = atan2(accel_y, sqrt(accel_x * accel_x + accel_z * accel_z));
     if (roll >= -ROLL_THRESHOLD_DEGREES && roll <= ROLL_THRESHOLD_DEGREES)
     {
-        return 0;
+        roll_flag = TRUE;
+        return roll;
     }
-    return 1;
+    else
+    {
+        roll_flag = FALSE;
+    }
+    return roll;
+}
+
+inline abort_t VAMS::VAMS_MATRIX()
+{
+    if (pitch_flag != TRUE || yaw_flag != TRUE || roll_flag != TRUE)
+    {
+        return ABORT_SIGNAL = ABORT;
+    }
+    else
+    {
+        return ABORT_SIGNAL = NO_ABORT;
+    }
 }

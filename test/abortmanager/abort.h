@@ -32,15 +32,16 @@
 
 #include<inttypes.h>
 #include<cmath>
+#include"include/aborttypes.h" // For abort_t
 
-#define PITCH_THRESHOLD_DEGREES (uint64_t) 90.00
-#define PITCH_THRESHOLD_RADIANS (uint64_t) (PITCH_THRESHOLD_DEGREES * M_PI / 180)
+#define PITCH_THRESHOLD_DEGREES (int64_t) 90.00
+#define PITCH_THRESHOLD_RADIANS (int64_t) (PITCH_THRESHOLD_DEGREES * M_PI / 180)
 
-#define YAW_THRESHOLD_DEGREES (uint64_t) 180.00
-#define YAW_THRESHOLD_RADIANS (uint64_t) (YAW_THRESHOLD_DEGREES * M_PI / 180)
+#define YAW_THRESHOLD_DEGREES (int64_t) 180.00
+#define YAW_THRESHOLD_RADIANS (int64_t) (YAW_THRESHOLD_DEGREES * M_PI / 180)
 
-#define ROLL_THRESHOLD_DEGREES (uint64_t) 180.00
-#define ROLL_THRESHOLD_RADIANTS (uint64_t) (ROLL_THRESHOLD_DEGREES * M_PI / 180)
+#define ROLL_THRESHOLD_DEGREES (int64_t) 180.00
+#define ROLL_THRESHOLD_RADIANS (int64_t) (ROLL_THRESHOLD_DEGREES * M_PI / 180)
 
 class VAMS
 {
@@ -54,7 +55,7 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    uint8_t VERIFY_PITCH(double accel_x, double accel_y, double accel_z)noexcept;
+    inline double VERIFY_PITCH(double accel_x, double accel_y, double accel_z)noexcept(true);
 
     /**
      * @brief Verifies the range of vehicle YAW
@@ -64,7 +65,7 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    uint8_t VERIFY_YAW(double magn_x, double magn_y)noexcept;
+    inline double VERIFY_YAW(double magn_x, double magn_y)noexcept(true);
 
     /**
      * @brief Verifies the range of vehicle ROLL
@@ -75,6 +76,33 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    uint8_t VERIFY_ROLL(double accel_x, double accel_y, double accel_z)noexcept;
+    inline double VERIFY_ROLL(double accel_x, double accel_y, double accel_z)noexcept(true);
+
+    /**
+     * @brief Verifies if drone within computed path threshold
+     *
+     * @param latitudeY     Latitude of the computed path
+     * @param longitudeX    Longitude of the computed path
+     * @param altitudeY     Altitude of computed path
+     * @param timeX         Time it took the drone to travel in computed path
+     * @param threshold     Allowed drone threshold
+     * @param currentP      Drone current position to be computed
+     * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
+     */
+    inline double VERIFY_PATH(double latitudeY, double longitudeX, double altitudeY, double timeX, double threshold, double currentP)noexcept(true);
+
+    /**
+     * @brief performs a decision based on the results yielded by PITCH, YAW, & ROLL
+     *
+     * 
+     * @return uint64_t
+     */
+    inline abort_t VAMS_MATRIX();
+
+private:
+    static abort_t pitch_flag;      /* EITHER TRUE(1) OR FALSE(2) */
+    static abort_t yaw_flag;        /* EITHER TRUE(1) OR FALSE(2) */
+    static abort_t roll_flag;       /* EITHER TRUE(1) OR FALSE(2) */
+    static abort_t ABORT_SIGNAL;    /* EITHER ABORT(3) OR NO_ABORT(4) */
 };
 #endif /* ABORT_H */
