@@ -7,4 +7,6 @@ class VEHICLE_BARO {
         static float pushTemperature();
 
         static float pushPressure();
+
+        static float pushHumidity();
 };

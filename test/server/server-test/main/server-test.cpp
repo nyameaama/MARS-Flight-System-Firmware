@@ -79,6 +79,7 @@ extern "C" {
     
     delete cool;*/
 
+    /*
     WingTranslate *obj = new WingTranslate();
     while(1){
     obj -> mcpwm_servo_control(45, SERVO_FL);
@@ -87,14 +88,21 @@ extern "C" {
     vTaskDelay(pdMS_TO_TICKS(500)); 
     }
     delete obj;
+    */
 
     //SSD1306_GotoXY(10,10);
 
-    /*VEHICLE_BARO *baro = new VEHICLE_BARO();
+    VEHICLE_BARO *baro = new VEHICLE_BARO();
     baro -> init_barometer();
-    double gb =baro -> pushPressure();
+    while(1){
+    double gb = baro -> pushPressure();
+    double tp = baro -> pushTemperature();
+    double hy = baro -> pushHumidity();
     ESP_LOGI("TAG","Pressure: %f",gb);
-    delete baro;*/
+    ESP_LOGI("TAG","Temp: %f",tp);
+    ESP_LOGI("TAG","Humidity: %f",hy);
+    }
+    delete baro;
 
 
     /*MotorController *ec = new MotorController(gpio_num_t(15));

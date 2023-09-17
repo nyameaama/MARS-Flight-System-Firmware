@@ -26,7 +26,7 @@ void VEHICLE_BARO::init_barometer(void){
     i2c_err = i2c_driver_install(I2C_NUM,I2C_MODE_MASTER, 0,0, 0);
     if(i2c_err != ESP_OK) printf(" driver install error code: %d \r\n ",i2c_err);   
 
-    bmx280_t* bmx280 = bmx280_create(I2C_NUM_1);
+    /*bmx280_t**/ bmx280 = bmx280_create(I2C_NUM_1);
     ESP_ERROR_CHECK(bmx280_init(bmx280));
     bmx280_config_t bmx_cfg = BMX280_DEFAULT_CONFIG;
     ESP_ERROR_CHECK(bmx280_configure(bmx280, &bmx_cfg));
@@ -47,4 +47,10 @@ float VEHICLE_BARO::pushPressure(){
     float temp = 0, pres = 0, hum = 0;
     ESP_ERROR_CHECK(bmx280_readoutFloat(bmx280, &temp, &pres, &hum));
     return pres;
+}
+
+float VEHICLE_BARO::pushHumidity(){
+    float temp = 0, pres = 0, hum = 0;
+    ESP_ERROR_CHECK(bmx280_readoutFloat(bmx280, &temp, &pres, &hum));
+    return hum;
 }
