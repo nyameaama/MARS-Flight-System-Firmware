@@ -25,7 +25,7 @@ SOFTWARE.*/
 #include "freertos/task.h"
 #include "esp_err.h"
 #include "esp_attr.h"
-#include "driver/mcpwm.h"`
+#include "driver/mcpwm.h"
 #include "soc/mcpwm_periph.h"
 
 //You can get these value from the datasheet of servo you use, in general pulse width varies between 1000 to 2000 microsecond
