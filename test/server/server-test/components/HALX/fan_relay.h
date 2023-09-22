@@ -9,7 +9,7 @@ class FAN_COOLING{
 
         static void fan_relay_off();
 
-        static void coolSierra_task();
+        static void coolSierra_task(double sierraTemp);
 };
 
 #endif

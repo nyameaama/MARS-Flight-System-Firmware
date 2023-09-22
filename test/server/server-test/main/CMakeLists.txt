@@ -10,5 +10,5 @@ idf_component_register(SRCS "server-test.cpp"
                             "../components/HALX/bno055.cpp"
                             "../components/HALX/atgm336H.cpp"
                             "../components/HALX/_SD_FileSystem.cpp"
-                            "../components/HALX/MotorController.cpp")
- 
+                            "../components/HALX/MotorController.cpp"
+                            "../components/HALX/_battery.cpp")

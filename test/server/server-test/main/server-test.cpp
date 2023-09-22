@@ -10,6 +10,7 @@
 #include"../components/HALX/atgm336H.h"
 #include"../components/HALX/_SD_FileSystem.h"
 #include"../components/HALX/MotorController.h"
+#include"../components/HALX/_battery.cpp"
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "esp_event.h"
@@ -55,6 +56,10 @@ extern "C" {
     vTaskDelay(1);
  
 
+    BATTERY *battObj = new BATTERY();
+    battObj -> adcInit();
+
+
     /*SD_FILESYSTEM *sdobj = new SD_FILESYSTEM();
     sdobj -> SDFS_initialize();
     delete sdobj;*/
@@ -70,11 +75,14 @@ extern "C" {
 
     delete gps;*/
 
-    /*FAN_COOLING *cool = new FAN_COOLING();
+    /*VEHICLE_BARO *baro = new VEHICLE_BARO();
+    baro -> init_barometer();
+    FAN_COOLING *cool = new FAN_COOLING();
     cool -> init_relay();
     while(1){
-       cool -> coolSierra_task();
-    vTaskDelay(pdMS_TO_TICKS(2000)); 
+        double tp = baro -> pushTemperature();
+       cool -> coolSierra_task(tp);
+        vTaskDelay(pdMS_TO_TICKS(2000)); 
     }
     
     delete cool;*/
@@ -92,17 +100,19 @@ extern "C" {
 
     //SSD1306_GotoXY(10,10);
 
-    VEHICLE_BARO *baro = new VEHICLE_BARO();
+    /*VEHICLE_BARO *baro = new VEHICLE_BARO();
     baro -> init_barometer();
     while(1){
-    double gb = baro -> pushPressure();
-    double tp = baro -> pushTemperature();
-    double hy = baro -> pushHumidity();
-    ESP_LOGI("TAG","Pressure: %f",gb);
-    ESP_LOGI("TAG","Temp: %f",tp);
-    ESP_LOGI("TAG","Humidity: %f",hy);
+        
+        double gb = baro -> pushPressure();
+        double tp = baro -> pushTemperature();
+        double hy = baro -> pushHumidity();
+        ESP_LOGI("TAG","Pressure: %f",gb);
+        ESP_LOGI("TAG","Temp: %f",tp);
+        ESP_LOGI("TAG","Humidity: %f",hy);
+        vTaskDelay(pdMS_TO_TICKS(100)); 
     }
-    delete baro;
+    delete baro;*/
 
 
     /*MotorController *ec = new MotorController(gpio_num_t(15));

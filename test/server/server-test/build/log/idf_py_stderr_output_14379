@@ -1,0 +1,10 @@
+CMake Error at /Users/nyameaama/esp/esp-idf/tools/cmake/build.cmake:266 (message):
+  Failed to resolve component 'esp_adc_cal'.
+Call Stack (most recent call first):
+  /Users/nyameaama/esp/esp-idf/tools/cmake/build.cmake:302 (__build_resolve_and_add_req)
+  /Users/nyameaama/esp/esp-idf/tools/cmake/build.cmake:595 (__build_expand_requirements)
+  /Users/nyameaama/esp/esp-idf/tools/cmake/project.cmake:464 (idf_build_process)
+  CMakeLists.txt:8 (project)
+
+
+ninja: error: rebuilding 'build.ninja': subcommand failed

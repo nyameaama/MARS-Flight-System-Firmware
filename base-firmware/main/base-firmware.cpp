@@ -25,6 +25,7 @@ SOFTWARE.*/
 #include"../components/HALX/mg90s_servo.h"
 #include"../components/HALX/ssd1306.h"
 #include"../components/HALX/fan_relay.h"
+#include"../components/HALX/_barometerEntry.h"
 #include"../components/PTAM/_ptam.h"
 #include"../components/system/validateSensors.h"
 #include"../components/system/_state.h"
@@ -60,16 +61,21 @@ extern "C"{
         FAN_COOLING *cool = new FAN_COOLING();
         cool -> init_relay();
 
+        VEHICLE_BARO *baro = new VEHICLE_BARO();
+        baro -> init_barometer();
+        double tp;
+
         CONTROLLER_TASKS *CTobj = new CONTROLLER_TASKS();
         //Boot 
         CTobj -> _init_();
+
         STATE *change = new STATE();   
         while(1){
             if(DRONE_STATE == 1){ // STANDBY
                 //Display Controller
                 displayStandByClientFail();
                 //Fan Controller
-                cool -> coolSierra_task();
+                cool -> coolSierra_task(baro -> pushTemperature());
                 //FROM STANDBY PREP WE CAN EITHER SWITCH TO ARMED OR BYPASS
                 CTobj -> _PREP_();
                 if(change -> SWITCH2ARMED() == 1){
@@ -90,7 +96,7 @@ extern "C"{
                 //Display Controller
                 displayARMED();
                 //Fan Controller
-                cool -> coolSierra_task();
+                cool -> coolSierra_task(baro -> pushTemperature());
                 //FROM ARMED WE CAN EITHER SWITCH TO STANDY PREP OR BYPASS
                 CTobj -> _ARMED_();
                 if(change -> SWITCH2PREP() == 1){
@@ -111,7 +117,7 @@ extern "C"{
                 //Display Controller
                 displayBYPASS();
                 //Fan Controller
-                cool -> coolSierra_task();
+                cool -> coolSierra_task(baro -> pushTemperature());
                 //FROM BYPASS WE CAN EITHER SWITCH TO STANDY PREP OR ARMED
                 CTobj -> _bypass_(std::string("ID"));
                 if(change -> SWITCH2PREP() == 1){
@@ -132,5 +138,6 @@ extern "C"{
         delete cool;
         delete change;
         delete CTobj;
+        delete baro;
     }
 }
