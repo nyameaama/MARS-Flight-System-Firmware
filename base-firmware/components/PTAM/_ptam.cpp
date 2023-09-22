@@ -23,7 +23,7 @@ SharedMemory::SharedMemory() {}
 SharedMemory::~SharedMemory() {}
 
 //____________________________________________________________
-/* Main subroutine -> initialises PTAM instancce
+/* Main subroutine -> initialises PTAM instance
 ===========================================================================
 void
 ===========================================================================
