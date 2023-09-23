@@ -3,13 +3,21 @@
 
 class BATTERY{
     public:
-        void batteryInterfaceInit();
+        static void batteryInterfaceInit();
         
-        double returnBatteryVoltage();
+        static uint16_t returnBatteryVoltage();
 
-        double returnBatteryCurrentDraw();
+        static double returnBatteryCurrentDraw();
 
-        double returnBatteryPercent();
+        static double returnBatteryPercent();
+
+        static void adcInit(void);
+
+        static float analogReadVoltage();
+
+        static void print_char_val_type(esp_adc_cal_value_t val_type);
+
+        static bool adcTest(void);
 };
 
 #endif //BATTERY

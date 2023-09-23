@@ -2,7 +2,7 @@
 #include "driver/gpio.h"
 #include "esp_log.h"
 
-#define RELAY_GPIO_PIN gpio_num_t(17)
+#define RELAY_GPIO_PIN gpio_num_t(2)
 
 void FAN_COOLING::init_relay(){
     gpio_config_t io_conf;
@@ -21,17 +21,15 @@ void FAN_COOLING::init_relay(){
 }
 
 void FAN_COOLING::fan_relay_on(){
-    gpio_set_level(RELAY_GPIO_PIN, 0);
-}
-
-void FAN_COOLING::fan_relay_off(){
     gpio_set_level(RELAY_GPIO_PIN, 1);
 }
 
-void FAN_COOLING::coolSierra_task(){
-    int8_t sierraTemp = 24;
-    //ESP_LOGI("Temp","FAN_FLAG: %d",sierraTemp);
-    if(sierraTemp >= 20){
+void FAN_COOLING::fan_relay_off(){
+    gpio_set_level(RELAY_GPIO_PIN, 0);
+}
+
+void FAN_COOLING::coolSierra_task(double sierraTemp){
+    if(sierraTemp >= 30){
         fan_relay_on();
     }else{
         fan_relay_off();
