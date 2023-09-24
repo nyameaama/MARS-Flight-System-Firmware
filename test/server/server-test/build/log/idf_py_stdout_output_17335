@@ -1,0 +1,1034 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7084
+ho 0 tail 12 room 4
+load:0x40078000,len:15576
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3876
+entry 0x4008064c
+[0;32mI (33) boot: ESP-IDF v5.1-dirty 2nd stage bootloader[0m
+[0;32mI (33) boot: compile time Jul 31 2023 23:59:43[0m
+[0;32mI (33) boot: Multicore bootloader[0m
+[0;32mI (38) boot: chip revision: v3.1[0m
+[0;32mI (41) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (46) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (51) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (55) boot: Enabling RNG early entropy source...[0m
+[0;32mI (61) boot: Partition Table:[0m
+[0;32mI (64) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (71) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (79) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (86) boot:  2 factory          factory app      00 00 00010000 00177000[0m
+[0;32mI (94) boot: End of partition table[0m
+[0;32mI (98) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=4cc24h (314404) map[0m
+[0;32mI (220) esp_image: segment 1: paddr=0005cc4c vaddr=3ffb0000 size=033cch ( 13260) load[0m
+[0;32mI (225) esp_image: segment 2: paddr=00060020 vaddr=400d0020 size=b8a00h (756224) map[0m
+[0;32mI (499) esp_image: segment 3: paddr=00118a28 vaddr=3ffb33cc size=00474h (  1140) load[0m
+[0;32mI (499) esp_image: segment 4: paddr=00118ea4 vaddr=40080000 size=168b0h ( 92336) load[0m
+[0;32mI (554) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (554) boot: Disabling RNG early entropy source...[0m
+[0;32mI (566) cpu_start: Multicore app[0m
+[0;32mI (566) cpu_start: Pro cpu up.[0m
+[0;32mI (566) cpu_start: Starting app cpu, entry point is 0x40081474[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (584) cpu_start: Pro cpu start user code[0m
+[0;32mI (584) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (584) cpu_start: Application information:[0m
+[0;32mI (589) cpu_start: Project name:     server-test[0m
+[0;32mI (594) cpu_start: App version:      a440d9b-dirty[0m
+[0;32mI (600) cpu_start: Compile time:     Sep 23 2023 02:08:17[0m
+[0;32mI (606) cpu_start: ELF file SHA256:  aa39e643b6f793ac...[0m
+[0;32mI (612) cpu_start: ESP-IDF:          v5.1-dirty[0m
+[0;32mI (617) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (621) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (626) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (631) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (638) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (644) heap_init: At 3FFB8E18 len 000271E8 (156 KiB): DRAM[0m
+[0;32mI (651) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (657) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (663) heap_init: At 400968B0 len 00009750 (37 KiB): IRAM[0m
+[0;32mI (671) spi_flash: detected chip: gd[0m
+[0;32mI (674) spi_flash: flash io: dio[0m
+[0;33mW (678) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (691) ADC: legacy driver is deprecated, please migrate to `esp_adc/adc_oneshot.h`[0m
+[0;32mI (700) app_start: Starting scheduler on CPU0[0m
+[0;32mI (704) app_start: Starting scheduler on CPU1[0m
+[0;32mI (704) main_task: Started on CPU0[0m
+[0;32mI (714) main_task: Calling app_main()[0m
+I (2754) wifi:wifi driver task: 3ffc0d38, prio:23, stack:6656, core=0
+I (2764) wifi:wifi firmware version: b2f1f86
+I (2764) wifi:wifi certification version: v7.0
+I (2764) wifi:config NVS flash: enabled
+I (2764) wifi:config nano formating: disabled
+I (2764) wifi:Init data frame dynamic rx buffer num: 32
+I (2774) wifi:Init management frame dynamic rx buffer num: 32
+I (2774) wifi:Init management short buffer num: 32
+I (2784) wifi:Init dynamic tx buffer num: 32
+I (2784) wifi:Init static rx buffer size: 1600
+I (2784) wifi:Init static rx buffer num: 10
+I (2794) wifi:Init dynamic rx buffer num: 32
+[0;32mI (2794) wifi_init: rx ba win: 6[0m
+[0;32mI (2804) wifi_init: tcpip mbox: 32[0m
+[0;32mI (2804) wifi_init: udp mbox: 6[0m
+[0;32mI (2804) wifi_init: tcp mbox: 6[0m
+[0;32mI (2814) wifi_init: tcp tx win: 5744[0m
+[0;32mI (2814) wifi_init: tcp rx win: 5744[0m
+[0;32mI (2824) wifi_init: tcp mss: 1440[0m
+[0;32mI (2824) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (2824) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (2844) phy_init: phy_version 4670,719f9f6,Feb 18 2021,17:07:07[0m
+I (2934) wifi:mode : softAP (08:3a:8d:8e:d3:69)
+I (2944) wifi:Total power save buffer number: 16
+I (2944) wifi:Init max length of beacon: 752/752
+I (2944) wifi:Init max length of beacon: 752/752
+[0;32mI (2944) wifi softAP: wifi_init_softap finished. SSID:HIVE2 password:HIVE_PASS channel:6[0m
+[0;32mI (2944) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+SSD1306 Initialized..
+[0;32mI (3004) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3004) Meter: eFuse Vref: Supported[0m
+[0;32mI (3004) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3004) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (3004) TAG: BATT: 100.000000[0m
+[0;32mI (3014) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3014) Meter: eFuse Vref: Supported[0m
+[0;32mI (3024) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3024) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3014) TAG: BATT: 100.000000[0m
+[0;32mI (3034) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3044) Meter: eFuse Vref: Supported[0m
+[0;32mI (3044) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3054) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3034) TAG: BATT: 100.000000[0m
+[0;32mI (3054) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3064) Meter: eFuse Vref: Supported[0m
+[0;32mI (3064) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3074) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3054) TAG: BATT: 100.000000[0m
+[0;32mI (3084) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3084) Meter: eFuse Vref: Supported[0m
+[0;32mI (3094) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3094) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3084) TAG: BATT: 100.000000[0m
+[0;32mI (3104) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3104) Meter: eFuse Vref: Supported[0m
+[0;32mI (3114) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3114) Meter: Raw: 958	Voltage: 929mV[0m
+[0;32mI (3104) TAG: BATT: 100.000000[0m
+[0;32mI (3124) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3134) Meter: eFuse Vref: Supported[0m
+[0;32mI (3134) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3144) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3124) TAG: BATT: 100.000000[0m
+[0;32mI (3144) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3154) Meter: eFuse Vref: Supported[0m
+[0;32mI (3154) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3164) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3144) TAG: BATT: 100.000000[0m
+[0;32mI (3174) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3174) Meter: eFuse Vref: Supported[0m
+[0;32mI (3184) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3184) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3174) TAG: BATT: 100.000000[0m
+[0;32mI (3194) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3194) Meter: eFuse Vref: Supported[0m
+[0;32mI (3204) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3214) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3194) TAG: BATT: 100.000000[0m
+[0;32mI (3214) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3224) Meter: eFuse Vref: Supported[0m
+[0;32mI (3224) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3234) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3214) TAG: BATT: 100.000000[0m
+[0;32mI (3244) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3244) Meter: eFuse Vref: Supported[0m
+[0;32mI (3254) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3254) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3244) TAG: BATT: 100.000000[0m
+[0;32mI (3264) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3264) Meter: eFuse Vref: Supported[0m
+[0;32mI (3274) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3274) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3264) TAG: BATT: 100.000000[0m
+[0;32mI (3284) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3294) Meter: eFuse Vref: Supported[0m
+[0;32mI (3294) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3304) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3284) TAG: BATT: 100.000000[0m
+[0;32mI (3304) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3314) Meter: eFuse Vref: Supported[0m
+[0;32mI (3314) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3324) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3304) TAG: BATT: 100.000000[0m
+[0;32mI (3334) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3334) Meter: eFuse Vref: Supported[0m
+[0;32mI (3344) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3344) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3334) TAG: BATT: 100.000000[0m
+[0;32mI (3354) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3354) Meter: eFuse Vref: Supported[0m
+[0;32mI (3364) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3374) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3354) TAG: BATT: 100.000000[0m
+[0;32mI (3374) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3384) Meter: eFuse Vref: Supported[0m
+[0;32mI (3384) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3394) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3374) TAG: BATT: 100.000000[0m
+[0;32mI (3404) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3404) Meter: eFuse Vref: Supported[0m
+[0;32mI (3404) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3414) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3404) TAG: BATT: 100.000000[0m
+[0;32mI (3424) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3424) Meter: eFuse Vref: Supported[0m
+[0;32mI (3434) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3434) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3424) TAG: BATT: 100.000000[0m
+[0;32mI (3444) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3454) Meter: eFuse Vref: Supported[0m
+[0;32mI (3454) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3464) Meter: Raw: 913	Voltage: 892mV[0m
+[0;32mI (3444) TAG: BATT: 100.000000[0m
+[0;32mI (3464) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3474) Meter: eFuse Vref: Supported[0m
+[0;32mI (3474) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3484) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3464) TAG: BATT: 100.000000[0m
+[0;32mI (3494) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3494) Meter: eFuse Vref: Supported[0m
+[0;32mI (3504) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3504) Meter: Raw: 915	Voltage: 893mV[0m
+[0;32mI (3494) TAG: BATT: 100.000000[0m
+[0;32mI (3514) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3514) Meter: eFuse Vref: Supported[0m
+[0;32mI (3524) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3524) Meter: Raw: 941	Voltage: 915mV[0m
+[0;32mI (3514) TAG: BATT: 100.000000[0m
+[0;32mI (3534) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3544) Meter: eFuse Vref: Supported[0m
+[0;32mI (3544) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3554) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3534) TAG: BATT: 100.000000[0m
+[0;32mI (3564) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3564) Meter: eFuse Vref: Supported[0m
+[0;32mI (3564) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3574) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3564) TAG: BATT: 100.000000[0m
+[0;32mI (3584) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3584) Meter: eFuse Vref: Supported[0m
+[0;32mI (3594) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3594) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3584) TAG: BATT: 100.000000[0m
+[0;32mI (3604) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3614) Meter: eFuse Vref: Supported[0m
+[0;32mI (3614) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3624) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3604) TAG: BATT: 100.000000[0m
+[0;32mI (3624) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3634) Meter: eFuse Vref: Supported[0m
+[0;32mI (3634) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3644) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3624) TAG: BATT: 100.000000[0m
+[0;32mI (3654) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3654) Meter: eFuse Vref: Supported[0m
+[0;32mI (3664) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3664) Meter: Raw: 931	Voltage: 906mV[0m
+[0;32mI (3654) TAG: BATT: 100.000000[0m
+[0;32mI (3674) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3674) Meter: eFuse Vref: Supported[0m
+[0;32mI (3684) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3684) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (3674) TAG: BATT: 100.000000[0m
+[0;32mI (3694) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3704) Meter: eFuse Vref: Supported[0m
+[0;32mI (3704) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3714) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3694) TAG: BATT: 100.000000[0m
+[0;32mI (3714) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3724) Meter: eFuse Vref: Supported[0m
+[0;32mI (3724) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3734) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3714) TAG: BATT: 100.000000[0m
+[0;32mI (3744) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3744) Meter: eFuse Vref: Supported[0m
+[0;32mI (3754) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3754) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3744) TAG: BATT: 100.000000[0m
+[0;32mI (3764) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3774) Meter: eFuse Vref: Supported[0m
+[0;32mI (3774) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3784) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3764) TAG: BATT: 100.000000[0m
+[0;32mI (3784) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3794) Meter: eFuse Vref: Supported[0m
+[0;32mI (3794) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3804) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3784) TAG: BATT: 100.000000[0m
+[0;32mI (3814) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3814) Meter: eFuse Vref: Supported[0m
+[0;32mI (3824) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3824) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3814) TAG: BATT: 100.000000[0m
+[0;32mI (3834) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3834) Meter: eFuse Vref: Supported[0m
+[0;32mI (3844) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3844) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3834) TAG: BATT: 100.000000[0m
+[0;32mI (3854) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3864) Meter: eFuse Vref: Supported[0m
+[0;32mI (3864) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3874) Meter: Raw: 954	Voltage: 925mV[0m
+[0;32mI (3854) TAG: BATT: 100.000000[0m
+[0;32mI (3874) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3884) Meter: eFuse Vref: Supported[0m
+[0;32mI (3884) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3894) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3874) TAG: BATT: 100.000000[0m
+[0;32mI (3904) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3904) Meter: eFuse Vref: Supported[0m
+[0;32mI (3914) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3914) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3904) TAG: BATT: 100.000000[0m
+[0;32mI (3924) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3934) Meter: eFuse Vref: Supported[0m
+[0;32mI (3934) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3944) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3924) TAG: BATT: 100.000000[0m
+[0;32mI (3944) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3954) Meter: eFuse Vref: Supported[0m
+[0;32mI (3954) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3964) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3944) TAG: BATT: 100.000000[0m
+[0;32mI (3974) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3974) Meter: eFuse Vref: Supported[0m
+[0;32mI (3984) Meter: Characterized using eFuse Vref[0m
+[0;32mI (3984) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3974) TAG: BATT: 100.000000[0m
+[0;32mI (3994) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (3994) Meter: eFuse Vref: Supported[0m
+[0;32mI (4004) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4004) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (3994) TAG: BATT: 100.000000[0m
+[0;32mI (4014) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4024) Meter: eFuse Vref: Supported[0m
+[0;32mI (4024) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4034) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4014) TAG: BATT: 100.000000[0m
+[0;32mI (4034) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4044) Meter: eFuse Vref: Supported[0m
+[0;32mI (4044) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4054) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4034) TAG: BATT: 100.000000[0m
+[0;32mI (4064) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4064) Meter: eFuse Vref: Supported[0m
+[0;32mI (4074) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4074) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4064) TAG: BATT: 100.000000[0m
+[0;32mI (4084) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4094) Meter: eFuse Vref: Supported[0m
+[0;32mI (4094) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4104) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (4084) TAG: BATT: 100.000000[0m
+[0;32mI (4104) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4114) Meter: eFuse Vref: Supported[0m
+[0;32mI (4114) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4124) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4104) TAG: BATT: 100.000000[0m
+[0;32mI (4134) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4134) Meter: eFuse Vref: Supported[0m
+[0;32mI (4144) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4144) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4134) TAG: BATT: 100.000000[0m
+[0;32mI (4154) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4154) Meter: eFuse Vref: Supported[0m
+[0;32mI (4164) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4164) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4154) TAG: BATT: 100.000000[0m
+[0;32mI (4174) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4184) Meter: eFuse Vref: Supported[0m
+[0;32mI (4184) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4194) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4174) TAG: BATT: 100.000000[0m
+[0;32mI (4194) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4204) Meter: eFuse Vref: Supported[0m
+[0;32mI (4204) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4214) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4194) TAG: BATT: 100.000000[0m
+[0;32mI (4224) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4224) Meter: eFuse Vref: Supported[0m
+[0;32mI (4234) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4234) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4224) TAG: BATT: 100.000000[0m
+[0;32mI (4244) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4254) Meter: eFuse Vref: Supported[0m
+[0;32mI (4254) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4264) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4244) TAG: BATT: 100.000000[0m
+[0;32mI (4264) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4274) Meter: eFuse Vref: Supported[0m
+[0;32mI (4274) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4284) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4264) TAG: BATT: 100.000000[0m
+[0;32mI (4294) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4294) Meter: eFuse Vref: Supported[0m
+[0;32mI (4304) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4304) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4294) TAG: BATT: 100.000000[0m
+[0;32mI (4314) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4314) Meter: eFuse Vref: Supported[0m
+[0;32mI (4324) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4324) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4314) TAG: BATT: 100.000000[0m
+[0;32mI (4334) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4344) Meter: eFuse Vref: Supported[0m
+[0;32mI (4344) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4354) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4334) TAG: BATT: 100.000000[0m
+[0;32mI (4354) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4364) Meter: eFuse Vref: Supported[0m
+[0;32mI (4364) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4374) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4354) TAG: BATT: 100.000000[0m
+[0;32mI (4384) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4384) Meter: eFuse Vref: Supported[0m
+[0;32mI (4394) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4394) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4384) TAG: BATT: 100.000000[0m
+[0;32mI (4404) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4404) Meter: eFuse Vref: Supported[0m
+[0;32mI (4414) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4424) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4404) TAG: BATT: 100.000000[0m
+[0;32mI (4424) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4434) Meter: eFuse Vref: Supported[0m
+[0;32mI (4434) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4444) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4424) TAG: BATT: 100.000000[0m
+[0;32mI (4454) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4454) Meter: eFuse Vref: Supported[0m
+[0;32mI (4454) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4464) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4454) TAG: BATT: 100.000000[0m
+[0;32mI (4474) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4474) Meter: eFuse Vref: Supported[0m
+[0;32mI (4484) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4484) Meter: Raw: 958	Voltage: 929mV[0m
+[0;32mI (4474) TAG: BATT: 100.000000[0m
+[0;32mI (4494) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4504) Meter: eFuse Vref: Supported[0m
+[0;32mI (4504) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4514) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4494) TAG: BATT: 100.000000[0m
+[0;32mI (4514) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4524) Meter: eFuse Vref: Supported[0m
+[0;32mI (4524) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4534) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4514) TAG: BATT: 100.000000[0m
+[0;32mI (4544) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4544) Meter: eFuse Vref: Supported[0m
+[0;32mI (4554) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4554) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4544) TAG: BATT: 100.000000[0m
+[0;32mI (4564) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4564) Meter: eFuse Vref: Supported[0m
+[0;32mI (4574) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4574) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4564) TAG: BATT: 100.000000[0m
+[0;32mI (4584) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4594) Meter: eFuse Vref: Supported[0m
+[0;32mI (4594) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4604) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4584) TAG: BATT: 100.000000[0m
+[0;32mI (4614) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4614) Meter: eFuse Vref: Supported[0m
+[0;32mI (4614) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4624) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4614) TAG: BATT: 100.000000[0m
+[0;32mI (4634) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4634) Meter: eFuse Vref: Supported[0m
+[0;32mI (4644) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4644) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4634) TAG: BATT: 100.000000[0m
+[0;32mI (4654) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4664) Meter: eFuse Vref: Supported[0m
+[0;32mI (4664) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4674) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4654) TAG: BATT: 100.000000[0m
+[0;32mI (4674) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4684) Meter: eFuse Vref: Supported[0m
+[0;32mI (4684) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4694) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4674) TAG: BATT: 100.000000[0m
+[0;32mI (4704) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4704) Meter: eFuse Vref: Supported[0m
+[0;32mI (4714) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4714) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4704) TAG: BATT: 100.000000[0m
+[0;32mI (4724) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4724) Meter: eFuse Vref: Supported[0m
+[0;32mI (4734) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4734) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4724) TAG: BATT: 100.000000[0m
+[0;32mI (4744) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4754) Meter: eFuse Vref: Supported[0m
+[0;32mI (4754) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4764) Meter: Raw: 958	Voltage: 929mV[0m
+[0;32mI (4744) TAG: BATT: 100.000000[0m
+[0;32mI (4774) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4774) Meter: eFuse Vref: Supported[0m
+[0;32mI (4774) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4784) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4774) TAG: BATT: 100.000000[0m
+[0;32mI (4794) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4794) Meter: eFuse Vref: Supported[0m
+[0;32mI (4804) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4804) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4794) TAG: BATT: 100.000000[0m
+[0;32mI (4814) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4824) Meter: eFuse Vref: Supported[0m
+[0;32mI (4824) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4834) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4814) TAG: BATT: 100.000000[0m
+[0;32mI (4834) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4844) Meter: eFuse Vref: Supported[0m
+[0;32mI (4844) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4854) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4834) TAG: BATT: 100.000000[0m
+[0;32mI (4864) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4864) Meter: eFuse Vref: Supported[0m
+[0;32mI (4874) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4874) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4864) TAG: BATT: 100.000000[0m
+[0;32mI (4884) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4884) Meter: eFuse Vref: Supported[0m
+[0;32mI (4894) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4894) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (4884) TAG: BATT: 100.000000[0m
+[0;32mI (4904) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4914) Meter: eFuse Vref: Supported[0m
+[0;32mI (4914) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4924) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4904) TAG: BATT: 100.000000[0m
+[0;32mI (4924) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4934) Meter: eFuse Vref: Supported[0m
+[0;32mI (4934) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4944) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4924) TAG: BATT: 100.000000[0m
+[0;32mI (4954) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4954) Meter: eFuse Vref: Supported[0m
+[0;32mI (4964) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4964) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4954) TAG: BATT: 100.000000[0m
+[0;32mI (4974) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (4984) Meter: eFuse Vref: Supported[0m
+[0;32mI (4984) Meter: Characterized using eFuse Vref[0m
+[0;32mI (4994) Meter: Raw: 958	Voltage: 929mV[0m
+[0;32mI (4974) TAG: BATT: 100.000000[0m
+[0;32mI (4994) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5004) Meter: eFuse Vref: Supported[0m
+[0;32mI (5004) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5014) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (4994) TAG: BATT: 100.000000[0m
+[0;32mI (5024) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5024) Meter: eFuse Vref: Supported[0m
+[0;32mI (5034) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5034) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5024) TAG: BATT: 100.000000[0m
+[0;32mI (5044) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5044) Meter: eFuse Vref: Supported[0m
+[0;32mI (5054) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5054) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5044) TAG: BATT: 100.000000[0m
+[0;32mI (5064) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5074) Meter: eFuse Vref: Supported[0m
+[0;32mI (5074) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5084) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5064) TAG: BATT: 100.000000[0m
+[0;32mI (5084) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5094) Meter: eFuse Vref: Supported[0m
+[0;32mI (5094) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5104) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (5084) TAG: BATT: 100.000000[0m
+[0;32mI (5114) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5114) Meter: eFuse Vref: Supported[0m
+[0;32mI (5124) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5124) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5114) TAG: BATT: 100.000000[0m
+[0;32mI (5134) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5144) Meter: eFuse Vref: Supported[0m
+[0;32mI (5144) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5154) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5134) TAG: BATT: 100.000000[0m
+[0;32mI (5154) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5164) Meter: eFuse Vref: Supported[0m
+[0;32mI (5164) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5174) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5154) TAG: BATT: 100.000000[0m
+[0;32mI (5184) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5184) Meter: eFuse Vref: Supported[0m
+[0;32mI (5194) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5194) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5184) TAG: BATT: 100.000000[0m
+[0;32mI (5204) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5204) Meter: eFuse Vref: Supported[0m
+[0;32mI (5214) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5214) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5204) TAG: BATT: 100.000000[0m
+[0;32mI (5224) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5234) Meter: eFuse Vref: Supported[0m
+[0;32mI (5234) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5244) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5224) TAG: BATT: 100.000000[0m
+[0;32mI (5244) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5254) Meter: eFuse Vref: Supported[0m
+[0;32mI (5254) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5264) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5244) TAG: BATT: 100.000000[0m
+[0;32mI (5274) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5274) Meter: eFuse Vref: Supported[0m
+[0;32mI (5284) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5284) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5274) TAG: BATT: 100.000000[0m
+[0;32mI (5294) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5304) Meter: eFuse Vref: Supported[0m
+[0;32mI (5304) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5314) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (5294) TAG: BATT: 100.000000[0m
+[0;32mI (5314) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5324) Meter: eFuse Vref: Supported[0m
+[0;32mI (5324) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5334) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (5314) TAG: BATT: 100.000000[0m
+[0;32mI (5344) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5344) Meter: eFuse Vref: Supported[0m
+[0;32mI (5354) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5354) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5344) TAG: BATT: 100.000000[0m
+[0;32mI (5364) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5364) Meter: eFuse Vref: Supported[0m
+[0;32mI (5374) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5374) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5364) TAG: BATT: 100.000000[0m
+[0;32mI (5384) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5394) Meter: eFuse Vref: Supported[0m
+[0;32mI (5394) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5404) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5384) TAG: BATT: 100.000000[0m
+[0;32mI (5404) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5414) Meter: eFuse Vref: Supported[0m
+[0;32mI (5414) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5424) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5404) TAG: BATT: 100.000000[0m
+[0;32mI (5434) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5434) Meter: eFuse Vref: Supported[0m
+[0;32mI (5444) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5444) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5434) TAG: BATT: 100.000000[0m
+[0;32mI (5454) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5464) Meter: eFuse Vref: Supported[0m
+[0;32mI (5464) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5474) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5454) TAG: BATT: 100.000000[0m
+[0;32mI (5474) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5484) Meter: eFuse Vref: Supported[0m
+[0;32mI (5484) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5494) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5474) TAG: BATT: 100.000000[0m
+[0;32mI (5504) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5504) Meter: eFuse Vref: Supported[0m
+[0;32mI (5514) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5514) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5504) TAG: BATT: 100.000000[0m
+[0;32mI (5524) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5524) Meter: eFuse Vref: Supported[0m
+[0;32mI (5534) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5534) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (5524) TAG: BATT: 100.000000[0m
+[0;32mI (5544) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5554) Meter: eFuse Vref: Supported[0m
+[0;32mI (5554) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5564) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5544) TAG: BATT: 100.000000[0m
+[0;32mI (5564) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5574) Meter: eFuse Vref: Supported[0m
+[0;32mI (5574) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5584) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5564) TAG: BATT: 100.000000[0m
+[0;32mI (5594) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5594) Meter: eFuse Vref: Supported[0m
+[0;32mI (5604) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5604) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5594) TAG: BATT: 100.000000[0m
+[0;32mI (5614) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5614) Meter: eFuse Vref: Supported[0m
+[0;32mI (5624) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5634) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5614) TAG: BATT: 100.000000[0m
+[0;32mI (5634) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5644) Meter: eFuse Vref: Supported[0m
+[0;32mI (5644) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5654) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5634) TAG: BATT: 100.000000[0m
+[0;32mI (5664) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5664) Meter: eFuse Vref: Supported[0m
+[0;32mI (5664) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5674) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5664) TAG: BATT: 100.000000[0m
+[0;32mI (5684) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5684) Meter: eFuse Vref: Supported[0m
+[0;32mI (5694) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5694) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (5684) TAG: BATT: 100.000000[0m
+[0;32mI (5704) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5714) Meter: eFuse Vref: Supported[0m
+[0;32mI (5714) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5724) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (5704) TAG: BATT: 100.000000[0m
+[0;32mI (5724) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5734) Meter: eFuse Vref: Supported[0m
+[0;32mI (5734) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5744) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (5724) TAG: BATT: 100.000000[0m
+[0;32mI (5754) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5754) Meter: eFuse Vref: Supported[0m
+[0;32mI (5764) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5764) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5754) TAG: BATT: 100.000000[0m
+[0;32mI (5774) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5774) Meter: eFuse Vref: Supported[0m
+[0;32mI (5784) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5784) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5774) TAG: BATT: 100.000000[0m
+[0;32mI (5794) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5804) Meter: eFuse Vref: Supported[0m
+[0;32mI (5804) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5814) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5794) TAG: BATT: 100.000000[0m
+[0;32mI (5824) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5824) Meter: eFuse Vref: Supported[0m
+[0;32mI (5824) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5834) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5824) TAG: BATT: 100.000000[0m
+[0;32mI (5844) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5844) Meter: eFuse Vref: Supported[0m
+[0;32mI (5854) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5854) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5844) TAG: BATT: 100.000000[0m
+[0;32mI (5864) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5874) Meter: eFuse Vref: Supported[0m
+[0;32mI (5874) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5884) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5864) TAG: BATT: 100.000000[0m
+[0;32mI (5884) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5894) Meter: eFuse Vref: Supported[0m
+[0;32mI (5894) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5904) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5884) TAG: BATT: 100.000000[0m
+[0;32mI (5914) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5914) Meter: eFuse Vref: Supported[0m
+[0;32mI (5924) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5924) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (5914) TAG: BATT: 100.000000[0m
+[0;32mI (5934) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5934) Meter: eFuse Vref: Supported[0m
+[0;32mI (5944) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5944) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5934) TAG: BATT: 100.000000[0m
+[0;32mI (5954) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5964) Meter: eFuse Vref: Supported[0m
+[0;32mI (5964) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5974) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5954) TAG: BATT: 100.000000[0m
+[0;32mI (5984) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (5984) Meter: eFuse Vref: Supported[0m
+[0;32mI (5984) Meter: Characterized using eFuse Vref[0m
+[0;32mI (5994) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (5984) TAG: BATT: 100.000000[0m
+[0;32mI (6004) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6004) Meter: eFuse Vref: Supported[0m
+[0;32mI (6014) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6014) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6004) TAG: BATT: 100.000000[0m
+[0;32mI (6024) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6034) Meter: eFuse Vref: Supported[0m
+[0;32mI (6034) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6044) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (6024) TAG: BATT: 100.000000[0m
+[0;32mI (6044) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6054) Meter: eFuse Vref: Supported[0m
+[0;32mI (6054) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6064) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6044) TAG: BATT: 100.000000[0m
+[0;32mI (6074) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6074) Meter: eFuse Vref: Supported[0m
+[0;32mI (6084) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6084) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6074) TAG: BATT: 100.000000[0m
+[0;32mI (6094) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6094) Meter: eFuse Vref: Supported[0m
+[0;32mI (6104) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6104) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6094) TAG: BATT: 100.000000[0m
+[0;32mI (6114) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6124) Meter: eFuse Vref: Supported[0m
+[0;32mI (6124) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6134) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6114) TAG: BATT: 100.000000[0m
+[0;32mI (6134) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6144) Meter: eFuse Vref: Supported[0m
+[0;32mI (6144) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6154) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6134) TAG: BATT: 100.000000[0m
+[0;32mI (6164) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6164) Meter: eFuse Vref: Supported[0m
+[0;32mI (6174) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6174) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6164) TAG: BATT: 100.000000[0m
+[0;32mI (6184) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6194) Meter: eFuse Vref: Supported[0m
+[0;32mI (6194) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6204) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6184) TAG: BATT: 100.000000[0m
+[0;32mI (6204) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6214) Meter: eFuse Vref: Supported[0m
+[0;32mI (6214) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6224) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6204) TAG: BATT: 100.000000[0m
+[0;32mI (6234) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6234) Meter: eFuse Vref: Supported[0m
+[0;32mI (6244) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6244) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6234) TAG: BATT: 100.000000[0m
+[0;32mI (6254) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6254) Meter: eFuse Vref: Supported[0m
+[0;32mI (6264) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6264) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6254) TAG: BATT: 100.000000[0m
+[0;32mI (6274) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6284) Meter: eFuse Vref: Supported[0m
+[0;32mI (6284) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6294) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6274) TAG: BATT: 100.000000[0m
+[0;32mI (6294) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6304) Meter: eFuse Vref: Supported[0m
+[0;32mI (6304) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6314) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6294) TAG: BATT: 100.000000[0m
+[0;32mI (6324) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6324) Meter: eFuse Vref: Supported[0m
+[0;32mI (6334) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6334) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6324) TAG: BATT: 100.000000[0m
+[0;32mI (6344) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6354) Meter: eFuse Vref: Supported[0m
+[0;32mI (6354) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6364) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6344) TAG: BATT: 100.000000[0m
+[0;32mI (6364) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6374) Meter: eFuse Vref: Supported[0m
+[0;32mI (6374) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6384) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6364) TAG: BATT: 100.000000[0m
+[0;32mI (6394) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6394) Meter: eFuse Vref: Supported[0m
+[0;32mI (6404) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6404) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6394) TAG: BATT: 100.000000[0m
+[0;32mI (6414) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6414) Meter: eFuse Vref: Supported[0m
+[0;32mI (6424) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6424) Meter: Raw: 950	Voltage: 922mV[0m
+[0;32mI (6414) TAG: BATT: 100.000000[0m
+[0;32mI (6434) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6444) Meter: eFuse Vref: Supported[0m
+[0;32mI (6444) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6454) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6434) TAG: BATT: 100.000000[0m
+[0;32mI (6454) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6464) Meter: eFuse Vref: Supported[0m
+[0;32mI (6464) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6474) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6454) TAG: BATT: 100.000000[0m
+[0;32mI (6484) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6484) Meter: eFuse Vref: Supported[0m
+[0;32mI (6494) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6494) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6484) TAG: BATT: 100.000000[0m
+[0;32mI (6504) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6514) Meter: eFuse Vref: Supported[0m
+[0;32mI (6514) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6524) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6504) TAG: BATT: 100.000000[0m
+[0;32mI (6524) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6534) Meter: eFuse Vref: Supported[0m
+[0;32mI (6534) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6544) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (6524) TAG: BATT: 100.000000[0m
+[0;32mI (6554) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6554) Meter: eFuse Vref: Supported[0m
+[0;32mI (6564) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6564) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (6554) TAG: BATT: 100.000000[0m
+[0;32mI (6574) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6574) Meter: eFuse Vref: Supported[0m
+[0;32mI (6584) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6584) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6574) TAG: BATT: 100.000000[0m
+[0;32mI (6594) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6604) Meter: eFuse Vref: Supported[0m
+[0;32mI (6604) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6614) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6594) TAG: BATT: 100.000000[0m
+[0;32mI (6614) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6624) Meter: eFuse Vref: Supported[0m
+[0;32mI (6624) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6634) Meter: Raw: 926	Voltage: 902mV[0m
+[0;32mI (6614) TAG: BATT: 100.000000[0m
+[0;32mI (6644) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6644) Meter: eFuse Vref: Supported[0m
+[0;32mI (6654) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6654) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6644) TAG: BATT: 100.000000[0m
+[0;32mI (6664) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6674) Meter: eFuse Vref: Supported[0m
+[0;32mI (6674) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6684) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6664) TAG: BATT: 100.000000[0m
+[0;32mI (6684) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6694) Meter: eFuse Vref: Supported[0m
+[0;32mI (6694) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6704) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6684) TAG: BATT: 100.000000[0m
+[0;32mI (6714) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6714) Meter: eFuse Vref: Supported[0m
+[0;32mI (6724) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6724) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6714) TAG: BATT: 100.000000[0m
+[0;32mI (6734) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6734) Meter: eFuse Vref: Supported[0m
+[0;32mI (6744) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6744) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6734) TAG: BATT: 100.000000[0m
+[0;32mI (6754) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6764) Meter: eFuse Vref: Supported[0m
+[0;32mI (6764) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6774) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (6754) TAG: BATT: 100.000000[0m
+[0;32mI (6774) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6784) Meter: eFuse Vref: Supported[0m
+[0;32mI (6784) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6794) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6774) TAG: BATT: 100.000000[0m
+[0;32mI (6804) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6804) Meter: eFuse Vref: Supported[0m
+[0;32mI (6814) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6814) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6804) TAG: BATT: 100.000000[0m
+[0;32mI (6824) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6824) Meter: eFuse Vref: Supported[0m
+[0;32mI (6834) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6844) Meter: Raw: 947	Voltage: 920mV[0m
+[0;32mI (6824) TAG: BATT: 100.000000[0m
+[0;32mI (6844) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6854) Meter: eFuse Vref: Supported[0m
+[0;32mI (6854) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6864) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (6844) TAG: BATT: 100.000000[0m
+[0;32mI (6874) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6874) Meter: eFuse Vref: Supported[0m
+[0;32mI (6874) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6884) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (6874) TAG: BATT: 100.000000[0m
+[0;32mI (6894) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6894) Meter: eFuse Vref: Supported[0m
+[0;32mI (6904) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6904) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6894) TAG: BATT: 100.000000[0m
+[0;32mI (6914) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6924) Meter: eFuse Vref: Supported[0m
+[0;32mI (6924) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6934) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6914) TAG: BATT: 100.000000[0m
+[0;32mI (6934) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6944) Meter: eFuse Vref: Supported[0m
+[0;32mI (6944) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6954) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6934) TAG: BATT: 100.000000[0m
+[0;32mI (6964) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6964) Meter: eFuse Vref: Supported[0m
+[0;32mI (6974) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6974) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (6964) TAG: BATT: 100.000000[0m
+[0;32mI (6984) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (6984) Meter: eFuse Vref: Supported[0m
+[0;32mI (6994) Meter: Characterized using eFuse Vref[0m
+[0;32mI (6994) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (6984) TAG: BATT: 100.000000[0m
+[0;32mI (7004) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7014) Meter: eFuse Vref: Supported[0m
+[0;32mI (7014) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7024) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (7004) TAG: BATT: 100.000000[0m
+[0;32mI (7034) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7034) Meter: eFuse Vref: Supported[0m
+[0;32mI (7034) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7044) Meter: Raw: 917	Voltage: 895mV[0m
+[0;32mI (7034) TAG: BATT: 100.000000[0m
+[0;32mI (7054) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7054) Meter: eFuse Vref: Supported[0m
+[0;32mI (7064) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7064) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (7054) TAG: BATT: 100.000000[0m
+[0;32mI (7074) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7084) Meter: eFuse Vref: Supported[0m
+[0;32mI (7084) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7094) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (7074) TAG: BATT: 100.000000[0m
+[0;32mI (7094) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7104) Meter: eFuse Vref: Supported[0m
+[0;32mI (7104) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7114) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (7094) TAG: BATT: 100.000000[0m
+[0;32mI (7124) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7124) Meter: eFuse Vref: Supported[0m
+[0;32mI (7134) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7134) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (7124) TAG: BATT: 100.000000[0m
+[0;32mI (7144) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7144) Meter: eFuse Vref: Supported[0m
+[0;32mI (7154) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7154) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (7144) TAG: BATT: 100.000000[0m
+[0;32mI (7164) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7174) Meter: eFuse Vref: Supported[0m
+[0;32mI (7174) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7184) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (7164) TAG: BATT: 100.000000[0m
+[0;32mI (7194) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7194) Meter: eFuse Vref: Supported[0m
+[0;32mI (7194) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7204) Meter: Raw: 959	Voltage: 929mV[0m
+[0;32mI (7184) TAG: BATT: 100.000000[0m
+[0;32mI (7214) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7214) Meter: eFuse Vref: Supported[0m
+[0;32mI (7224) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7224) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (7214) TAG: BATT: 100.000000[0m
+[0;32mI (7234) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7244) Meter: eFuse Vref: Supported[0m
+[0;32mI (7244) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7254) Meter: Raw: 936	Voltage: 910mV[0m
+[0;32mI (7234) TAG: BATT: 100.000000[0m
+[0;32mI (7254) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7264) Meter: eFuse Vref: Supported[0m
+[0;32mI (7264) Meter: Characterized using eFuse Vref[0m
+[0;32mI (7274) Meter: Raw: 960	Voltage: 930mV[0m
+[0;32mI (7254) TAG: BATT: 100.000000[0m
+[0;32mI (7284) Meter: eFuse Two Point: NOT supported[0m
+[0;32mI (7284) Meter: eFuse Vref: Supported[0m

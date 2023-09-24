@@ -18,8 +18,8 @@
 
 
 /* I2C address */
-#define I2C_MASTER_SDA_IO 23
-#define I2C_MASTER_SCL_IO 18
+#define I2C_MASTER_SDA_IO GPIO_NUM_21
+#define I2C_MASTER_SCL_IO GPIO_NUM_22
 #define I2C_MASTER_FREQ_HZ 100000
 
 #define SSD1306_I2C_ADDR         0x78
