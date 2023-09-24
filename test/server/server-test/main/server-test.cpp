@@ -54,11 +54,12 @@ extern "C" {
     SSD1306_UpdateScreen();*/
     displayStandByClientSuccess();
     vTaskDelay(1);
- 
 
     BATTERY *battObj = new BATTERY();
-    battObj -> adcInit();
-
+    while(1){ 
+        ESP_LOGI("TAG","BATT: %f",battObj -> batteryInterfaceInit());
+        ESP_LOGI("TAG","CURR: %f",battObj -> returnBatteryCurrentDraw());
+    }
 
     /*SD_FILESYSTEM *sdobj = new SD_FILESYSTEM();
     sdobj -> SDFS_initialize();
@@ -69,7 +70,8 @@ extern "C" {
     while(1){
         gps -> pullATGM_data();
         double gx = gps -> getLongitude();
-        //ESP_LOGI("TAG","LAT: %f",gx);
+        double spx = gps -> getSpeed();
+        ESP_LOGI("TAG","LAT: %f",spx);
         vTaskDelay(1); 
     }
 
