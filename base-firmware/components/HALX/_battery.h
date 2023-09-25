@@ -1,5 +1,4 @@
-#[[
-MIT License
+/*MIT License
 
 Copyright (c) 2023 limitless Aeronautics
 
@@ -19,17 +18,37 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-]]
+SOFTWARE.*/
 
+#ifndef _BATTERY_
+#define _BATTERY_
 
-idf_component_register(SRCS "_barometerEntry.cpp"
-                            "bmx280.cpp"
-                            "ssd1306_fonts.cpp"
-                            "ssd1306.cpp"
-                            "mg90s_servo.cpp"
-                            "fan_relay.cpp"
-                            "_barometerEntry.cpp" 
-                            "_battery.cpp"
-                        INCLUDE_DIRS "."
-                        REQUIRES PTAM esp_wifi esp_netif esp_http_server nvs_flash driver esp_adc)
+#include <stdio.h>
+#include <stdlib.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/gpio.h"
+#include "driver/adc.h"
+#include "esp_adc_cal.h"
+#include "esp_log.h"
+
+class BATTERY{
+    public:
+        static double batteryInterfaceInit();
+        
+        static uint16_t returnBatteryVoltage();
+
+        static double returnBatteryCurrentDraw();
+
+        static void initCurrentADC();
+
+        static double returnBatteryPercent(int adc);
+
+        static void print_char_val_type(esp_adc_cal_value_t val_type);
+
+        static void check_efuse(void);
+
+        static double mapValue(double value, double fromLow, double fromHigh, double toLow, double toHigh);
+};
+
+#endif //BATTERY
