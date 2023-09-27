@@ -38,32 +38,56 @@ weighted_t VAMS::weighted_path;
 
 weighted_t VAMS::VERIFY_PITCH(double accel_x, double accel_y, double accel_z) noexcept(true)
 {
-    double pitch = atan2(-accel_x, sqrt(accel_y * accel_y + accel_z * accel_z));
+    double pitch = atan2(accel_x, sqrt(accel_y * accel_y + accel_z * accel_z)) * 180.0 / M_PI;
 
-    weighted_pitch = (pitch >= -PITCH_THRESHOLD_DEGREES && pitch <= PITCH_THRESHOLD_DEGREES) ?
-        weighted_t{"Pitch_verif", pitch, NO_LOSS_OF_CONTROL} : weighted_t{"Pitch_Verif", pitch, LOSS_OF_CONTROL};
+    weighted_t result;
+    if (pitch >= -PITCH_THRESHOLD_DEGREES && pitch <= PITCH_THRESHOLD_DEGREES || pitch == 0)
+    {
+        result = weighted_t{"Pitch_verif", pitch, NO_LOSS_OF_CONTROL};
+    }
+    else
+    {
+        result = weighted_t{"Pitch_Verif", pitch, LOSS_OF_CONTROL};
+    }
 
-    return weighted_pitch;
+    weighted_pitch = result;
+    return result;
 }
 
 weighted_t VAMS::VERIFY_YAW(double magn_x, double magn_y) noexcept(true)
 {
     double yaw = atan2(magn_y, magn_x);
 
-    weighted_yaw = (yaw >= -YAW_THRESHOLD_DEGREES && yaw <= YAW_THRESHOLD_DEGREES) ?
-        weighted_t{"Yaw_verif", yaw, NO_LOSS_OF_CONTROL} : weighted_t{"Yaw_verif", yaw, LOSS_OF_CONTROL};
+    weighted_t result;
+    if (yaw >= -YAW_THRESHOLD_DEGREES && yaw <= YAW_THRESHOLD_DEGREES)
+    {
+        result = weighted_t{"Yaw_verif", yaw, NO_LOSS_OF_CONTROL};
+    }
+    else
+    {
+        result = weighted_t{"Yaw_verif", yaw, LOSS_OF_CONTROL};
+    }
 
-    return weighted_yaw;
+    weighted_yaw = result;
+    return result;
 }
 
 weighted_t VAMS::VERIFY_ROLL(double accel_x, double accel_y, double accel_z) noexcept(true)
 {
     double roll = atan2(accel_y, sqrt(accel_x * accel_x + accel_z * accel_z));
 
-    weighted_roll = (roll >= -ROLL_THRESHOLD_DEGREES && roll <= ROLL_THRESHOLD_DEGREES) ?
-        weighted_t{"Roll_Verif", roll, NO_LOSS_OF_CONTROL} : weighted_t{"Roll_Verif", roll, LOSS_OF_CONTROL};
+    weighted_t result;
+    if (roll >= -ROLL_THRESHOLD_DEGREES && roll <= ROLL_THRESHOLD_DEGREES)
+    {
+        result = weighted_t{"Roll_Verif", roll, NO_LOSS_OF_CONTROL};
+    }
+    else
+    {
+        result = weighted_t{"Roll_Verif", roll, LOSS_OF_CONTROL};
+    }
 
-    return weighted_roll;
+    weighted_roll = result;
+    return result;
 }
 
 double VAMS::haversine(double startLat, double startLong, double endLat, double endLong)noexcept(true)
@@ -82,19 +106,27 @@ double VAMS::haversine(double startLat, double startLong, double endLat, double 
     return distance;
 }
 
-weighted_t VAMS::VERIFY_PATH(const Vector3D& initloc, const Vector3D& targetloc, double boundaryRadius)noexcept(true)
+weighted_t VAMS::VERIFY_PATH(const Vector3D& initloc, const Vector3D& targetloc, double boundaryRadius) noexcept(true)
 {
     double distance = haversine(initloc.lat, initloc.lon, targetloc.lat, targetloc.lon);
 
-    weighted_path = (distance <= boundaryRadius || distance >= boundaryRadius) ?
-        weighted_t{"Path_verif", distance, NOT_OFF_COURSE} : weighted_t{"Path_verif", distance, FAR_OFF_COURSE};
+    weighted_t result;
+    if (distance <= boundaryRadius || distance >= boundaryRadius)
+    {
+        result = weighted_t{"Path_verif", distance, NOT_OFF_COURSE};
+    }
+    else
+    {
+        result = weighted_t{"Path_verif", distance, FAR_OFF_COURSE};
+    }
 
-    return weighted_path;
+    weighted_path = result;
+    return result;
 }
 
 abort_t VAMS::VAMS_MATRIX(weighted_t weighted_PI, weighted_t weighted_YA, weighted_t weighted_RO, weighted_t weighted_PA)
 {
-        // Calculate the total weighted status
+    // Calculate the total weighted status
     int totalWeightedStatus = weighted_PI.vstatus + weighted_YA.vstatus + weighted_RO.vstatus + weighted_PA.vstatus;
 
     // Make a decision based on the total weighted status and the threshold
