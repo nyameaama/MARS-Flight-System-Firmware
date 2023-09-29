@@ -55,11 +55,11 @@ extern "C" {
     displayStandByClientSuccess();
     vTaskDelay(1);
 
-    BATTERY *battObj = new BATTERY();
+    /*BATTERY *battObj = new BATTERY();
     while(1){ 
         ESP_LOGI("TAG","BATT: %f",battObj -> batteryInterfaceInit());
         ESP_LOGI("TAG","CURR: %f",battObj -> returnBatteryCurrentDraw());
-    }
+    }*/
 
     /*SD_FILESYSTEM *sdobj = new SD_FILESYSTEM();
     sdobj -> SDFS_initialize();
@@ -77,7 +77,7 @@ extern "C" {
 
     delete gps;*/
 
-    /*VEHICLE_BARO *baro = new VEHICLE_BARO();
+    VEHICLE_BARO *baro = new VEHICLE_BARO();
     baro -> init_barometer();
     FAN_COOLING *cool = new FAN_COOLING();
     cool -> init_relay();
@@ -87,10 +87,10 @@ extern "C" {
         vTaskDelay(pdMS_TO_TICKS(2000)); 
     }
     
-    delete cool;*/
+    delete cool;
 
-    /*
-    WingTranslate *obj = new WingTranslate();
+    
+    /*WingTranslate *obj = new WingTranslate();
     while(1){
     obj -> mcpwm_servo_control(45, SERVO_FL);
     obj -> mcpwm_servo_control(0, SERVO_FL);
