@@ -10,13 +10,13 @@ double linearInterpolate(double input, double input_start, double input_end,
 
 int main() {
     // Sample target and current values
-    std::vector<double> target = {78.0, 0.0, 0.0};
-    std::vector<double> current = {25.9, 0.0, 0.0};
+    std::vector<double> target = {68.0, 0.0, 0.0};
+    std::vector<double> current = {75.9, 0.0, 0.0};
 
     // PID control parameters
-    double kp = 0.5;
-    double ki = 0.1;
-    double kd = 0.7;
+    double kp = 1.01;
+    double ki = 0.12;
+    double kd = 0.68;
     
     double dt = 0.1;  // Time step
     double min_output = 0;
@@ -28,14 +28,15 @@ int main() {
 
     PID *pobj = new PID();
     // Call the PID controller
+    //for(int i = 0; i < 100; i++){
     std::vector<double> control_signals = pobj -> pid_controller(target, current, kp, ki, kd,
                                                          integral, previous_errors, dt,
                                                          min_output, max_output);
 
     double elem = control_signals.front();
-    double lI = linearInterpolate(elem, 0, 90, 270, 180);
+    double lI = linearInterpolate(elem, 0, 90, 270, 230);
     std::cout << " " << lI << std::endl;
-
+    //}
     // Print the control signals
     /*std::cout << "Control Signals:";
     for (std::size_t i = 0; i < control_signals.size(); ++i) {

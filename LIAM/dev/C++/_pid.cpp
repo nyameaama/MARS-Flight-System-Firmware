@@ -26,7 +26,14 @@ double PID::calculate_derivative(double previous_error, double error, double dt)
 // Calculate control signal with output clamping
 double PID::calculate_control_signal(double kp, double ki, double kd, double error, double integral, double derivative,
                                 double min_output, double max_output) {
+    
     double control_signal = kp * error + ki * integral + kd * derivative;
+
+    //WE ADD A NEGATIVE MULTIPLIER TO MAKE IT POSITIVE BECAUSE IF THE TARGET VALUE 
+    //IS LESS THAN THE CURRENT VALUE THE CONTROL SIGNAL WILL BE A NEGATIVE VALUE. SINCE
+    //WE CLAMPED CONTROL SIGNAL OUTPUT TO BETWEEN 0-90 THIS WILL CAUSE BAD OUTPUT SO THIS IS A HOTFIX
+    if(control_signal < 0){control_signal = -control_signal;}
+
     // Clamp the control signal within the specified range
     if (control_signal < min_output) {
         return min_output;
