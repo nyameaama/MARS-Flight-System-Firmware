@@ -23,5 +23,5 @@ SOFTWARE.
 ]]
 
 
-idf_component_register(SRCS "_pid.cpp"
+idf_component_register(SRCS
                             "decomposer.cpp")

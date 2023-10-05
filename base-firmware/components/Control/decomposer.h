@@ -22,7 +22,7 @@ SOFTWARE.*/
 #include <vector>
 #include <algorithm>
 #include <string>
-#include "_pid.h"
+#include "../PID/_pid.h"
 
 class DECOMPOSER {
     public:
