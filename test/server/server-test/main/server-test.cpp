@@ -61,9 +61,14 @@ extern "C" {
         ESP_LOGI("TAG","CURR: %f",battObj -> returnBatteryCurrentDraw());
     }*/
 
-    /*SD_FILESYSTEM *sdobj = new SD_FILESYSTEM();
+    SD_FILESYSTEM *sdobj = new SD_FILESYSTEM();
+    const char *file = MOUNT_POINT"/init_config.txt";
+    char* data = "TEXT_FROM_FIRMWARE";
+    const char *directory_path = "/sdcard/error_directory";
     sdobj -> SDFS_initialize();
-    delete sdobj;*/
+    //sdobj -> create_directory(directory_path);
+    sdobj -> SDFS_write_file(file, data);
+    delete sdobj;
 
     /*ATGM336H *gps = new ATGM336H();
     gps -> init_ATGM_module();
@@ -77,17 +82,18 @@ extern "C" {
 
     delete gps;*/
 
-    VEHICLE_BARO *baro = new VEHICLE_BARO();
+    /*VEHICLE_BARO *baro = new VEHICLE_BARO();
     baro -> init_barometer();
     FAN_COOLING *cool = new FAN_COOLING();
     cool -> init_relay();
     while(1){
-        double tp = baro -> pushTemperature();
+       double tp = baro -> pushTemperature();
+       ESP_LOGI("TAG","TEMP: %f",baro -> pushTemperature());
        cool -> coolSierra_task(tp);
         vTaskDelay(pdMS_TO_TICKS(2000)); 
     }
     
-    delete cool;
+    delete cool;*/
 
     
     /*WingTranslate *obj = new WingTranslate();
@@ -97,8 +103,8 @@ extern "C" {
     obj -> mcpwm_servo_control(90, SERVO_FL);
     vTaskDelay(pdMS_TO_TICKS(500)); 
     }
-    delete obj;
-    */
+    delete obj;*/
+    
 
     //SSD1306_GotoXY(10,10);
 

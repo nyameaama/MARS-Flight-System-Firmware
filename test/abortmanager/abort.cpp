@@ -94,7 +94,7 @@ weighted_t VAMS::VERIFY_PATH(const Vector3D& initloc, const Vector3D& targetloc,
 
 abort_t VAMS::VAMS_MATRIX(weighted_t weighted_PI, weighted_t weighted_YA, weighted_t weighted_RO, weighted_t weighted_PA)
 {
-        // Calculate the total weighted status
+    // Calculate the total weighted status
     int totalWeightedStatus = weighted_PI.vstatus + weighted_YA.vstatus + weighted_RO.vstatus + weighted_PA.vstatus;
 
     // Make a decision based on the total weighted status and the threshold

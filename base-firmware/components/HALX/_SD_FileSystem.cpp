@@ -1,3 +1,25 @@
+/*MIT License
+
+Copyright (c) 2023 limitless Aeronautics
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.*/
+
 #include"_SD_FileSystem.h"
 
 #define MAX_CHAR_SIZE 50
@@ -7,6 +29,12 @@
 #define PIN_NUM_CLK     (gpio_num_t) 18
 #define PIN_NUM_CS      (gpio_num_t) 5
 
+//____________________________________________________________
+/* Initializes SD File System
+===========================================================================
+|    void
+===========================================================================
+*/
 void SD_FILESYSTEM::SDFS_initialize(){
     esp_err_t ret;
 
@@ -72,6 +100,13 @@ void SD_FILESYSTEM::SDFS_initialize(){
     sdmmc_card_print_info(stdout, card);
 }
 
+//____________________________________________________________
+/* Deinitializes SD File System
+===========================================================================
+|    void
+===========================================================================
+*/
+
 void SD_FILESYSTEM::SDFS_deinitialize(){
     // All done, unmount partition and disable SPI peripheral
     //esp_vfs_fat_sdcard_unmount(mount_point, card);
@@ -81,6 +116,12 @@ void SD_FILESYSTEM::SDFS_deinitialize(){
     //spi_bus_free(spi_host_device_t(host.slot));
 }
 
+//____________________________________________________________
+/* Writes data to file path 
+===========================================================================
+|    void
+===========================================================================
+*/
 esp_err_t SD_FILESYSTEM::SDFS_write_file(const char *path, char *data)
 {
     ESP_LOGI("TAG", "Opening file %s", path);
@@ -96,6 +137,12 @@ esp_err_t SD_FILESYSTEM::SDFS_write_file(const char *path, char *data)
     return ESP_OK;
 }
 
+//____________________________________________________________
+/* Reads data from file path
+===========================================================================
+|    void
+===========================================================================
+*/
 esp_err_t SD_FILESYSTEM::SDFS_read_file(const char *path)
 {
     ESP_LOGI("TAG", "Reading file %s", path);
@@ -118,6 +165,12 @@ esp_err_t SD_FILESYSTEM::SDFS_read_file(const char *path)
     return ESP_OK;
 }
 
+//____________________________________________________________
+/* Creates directory on SD File System
+===========================================================================
+|    void
+===========================================================================
+*/
 void SD_FILESYSTEM::create_directory(const char *path) {
     if (mkdir(path, 0777) == -1) {
         // Handle the error, if any

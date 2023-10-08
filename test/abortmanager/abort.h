@@ -49,7 +49,7 @@
 #define EARTH_RADIUS                        (int16_t)       6371.00
 #define TO_RADIANS                          (degrees)       ((degrees) * M_PI / 180.0)
 
-#define WEIGHTED_THRESHOLD 4
+#define WEIGHTED_THRESHOLD 2
 
 class VAMS
 {
@@ -93,7 +93,7 @@ public:
      * @param lon1      Starting Longitude
      * @param lat2      Ending Latitude
      * @param lon2      Ending Longitude
-     * @return double | The distance calculated with parameters.
+     * @return double | The distance calculated with parameters. (in KM)
      */
     double haversine(double lat1, double lon1, double lat2, double lon2)noexcept(true);
 
