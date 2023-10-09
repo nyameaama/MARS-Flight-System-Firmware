@@ -42,8 +42,8 @@ double cruise_app(){
     } else {
         std::cout << "No path found." << std::endl;
     }
-    //Get Pitch and Roll from path
-
+    //Get Pitch and Roll from next point in path
+    
     //Decompose angles to servo positions
 
 }

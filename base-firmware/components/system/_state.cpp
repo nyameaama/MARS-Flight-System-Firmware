@@ -22,7 +22,12 @@ SOFTWARE.*/
 
 #include "_state.h"
 
-    //CHange state to prep
+//____________________________________________________________
+/* Change state to prep
+===========================================================================
+|    void
+===========================================================================
+*/
     uint8_t STATE::SWITCH2PREP(){
         //Change variable
         uint8_t change = 0;
@@ -40,7 +45,12 @@ SOFTWARE.*/
         return change;
     }
 
-    //CHange state to armed
+//____________________________________________________________
+/* Change state to armed
+===========================================================================
+|    void
+===========================================================================
+*/
     uint8_t STATE::SWITCH2ARMED(){
         //Change variable
         uint8_t change = 0;
@@ -58,6 +68,12 @@ SOFTWARE.*/
         return change;
     }
 
+//____________________________________________________________
+/* Change state to bypass
+===========================================================================
+|    void
+===========================================================================
+*/
     //Change state to bypass
     uint8_t STATE::SWITCH2BYPASS(){
         //Change variable
@@ -76,30 +92,12 @@ SOFTWARE.*/
         return change;
     }
 
-    void STATE::ASSIGN_PREP_TASKS(){
-        
-    }
-
-    void STATE::UNDEF_FLAGS(std::string state){
-        if(state == "IDLE"){
-            
-        }
-        if(state == "PREP"){
-            //Reset drone server setup PTAM Register
-            //std::string reg_name = "setupSFlag";
-            //Remove previous value
-            //obj -> clearData(reg_name);
-            //Push Update
-            //obj -> storeData(reg_name,1);
-        }
-        if(state == "ARMED"){
-        
-        }
-        if(state == "BYPASS"){
-        
-        }
-    }
-
+//____________________________________________________________
+/* Get last state request from PTAM
+===========================================================================
+|    void
+===========================================================================
+*/
     std::string STATE::getLastStateRequest(){
         SharedMemory& obj = SharedMemory::getInstance();
         //Get STATE data from PTAM
@@ -108,6 +106,12 @@ SOFTWARE.*/
         return dta;
     }
 
+//____________________________________________________________
+/* Compare two strings of type <std::string>
+===========================================================================
+|    void
+===========================================================================
+*/
     //If output = 1, strings match
     uint8_t STATE::compareX(std::string x, std::string y){
         if (x != y){
