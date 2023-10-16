@@ -33,5 +33,6 @@ idf_component_register(SRCS "base-firmware.cpp"
                             "../components/system/validateSensors.cpp"
                             "../components/system/_state.cpp"
                             "../components/system/sys_controller.cpp"
+                            "../components/Logging/logger.cpp"
 
                     INCLUDE_DIRS ".")

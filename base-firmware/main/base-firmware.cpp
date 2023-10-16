@@ -20,7 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include <stdio.h>
 #include"../components/Comms/_broadcast.h"
 #include"../components/HALX/mg90s_servo.h"
 #include"../components/HALX/ssd1306.h"
@@ -30,6 +29,7 @@ SOFTWARE.*/
 #include"../components/system/validateSensors.h"
 #include"../components/system/_state.h"
 #include"../components/system/sys_controller.h"
+#include"../components/Logging/logger.hpp"
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "esp_event.h"
