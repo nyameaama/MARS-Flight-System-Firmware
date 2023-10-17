@@ -1,6 +1,0 @@
-[0/1] Re-running CMake...
--- Building ESP-IDF components for target esp32
--- Configuring incomplete, errors occurred!
-See also "/Users/nyameaama/Documents/MARS-Firmware/test/server/server-test/build/CMakeFiles/CMakeOutput.log".
-FAILED: build.ninja 
-/usr/local/Cellar/cmake/3.17.3/bin/cmake --regenerate-during-build -S/Users/nyameaama/Documents/MARS-Firmware/test/server/server-test -B/Users/nyameaama/Documents/MARS-Firmware/test/server/server-test/build

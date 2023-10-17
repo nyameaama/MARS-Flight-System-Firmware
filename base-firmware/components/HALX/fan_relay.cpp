@@ -25,6 +25,7 @@ SOFTWARE.*/
 #include "esp_log.h"
 
 #define RELAY_GPIO_PIN gpio_num_t(2)
+bool fanIsOn = false;
 
 //____________________________________________________________
 /* Initializes Fan Relay
@@ -78,9 +79,18 @@ void FAN_COOLING::fan_relay_off(){
 ===========================================================================
 */
 void FAN_COOLING::coolSierra_task(double sierraTemp){
-    if(sierraTemp >= 30){
+    // Setpoints for turning the fan on and off
+    double fanOnSetpoint = 33.0;
+    double fanOffSetpoint = 30.0;
+
+    // Check if the temperature is above the fanOnSetpoint
+    if (sierraTemp > fanOnSetpoint && !fanIsOn) {
+        // Turn the fan on
         fan_relay_on();
-    }else{
+        fanIsOn = true;
+    } else if (sierraTemp < fanOffSetpoint && fanIsOn) {
+        // Turn the fan off
         fan_relay_off();
+        fanIsOn = false;
     }
 }

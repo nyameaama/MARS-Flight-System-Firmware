@@ -20,33 +20,31 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#ifndef MG90S_SERVO_H
-#define MG90S_SERVO_H
+#ifndef SD_CARD
+#define SD_CARD
 
-#include <cstdint>
+#include <string.h>
+#include <sys/unistd.h>
+#include <sys/stat.h>
+#include "esp_vfs_fat.h"
+#include "sdmmc_cmd.h"
+#include "driver/sdmmc_host.h"
+#include "esp_log.h"
 
-#define SPEED_DEFAULT 1
-#define SPEED_FAST 20
+#define MOUNT_POINT "/sdcard"
 
-#define SERVO_FL 0
-#define SERVO_FR 1
-#define SERVO_RL 2
-#define SERVO_RR 3
-
-class WingTranslate {
+class SD_FILESYSTEM {
     public:
-        static void mcpwm_gpio_initialize(uint8_t motor);
+        static void SDFS_initialize();
 
-        static uint32_t servo_per_degree_init(uint32_t degree_of_rotation);
+        static void SDFS_deinitialize();
         
-        uint8_t mcpwm_servo_control(uint32_t angle,uint8_t pin);
+        static esp_err_t SDFS_write_file(const char *path, char *data);
 
-    private:
-        uint8_t GET_SERVO_POS(uint8_t pin);
+        static esp_err_t SDFS_read_file(const char *path);
 
-        void UPDATE_SERVO_POS(uint8_t pin, uint8_t updatedValue);
+        static void create_directory(const char *path);
 
-        uint32_t angle_to_compare(int angle);
 };
 
-#endif // MG90S_SERVO_H
+#endif //SD_CARD

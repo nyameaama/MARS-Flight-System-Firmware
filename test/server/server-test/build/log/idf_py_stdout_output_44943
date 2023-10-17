@@ -1,2025 +1,0 @@
-ets Jul 29 2019 12:21:46
-
-rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
-configsip: 0, SPIWP:0xee
-clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
-mode:DIO, clock div:2
-load:0x3fff0030,len:7084
-ho 0 tail 12 room 4
-load:0x40078000,len:15576
-ho 0 tail 12 room 4
-load:0x40080400,len:4
-load:0x40080404,len:3876
-entry 0x4008064c
-[0;32mI (33) boot: ESP-IDF v5.1-dirty 2nd stage bootloader[0m
-[0;32mI (33) boot: compile time Jul 31 2023 23:59:43[0m
-[0;32mI (33) boot: Multicore bootloader[0m
-[0;32mI (38) boot: chip revision: v3.0[0m
-[0;32mI (41) boot.esp32: SPI Speed      : 40MHz[0m
-[0;32mI (46) boot.esp32: SPI Mode       : DIO[0m
-[0;32mI (51) boot.esp32: SPI Flash Size : 2MB[0m
-[0;32mI (55) boot: Enabling RNG early entropy source...[0m
-[0;32mI (61) boot: Partition Table:[0m
-[0;32mI (64) boot: ## Label            Usage          Type ST Offset   Length[0m
-[0;32mI (71) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
-[0;32mI (79) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
-[0;32mI (86) boot:  2 factory          factory app      00 00 00010000 00177000[0m
-[0;32mI (94) boot: End of partition table[0m
-[0;32mI (98) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=4ca28h (313896) map[0m
-[0;32mI (220) esp_image: segment 1: paddr=0005ca50 vaddr=3ffb0000 size=035c8h ( 13768) load[0m
-[0;32mI (225) esp_image: segment 2: paddr=00060020 vaddr=400d0020 size=b95dch (759260) map[0m
-[0;32mI (500) esp_image: segment 3: paddr=00119604 vaddr=3ffb35c8 size=00278h (   632) load[0m
-[0;32mI (500) esp_image: segment 4: paddr=00119884 vaddr=40080000 size=16930h ( 92464) load[0m
-[0;32mI (555) boot: Loaded app from partition at offset 0x10000[0m
-[0;32mI (555) boot: Disabling RNG early entropy source...[0m
-[0;32mI (567) cpu_start: Multicore app[0m
-[0;32mI (567) cpu_start: Pro cpu up.[0m
-[0;32mI (567) cpu_start: Starting app cpu, entry point is 0x40081480[0m
-[0;32mI (0) cpu_start: App cpu up.[0m
-[0;32mI (585) cpu_start: Pro cpu start user code[0m
-[0;32mI (585) cpu_start: cpu freq: 160000000 Hz[0m
-[0;32mI (585) cpu_start: Application information:[0m
-[0;32mI (590) cpu_start: Project name:     server-test[0m
-[0;32mI (595) cpu_start: App version:      3b93bc3-dirty[0m
-[0;32mI (601) cpu_start: Compile time:     Aug 10 2023 18:56:56[0m
-[0;32mI (607) cpu_start: ELF file SHA256:  2cfaaefb211d98f4...[0m
-[0;32mI (613) cpu_start: ESP-IDF:          v5.1-dirty[0m
-[0;32mI (618) cpu_start: Min chip rev:     v0.0[0m
-[0;32mI (623) cpu_start: Max chip rev:     v3.99 [0m
-[0;32mI (628) cpu_start: Chip rev:         v3.0[0m
-[0;32mI (632) heap_init: Initializing. RAM available for dynamic allocation:[0m
-[0;32mI (640) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
-[0;32mI (646) heap_init: At 3FFB8E88 len 00027178 (156 KiB): DRAM[0m
-[0;32mI (652) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
-[0;32mI (658) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
-[0;32mI (665) heap_init: At 40096930 len 000096D0 (37 KiB): IRAM[0m
-[0;32mI (672) spi_flash: detected chip: generic[0m
-[0;32mI (675) spi_flash: flash io: dio[0m
-[0;33mW (679) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
-[0;32mI (693) app_start: Starting scheduler on CPU0[0m
-[0;32mI (698) app_start: Starting scheduler on CPU1[0m
-[0;32mI (698) main_task: Started on CPU0[0m
-[0;32mI (708) main_task: Calling app_main()[0m
-I (2748) wifi:wifi driver task: 3ffc0da8, prio:23, stack:6656, core=0
-I (2758) wifi:wifi firmware version: b2f1f86
-I (2758) wifi:wifi certification version: v7.0
-I (2758) wifi:config NVS flash: enabled
-I (2758) wifi:config nano formating: disabled
-I (2758) wifi:Init data frame dynamic rx buffer num: 32
-I (2768) wifi:Init management frame dynamic rx buffer num: 32
-I (2768) wifi:Init management short buffer num: 32
-I (2778) wifi:Init dynamic tx buffer num: 32
-I (2778) wifi:Init static rx buffer size: 1600
-I (2778) wifi:Init static rx buffer num: 10
-I (2788) wifi:Init dynamic rx buffer num: 32
-[0;32mI (2788) wifi_init: rx ba win: 6[0m
-[0;32mI (2798) wifi_init: tcpip mbox: 32[0m
-[0;32mI (2798) wifi_init: udp mbox: 6[0m
-[0;32mI (2798) wifi_init: tcp mbox: 6[0m
-[0;32mI (2808) wifi_init: tcp tx win: 5744[0m
-[0;32mI (2808) wifi_init: tcp rx win: 5744[0m
-[0;32mI (2818) wifi_init: tcp mss: 1440[0m
-[0;32mI (2818) wifi_init: WiFi IRAM OP enabled[0m
-[0;32mI (2828) wifi_init: WiFi RX IRAM OP enabled[0m
-[0;32mI (2838) phy_init: phy_version 4670,719f9f6,Feb 18 2021,17:07:07[0m
-I (2938) wifi:mode : softAP (ec:62:60:76:2c:8d)
-I (2948) wifi:Total power save buffer number: 16
-I (2948) wifi:Init max length of beacon: 752/752
-I (2948) wifi:Init max length of beacon: 752/752
-[0;32mI (2948) wifi softAP: wifi_init_softap finished. SSID:HIVE2 password:HIVE_PASS channel:6[0m
-[0;32mI (2948) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
-SSD1306 Initialized..
-[0;32mI (4288) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (4498) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (4828) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (5278) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (5458) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (5658) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (5908) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (6118) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (6448) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (6898) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (7078) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (7278) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (7528) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (7738) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (8068) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (8518) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (8698) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (8898) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (9148) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (9358) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (9688) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (10138) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (10318) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (10518) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (10768) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (10978) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (11308) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (11758) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (11938) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (12138) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (12388) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (12598) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (12928) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (13378) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (13558) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (13758) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (14008) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (14218) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (14548) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (14998) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (15178) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (15378) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (15628) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (15838) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (16168) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (16618) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (16798) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (16998) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (17248) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (17458) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (17788) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (18238) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (18418) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (18618) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (18868) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (19078) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (19408) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (19858) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (20038) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (20238) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (20488) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (20698) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (21028) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (21478) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (21658) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (21858) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (22108) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (22318) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (22648) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (23098) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (23278) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (23478) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (23728) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (23938) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (24268) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (24718) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (24898) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (25098) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (25348) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (25558) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (25888) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (26338) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (26598) TAG: Received NMEA: $GPGSV,1,1,01,20,,,24*7C[0m
-[0;32mI (26798) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (27048) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (27258) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (27588) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (28038) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (28298) TAG: Received NMEA: $GPGSV,1,1,01,20,,,20*78[0m
-[0;32mI (28498) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (28748) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (28958) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (29288) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (29738) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (30078) TAG: Received NMEA: $GPGSV,1,1,02,20,,,12,23,,,29*70[0m
-[0;32mI (30278) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (30528) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (30738) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (31068) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (31518) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (31778) TAG: Received NMEA: $GPGSV,1,1,01,21,,,25*7C[0m
-[0;32mI (31978) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (32228) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (32438) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (32768) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (33218) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (33558) TAG: Received NMEA: $GPGSV,1,1,02,21,,,21,24,,,24*7B[0m
-[0;32mI (33758) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (34008) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (34218) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (34548) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (34998) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (35338) TAG: Received NMEA: $GPGSV,1,1,02,21,,,18,24,,,20*75[0m
-[0;32mI (35538) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (35788) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (35998) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (36328) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (36778) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (37118) TAG: Received NMEA: $GPGSV,1,1,02,21,,,11,24,,,16*79[0m
-[0;32mI (37318) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (37568) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (37778) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (38108) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (38558) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (38898) TAG: Received NMEA: $GPGSV,1,1,02,21,,,11,24,,,13*7C[0m
-[0;32mI (39098) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (39348) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (39558) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (39888) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (40338) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (40758) TAG: Received NMEA: $GPGSV,1,1,03,21,,,11,24,,,11,27,,,28*70[0m
-[0;32mI (40958) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (41208) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (41418) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (41748) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (42198) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (42538) TAG: Received NMEA: $GPGSV,1,1,02,21,,,10,24,,,10*7E[0m
-[0;32mI (42738) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (42988) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (43198) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (43528) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (43978) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (44238) TAG: Received NMEA: $GPGSV,1,1,01,21,,,09*72[0m
-[0;32mI (44438) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (44688) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (44898) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (45228) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (45878) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (46328) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (46828) TAG: Received NMEA: $GPGSV,4,1,14,01,,,17,02,,,20,03,,,20,05,,,27*7F[0m
-[0;32mI (47328) TAG: Received NMEA: $GPGSV,4,2,14,08,,,10,20,,,32,22,,,15,23,,,12*76[0m
-[0;32mI (47828) TAG: Received NMEA: $GPGSV,4,3,14,24,,,16,25,,,17,26,,,16,27,,,21*7E[0m
-[0;32mI (48168) TAG: Received NMEA: $GPGSV,4,4,14,28,,,21,29,,,20*7C[0m
-[0;32mI (48368) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (48618) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (48828) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (49158) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (49608) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (50108) TAG: Received NMEA: $GPGSV,4,1,15,01,,,10,02,,,19,03,,,19,05,,,24*7A[0m
-[0;32mI (50608) TAG: Received NMEA: $GPGSV,4,2,15,08,,,09,20,,,23,21,,,24,22,,,10*7D[0m
-[0;32mI (51108) TAG: Received NMEA: $GPGSV,4,3,15,23,,,09,24,,,09,25,,,11,26,,,09*77[0m
-[0;32mI (51528) TAG: Received NMEA: $GPGSV,4,4,15,27,,,19,28,,,19,29,,,19*71[0m
-[0;32mI (51728) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (51978) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (52188) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (52518) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (52968) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (53468) TAG: Received NMEA: $GPGSV,4,1,15,01,,,11,02,,,18,03,,,18,05,,,21*7E[0m
-[0;32mI (53968) TAG: Received NMEA: $GPGSV,4,2,15,08,,,11,20,,,21,21,,,21,22,,,10*73[0m
-[0;32mI (54468) TAG: Received NMEA: $GPGSV,4,3,15,23,,,11,24,,,09,25,,,11,26,,,08*7F[0m
-[0;32mI (54888) TAG: Received NMEA: $GPGSV,4,4,15,27,,,17,28,,,18,29,,,17*70[0m
-[0;32mI (55088) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (55338) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (55548) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (55878) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (56328) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (56828) TAG: Received NMEA: $GPGSV,3,1,11,02,,,15,03,,,16,05,,,16,08,,,12*70[0m
-[0;32mI (57328) TAG: Received NMEA: $GPGSV,3,2,11,20,,,16,21,,,13,23,,,12,24,,,10*79[0m
-[0;32mI (57748) TAG: Received NMEA: $GPGSV,3,3,11,25,,,14,27,,,14,28,,,13*73[0m
-[0;32mI (57948) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (58198) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (58408) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (58738) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (59188) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (59688) TAG: Received NMEA: $GPGSV,3,1,09,02,,,11,03,,,16,05,,,12,08,,,10*7B[0m
-[0;32mI (60188) TAG: Received NMEA: $GPGSV,3,2,09,20,,,12,21,,,11,23,,,09,25,,,13*7E[0m
-[0;32mI (60428) TAG: Received NMEA: $GPGSV,3,3,09,27V,N*64[0m
-[0;32mI (60678) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (60888) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (61218) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (61668) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (62168) TAG: Received NMEA: $GPGSV,2,1,08,02,,,09,04,,,24,05,,,08,06,,,25*77[0m
-[0;32mI (62668) TAG: Received NMEA: $GPGSV,2,2,08,20,,,08,21,,,09,25,,,08,27,,,09*72[0m
-[0;32mI (62868) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (63118) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (63328) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (63658) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (64108) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (64608) TAG: Received NMEA: $GPGSV,2,1,06,02,,,10,04,,,21,06,,,23,20,,,09*74[0m
-[0;32mI (64948) TAG: Received NMEA: $GPGSV,2,2,06,21,,,09,27,,,09*79[0m
-[0;32mI (65148) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (65398) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (65608) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (65938) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (66438) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*,,11*7D[0m
-[0;32mI (66638) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (66888) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (67098) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (67428) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (67878) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (68058) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (68258) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (68508) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (68718) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (69048) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (69498) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (69678) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (69878) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (70128) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (70338) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (70668) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (71118) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (71298) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (71498) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (71748) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (71958) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (72288) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (72738) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (72918) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (73118) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (73368) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (73578) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (73908) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (74358) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (74538) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (74738) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (74988) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (75198) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (75528) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (75978) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (76158) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (76358) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (76608) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (76818) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (77148) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (77598) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (77858) TAG: Received NMEA: $GPGSV,1,1,01,22,,,25*7F[0m
-[0;32mI (78058) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (78308) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (78518) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (78848) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (79298) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (79558) TAG: Received NMEA: $GPGSV,1,1,01,22,,,21*7B[0m
-[0;32mI (79758) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (80008) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (80218) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (80548) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (80998) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (81258) TAG: Received NMEA: $GPGSV,1,1,01,22,,,15*7C[0m
-[0;32mI (81458) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (81708) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (81918) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (82248) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (82698) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (82958) TAG: Received NMEA: $GPGSV,1,1,01,22,,,15*7C[0m
-[0;32mI (83158) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (83408) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (83618) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (83948) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (84398) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (84658) TAG: Received NMEA: $GPGSV,1,1,01,24,,,26*7A[0m
-[0;32mI (84858) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (85108) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (85318) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (85648) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (86088) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*4[0m
-[0;32mI (86338) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (86548) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (86878) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (87328) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (87508) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (87708) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (87958) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (88168) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (88498) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (88948) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (89128) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (89328) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (89578) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (89788) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (90118) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (90568) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (90748) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (90948) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (91198) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (91408) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (91738) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (92188) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (92368) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (92568) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (92818) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (93028) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (93358) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (93808) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (93988) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (94188) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (94438) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (94648) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (94978) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (95578) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*PVTG,,,,,,,,,N*30[0m
-[0;32mI (95908) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (96358) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (96538) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (96738) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (96988) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (97198) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (97528) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (97978) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (98158) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (98358) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (98608) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (98818) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (99148) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (99598) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (99778) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (99978) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (100228) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (100438) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (100768) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (101218) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (101398) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (101598) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (101848) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (102058) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (102388) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (102838) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (103018) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (103218) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (103468) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (103678) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (104008) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (104458) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (104638) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (104838) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (105088) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (105298) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (105628) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (106078) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (106258) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (106458) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (106698) TAG: Received NMEA: ,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (107148) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (107408) TAG: Received NMEA: $GPGSV,1,1,01,10,,,21*7A[0m
-[0;32mI (107608) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (107858) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (108068) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (108398) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (108848) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (109188) TAG: Received NMEA: $GPGSV,1,1,02,10,,,15,12,,,26*79[0m
-[0;32mI (109388) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (109638) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (109848) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (110178) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (110628) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (111048) TAG: Received NMEA: $GPGSV,1,1,03,10,,,12,12,,,22,13,,,25*7E[0m
-[0;32mI (111248) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (111498) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (111708) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (112038) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (112488) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (112828) TAG: Received NMEA: $GPGSV,1,1,02,12,,,19,13,,,21*71[0m
-[0;32mI (113028) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (113278) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (113488) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (113818) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (114268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (114608) TAG: Received NMEA: $GPGSV,1,1,02,12,,,15,13,,,15*7A[0m
-[0;32mI (114808) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (115058) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (115268) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (115598) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (116268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*$GPGSV,1,1,01,12,,,12*78[0m
-[0;32mI (116468) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (116718) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (116928) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (117258) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (117708) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (118048) TAG: Received NMEA: $GPGSV,1,1,02,12,,,13,20,,,26*7C[0m
-[0;32mI (118248) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (118498) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (118708) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (119038) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (119488) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (119748) TAG: Received NMEA: $GPGSV,1,1,01,20,,,22*7A[0m
-[0;32mI (119948) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (120198) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (120408) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (120738) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (121188) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (121448) TAG: Received NMEA: $GPGSV,1,1,01,20,,,16*7D[0m
-[0;32mI (121648) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (121898) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (122108) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (122438) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (122888) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (123148) TAG: Received NMEA: $GPGSV,1,1,01,20,,,14*7F[0m
-[0;32mI (123348) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (123598) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (123808) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (124138) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (124588) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (124848) TAG: Received NMEA: $GPGSV,1,1,01,20,,,13*78[0m
-[0;32mI (125048) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (125298) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (125508) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (125838) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (126288) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (126628) TAG: Received NMEA: $GPGSV,1,1,02,20,,,12,22,,,23*7B[0m
-[0;32mI (126828) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (127078) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (127288) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (127618) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (128168) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*.99,99.99*30[0m
-[0;32mI (128428) TAG: Received NMEA: $GPGSV,1,1,01,22,,,14*7D[0m
-[0;32mI (128628) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (128878) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (129088) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (129418) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (129868) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (130128) TAG: Received NMEA: $GPGSV,1,1,01,22,,,12*7B[0m
-[0;32mI (130328) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (130578) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (130788) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (131118) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (131568) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (131748) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (131948) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (132198) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (132408) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (132738) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (133188) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (133448) TAG: Received NMEA: $GPGSV,1,1,01,26,,,23*7D[0m
-[0;32mI (133648) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (133898) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (134108) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (134438) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (134888) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (135148) TAG: Received NMEA: $GPGSV,1,1,01,26,,,19*74[0m
-[0;32mI (135348) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (135598) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (135808) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (136138) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (136588) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (136928) TAG: Received NMEA: $GPGSV,1,1,02,26,,,14,29,,,25*76[0m
-[0;32mI (137128) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (137158) TAG: Received NMEA: 4[0m
-[0;32mI (137408) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (137618) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (137948) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (138398) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (138738) TAG: Received NMEA: $GPGSV,1,1,02,01,,,25,29,,,23*77[0m
-[0;32mI (138938) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (139188) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (139398) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (139728) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (140178) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (140598) TAG: Received NMEA: $GPGSV,1,1,03,01,,,23,02,,,24,29,,,21*76[0m
-[0;32mI (140798) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (141048) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (141258) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (141588) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (142038) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (142538) TAG: Received NMEA: $GPGSV,1,1,04,01,,,21,02,,,20,04,,,28,29,,,18*73[0m
-[0;32mI (142738) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (142988) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (143198) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (143528) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (143978) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (144398) TAG: Received NMEA: $GPGSV,1,1,03,02,,,15,03,,,24,04,,,25*7A[0m
-[0;32mI (144598) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (144848) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (145058) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (145388) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (145838) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (146338) TAG: Received NMEA: $GPGSV,1,1,04,02,,,13,03,,,23,04,,,21,05,,,27*78[0m
-[0;32mI (146538) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (146788) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (146998) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (147328) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (147998) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*,,,14,04,,,24,07,,,25*7B[0m
-[0;32mI (148258) TAG: Received NMEA: $GPGSV,2,2,05,08,,,22*74[0m
-[0;32mI (148458) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (148708) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (148918) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (149248) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (149698) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (150198) TAG: Received NMEA: $GPGSV,2,1,05,02,,,13,03,,,12,04,,,20,07,,,24*78[0m
-[0;32mI (150458) TAG: Received NMEA: $GPGSV,2,2,05,08,,,20*76[0m
-[0;32mI (150658) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (150908) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (151118) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (151448) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (151898) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (152398) TAG: Received NMEA: $GPGSV,1,1,04,03,,,12,04,,,15,07,,,21,08,,,17*77[0m
-[0;32mI (152598) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (152848) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (153058) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (153388) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (153838) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (154338) TAG: Received NMEA: $GPGSV,2,1,05,03,,,14,04,,,14,07,,,18,08,,,13*7C[0m
-[0;32mI (154598) TAG: Received NMEA: $GPGSV,2,2,05,10,,,27*78[0m
-[0;32mI (154798) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (155048) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (155258) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (155588) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (156038) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (156538) TAG: Received NMEA: $GPGSV,2,1,05,03,,,15,07,,,25,08,,,13,10,,,24*75[0m
-[0;32mI (156798) TAG: Received NMEA: $GPGSV,2,2,05,13,,,28*74[0m
-[0;32mI (156998) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (157248) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (157458) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (157788) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (158238) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*64[0m
-[0;32mI (158488) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (158698) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (159028) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (159478) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (159978) TAG: Received NMEA: $GPGSV,1,1,04,07,,,18,08,,,15,10,,,11,15,,,21*79[0m
-[0;32mI (160178) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (160428) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (160638) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (160968) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (161418) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (161758) TAG: Received NMEA: $GPGSV,1,1,02,08,,,14,15,,,18*7B[0m
-[0;32mI (161958) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (162208) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (162418) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (162748) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (163198) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (163538) TAG: Received NMEA: $GPGSV,1,1,02,08,,,14,15,,,13*70[0m
-[0;32mI (163738) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (163988) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (164198) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (164528) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (164978) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (165238) TAG: Received NMEA: $GPGSV,1,1,01,08,,,13*72[0m
-[0;32mI (165438) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (165688) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (165898) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (166228) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (166678) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (166938) TAG: Received NMEA: $GPGSV,1,1,01,08,,,13*72[0m
-[0;32mI (167138) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (167388) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (167598) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (167928) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (168408) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*99*30[0m
-[0;32mI (168828) TAG: Received NMEA: $GPGSV,1,1,03,19,,,15,21,,,21,24,,,24*76[0m
-[0;32mI (169028) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (169278) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (169488) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (169818) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (170268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (170768) TAG: Received NMEA: $GPGSV,1,1,04,19,,,15,21,,,18,23,,,24,24,,,22*7A[0m
-[0;32mI (170968) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (171218) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (171428) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (171758) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (172208) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (172708) TAG: Received NMEA: $GPGSV,1,1,04,19,,,15,21,,,16,23,,,23,24,,,18*7A[0m
-[0;32mI (172908) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (173158) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (173368) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (173698) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (174148) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (174648) TAG: Received NMEA: $GPGSV,1,1,04,19,,,14,21,,,27,23,,,22,25,,,26*74[0m
-[0;32mI (174848) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (175098) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (175308) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (175638) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (176088) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (176588) TAG: Received NMEA: $GPGSV,2,1,06,19,,,14,21,,,24,23,,,21,25,,,22*71[0m
-[0;32mI (176928) TAG: Received NMEA: $GPGSV,2,2,06,26,,,27,27,,,27*7E[0m
-[0;32mI (177128) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (177378) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (177588) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (177918) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (178368) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (178868) TAG: Received NMEA: $GPGSV,2,1,07,19,,,16,21,,,20,23,,,19,25,,,19*75[0m
-[0;32mI (179288) TAG: Received NMEA: $GPGSV,2,2,07,26,,,25,27,,,26,28,,,25*71[0m
-[0;32mI (179488) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (179688) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (179938) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (180148) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (180478) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (180928) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (181428) TAG: Received NMEA: $GPGSV,1,1,04,19,,,14,25,,,12,29,,,26,30,,,22*78[0m
-[0;32mI (181628) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (181878) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (182088) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (182418) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (182868) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (183208) TAG: Received NMEA: $GPGSV,1,1,02,30,,,20,31,,,27*7D[0m
-[0;32mI (183408) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (183658) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (183868) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (184198) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (184648) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (185068) TAG: Received NMEA: $GPGSV,1,1,03,25,,,22,30,,,14,31,,,25*7E[0m
-[0;32mI (185268) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (185518) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (185728) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (186058) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (186508) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (186928) TAG: Received NMEA: $GPGSV,1,1,03,25,,,20,30,,,15,31,,,22*7A[0m
-[0;32mI (187128) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (187378) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (187588) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (187918) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (188368) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (188788) TAG: Received NMEA: $GPGSV,1,1,03,02,,,25,25,,,18,30,,,13*70[0m
-[0;32mI (188988) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (189028) TAG: Received NMEA: 64[0m
-[0;32mI (189278) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (189488) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (189818) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (190268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (190768) TAG: Received NMEA: $GPGSV,2,1,05,02,,,11,03,,,21,04,,,16,05,,,20*79[0m
-[0;32mI (191028) TAG: Received NMEA: $GPGSV,2,2,05,08,,,28*7E[0m
-[0;32mI (191228) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (191478) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (191688) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (192018) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (192468) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (192968) TAG: Received NMEA: $GPGSV,2,1,05,02,,,09,03,,,18,04,,,14,05,,,17*7C[0m
-[0;32mI (193228) TAG: Received NMEA: $GPGSV,2,2,05,08,,,23*75[0m
-[0;32mI (193428) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (193678) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (193888) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (194218) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (194668) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (195088) TAG: Received NMEA: $GPGSV,1,1,03,03,,,14,05,,,12,08,,,19*7A[0m
-[0;32mI (195288) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (195538) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (195748) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (196078) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (196528) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (196948) TAG: Received NMEA: $GPGSV,1,1,03,03,,,12,05,,,12,13,,,25*79[0m
-[0;32mI (197148) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (197398) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (197608) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (197938) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (198388) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (198648) TAG: Received NMEA: $GPGSV,1,1,01,03,,,11*7B[0m
-[0;32mI (198848) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (199098) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (199308) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (199638) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (200088) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (200348) TAG: Received NMEA: $GPGSV,1,1,01,03,,,10*7A[0m
-[0;32mI (200548) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (200618) TAG: Received NMEA: ,N*30[0m
-[0;32mI (200948) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (201398) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (201578) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (201778) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (202028) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (202238) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (202568) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (203018) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (203198) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (203398) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (203648) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (203858) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (204188) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (204638) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (204818) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (205018) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (205268) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (205478) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (205808) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (206258) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (206438) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (206638) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (206888) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (207098) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (207428) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (207878) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (208058) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (208258) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (208508) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (208718) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (209048) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (209588) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*99,,,,,,*48[0m
-[0;32mI (210038) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (210298) TAG: Received NMEA: $GPGSV,1,1,01,20,,,23*7B[0m
-[0;32mI (210498) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (210748) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (210958) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (211288) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (211738) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (211998) TAG: Received NMEA: $GPGSV,1,1,01,20,,,19*72[0m
-[0;32mI (212198) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (212448) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (212658) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (212988) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (213438) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (213698) TAG: Received NMEA: $GPGSV,1,1,01,20,,,13*78[0m
-[0;32mI (213898) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (214148) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (214358) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (214688) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (215138) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (215398) TAG: Received NMEA: $GPGSV,1,1,01,20,,,12*79[0m
-[0;32mI (215598) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (215848) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (216058) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (216388) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (216838) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (217098) TAG: Received NMEA: $GPGSV,1,1,01,25,,,28*75[0m
-[0;32mI (217298) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (217548) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (217758) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (218088) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (218538) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (218798) TAG: Received NMEA: $GPGSV,1,1,01,24,,,24*78[0m
-[0;32mI (218998) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (219248) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (219458) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (219788) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (220238) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (220498) TAG: Received NMEA: $GPGSV,1,1,01,24,,,20*7C[0m
-[0;32mI (220698) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (220948) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (221158) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (221488) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (221938) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (222118) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (222318) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (222568) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (222778) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (223108) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (223558) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (223738) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (223938) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (224188) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (224398) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (224728) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (225178) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (225358) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (225558) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (225808) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (226018) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (226348) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (226798) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (226978) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (227178) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (227428) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (227638) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (227968) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (228418) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (228598) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (228798) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (229048) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (229258) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (229588) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (230218) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*,0,00,99.99,,,,,,*48[0m
-[0;32mI (230668) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (230848) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (231048) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (231298) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (231508) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (231838) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (232288) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (232468) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (232668) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (232918) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (233128) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (233458) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (233908) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (234168) TAG: Received NMEA: $GPGSV,1,1,01,04,,,25*7B[0m
-[0;32mI (234368) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (234618) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (234828) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (235158) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (235608) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (235948) TAG: Received NMEA: $GPGSV,1,1,02,04,,,21,05,,,24*7F[0m
-[0;32mI (236148) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (236398) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (236608) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (236938) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (237388) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (237728) TAG: Received NMEA: $GPGSV,1,1,02,04,,,19,05,,,22*72[0m
-[0;32mI (237928) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (238178) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (238388) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (238718) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (239168) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (239508) TAG: Received NMEA: $GPGSV,1,1,02,04,,,13,05,,,19*70[0m
-[0;32mI (239708) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (239958) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (240168) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (240498) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (240948) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (241208) TAG: Received NMEA: $GPGSV,1,1,01,04,,,13*7E[0m
-[0;32mI (241408) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (241658) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (241868) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (242198) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (242648) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (242828) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (243028) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (243278) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (243488) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (243818) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (244268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (244608) TAG: Received NMEA: $GPGSV,1,1,02,08,,,23,10,,,29*78[0m
-[0;32mI (244808) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (245058) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (245268) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (245598) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (246048) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (246308) TAG: Received NMEA: $GPGSV,1,1,01,08,,,19*78[0m
-[0;32mI (246508) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (246758) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (246968) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (247298) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (247748) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (248008) TAG: Received NMEA: $GPGSV,1,1,01,11,,,27*7D[0m
-[0;32mI (248208) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (248458) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (248668) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (248998) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (249448) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (249708) TAG: Received NMEA: $GPGSV,1,1,01,12,,,28*71[0m
-[0;32mI (249908) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (249978) TAG: Received NMEA: ,N*53[0m
-[0;32mI (250188) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (250518) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (250968) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (251228) TAG: Received NMEA: $GPGSV,1,1,01,14,,,22*7D[0m
-[0;32mI (251428) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (251678) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (251888) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (252218) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (252668) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (252928) TAG: Received NMEA: $GPGSV,1,1,01,14,,,19*75[0m
-[0;32mI (253128) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (253378) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (253588) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (253918) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (254368) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (254628) TAG: Received NMEA: $GPGSV,1,1,01,20,,,28*70[0m
-[0;32mI (254828) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (255078) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (255288) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (255618) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (256068) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (256328) TAG: Received NMEA: $GPGSV,1,1,01,20,,,26*7E[0m
-[0;32mI (256528) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (256778) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (256988) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (257318) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (257768) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (258028) TAG: Received NMEA: $GPGSV,1,1,01,20,,,25*7D[0m
-[0;32mI (258228) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (258478) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (258688) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (259018) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (259468) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (259728) TAG: Received NMEA: $GPGSV,1,1,01,20,,,23*7B[0m
-[0;32mI (259928) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (260178) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (260388) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (260718) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (261168) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (261428) TAG: Received NMEA: $GPGSV,1,1,01,20,,,19*72[0m
-[0;32mI (261628) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (261878) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (262088) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (262418) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (262868) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (263128) TAG: Received NMEA: $GPGSV,1,1,01,20,,,25*7D[0m
-[0;32mI (263328) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (263578) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (263788) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (264118) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (264568) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (264828) TAG: Received NMEA: $GPGSV,1,1,01,20,,,22*7A[0m
-[0;32mI (265028) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (265278) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (265488) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (265818) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (266268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (266528) TAG: Received NMEA: $GPGSV,1,1,01,20,,,19*72[0m
-[0;32mI (266728) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (266978) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (267188) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (267518) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (267968) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (268148) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (268348) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (268598) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (268808) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (269138) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (269588) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (269848) TAG: Received NMEA: $GPGSV,1,1,01,26,,,22*7C[0m
-[0;32mI (270048) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (270298) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (270508) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (270838) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (271428) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*,1,01,31,,,22*7A[0m
-[0;32mI (271628) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (271878) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (272088) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (272418) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (272868) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (273128) TAG: Received NMEA: $GPGSV,1,1,01,31,,,20*78[0m
-[0;32mI (273328) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (273578) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (273788) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (274118) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (274568) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (274828) TAG: Received NMEA: $GPGSV,1,1,01,31,,,19*72[0m
-[0;32mI (275028) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (275278) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (275488) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (275818) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (276268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (276528) TAG: Received NMEA: $GPGSV,1,1,01,31,,,16*7D[0m
-[0;32mI (276728) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (276978) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (277188) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (277518) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (277968) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (278228) TAG: Received NMEA: $GPGSV,1,1,01,31,,,14*7F[0m
-[0;32mI (278428) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (278678) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (278888) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (279218) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (279668) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (279928) TAG: Received NMEA: $GPGSV,1,1,01,31,,,23*7B[0m
-[0;32mI (280128) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (280378) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (280588) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (280918) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (281368) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (281628) TAG: Received NMEA: $GPGSV,1,1,01,31,,,20*78[0m
-[0;32mI (281828) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (282078) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (282288) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (282618) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (283058) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*4[0m
-[0;32mI (283308) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (283518) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (283848) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (284298) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (284638) TAG: Received NMEA: $GPGSV,1,1,02,06,,,25,31,,,13*7A[0m
-[0;32mI (284838) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (285088) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (285298) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (285628) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (286078) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (286418) TAG: Received NMEA: $GPGSV,1,1,02,06,,,23,31,,,13*7C[0m
-[0;32mI (286618) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (286868) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (287078) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (287408) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (287858) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (288118) TAG: Received NMEA: $GPGSV,1,1,01,06,,,20*7C[0m
-[0;32mI (288318) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (288568) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (288778) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (289108) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (289558) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (289978) TAG: Received NMEA: $GPGSV,1,1,03,06,,,15,07,,,26,31,,,22*79[0m
-[0;32mI (290178) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (290428) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (290638) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (290968) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (291418) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*48[0m
-[0;32mI (291868) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (292048) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (292248) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (292498) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (292708) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (293038) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (293488) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (293668) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (293868) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (294118) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (294328) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (294658) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (295108) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (295288) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (295488) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (295738) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (295948) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (296278) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (296728) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (296908) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (297108) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (297358) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (297568) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (297898) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (298348) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (298528) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (298728) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (298978) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (299188) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (299518) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (299968) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (300148) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (300348) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (300598) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (300808) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (301138) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (301588) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (301768) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (301968) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (302218) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (302428) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (302758) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (303208) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (303388) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (303588) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (303838) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (304048) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (304378) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (304828) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (305088) TAG: Received NMEA: $GPGSV,1,1,01,17,,,23*7F[0m
-[0;32mI (305288) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (305538) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (305748) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (306078) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (306528) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (306788) TAG: Received NMEA: $GPGSV,1,1,01,17,,,19*76[0m
-[0;32mI (306988) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (307238) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (307448) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (307778) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (308228) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (308488) TAG: Received NMEA: $GPGSV,1,1,01,17,,,14*7B[0m
-[0;32mI (308688) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (308938) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (309148) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (309478) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (309928) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (310108) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (310308) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (310558) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (310768) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (311098) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (311658) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*L,,,,,,V,N*64[0m
-[0;32mI (311908) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (312118) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (312448) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (312898) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (313158) TAG: Received NMEA: $GPGSV,1,1,01,24,,,13*7C[0m
-[0;32mI (313358) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (313608) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (313818) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (314148) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (314598) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (314858) TAG: Received NMEA: $GPGSV,1,1,01,28,,,22*72[0m
-[0;32mI (315058) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (315308) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (315518) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (315848) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (316298) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (316638) TAG: Received NMEA: $GPGSV,1,1,02,24,,,24,28,,,19*79[0m
-[0;32mI (316838) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (317088) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (317298) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (317628) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (318078) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (318338) TAG: Received NMEA: $GPGSV,1,1,01,24,,,20*7C[0m
-[0;32mI (318538) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (318788) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (318998) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (319328) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (319778) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (320038) TAG: Received NMEA: $GPGSV,1,1,01,24,,,14*7B[0m
-[0;32mI (320238) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (320488) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (320698) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (321028) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (321478) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (321818) TAG: Received NMEA: $GPGSV,1,1,02,24,,,13,32,,,25*79[0m
-[0;32mI (322018) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (322268) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (322478) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (322808) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (323258) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (323598) TAG: Received NMEA: $GPGSV,1,1,02,01,,,26,32,,,22*7F[0m
-[0;32mI (323798) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (324048) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (324258) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (324588) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (325038) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (325378) TAG: Received NMEA: $GPGSV,1,1,02,01,,,22,32,,,18*72[0m
-[0;32mI (325578) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (325828) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (326038) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (326368) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (326818) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (327158) TAG: Received NMEA: $GPGSV,1,1,02,01,,,19,32,,,13*71[0m
-[0;32mI (327358) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (327608) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (327818) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (328148) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (328598) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (328858) TAG: Received NMEA: $GPGSV,1,1,01,32,,,12*7A[0m
-[0;32mI (329058) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (329308) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (329518) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (329848) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (330298) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (330558) TAG: Received NMEA: $GPGSV,1,1,01,32,,,13*7B[0m
-[0;32mI (330758) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (331008) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (331218) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (331548) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (332138) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*9,99.99,99.99*30[0m
-[0;32mI (332478) TAG: Received NMEA: $GPGSV,1,1,02,07,,,13,09,,,20*75[0m
-[0;32mI (332678) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (332928) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (333138) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (333468) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (333918) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (334098) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (334298) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (334548) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (334758) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (335088) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (335538) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (335878) TAG: Received NMEA: $GPGSV,1,1,02,12,,,28,13,,,28*7A[0m
-[0;32mI (336078) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (336328) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (336538) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (336868) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (337318) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (337498) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (337698) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (337948) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (338158) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (338488) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (338938) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (339198) TAG: Received NMEA: $GPGSV,1,1,01,13,,,25*7D[0m
-[0;32mI (339398) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (339648) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (339858) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (340188) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (340638) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (340978) TAG: Received NMEA: $GPGSV,1,1,02,13,,,21,15,,,28*74[0m
-[0;32mI (341178) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (341428) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (341638) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (341968) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (342418) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (342598) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (342798) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (343048) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (343258) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (343588) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (344038) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (344218) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (344418) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (344668) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (344878) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (345208) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (345658) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (345838) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (346038) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (346288) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (346498) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (346828) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (347278) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (347458) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (347658) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (347908) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (348118) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (348448) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (348898) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (349078) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (349278) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (349528) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (349738) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (350068) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (350518) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (350698) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (350898) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (351148) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (351358) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (351688) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (352138) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (352318) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (352518) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (352758) TAG: Received NMEA: PGSV,1,1,01,20,,,26*7E[0m
-[0;32mI (352958) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (353208) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (353418) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (353748) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (354198) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (354458) TAG: Received NMEA: $GPGSV,1,1,01,20,,,23*7B[0m
-[0;32mI (354658) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (354908) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (355118) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (355448) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (355898) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (356158) TAG: Received NMEA: $GPGSV,1,1,01,20,,,20*78[0m
-[0;32mI (356358) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (356608) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (356818) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (357148) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (357598) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (357858) TAG: Received NMEA: $GPGSV,1,1,01,20,,,15*7E[0m
-[0;32mI (358058) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (358308) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (358518) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (358848) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (359298) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (359558) TAG: Received NMEA: $GPGSV,1,1,01,20,,,13*78[0m
-[0;32mI (359758) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (360008) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (360218) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (360548) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (360998) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (361338) TAG: Received NMEA: $GPGSV,1,1,02,20,,,14,26,,,25*7F[0m
-[0;32mI (361538) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (361788) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (361998) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (362328) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (362778) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (363118) TAG: Received NMEA: $GPGSV,1,1,02,20,,,13,26,,,22*7F[0m
-[0;32mI (363318) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (363368) TAG: Received NMEA: *30[0m
-[0;32mI (363708) TAG: Received NMEA: $GPGSV,1,1,02,26,,,11,29,,,25*73[0m
-[0;32mI (363908) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (364158) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (364368) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (364698) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (365148) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (365488) TAG: Received NMEA: $GPGSV,1,1,02,26,,,10,29,,,23*74[0m
-[0;32mI (365688) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (365938) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (366148) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (366478) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (366928) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (367268) TAG: Received NMEA: $GPGSV,1,1,02,26,,,25,29,,,22*73[0m
-[0;32mI (367468) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (367718) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (367928) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (368258) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (368708) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (369048) TAG: Received NMEA: $GPGSV,1,1,02,26,,,23,29,,,22*75[0m
-[0;32mI (369248) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (369498) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (369708) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (370038) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (370488) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (370828) TAG: Received NMEA: $GPGSV,1,1,02,26,,,21,29,,,22*77[0m
-[0;32mI (371028) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (371278) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (371488) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (371818) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (372268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (372688) TAG: Received NMEA: $GPGSV,1,1,03,26,,,18,29,,,21,32,,,23*7F[0m
-[0;32mI (372888) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (373088) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (373338) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (373548) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (373878) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (374328) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (374588) TAG: Received NMEA: $GPGSV,1,1,01,03,,,22*7B[0m
-[0;32mI (374788) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (375038) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (375248) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (375578) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (376028) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (376288) TAG: Received NMEA: $GPGSV,1,1,01,03,,,20*79[0m
-[0;32mI (376488) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (376738) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (376948) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (377278) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (377728) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (378068) TAG: Received NMEA: $GPGSV,1,1,02,03,,,18,08,,,29*72[0m
-[0;32mI (378268) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (378518) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (378728) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (379058) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (379508) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (379848) TAG: Received NMEA: $GPGSV,1,1,02,03,,,16,08,,,23*76[0m
-[0;32mI (380048) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (380298) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (380508) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (380838) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (381288) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (381788) TAG: Received NMEA: $GPGSV,1,1,04,03,,,16,07,,,24,08,,,20,09,,,25*7C[0m
-[0;32mI (381988) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (382238) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (382448) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (382778) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (383228) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (383728) TAG: Received NMEA: $GPGSV,1,1,04,03,,,15,07,,,20,08,,,14,09,,,22*7B[0m
-[0;32mI (383928) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (384178) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (384388) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (384718) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (385518) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*04,03,,,14,08,,,23,09,,,24,10,,,24*7A[0m
-[0;32mI (385718) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (385968) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (386178) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (386508) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (386958) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (387458) TAG: Received NMEA: $GPGSV,1,1,04,03,,,15,08,,,20,09,,,23,10,,,21*7A[0m
-[0;32mI (387658) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (387908) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (388118) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (388448) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (388898) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (389398) TAG: Received NMEA: $GPGSV,2,1,05,03,,,14,09,,,21,11,,,23,12,,,24*77[0m
-[0;32mI (389658) TAG: Received NMEA: $GPGSV,2,2,05,13,,,24*78[0m
-[0;32mI (389858) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (390108) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (390318) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (390648) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (391098) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (391598) TAG: Received NMEA: $GPGSV,2,1,06,03,,,14,09,,,18,11,,,20,12,,,23*7A[0m
-[0;32mI (391938) TAG: Received NMEA: $GPGSV,2,2,06,13,,,20,14,,,28*70[0m
-[0;32mI (392138) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (392388) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (392598) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (392928) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (393348) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*[0m
-[0;32mI (393528) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (393728) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (393978) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (394188) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (394518) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (394968) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (395148) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (395348) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (395598) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (395808) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (396138) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (396588) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (396848) TAG: Received NMEA: $GPGSV,1,1,01,20,,,25*7D[0m
-[0;32mI (397048) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (397298) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (397508) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (397838) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (398288) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (398628) TAG: Received NMEA: $GPGSV,1,1,02,20,,,22,23,,,28*72[0m
-[0;32mI (398828) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (399078) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (399288) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (399618) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (400068) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (400328) TAG: Received NMEA: $GPGSV,1,1,01,21,,,24*7D[0m
-[0;32mI (400528) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (400778) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (400988) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (401318) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (401768) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (402188) TAG: Received NMEA: $GPGSV,1,1,03,21,,,21,23,,,24,24,,,28*71[0m
-[0;32mI (402388) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (402638) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (402848) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (403178) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (403628) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (404048) TAG: Received NMEA: $GPGSV,1,1,03,21,,,18,23,,,21,24,,,24*72[0m
-[0;32mI (404248) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (404498) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (404708) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (405038) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (405488) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (405828) TAG: Received NMEA: $GPGSV,1,1,02,23,,,18,24,,,23*74[0m
-[0;32mI (406028) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (406278) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (406488) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (406818) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (407268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (407608) TAG: Received NMEA: $GPGSV,1,1,02,23,,,14,24,,,20*7B[0m
-[0;32mI (407808) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (408058) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (408268) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (408598) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (409048) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (409388) TAG: Received NMEA: $GPGSV,1,1,02,23,,,26,24,,,17*7E[0m
-[0;32mI (409588) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (409838) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (410048) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (410378) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (410828) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (411248) TAG: Received NMEA: $GPGSV,1,1,03,23,,,24,24,,,16,26,,,23*79[0m
-[0;32mI (411448) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (411698) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (411908) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (412238) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (412688) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (413028) TAG: Received NMEA: $GPGSV,1,1,02,23,,,23,24,,,15*79[0m
-[0;32mI (413228) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (413478) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (413688) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (414018) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (414858) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*PGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (415118) TAG: Received NMEA: $GPGSV,1,1,01,30,,,25*7C[0m
-[0;32mI (415318) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (415568) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (415778) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (416108) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (416558) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (416818) TAG: Received NMEA: $GPGSV,1,1,01,30,,,22*7B[0m
-[0;32mI (417018) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (417268) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (417478) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (417808) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (418258) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (418598) TAG: Received NMEA: $GPGSV,1,1,02,05,,,28,30,,,20*75[0m
-[0;32mI (418798) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (419048) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (419258) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (419588) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (420038) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (420298) TAG: Received NMEA: $GPGSV,1,1,01,30,,,16*7C[0m
-[0;32mI (420498) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (420748) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (420958) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (421288) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (421738) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (421998) TAG: Received NMEA: $GPGSV,1,1,01,30,,,16*7C[0m
-[0;32mI (422198) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (422448) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (422658) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (422988) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (423438) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (423698) TAG: Received NMEA: $GPGSV,1,1,01,30,,,15*7F[0m
-[0;32mI (423898) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (424148) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (424358) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (424688) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (425138) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (425398) TAG: Received NMEA: $GPGSV,1,1,01,30,,,14*7E[0m
-[0;32mI (425598) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (425848) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (426058) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (426388) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (426838) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (427098) TAG: Received NMEA: $GPGSV,1,1,01,30,,,14*7E[0m
-[0;32mI (427298) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (427548) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (427758) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (428088) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (428538) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (428798) TAG: Received NMEA: $GPGSV,1,1,01,30,,,14*7E[0m
-[0;32mI (428998) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (429248) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (429458) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (429788) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (430238) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (430498) TAG: Received NMEA: $GPGSV,1,1,01,07,,,23*7E[0m
-[0;32mI (430698) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (430948) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (431158) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (431488) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (431938) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (432278) TAG: Received NMEA: $GPGSV,1,1,02,07,,,20,14,,,23*7A[0m
-[0;32mI (432478) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (432728) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (432938) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (433268) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (433718) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (434058) TAG: Received NMEA: $GPGSV,1,1,02,07,,,15,14,,,19*75[0m
-[0;32mI (434258) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (434348) TAG: Received NMEA: ,,28*70[0m
-[0;32mI (434548) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (434798) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (435008) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (435338) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (435788) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (436048) TAG: Received NMEA: $GPGSV,1,1,01,14,,,18*74[0m
-[0;32mI (436248) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (436498) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (436708) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (437038) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (437488) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (437828) TAG: Received NMEA: $GPGSV,1,1,02,14,,,14,15,,,25*78[0m
-[0;32mI (438028) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (438278) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (438488) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (438818) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (439268) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (439528) TAG: Received NMEA: $GPGSV,1,1,01,15,,,21*7F[0m
-[0;32mI (439728) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (439978) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (440188) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (440518) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (440968) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (441228) TAG: Received NMEA: $GPGSV,1,1,01,15,,,16*7B[0m
-[0;32mI (441428) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (441678) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (441888) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (442218) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (442668) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (442848) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (443048) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (443298) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (443508) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (443838) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (444288) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (444468) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (444668) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (444918) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (445128) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (445458) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (445908) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (446088) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (446288) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (446568) TAG: Received NMEA: ,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (446748) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (446948) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (447198) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (447408) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (447738) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (448188) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (448368) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (448568) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (448818) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (449028) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (449358) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (449808) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (449988) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (450188) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (450438) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (450648) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (450978) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (451428) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (451608) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (451808) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (452058) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (452268) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (452598) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (453048) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (453308) TAG: Received NMEA: $GPGSV,1,1,01,25,,,28*75[0m
-[0;32mI (453508) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (453758) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (453968) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (454298) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (454818) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*1,1,00*79[0m
-[0;32mI (455018) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (455268) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (455478) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (455808) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (456258) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (456438) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (456638) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (456888) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (457098) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (457428) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (457878) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (458058) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (458258) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (458508) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (458718) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (459048) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (459498) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (459678) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (459878) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (460128) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (460338) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (460668) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (461118) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (461298) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (461498) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (461748) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (461958) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (462288) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (462738) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (462918) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (463118) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (463368) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (463578) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (463908) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (464358) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (464618) TAG: Received NMEA: $GPGSV,1,1,01,32,,,26*7D[0m
-[0;32mI (464818) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (465068) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (465278) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (465608) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (466058) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (466398) TAG: Received NMEA: $GPGSV,1,1,02,03,,,28,32,,,24*75[0m
-[0;32mI (466598) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (466848) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (467058) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (467388) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (467838) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (468098) TAG: Received NMEA: $GPGSV,1,1,01,32,,,23*78[0m
-[0;32mI (468298) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (468548) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (468758) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (469088) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (469538) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (469878) TAG: Received NMEA: $GPGSV,1,1,02,04,,,28,32,,,20*76[0m
-[0;32mI (470078) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (470328) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (470538) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (470868) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (471318) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (471658) TAG: Received NMEA: $GPGSV,1,1,02,03,,,24,04,,,25*7D[0m
-[0;32mI (471858) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (472108) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (472318) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (472648) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (473098) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (473438) TAG: Received NMEA: $GPGSV,1,1,02,03,,,23,04,,,22*7D[0m
-[0;32mI (473638) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (473888) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (474098) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (474428) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (474878) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (475218) TAG: Received NMEA: $GPGSV,1,1,02,03,,,22,06,,,28*74[0m
-[0;32mI (475418) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (475508) TAG: Received NMEA: 9.99*30[0m
-[0;32mI (476008) TAG: Received NMEA: $GPGSV,1,1,04,09,,,22,10,,,15,12,,,26,13,,,24*72[0m
-[0;32mI (476208) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (476458) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (476668) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (476998) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (477448) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (477948) TAG: Received NMEA: $GPGSV,2,1,06,09,,,16,10,,,14,11,,,25,12,,,22*72[0m
-[0;32mI (478288) TAG: Received NMEA: $GPGSV,2,2,06,13,,,21,14,,,25*7C[0m
-[0;32mI (478488) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (478738) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (478948) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (479278) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (479728) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (480228) TAG: Received NMEA: $GPGSV,2,1,05,09,,,15,11,,,24,12,,,20,13,,,18*7E[0m
-[0;32mI (480488) TAG: Received NMEA: $GPGSV,2,2,05,14,,,24*7F[0m
-[0;32mI (480688) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (480938) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (481148) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (481478) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (481928) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (482428) TAG: Received NMEA: $GPGSV,2,1,05,09,,,14,11,,,23,12,,,14,13,,,14*73[0m
-[0;32mI (482688) TAG: Received NMEA: $GPGSV,2,2,05,14,,,23*78[0m
-[0;32mI (482888) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (483138) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (483348) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (483678) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (484128) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (484628) TAG: Received NMEA: $GPGSV,2,1,05,09,,,14,11,,,22,12,,,13,13,,,12*73[0m
-[0;32mI (484888) TAG: Received NMEA: $GPGSV,2,2,05,14,,,21*7A[0m
-[0;32mI (485088) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (485338) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (485548) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (485878) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (486328) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (486828) TAG: Received NMEA: $GPGSV,2,1,05,09,,,13,11,,,19,12,,,12,14,,,18*70[0m
-[0;32mI (487088) TAG: Received NMEA: $GPGSV,2,2,05,17,,,29*71[0m
-[0;32mI (487288) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (487538) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (487748) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (488078) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (488528) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (489028) TAG: Received NMEA: $GPGSV,2,1,05,09,,,12,11,,,15,12,,,13,14,,,14*70[0m
-[0;32mI (489288) TAG: Received NMEA: $GPGSV,2,2,05,17,,,26*7E[0m
-[0;32mI (489488) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (489938) TAG: Received NMEA: V,1,1,04,11,,,13,12,,,14,14,,,14,17,,,24*79[0m
-[0;32mI (490138) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (490388) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (490598) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (490928) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (491378) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (491878) TAG: Received NMEA: $GPGSV,2,1,05,11,,,11,12,,,15,14,,,25,17,,,23*7D[0m
-[0;32mI (492138) TAG: Received NMEA: $GPGSV,2,2,05,19,,,28*7E[0m
-[0;32mI (492338) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (492588) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (492798) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (493128) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (493578) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (494078) TAG: Received NMEA: $GPGSV,1,1,04,11,,,11,12,,,15,14,,,24,17,,,22*7F[0m
-[0;32mI (494278) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (494528) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (494738) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (495068) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (495518) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (495938) TAG: Received NMEA: $GPGSV,1,1,03,12,,,13,14,,,23,17,,,19*71[0m
-[0;32mI (496138) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (496218) TAG: Received NMEA: ,,,*48[0m
-[0;32mI (496668) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (497008) TAG: Received NMEA: $GPGSV,1,1,02,26,,,25,27,,,21*7E[0m
-[0;32mI (497208) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (497458) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (497668) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (497998) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (498448) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (498788) TAG: Received NMEA: $GPGSV,1,1,02,26,,,24,27,,,19*74[0m
-[0;32mI (498988) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (499238) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (499448) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (499778) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (500228) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (500568) TAG: Received NMEA: $GPGSV,1,1,02,27,,,16,28,,,24*75[0m
-[0;32mI (500768) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (501018) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (501228) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (501558) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (502008) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (502428) TAG: Received NMEA: $GPGSV,1,1,03,27,,,25,28,,,22,30,,,26*75[0m
-[0;32mI (502628) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (502878) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (503088) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (503418) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (503868) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (504368) TAG: Received NMEA: $GPGSV,1,1,04,26,,,28,27,,,24,28,,,20,30,,,22*7B[0m
-[0;32mI (504568) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (504818) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (505028) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (505358) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (505808) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (506228) TAG: Received NMEA: $GPGSV,1,1,03,26,,,25,27,,,20,30,,,19*75[0m
-[0;32mI (506428) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (506678) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (506888) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (507218) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (507668) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (508008) TAG: Received NMEA: $GPGSV,1,1,02,26,,,24,27,,,16*7B[0m
-[0;32mI (508208) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (508458) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (508668) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (508998) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (509448) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (509788) TAG: Received NMEA: $GPGSV,1,1,02,26,,,21,27,,,15*7D[0m
-[0;32mI (509988) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (510238) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (510448) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (510778) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (511228) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (511488) TAG: Received NMEA: $GPGSV,1,1,01,26,,,19*74[0m
-[0;32mI (511688) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (511938) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (512148) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (512478) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (512928) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (513108) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (513308) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (513558) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (513768) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (514098) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (514548) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (514728) TAG: Received NMEA: $GPGSV,1,1,00*79[0m
-[0;32mI (514928) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (515178) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (515388) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (515718) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (516178) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99**75[0m
-[0;32mI (516378) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (516628) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (516838) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (517168) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (517618) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (518118) TAG: Received NMEA: $GPGSV,1,1,04,09,,,22,10,,,28,13,,,20,19,,,23*76[0m
-[0;32mI (518318) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (518568) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (518778) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (519108) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (519558) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (519978) TAG: Received NMEA: $GPGSV,1,1,03,09,,,20,10,,,27,19,,,18*74[0m
-[0;32mI (520178) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (520428) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (520638) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (520968) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (521418) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (521918) TAG: Received NMEA: $GPGSV,1,1,04,09,,,25,10,,,25,19,,,17,33,,,30*78[0m
-[0;32mI (522118) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (522368) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (522578) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (522908) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (523358) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (523858) TAG: Received NMEA: $GPGSV,3,1,09,02,,,25,03,,,24,09,,,22,10,,,24*7C[0m
-[0;32mI (524358) TAG: Received NMEA: $GPGSV,3,2,09,11,,,25,15,,,29,18,,,26,19,,,27*79[0m
-[0;32mI (524618) TAG: Received NMEA: $GPGSV,3,3,09,33,,,28*7A[0m
-[0;32mI (524818) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (525068) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (525278) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (525608) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (526058) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (526558) TAG: Received NMEA: $GPGSV,4,1,15,01,,,26,02,,,27,03,,,24,04,,,24*7D[0m
-[0;32mI (527058) TAG: Received NMEA: $GPGSV,4,2,15,05,,,25,06,,,25,09,,,20,10,,,21*71[0m
-[0;32mI (527558) TAG: Received NMEA: $GPGSV,4,3,15,11,,,21,13,,,25,14,,,24,15,,,23*7A[0m
-[0;32mI (527978) TAG: Received NMEA: $GPGSV,4,4,15,18,,,22,19,,,25,33,,,27*7E[0m
-[0;32mI (528178) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (528428) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (528638) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (528968) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (529458) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*,27*73[0m
-[0;32mI (529658) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (529908) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (530118) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (530448) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (530898) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (531398) TAG: Received NMEA: $GPGSV,4,1,13,01,,,21,02,,,24,04,,,25,05,,,21*7D[0m
-[0;32mI (531898) TAG: Received NMEA: $GPGSV,4,2,13,06,,,22,09,,,16,11,,,25,14,,,22*77[0m
-[0;32mI (532398) TAG: Received NMEA: $GPGSV,4,3,13,15,,,22,19,,,23,23,,,23,28,,,23*7A[0m
-[0;32mI (532658) TAG: Received NMEA: $GPGSV,4,4,13,33,,,28*71[0m
-[0;32mI (532858) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (533108) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (533318) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (533648) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (534098) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (534598) TAG: Received NMEA: $GPGSV,3,1,11,02,,,21,04,,,24,05,,,19,06,,,19*7B[0m
-[0;32mI (535098) TAG: Received NMEA: $GPGSV,3,2,11,11,,,24,14,,,19,15,,,22,19,,,23*7E[0m
-[0;32mI (535518) TAG: Received NMEA: $GPGSV,3,3,11,23,,,21,28,,,20,33,,,28*79[0m
-[0;32mI (535718) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (535968) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (536178) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (536508) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (537388) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*GSV,2,1,05,11,,,15,21,,,14,22,,,14,25,,,27*7A[0m
-[0;32mI (537648) TAG: Received NMEA: $GPGSV,2,2,05,33,,,27*79[0m
-[0;32mI (537848) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (538098) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (538308) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (538638) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (539088) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (539588) TAG: Received NMEA: $GPGSV,2,1,05,11,,,15,21,,,14,25,,,23,26,,,28*75[0m
-[0;32mI (539848) TAG: Received NMEA: $GPGSV,2,2,05,33,,,27*79[0m
-[0;32mI (540048) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (540298) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (540508) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (540838) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (541288) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (541788) TAG: Received NMEA: $GPGSV,2,1,05,11,,,14,21,,,16,25,,,23,26,,,25*7B[0m
-[0;32mI (542048) TAG: Received NMEA: $GPGSV,2,2,05,33,,,27*79[0m
-[0;32mI (542248) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (542498) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (542708) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (543038) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (543488) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (543988) TAG: Received NMEA: $GPGSV,2,1,05,11,,,14,21,,,17,25,,,22,26,,,24*7A[0m
-[0;32mI (544248) TAG: Received NMEA: $GPGSV,2,2,05,33,,,27*79[0m
-[0;32mI (544448) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (544698) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (544908) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (545238) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (545688) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (546188) TAG: Received NMEA: $GPGSV,1,1,04,21,,,16,25,,,20,26,,,20,33,,,28*70[0m
-[0;32mI (546388) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (546638) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (546848) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (547178) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (547628) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (548048) TAG: Received NMEA: $GPGSV,1,1,03,25,,,17,26,,,18,33,,,28*7C[0m
-[0;32mI (548248) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (548498) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (548708) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (549038) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (549488) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (549988) TAG: Received NMEA: $GPGSV,1,1,04,25,,,13,26,,,13,27,,,24,33,,,27*78[0m
-[0;32mI (550188) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (550438) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (550648) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (550978) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (551428) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (551848) TAG: Received NMEA: $GPGSV,1,1,03,25,,,26,27,,,20,33,,,28*74[0m
-[0;32mI (552048) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (552298) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (552508) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (552838) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (553288) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (553708) TAG: Received NMEA: $GPGSV,1,1,03,25,,,24,26,,,25,33,,,28*72[0m
-[0;32mI (553908) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (554158) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (554368) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (554698) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (555148) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (555568) TAG: Received NMEA: $GPGSV,1,1,03,25,,,21,26,,,23,33,,,27*7E[0m
-[0;32mI (555768) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (556018) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (556228) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (556558) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (557008) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (557508) TAG: Received NMEA: $GPGSV,2,1,05,01,,,28,25,,,20,26,,,20,32,,,24*70[0m
-[0;32mI (557768) TAG: Received NMEA: $GPGSV,2,2,05,33,,,27*79[0m
-[0;32mI (557968) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (557988) TAG: Received NMEA: [0m
-[0;32mI (558408) TAG: Received NMEA: $GPGSV,2,2,07,08,,,25,09,,,23,33,,,28*73[0m
-[0;32mI (558608) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (558858) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (559068) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (559398) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (559848) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (560348) TAG: Received NMEA: $GPGSV,2,1,08,01,,,23,04,,,16,05,,,20,07,,,21*72[0m
-[0;32mI (560848) TAG: Received NMEA: $GPGSV,2,2,08,08,,,23,09,,,23,11,,,30,33,,,29*78[0m
-[0;32mI (561048) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (561298) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (561508) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (561838) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (562288) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (562788) TAG: Received NMEA: $GPGSV,2,1,08,01,,,23,04,,,16,05,,,17,07,,,25*72[0m
-[0;32mI (563288) TAG: Received NMEA: $GPGSV,2,2,08,08,,,29,09,,,23,11,,,25,33,,,28*77[0m
-[0;32mI (563488) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (563738) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (563948) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (564278) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (564728) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (565228) TAG: Received NMEA: $GPGSV,3,1,12,01,,,23,04,,,17,05,,,16,07,,,24*79[0m
-[0;32mI (565728) TAG: Received NMEA: $GPGSV,3,2,12,08,,,26,09,,,23,11,,,24,12,,,25*7D[0m
-[0;32mI (566228) TAG: Received NMEA: $GPGSV,3,3,12,18,,,24,19,,,24,31,,,27,33,,,28*76[0m
-[0;32mI (566428) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (566678) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (566888) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (567218) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (567668) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (568168) TAG: Received NMEA: $GPGSV,4,1,13,01,,,23,04,,,17,05,,,16,07,,,24*7F[0m
-[0;32mI (568668) TAG: Received NMEA: $GPGSV,4,2,13,08,,,23,09,,,23,10,,,22,11,,,23*7C[0m
-[0;32mI (569168) TAG: Received NMEA: $GPGSV,4,3,13,12,,,25,18,,,21,19,,,23,31,,,25*7E[0m
-[0;32mI (569428) TAG: Received NMEA: $GPGSV,4,4,13,33,,,28*71[0m
-[0;32mI (569628) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (569878) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (570088) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (570418) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (571138) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*PGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (571588) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (572088) TAG: Received NMEA: $GPGSV,4,1,14,01,,,23,07,,,16,09,,,21,10,,,16*75[0m
-[0;32mI (572588) TAG: Received NMEA: $GPGSV,4,2,14,11,,,21,14,,,23,16,,,26,17,,,29*73[0m
-[0;32mI (573088) TAG: Received NMEA: $GPGSV,4,3,14,18,,,26,19,,,23,22,,,25,23,,,25*7E[0m
-[0;32mI (573428) TAG: Received NMEA: $GPGSV,4,4,14,31,,,16,33,,,27*7C[0m
-[0;32mI (573628) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (573878) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (574088) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (574418) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (574868) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (575368) TAG: Received NMEA: $GPGSV,4,1,16,01,,,22,07,,,14,09,,,19,10,,,16*7F[0m

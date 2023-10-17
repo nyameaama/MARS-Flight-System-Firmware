@@ -1338,3 +1338,10 @@ function THRInput(){
             // Scroll to the bottom to show the latest output
             terminal.scrollTop = terminal.scrollHeight;
         }
+
+        function handleFileUpload() {
+          const fileInput = document.getElementById('file-input');
+          const fileName = fileInput.value.split(/(\\|\/)/g).pop(); // Extract file name from the path
+          alert(`File "${fileName}" has been selected.`);
+          // You can add further logic to handle the uploaded file here
+      }

@@ -36,6 +36,8 @@ class CONTROLLER_TASKS {
 
         std::string generateRandomAlphanumericToken(uint32_t seed1, uint32_t seed2, int length);
 
+        bool log_event_handler();
+
         void PTAM_REGISTER_SET();
 
         //Start comms and attach interrupts 

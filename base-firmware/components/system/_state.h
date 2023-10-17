@@ -36,10 +36,6 @@ class STATE {
 
         uint8_t SWITCH2BYPASS();
 
-        void ASSIGN_PREP_TASKS();
-
-        void UNDEF_FLAGS(std::string state);
-
         uint8_t compareX(std::string x, std::string y);
 
         std::string getLastStateRequest();
