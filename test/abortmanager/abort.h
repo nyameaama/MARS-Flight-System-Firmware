@@ -34,6 +34,8 @@
 //#include"../../LIAM/dev/C++/path_gen.h"
 #include"include/aborttypes.h" // For abort_t
 
+#define ALPHA                                 0.98
+
 #define PITCH_THRESHOLD_DEGREES             (int16_t)       90.00
 #define PITCH_THRESHOLD_RADIANS             (int16_t)       (PITCH_THRESHOLD_DEGREES * M_PI / 180)
 
@@ -63,7 +65,7 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    weighted_t VERIFY_PITCH(double accel_x, double accel_y, double accel_z)noexcept(true);
+    weighted_t VERIFY_PITCH(double accel_x, double accel_y, double accel_z, double gyro_x, double gyro_y, double gyro_z)noexcept(true);
 
     /**
      * @brief Verifies the range of vehicle YAW
