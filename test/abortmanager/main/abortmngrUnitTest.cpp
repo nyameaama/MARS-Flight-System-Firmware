@@ -1,7 +1,7 @@
 #include "../abort.h"
 #include <iostream>
 
-void PITCH_TEST()
+void PITCH_TEST(void)
 {
     VAMS vams;
     double accel_x = 0.1;
@@ -29,7 +29,7 @@ void PITCH_TEST()
     }
 }
 
-void YAW_TEST()
+void YAW_TEST(void)
 {
     VAMS vams;
     double magn_x = 1.0;
@@ -53,7 +53,7 @@ void YAW_TEST()
     }
 }
 
-void ROLL_TEST()
+void ROLL_TEST(void)
 {
     VAMS vams;
     double validRoll = 0.0; // Replace with a valid roll value.
@@ -77,7 +77,7 @@ void ROLL_TEST()
     }
 }
 
-void VerifyPathWithinBoundary()
+void VerifyPathWithinBoundary(void)
 {
     VAMS vams;
     Vector3D initloc{0.0, 0.0, 0.0};   // Replace with a valid initial location.
@@ -103,7 +103,7 @@ void VerifyPathWithinBoundary()
     }
 }
 
-void VAMS_MATRIX_WithNoLossOfControl()
+void VAMS_MATRIX_WithNoLossOfControl(void)
 {
     VAMS vams;
 
