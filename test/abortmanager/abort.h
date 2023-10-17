@@ -30,8 +30,7 @@
 #ifndef ABORT_H
 #define ABORT_H
 
-#include<cmath>
-//#include"../../LIAM/dev/C++/path_gen.h"
+#include<cmath> // For math related functions
 #include"include/aborttypes.h" // For abort_t
 
 #define ALPHA                                 0.98
