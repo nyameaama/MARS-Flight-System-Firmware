@@ -36,12 +36,33 @@ weighted_t VAMS::weighted_roll;
 weighted_t VAMS::weighted_path;
 
 
-weighted_t VAMS::VERIFY_PITCH(double accel_x, double accel_y, double accel_z) noexcept(true)
+/**
+ * Calculate and verify the pitch angle using accelerometer and gyroscope data.
+ *
+ * @param accel_x Acceleration along the X-axis.
+ * @param accel_y Acceleration along the Y-axis.
+ * @param accel_z Acceleration along the Z-axis.
+ * @param gyro_x Angular velocity around the X-axis.
+ * @param gyro_y Angular velocity around the Y-axis.
+ * @param gyro_z Angular velocity around the Z-axis.
+ * @return A weighted_t structure containing pitch angle information and a status flag.
+ */
+weighted_t VAMS::VERIFY_PITCH(double accel_x, double accel_y, double accel_z, double gyro_x, double gyro_y, double gyro_z) noexcept(true)
 {
     double pitch = atan2(accel_x, sqrt(accel_y * accel_y + accel_z * accel_z)) * 180.0 / M_PI;
 
+
+
+        // Calculate pitch from gyroscope data
+        double dt = 1.0; // Time interval
+        double pitchGyro = pitch + gyro_x * dt;
+
+        // Combine accelerometer and gyroscope data using a complementary filter
+        pitch = ALPHA * pitchGyro + (1.0 - ALPHA) * pitch;
+
+
     weighted_t result;
-    if (pitch >= -PITCH_THRESHOLD_DEGREES && pitch <= PITCH_THRESHOLD_DEGREES || pitch == 0)
+    if ((pitch >= -PITCH_THRESHOLD_DEGREES && pitch <= PITCH_THRESHOLD_DEGREES) || pitch == 0)
     {
         result = weighted_t{"Pitch_verif", pitch, NO_LOSS_OF_CONTROL};
     }
@@ -54,6 +75,13 @@ weighted_t VAMS::VERIFY_PITCH(double accel_x, double accel_y, double accel_z) no
     return result;
 }
 
+/**
+ * Calculate and verify the yaw angle using magnetometer data.
+ *
+ * @param magn_x Magnetic field strength along the X-axis.
+ * @param magn_y Magnetic field strength along the Y-axis.
+ * @return A weighted_t structure containing yaw angle information and a status flag.
+ */
 weighted_t VAMS::VERIFY_YAW(double magn_x, double magn_y) noexcept(true)
 {
     double yaw = atan2(magn_y, magn_x);
@@ -72,6 +100,14 @@ weighted_t VAMS::VERIFY_YAW(double magn_x, double magn_y) noexcept(true)
     return result;
 }
 
+/**
+ * Calculate and verify the roll angle using accelerometer data.
+ *
+ * @param accel_x Acceleration along the X-axis.
+ * @param accel_y Acceleration along the Y-axis.
+ * @param accel_z Acceleration along the Z-axis.
+ * @return A weighted_t structure containing roll angle information and a status flag.
+ */
 weighted_t VAMS::VERIFY_ROLL(double accel_x, double accel_y, double accel_z) noexcept(true)
 {
     double roll = atan2(accel_y, sqrt(accel_x * accel_x + accel_z * accel_z));
@@ -90,6 +126,15 @@ weighted_t VAMS::VERIFY_ROLL(double accel_x, double accel_y, double accel_z) noe
     return result;
 }
 
+/**
+ * Calculate the Haversine distance between two points on the Earth's surface.
+ *
+ * @param startLat Latitude of the starting location.
+ * @param startLong Longitude of the starting location.
+ * @param endLat Latitude of the ending location.
+ * @param endLong Longitude of the ending location.
+ * @return The Haversine distance between the two points.
+ */
 double VAMS::haversine(double startLat, double startLong, double endLat, double endLong)noexcept(true)
 {
     startLat = startLat * M_PI / 180.0;
@@ -106,6 +151,14 @@ double VAMS::haversine(double startLat, double startLong, double endLat, double 
     return distance;
 }
 
+/**
+ * Verify the flight path based on the Haversine distance between initial and target locations.
+ *
+ * @param initloc The initial location (latitude, longitude, altitude).
+ * @param targetloc The target location (latitude, longitude, altitude).
+ * @param boundaryRadius The boundary radius within which the flight path is considered on course.
+ * @return A weighted_t structure containing the Haversine distance and a status flag.
+ */
 weighted_t VAMS::VERIFY_PATH(const Vector3D& initloc, const Vector3D& targetloc, double boundaryRadius) noexcept(true)
 {
     double distance = haversine(initloc.lat, initloc.lon, targetloc.lat, targetloc.lon);
@@ -124,6 +177,15 @@ weighted_t VAMS::VERIFY_PATH(const Vector3D& initloc, const Vector3D& targetloc,
     return result;
 }
 
+/**
+ * Make an abort decision based on weighted status of pitch, yaw, roll, and flight path.
+ *
+ * @param weighted_PI Weighted status result of pitch verification.
+ * @param weighted_YA Weighted status result of yaw verification.
+ * @param weighted_RO Weighted status result of roll verification.
+ * @param weighted_PA Weighted status result of flight path verification.
+ * @return An abort decision based on the weighted status and a threshold.
+ */
 abort_t VAMS::VAMS_MATRIX(weighted_t weighted_PI, weighted_t weighted_YA, weighted_t weighted_RO, weighted_t weighted_PA)
 {
     // Calculate the total weighted status

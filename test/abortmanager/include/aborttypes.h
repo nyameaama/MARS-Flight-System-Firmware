@@ -44,7 +44,7 @@
 #define NO_UNEXPECTED_LOW_BATTERY 1
 #define NOT_OFF_COURSE            1
 
-typedef uint8_t abort_t;  // Use uint8_t directly as the type for abort_t
+typedef double abort_t;  // Use uint8_t directly as the type for abort_t
 
 typedef struct
 {
