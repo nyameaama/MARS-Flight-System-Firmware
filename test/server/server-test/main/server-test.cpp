@@ -96,14 +96,14 @@ extern "C" {
     delete cool;*/
 
     
-    /*WingTranslate *obj = new WingTranslate();
+    WingTranslate *obj = new WingTranslate();
     while(1){
-    obj -> mcpwm_servo_control(45, SERVO_FL);
-    obj -> mcpwm_servo_control(0, SERVO_FL);
-    obj -> mcpwm_servo_control(90, SERVO_FL);
+    obj -> servo_control(45, SERVO_FL);
+    obj -> servo_control(0, SERVO_FL);
+    obj -> servo_control(90, SERVO_FL);
     vTaskDelay(pdMS_TO_TICKS(500)); 
     }
-    delete obj;*/
+    delete obj;
     
 
     //SSD1306_GotoXY(10,10);

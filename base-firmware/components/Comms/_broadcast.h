@@ -34,6 +34,7 @@ SOFTWARE.*/
 #include"esp_random.h"
 #include"../PTAM/_ptam.h"
 #include"../system/sys_controller.h"
+#include "os_config.h"
 
 class BroadcastedServer {
     public:

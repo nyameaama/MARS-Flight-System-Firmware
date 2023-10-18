@@ -35,11 +35,12 @@ SOFTWARE.*/
 
 class WingTranslate {
     public:
-        static void mcpwm_gpio_initialize(uint8_t motor);
+        static double linearInterpolate(double input, double input_start, double input_end, 
+                                        double output_start, double output_end);
 
-        static uint32_t servo_per_degree_init(uint32_t degree_of_rotation);
+        static void actuateServo(double targetPos, uint8_t pin);
         
-        uint8_t mcpwm_servo_control(uint32_t angle,uint8_t pin);
+        static uint8_t servo_control(double angle, uint8_t pin);
 
     private:
         uint8_t GET_SERVO_POS(uint8_t pin);

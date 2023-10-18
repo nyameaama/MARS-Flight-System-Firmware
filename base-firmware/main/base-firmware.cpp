@@ -36,6 +36,7 @@ SOFTWARE.*/
 #include "esp_log.h"
 #include "nvs_flash.h"
 #include<string>
+#include"os_config.h"
 
 uint8_t DRONE_STATE = 1;
 
