@@ -99,7 +99,7 @@ public:
      * @brief Logs integer data
      *
      * @param log_data
-     * @return int8_t
+     * @return void
      */
     std::string LOG_EVENT(int8_t log_data);
 
@@ -107,7 +107,7 @@ public:
      * @brief Logs string data
      *
      * @param log_data
-     * @return std::string
+     * @return void
      */
     std::string LOG_EVENT(std::string log_data);
 };
