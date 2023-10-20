@@ -1,0 +1,17 @@
+idf_component_register(SRCS "_battery.cpp" "_SD_FileSystem.cpp"
+                            "servoControl.cpp" 
+                            "MotorController.cpp" 
+                            "minmea.cpp"
+                            "Vmotor.cpp"
+                           
+                            "ssd1306_fonts.cpp"
+                            "ssd1306.cpp"
+                            "mg90s_servo.cpp"
+                            "MPU6050.cpp" 
+                            "_barometerEntry.cpp" 
+                            "bmx280.cpp"
+                            "fan_relay.cpp"
+                            "bno055.cpp"
+                            "atgm336H.cpp"
+                        INCLUDE_DIRS "."
+                        REQUIRES esp_wifi esp_netif esp_http_server nvs_flash driver fatfs sdmmc vfs esp_adc)
