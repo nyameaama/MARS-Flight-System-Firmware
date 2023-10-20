@@ -1,5 +1,4 @@
-#[[
-MIT License
+/*MIT License
 
 Copyright (c) 2023 limitless Aeronautics
 
@@ -19,10 +18,16 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-]]
+SOFTWARE.*/
+#ifndef FIRMWARE_CONFIGURATION
+#define FIRMWARE_CONFIGURATION
 
-idf_component_register(SRCS "page.cpp" "_broadcast.cpp"
-                        INCLUDE_DIRS "."
-                        REQUIRES esp_wifi esp_netif esp_http_server nvs_flash driver PTAM system app_update main)
 
+#define OS_VERSION "1.0.1"
+
+#define PTAM_VERSION "1.0"
+
+#define LOGGER_VERSION "1.0"
+
+
+#endif //FIRMWARE_CONFIGURATION

@@ -154,14 +154,7 @@ std::string CONTROLLER_TASKS::generateRandomAlphanumericToken(uint32_t seed1, ui
 }
 
 void CONTROLLER_TASKS::_ARMED_(){
-    //_ONBOARD_DISPLAY *dispInit = new  _ONBOARD_DISPLAY();
-    //dispInit.stateARMED();
-    //delete dispInit;
-    //Check if takeoff conditions met
-
-    // If takeoff = true , Set cruise - follow waypoint
-
-    //
+    //Start App
 }
 
 //For manual testing, implement bypass to respond to sensor and motor
@@ -191,7 +184,7 @@ void CONTROLLER_TASKS::_bypass_(std::string sbc_id){
     WingTranslate *obj = new WingTranslate();
     if(dtaWFL != dtaWFL_ref){
         //There has been an update, wings can be commanded
-        obj -> mcpwm_servo_control(dtaWFL,0);
+        obj -> servo_control(dtaWFL,SERVO_FL);
         //Update the reference register
         //Clear previous register to avoid memory overflow
         sharedMemory.clearData("FL-ref-byp");
@@ -199,7 +192,7 @@ void CONTROLLER_TASKS::_bypass_(std::string sbc_id){
     }
     if(dtaWFR != dtaWFR_ref){
         //There has been an update, wings can be commanded
-        obj -> mcpwm_servo_control(dtaWFR,1);
+        obj -> servo_control(dtaWFR,SERVO_FR);
         //Update the reference register
         //Clear previous register to avoid memory overflow
         sharedMemory.clearData("FR-ref-byp");
@@ -207,7 +200,7 @@ void CONTROLLER_TASKS::_bypass_(std::string sbc_id){
     }
     if(dtaWRL != dtaWRL_ref){
         //There has been an update, wings can be commanded
-        obj -> mcpwm_servo_control(dtaWRL,2);
+        obj -> servo_control(dtaWRL,SERVO_RL);
         //Update the reference register
         //Clear previous register to avoid memory overflow
         sharedMemory.clearData("RL-ref-byp");
@@ -215,7 +208,7 @@ void CONTROLLER_TASKS::_bypass_(std::string sbc_id){
     }
     if(dtaWRR != dtaWRR_ref){
         //There has been an update, wings can be commanded
-        obj -> mcpwm_servo_control(dtaWRR,3);
+        obj -> servo_control(dtaWRR,SERVO_RR);
         //Update the reference register
         //Clear previous register to avoid memory overflow
         sharedMemory.clearData("RR-ref-byp");
@@ -242,6 +235,25 @@ void CONTROLLER_TASKS::PTAM_REGISTER_SET(){
     sharedMemory.storeInt("IMUcheck", 0);
     //BMP functionality flag
     sharedMemory.storeInt("BMPcheck", 0);
+    //Latitude functionality flag
+    sharedMemory.storeInt("LATITUDE_CHECK", 0);
+    //Longitude functionality flag
+    sharedMemory.storeInt("LONGITUDE_CHECK", 0);
+    //Altitude functionality flag
+    sharedMemory.storeInt("ALTITUDE_CHECK", 0);
+    //Velocity functionality flag
+    sharedMemory.storeInt("VELOCITY_CHECK", 0);
+    //Pitch functionality flag
+    sharedMemory.storeInt("PITCH_CHECK", 0);
+    //Roll functionality flag
+    sharedMemory.storeInt("ROLL_CHECK", 0);
+    //Yaw functionality flag
+    sharedMemory.storeInt("YAW_CHECK", 0);
+    //Temperature functionality flag
+    sharedMemory.storeInt("TEMPERATURE_CHECK", 0);
+    //Pressure functionality flag
+    sharedMemory.storeInt("PRESSURE_CHECK", 0);
+
     //ServerSetupFlag
     sharedMemory.storeInt("setupSFlag", 0);
     //Target Latitude 
