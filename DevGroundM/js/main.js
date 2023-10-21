@@ -50,7 +50,102 @@
           document.getElementById("firmware-push-button").addEventListener("click", function () {
             handleFileUpload();
           });
-
+    function deleteWayPoint() {
+            var waypointContainer = document.getElementById("wayPointContainer");
+            waypointContainer.parentNode.removeChild(waypointContainer);
+          }
+    function addNewWayPoint() {
+      // Create a new div element with class draggable
+      var newWayPoint = document.createElement("div");
+      newWayPoint.className = "wayPointContainer draggable";
+    
+      // Add the close button and form elements to the div
+      newWayPoint.innerHTML = `
+        <button class="btn-close">&times;</button>
+        <form id="container_text">
+          <label for="latitude">Latitude:</label>
+          <input type="number" class="pill" id="latitude" name="latitude">
+          <br>
+          <label for="longitude">Longitude:</label>
+          <input type="number" class="pill" id="longitude" name="longitude">
+          <br>
+          <label for="altitude">Altitude:</label>
+          <input type="number" class="pill" id="altitude" name="altitude">
+        </form>
+      `;
+    
+      // Add the new div element to the mission menu
+      var missionMenu = document.getElementById("mission-menu");
+      missionMenu.insertBefore(newWayPoint, missionMenu.childNodes[2]);
+    
+      // Add an event listener to the close button to remove the div when clicked
+      newWayPoint.querySelector(".btn-close").addEventListener("click", function() {
+        newWayPoint.remove();
+      });
+    
+      makeDraggable(newWayPoint);
+    }
+    function makeDraggable(element) {
+      var active = false;
+      var currentX;
+      var currentY;
+      var initialX;
+      var initialY;
+      var xOffset = 0;
+      var yOffset = 0;
+    
+      element.addEventListener("mousedown", dragStart, false);
+      element.addEventListener("mouseup", dragEnd, false);
+      element.addEventListener("mousemove", drag, false);
+    
+      element.addEventListener("touchstart", dragStart, false);
+      element.addEventListener("touchend", dragEnd, false);
+      element.addEventListener("touchmove", drag, false);
+    
+      function dragStart(e) {
+        if (e.type === "touchstart") {
+          initialX = e.touches[0].clientX - xOffset;
+          initialY = e.touches[0].clientY - yOffset;
+        } else {
+          initialX = e.clientX - xOffset;
+          initialY = e.clientY - yOffset;
+        }
+    
+        if (e.target === element) {
+          active = true;
+        }
+      }
+    
+      function dragEnd(e) {
+        initialX = currentX;
+        initialY = currentY;
+    
+        active = false;
+      }
+    
+      function drag(e) {
+        if (active) {
+          e.preventDefault();
+    
+          if (e.type === "touchmove") {
+            currentX = e.touches[0].clientX - initialX;
+            currentY = e.touches[0].clientY - initialY;
+          } else {
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+          }
+    
+          xOffset = currentX;
+          yOffset = currentY;
+    
+          setTranslate(currentX, currentY, element);
+        }
+      }
+    
+      function setTranslate(xPos, yPos, el) {
+        el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+      }
+    }
           ////////////////////////////
           class LiveDataGraph {
           constructor(canvasId, maxDataPoints = 100, updateInterval = 1000) {
