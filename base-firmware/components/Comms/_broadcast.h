@@ -34,6 +34,7 @@ SOFTWARE.*/
 #include"esp_random.h"
 #include"../PTAM/_ptam.h"
 #include"../system/sys_controller.h"
+#include "os_config.h"
 
 class BroadcastedServer {
     public:
@@ -71,6 +72,8 @@ class BroadcastedServer {
         static esp_err_t handle_STATE_incoming(httpd_req_t *req);
 
         static esp_err_t handle_AUTH_incoming(httpd_req_t *req);
+
+        static esp_err_t handle_OTA_incoming(httpd_req_t *req);
 
     private:
         const char *html_content = responseXX;

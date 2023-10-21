@@ -30,18 +30,27 @@
 #ifndef ABORT_H
 #define ABORT_H
 
-#include<inttypes.h>
-#include<cmath>
+#include<cmath> // For math related functions
 #include"include/aborttypes.h" // For abort_t
 
-#define PITCH_THRESHOLD_DEGREES (int64_t) 90.00
-#define PITCH_THRESHOLD_RADIANS (int64_t) (PITCH_THRESHOLD_DEGREES * M_PI / 180)
+#define ALPHA                                 0.98
 
-#define YAW_THRESHOLD_DEGREES (int64_t) 180.00
-#define YAW_THRESHOLD_RADIANS (int64_t) (YAW_THRESHOLD_DEGREES * M_PI / 180)
+#define PITCH_THRESHOLD_DEGREES             (int16_t)       90.00
+#define PITCH_THRESHOLD_RADIANS             (int16_t)       (PITCH_THRESHOLD_DEGREES * M_PI / 180)
 
-#define ROLL_THRESHOLD_DEGREES (int64_t) 180.00
-#define ROLL_THRESHOLD_RADIANS (int64_t) (ROLL_THRESHOLD_DEGREES * M_PI / 180)
+#define YAW_THRESHOLD_DEGREES               (int16_t)       180.00
+#define YAW_THRESHOLD_RADIANS               (int16_t)       (YAW_THRESHOLD_DEGREES * M_PI / 180)
+
+#define ROLL_THRESHOLD_DEGREES              (int16_t)       180.00
+#define ROLL_THRESHOLD_RADIANS              (int16_t)       (ROLL_THRESHOLD_DEGREES * M_PI / 180)
+
+#define FLIGHT_PATH_THRESHOLD_LATITUDE      (int16_t)       90.00
+#define FLIGHT_PATH_THRESHOLD_LONGITUDE     (int16_t)       180.00
+
+#define EARTH_RADIUS                        (int16_t)       6371.00
+#define TO_RADIANS                          (degrees)       ((degrees) * M_PI / 180.0)
+
+#define WEIGHTED_THRESHOLD 2
 
 class VAMS
 {
@@ -55,7 +64,7 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    inline double VERIFY_PITCH(double accel_x, double accel_y, double accel_z)noexcept(true);
+    weighted_t VERIFY_PITCH(double accel_x, double accel_y, double accel_z, double gyro_x, double gyro_y, double gyro_z)noexcept(true);
 
     /**
      * @brief Verifies the range of vehicle YAW
@@ -65,7 +74,7 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    inline double VERIFY_YAW(double magn_x, double magn_y)noexcept(true);
+    weighted_t VERIFY_YAW(double magn_x, double magn_y)noexcept(true);
 
     /**
      * @brief Verifies the range of vehicle ROLL
@@ -76,33 +85,54 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    inline double VERIFY_ROLL(double accel_x, double accel_y, double accel_z)noexcept(true);
+    weighted_t VERIFY_ROLL(double accel_x, double accel_y, double accel_z)noexcept(true);
 
     /**
-     * @brief Verifies if drone within computed path threshold
+     * @brief The Haversine formula
      *
-     * @param latitudeY     Latitude of the computed path
-     * @param longitudeX    Longitude of the computed path
-     * @param altitudeY     Altitude of computed path
-     * @param timeX         Time it took the drone to travel in computed path
-     * @param threshold     Allowed drone threshold
-     * @param currentP      Drone current position to be computed
-     * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
+     * @param lat1      Starting latitude
+     * @param lon1      Starting Longitude
+     * @param lat2      Ending Latitude
+     * @param lon2      Ending Longitude
+     * @return double | The distance calculated with parameters. (in KM)
      */
-    inline double VERIFY_PATH(double latitudeY, double longitudeX, double altitudeY, double timeX, double threshold, double currentP)noexcept(true);
+    double haversine(double lat1, double lon1, double lat2, double lon2)noexcept(true);
 
     /**
-     * @brief performs a decision based on the results yielded by PITCH, YAW, & ROLL
+     * @brief Verifies the vehicle PATH
      *
-     * 
-     * @return uint64_t
+     * @param initloc           Initial Location
+     * @param targetloc         Targeted Location
+     * @param boundaryRadius    Boundary radius set by the user
+     * @return weighted_t | 0 or 2
      */
-    inline abort_t VAMS_MATRIX();
+    weighted_t VERIFY_PATH(const Vector3D& initloc, const Vector3D& targetloc, double boundaryRadius)noexcept(true);
+
+    /**
+     * @brief Verifies the battery percentage.
+     *
+     * @param voltage       Voltage to calulcate remainder of battery
+     *
+     * @return double   | Battery percentage
+     */
+    double VERIFY_BATTERY(double voltage)noexcept(true);
+
+    /**
+     * @brief VAMS decision matrix
+     *
+     * @param weighted_PI   PITCH weighted total
+     * @param weighted_YA   YAW weighted total
+     * @param weighted_RO   ROLL weighted total
+     * @param weightedPA    PATH weighted total
+     * @return abort_t | If it shall abort or not
+     */
+    abort_t VAMS_MATRIX(weighted_t weighted_PI, weighted_t weighted_YA, weighted_t weighted_RO, weighted_t weightedPA);
 
 private:
-    static abort_t pitch_flag;      /* EITHER TRUE(1) OR FALSE(2) */
-    static abort_t yaw_flag;        /* EITHER TRUE(1) OR FALSE(2) */
-    static abort_t roll_flag;       /* EITHER TRUE(1) OR FALSE(2) */
-    static abort_t ABORT_SIGNAL;    /* EITHER ABORT(3) OR NO_ABORT(4) */
+    static weighted_t weighted_pitch;
+    static weighted_t weighted_yaw;
+    static weighted_t weighted_roll;
+
+    static weighted_t weighted_path;
 };
 #endif /* ABORT_H */

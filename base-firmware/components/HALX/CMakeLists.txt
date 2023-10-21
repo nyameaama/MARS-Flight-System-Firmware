@@ -23,13 +23,14 @@ SOFTWARE.
 ]]
 
 
-idf_component_register(SRCS "_barometerEntry.cpp"
+idf_component_register(SRCS "_SD_FileSystem.cpp" 
+                            "_barometerEntry.cpp"
                             "bmx280.cpp"
                             "ssd1306_fonts.cpp"
                             "ssd1306.cpp"
                             "mg90s_servo.cpp"
                             "fan_relay.cpp"
                             "_barometerEntry.cpp" 
-                            "bmx280.cpp"
+                            "_battery.cpp"
                         INCLUDE_DIRS "."
-                        REQUIRES PTAM esp_wifi esp_netif esp_http_server nvs_flash driver)
+                        REQUIRES PTAM esp_wifi esp_netif esp_http_server nvs_flash driver fatfs sdmmc vfs esp_adc)

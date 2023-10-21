@@ -24,6 +24,7 @@ SOFTWARE.*/
 #include <string>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include <esp_ota_ops.h>
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "esp_event.h"
@@ -31,6 +32,7 @@ SOFTWARE.*/
 #include "nvs_flash.h"
 #include "lwip/err.h"
 #include "lwip/sys.h"
+#include <sys/param.h>
 
 #define _ESP_WIFI_SSID      "HIVE2"
 #define _ESP_WIFI_PASS      "HIVE_PASS"
@@ -171,6 +173,12 @@ void BroadcastedServer::wifi_init_softap(void)
         .user_ctx  = NULL
     };
 
+    httpd_uri_t OTA_uri = {
+        .uri       = "/INC_OTA",
+        .method    = HTTP_POST,
+        .handler   = handle_OTA_incoming,
+        .user_ctx  = NULL
+    };
 
     // Start the HTTP server
     if (httpd_start(&server, &config) == ESP_OK) {
@@ -186,6 +194,7 @@ void BroadcastedServer::wifi_init_softap(void)
         httpd_register_uri_handler(server, &STATE_uri);
         httpd_register_uri_handler(server, &TOKEN_uri);
         httpd_register_uri_handler(server, &AUTH_uri);
+        httpd_register_uri_handler(server, &OTA_uri);
     }
 
 }
@@ -670,4 +679,50 @@ esp_err_t BroadcastedServer::handle_AUTH_incoming(httpd_req_t *req){
     // If the request is not a POST request, return 404 Not Found
     httpd_resp_send_err(req, HTTPD_404_NOT_FOUND, "Not Found");
     return ESP_OK;
+}
+
+esp_err_t BroadcastedServer::handle_OTA_incoming(httpd_req_t *req){
+    char buf[1000];
+	esp_ota_handle_t ota_handle;
+	int remaining = req->content_len;
+
+	const esp_partition_t *ota_partition = esp_ota_get_next_update_partition(NULL);
+	ESP_ERROR_CHECK(esp_ota_begin(ota_partition, OTA_SIZE_UNKNOWN, &ota_handle));
+
+	while (remaining > 0) {
+		int recv_len = httpd_req_recv(req, buf, MIN(remaining, sizeof(buf)));
+
+		// Timeout Error: Just retry
+		if (recv_len == HTTPD_SOCK_ERR_TIMEOUT) {
+			continue;
+
+		// Serious Error: Abort OTA
+		} else if (recv_len <= 0) {
+			httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Protocol Error");
+			return ESP_FAIL;
+		}
+
+		// Successful Upload: Flash firmware chunk
+		if (esp_ota_write(ota_handle, (const void *)buf, recv_len) != ESP_OK) {
+			httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Flash Error");
+			return ESP_FAIL;
+		}
+
+		remaining -= recv_len;
+	}
+
+	// Validate and switch to new OTA image and reboot
+	if (esp_ota_end(ota_handle) != ESP_OK || esp_ota_set_boot_partition(ota_partition) != ESP_OK) {
+            printf("ota_handle %d\r\n", esp_ota_end(ota_handle));
+            printf("ota_partition %d\r\n", esp_ota_set_boot_partition(ota_partition));
+			httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Validation / Activation Error");
+			return ESP_FAIL;
+	}
+
+	httpd_resp_sendstr(req, "Firmware update complete, rebooting now!\n");
+
+	vTaskDelay(500 / portTICK_PERIOD_MS);
+	esp_restart();
+
+	return ESP_OK;
 }

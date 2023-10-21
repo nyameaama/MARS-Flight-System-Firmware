@@ -31,14 +31,33 @@
 #define ABORT_TYPES_H
 
 #include<inttypes.h>
+#include<string>
 
-typedef enum : int8_t
+// Define macros for abort_t values
+#define LOSS_OF_CONTROL         0
+#define BAD_SENSOR_DATA         0
+#define UNEXPECTED_LOW_BATTERY  0
+#define FAR_OFF_COURSE          0
+
+#define NO_LOSS_OF_CONTROL      1
+#define NO_BAD_SENSOR_DATA      1
+#define NO_UNEXPECTED_LOW_BATTERY 1
+#define NOT_OFF_COURSE            1
+
+typedef double abort_t;  // Use uint8_t directly as the type for abort_t
+
+typedef struct
 {
-    TRUE    =    1,
-    FALSE   =    2,
-    ABORT   =    3,
-    NO_ABORT =   3
-}__attribute__((packed))abort_t;
+    std::string name;
+    double data;
+    abort_t vstatus;
+} weighted_t;
 
+struct Vector3D
+{
+    double lat;
+    double lon;
+    double alt;
+};
 
 #endif /* ABORT_TYPES_H */

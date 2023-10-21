@@ -35,6 +35,16 @@ document.getElementById("arm_seq_ui_close").addEventListener("click", function (
     closemenuArm.style.visibility = "hidden";
 });
 
+document.getElementById("supdater-menu-button").addEventListener("click", function () {
+    var menusupdater = document.getElementById("supdater-menu");
+    menusupdater.style.visibility = "visible";
+});
+
+document.getElementById("supdater-menu-close").addEventListener("click", function () {
+    var closemenusupdater = document.getElementById("supdater-menu");
+    closemenusupdater.style.visibility = "hidden";
+});
+
 function hideStatsMenu(){
     var smnu = document.getElementById("initStat-menu");
     //Set no visibility

@@ -1,524 +1,0 @@
-ets Jul 29 2019 12:21:46
-
-rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
-configsip: 0, SPIWP:0xee
-clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
-mode:DIO, clock div:2
-load:0x3fff0030,len:7084
-ho 0 tail 12 room 4
-load:0x40078000,len:15576
-ho 0 tail 12 room 4
-load:0x40080400,len:4
-load:0x40080404,len:3876
-entry 0x4008064c
-[0;32mI (33) boot: ESP-IDF v5.1-dirty 2nd stage bootloader[0m
-[0;32mI (33) boot: compile time Jul 31 2023 23:59:43[0m
-[0;32mI (33) boot: Multicore bootloader[0m
-[0;32mI (38) boot: chip revision: v3.0[0m
-[0;32mI (41) boot.esp32: SPI Speed      : 40MHz[0m
-[0;32mI (46) boot.esp32: SPI Mode       : DIO[0m
-[0;32mI (51) boot.esp32: SPI Flash Size : 2MB[0m
-[0;32mI (55) boot: Enabling RNG early entropy source...[0m
-[0;32mI (61) boot: Partition Table:[0m
-[0;32mI (64) boot: ## Label            Usage          Type ST Offset   Length[0m
-[0;32mI (71) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
-[0;32mI (79) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
-[0;32mI (86) boot:  2 factory          factory app      00 00 00010000 00177000[0m
-[0;32mI (94) boot: End of partition table[0m
-[0;32mI (98) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=4c440h (312384) map[0m
-[0;32mI (219) esp_image: segment 1: paddr=0005c468 vaddr=3ffb0000 size=03840h ( 14400) load[0m
-[0;32mI (225) esp_image: segment 2: paddr=0005fcb0 vaddr=40080000 size=00368h (   872) load[0m
-[0;32mI (226) esp_image: segment 3: paddr=00060020 vaddr=400d0020 size=b7d50h (752976) map[0m
-[0;32mI (505) esp_image: segment 4: paddr=00117d78 vaddr=40080368 size=16568h ( 91496) load[0m
-[0;32mI (555) boot: Loaded app from partition at offset 0x10000[0m
-[0;32mI (555) boot: Disabling RNG early entropy source...[0m
-[0;32mI (566) cpu_start: Multicore app[0m
-[0;32mI (567) cpu_start: Pro cpu up.[0m
-[0;32mI (567) cpu_start: Starting app cpu, entry point is 0x40081478[0m
-[0;32mI (0) cpu_start: App cpu up.[0m
-[0;32mI (585) cpu_start: Pro cpu start user code[0m
-[0;32mI (585) cpu_start: cpu freq: 160000000 Hz[0m
-[0;32mI (585) cpu_start: Application information:[0m
-[0;32mI (589) cpu_start: Project name:     server-test[0m
-[0;32mI (595) cpu_start: App version:      3b93bc3-dirty[0m
-[0;32mI (600) cpu_start: Compile time:     Aug 10 2023 18:56:56[0m
-[0;32mI (606) cpu_start: ELF file SHA256:  b326a0644b7dc4d7...[0m
-[0;32mI (612) cpu_start: ESP-IDF:          v5.1-dirty[0m
-[0;32mI (617) cpu_start: Min chip rev:     v0.0[0m
-[0;32mI (622) cpu_start: Max chip rev:     v3.99 [0m
-[0;32mI (627) cpu_start: Chip rev:         v3.0[0m
-[0;32mI (632) heap_init: Initializing. RAM available for dynamic allocation:[0m
-[0;32mI (639) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
-[0;32mI (645) heap_init: At 3FFB8E08 len 000271F8 (156 KiB): DRAM[0m
-[0;32mI (651) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
-[0;32mI (658) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
-[0;32mI (664) heap_init: At 400968D0 len 00009730 (37 KiB): IRAM[0m
-[0;32mI (672) spi_flash: detected chip: generic[0m
-[0;32mI (675) spi_flash: flash io: dio[0m
-[0;33mW (679) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
-[0;32mI (693) app_start: Starting scheduler on CPU0[0m
-[0;32mI (697) app_start: Starting scheduler on CPU1[0m
-[0;32mI (697) main_task: Started on CPU0[0m
-[0;32mI (707) main_task: Calling app_main()[0m
-I (2747) wifi:wifi driver task: 3ffc0d28, prio:23, stack:6656, core=0
-I (2757) wifi:wifi firmware version: b2f1f86
-I (2757) wifi:wifi certification version: v7.0
-I (2757) wifi:config NVS flash: enabled
-I (2757) wifi:config nano formating: disabled
-I (2757) wifi:Init data frame dynamic rx buffer num: 32
-I (2767) wifi:Init management frame dynamic rx buffer num: 32
-I (2767) wifi:Init management short buffer num: 32
-I (2777) wifi:Init dynamic tx buffer num: 32
-I (2777) wifi:Init static rx buffer size: 1600
-I (2777) wifi:Init static rx buffer num: 10
-I (2787) wifi:Init dynamic rx buffer num: 32
-[0;32mI (2787) wifi_init: rx ba win: 6[0m
-[0;32mI (2797) wifi_init: tcpip mbox: 32[0m
-[0;32mI (2797) wifi_init: udp mbox: 6[0m
-[0;32mI (2797) wifi_init: tcp mbox: 6[0m
-[0;32mI (2807) wifi_init: tcp tx win: 5744[0m
-[0;32mI (2807) wifi_init: tcp rx win: 5744[0m
-[0;32mI (2817) wifi_init: tcp mss: 1440[0m
-[0;32mI (2817) wifi_init: WiFi IRAM OP enabled[0m
-[0;32mI (2827) wifi_init: WiFi RX IRAM OP enabled[0m
-[0;32mI (2837) phy_init: phy_version 4670,719f9f6,Feb 18 2021,17:07:07[0m
-I (2937) wifi:mode : softAP (ec:62:60:76:2c:8d)
-I (2947) wifi:Total power save buffer number: 16
-I (2947) wifi:Init max length of beacon: 752/752
-I (2947) wifi:Init max length of beacon: 752/752
-[0;32mI (2947) wifi softAP: wifi_init_softap finished. SSID:HIVE2 password:HIVE_PASS channel:6[0m
-[0;32mI (2947) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
-SSD1306 Initialized..
-[0;31mE (3207) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3207) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3207) TAG: Recv str: ????[0m
-[0;31mE (3217) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3217) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3217) TAG: Recv str: ????[0m
-[0;31mE (3237) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3237) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3237) TAG: Recv str: ????[0m
-[0;31mE (3247) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3247) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3257) TAG: Recv str: ????[0m
-[0;31mE (3267) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3267) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3267) TAG: Recv str: ????[0m
-[0;31mE (3287) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3287) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3287) TAG: Recv str: ????[0m
-[0;31mE (3297) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3297) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3307) TAG: Recv str: ????[0m
-[0;31mE (3317) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3317) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3317) TAG: Recv str: ????[0m
-[0;31mE (3337) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3337) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3337) TAG: Recv str: ????[0m
-[0;31mE (3347) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3347) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3347) TAG: Recv str: ????[0m
-[0;31mE (3367) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3367) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3367) TAG: Recv str: ????[0m
-[0;31mE (3387) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3387) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3387) TAG: Recv str: ????[0m
-[0;31mE (3397) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3397) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3397) TAG: Recv str: ????[0m
-[0;31mE (3417) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3417) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3417) TAG: Recv str: ????[0m
-[0;31mE (3437) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3437) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3437) TAG: Recv str: ????[0m
-[0;31mE (3447) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3447) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3447) TAG: Recv str: ????[0m
-[0;31mE (3467) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3467) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3467) TAG: Recv str: ????[0m
-[0;31mE (3477) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3477) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3487) TAG: Recv str: ????[0m
-[0;31mE (3497) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3497) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3497) TAG: Recv str: ????[0m
-[0;31mE (3517) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3517) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3517) TAG: Recv str: ????[0m
-[0;31mE (3527) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3527) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3537) TAG: Recv str: ????[0m
-[0;31mE (3547) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3547) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3547) TAG: Recv str: ????[0m
-[0;31mE (3567) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3567) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3567) TAG: Recv str: ????[0m
-[0;31mE (3577) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3577) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3587) TAG: Recv str: ????[0m
-[0;31mE (3597) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3597) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3597) TAG: Recv str: ????[0m
-[0;31mE (3617) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3617) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3617) TAG: Recv str: ????[0m
-[0;31mE (3627) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3627) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3637) TAG: Recv str: ????[0m
-[0;31mE (3647) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3647) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3647) TAG: Recv str: ????[0m
-[0;31mE (3667) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3667) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3667) TAG: Recv str: ????[0m
-[0;31mE (3677) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3677) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3677) TAG: Recv str: ????[0m
-[0;31mE (3697) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3697) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3697) TAG: Recv str: ????[0m
-[0;31mE (3717) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3717) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3717) TAG: Recv str: ????[0m
-[0;31mE (3727) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3727) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3727) TAG: Recv str: ????[0m
-[0;31mE (3747) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3747) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3747) TAG: Recv str: ????[0m
-[0;31mE (3767) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3767) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3767) TAG: Recv str: ????[0m
-[0;31mE (3777) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3777) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3777) TAG: Recv str: ????[0m
-[0;31mE (3797) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3797) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3797) TAG: Recv str: ????[0m
-[0;31mE (3807) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3807) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3817) TAG: Recv str: ????[0m
-[0;31mE (3827) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3827) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3827) TAG: Recv str: ????[0m
-[0;31mE (3847) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3847) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3847) TAG: Recv str: ????[0m
-[0;31mE (3857) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3857) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3867) TAG: Recv str: ????[0m
-[0;31mE (3877) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3877) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3877) TAG: Recv str: ????[0m
-[0;31mE (3897) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3897) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3897) TAG: Recv str: ????[0m
-[0;31mE (3907) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3907) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3917) TAG: Recv str: ????[0m
-[0;31mE (3927) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3927) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3927) TAG: Recv str: ????[0m
-[0;31mE (3947) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3947) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3947) TAG: Recv str: ????[0m
-[0;31mE (3957) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3957) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3967) TAG: Recv str: ????[0m
-[0;31mE (3977) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3977) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3977) TAG: Recv str: ????[0m
-[0;31mE (3997) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (3997) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (3997) TAG: Recv str: ????[0m
-[0;31mE (4007) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4007) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4007) TAG: Recv str: ????[0m
-[0;31mE (4027) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4027) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4027) TAG: Recv str: ????[0m
-[0;31mE (4047) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4047) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4047) TAG: Recv str: ????[0m
-[0;31mE (4057) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4057) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4057) TAG: Recv str: ????[0m
-[0;31mE (4077) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4077) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4077) TAG: Recv str: ????[0m
-[0;31mE (4097) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4097) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4097) TAG: Recv str: ????[0m
-[0;31mE (4107) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4107) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4107) TAG: Recv str: ????[0m
-[0;31mE (4127) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4127) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4127) TAG: Recv str: ????[0m
-[0;31mE (4137) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4137) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4147) TAG: Recv str: ????[0m
-[0;31mE (4157) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4157) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4157) TAG: Recv str: ????[0m
-[0;31mE (4177) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4177) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4177) TAG: Recv str: ????[0m
-[0;31mE (4187) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4187) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4197) TAG: Recv str: ????[0m
-[0;31mE (4207) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4207) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4207) TAG: Recv str: ????[0m
-[0;31mE (4227) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4227) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4227) TAG: Recv str: ????[0m
-[0;31mE (4237) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4237) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4247) TAG: Recv str: ????[0m
-[0;31mE (4257) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4257) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4257) TAG: Recv str: ????[0m
-[0;31mE (4277) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4277) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4277) TAG: Recv str: ????[0m
-[0;31mE (4287) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4287) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4287) TAG: Recv str: ????[0m
-[0;31mE (4307) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4307) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4307) TAG: Recv str: ????[0m
-[0;31mE (4327) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4327) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4327) TAG: Recv str: ????[0m
-[0;31mE (4337) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4337) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4337) TAG: Recv str: ????[0m
-[0;31mE (4357) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4357) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4357) TAG: Recv str: ????[0m
-[0;31mE (4377) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4377) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4377) TAG: Recv str: ????[0m
-[0;31mE (4387) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4387) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4387) TAG: Recv str: ????[0m
-[0;31mE (4407) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4407) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4407) TAG: Recv str: ????[0m
-[0;31mE (4417) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4417) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4427) TAG: Recv str: ????[0m
-[0;31mE (4437) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4437) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4437) TAG: Recv str: ????[0m
-[0;31mE (4457) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4457) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4457) TAG: Recv str: ????[0m
-[0;31mE (4467) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4467) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4477) TAG: Recv str: ????[0m
-[0;31mE (4487) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4487) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4487) TAG: Recv str: ????[0m
-[0;31mE (4507) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4507) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4507) TAG: Recv str: ????[0m
-[0;31mE (4517) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4517) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4527) TAG: Recv str: ????[0m
-[0;31mE (4537) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4537) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4537) TAG: Recv str: ????[0m
-[0;31mE (4557) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4557) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4557) TAG: Recv str: ????[0m
-[0;31mE (4567) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4567) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4577) TAG: Recv str: ????[0m
-[0;31mE (4587) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4587) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4587) TAG: Recv str: ????[0m
-[0;31mE (4607) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4607) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4607) TAG: Recv str: ????[0m
-[0;31mE (4617) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4617) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4617) TAG: Recv str: ????[0m
-[0;31mE (4637) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4637) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4637) TAG: Recv str: ????[0m
-[0;31mE (4657) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4657) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4657) TAG: Recv str: ????[0m
-[0;31mE (4667) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4667) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4667) TAG: Recv str: ????[0m
-[0;31mE (4687) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4687) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4687) TAG: Recv str: ????[0m
-[0;31mE (4707) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4707) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4707) TAG: Recv str: ????[0m
-[0;31mE (4717) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4717) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4717) TAG: Recv str: ????[0m
-[0;31mE (4737) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4737) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4737) TAG: Recv str: ????[0m
-[0;31mE (4747) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4747) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4757) TAG: Recv str: ????[0m
-[0;31mE (4767) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4767) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4767) TAG: Recv str: ????[0m
-[0;31mE (4787) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4787) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4787) TAG: Recv str: ????[0m
-[0;31mE (4797) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4797) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4807) TAG: Recv str: ????[0m
-[0;31mE (4817) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4817) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4817) TAG: Recv str: ????[0m
-[0;31mE (4837) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4837) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4837) TAG: Recv str: ????[0m
-[0;31mE (4847) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4847) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4857) TAG: Recv str: ????[0m
-[0;31mE (4867) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4867) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4867) TAG: Recv str: ????[0m
-[0;31mE (4887) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4887) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4887) TAG: Recv str: ????[0m
-[0;31mE (4897) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4897) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4907) TAG: Recv str: ????[0m
-[0;31mE (4917) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4917) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4917) TAG: Recv str: ????[0m
-[0;31mE (4937) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4937) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4937) TAG: Recv str: ????[0m
-[0;31mE (4947) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4947) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4947) TAG: Recv str: ????[0m
-[0;31mE (4967) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4967) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4967) TAG: Recv str: ????[0m
-[0;31mE (4987) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4987) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4987) TAG: Recv str: ????[0m
-[0;31mE (4997) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (4997) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (4997) TAG: Recv str: ????[0m
-[0;31mE (5017) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5017) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5017) TAG: Recv str: ????[0m
-[0;31mE (5037) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5037) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5037) TAG: Recv str: ????[0m
-[0;31mE (5047) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5047) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5047) TAG: Recv str: ????[0m
-[0;31mE (5067) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5067) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5067) TAG: Recv str: ????[0m
-[0;31mE (5077) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5077) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5087) TAG: Recv str: ????[0m
-[0;31mE (5097) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5097) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5097) TAG: Recv str: ????[0m
-[0;31mE (5117) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5117) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5117) TAG: Recv str: ????[0m
-[0;31mE (5127) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5127) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5137) TAG: Recv str: ????[0m
-[0;31mE (5147) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5147) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5147) TAG: Recv str: ????[0m
-[0;31mE (5167) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5167) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5167) TAG: Recv str: ????[0m
-[0;31mE (5177) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5177) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5187) TAG: Recv str: ????[0m
-[0;31mE (5197) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5197) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5197) TAG: Recv str: ????[0m
-[0;31mE (5217) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5217) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5217) TAG: Recv str: ????[0m
-[0;31mE (5227) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5227) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5227) TAG: Recv str: ????[0m
-[0;31mE (5247) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5247) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5247) TAG: Recv str: ????[0m
-[0;31mE (5267) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5267) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5267) TAG: Recv str: ????[0m
-[0;31mE (5277) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5277) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5277) TAG: Recv str: ????[0m
-[0;31mE (5297) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5297) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5297) TAG: Recv str: ????[0m
-[0;31mE (5317) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5317) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5317) TAG: Recv str: ????[0m
-[0;31mE (5327) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5327) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5327) TAG: Recv str: ????[0m
-[0;31mE (5347) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5347) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5347) TAG: Recv str: ????[0m
-[0;31mE (5367) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5367) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5367) TAG: Recv str: ????[0m
-[0;31mE (5377) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5377) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5377) TAG: Recv str: ????[0m
-[0;31mE (5397) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5397) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5397) TAG: Recv str: ????[0m
-[0;31mE (5407) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5407) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5417) TAG: Recv str: ????[0m
-[0;31mE (5427) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5427) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5427) TAG: Recv str: ????[0m
-[0;31mE (5447) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5447) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5447) TAG: Recv str: ????[0m
-[0;31mE (5457) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5457) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5467) TAG: Recv str: ????[0m
-[0;31mE (5477) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5477) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5477) TAG: Recv str: ????[0m
-[0;31mE (5497) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5497) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5497) TAG: Recv str: ????[0m
-[0;31mE (5507) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5507) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5517) TAG: Recv str: ????[0m
-[0;31mE (5527) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5527) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5527) TAG: Recv str: ????[0m
-[0;31mE (5547) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5547) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5547) TAG: Recv str: ????[0m
-[0;31mE (5557) uart: uart_read_bytes(1246): uart driver error[0m
-[0;31mE (5557) uart: uart_write_bytes(1209): uart driver error[0m
-[0;32mI (5557) TAG: Recv str: ????[0m
-[0;31mE (5577) uart: uart_read_bytes(1246): uart driver error[0m

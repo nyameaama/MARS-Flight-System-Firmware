@@ -21,21 +21,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 #include "mg90s_servo.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_err.h"
-#include "esp_attr.h"
-#include "driver/mcpwm.h"
-#include "soc/mcpwm_periph.h"
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+#include <math.h>
+#include <sdkconfig.h>
+#include <driver/gpio.h>
+#include <driver/ledc.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
 
-//You can get these value from the datasheet of servo you use, in general pulse width varies between 1000 to 2000 microsecond
-#define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
-#define SERVO_MAX_PULSEWIDTH 2000 //Maximum pulse width in microsecond
-#define SERVO_MAX_DEGREE 90       //Maximum angle in degree upto which servo can rotate
-#define servo_pin 16              //gpio pin of servo
-#define servo_pin2 17              //gpio pin of servo
-#define servo_pin3 18              //gpio pin of servo
-#define servo_pin4 19              //gpio pin of servo
+#define ServoMsMin 0.06
+#define ServoMsMax 2.1
+#define ServoMsAvg ((ServoMsMax-ServoMsMin)/2.0)
 
 uint8_t SERVO_POS_1 = 0;
 
@@ -46,41 +44,49 @@ uint8_t SERVO_POS_3 = 0;
 uint8_t SERVO_POS_4 = 0;
 
 //____________________________________________________________
-/* Initializes MG90S Servo using MCPWM
+/* Utillity subroutine -> linear interpolation method
 ===========================================================================
+===========================================================================
+*/
+double WingTranslate::linearInterpolate(double input, double input_start, double input_end, 
+                                        double output_start, double output_end) {
+    // Map input range to output range
+    double slope = (output_end - output_start) / (input_end - input_start);
+    double output = output_start + slope * (input - input_start);
+    return output;
+}
+
+//____________________________________________________________
+/* Initializes MG90S Servo using LEDC
+===========================================================================
+|    motor selection   The identification of the motor intended to be interfaced
 |    motor selection   The identification of the motor intended to be interfaced
 ===========================================================================
 */
-void WingTranslate::mcpwm_gpio_initialize(uint8_t motor)
-{
-    switch(motor) {
-        case 0:
-            mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, servo_pin); //Set servo_pin as PWM0A, to which servo is connected
-        break;
-        case 1:
-            mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, servo_pin2); //Set servo_pin2 as PWM0A, to which servo is connected
-        break;
-        case 2:
-            mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, servo_pin3); //Set servo_pin3 as PWM0A, to which servo is connected
-        break;
-        case 3:
-            mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, servo_pin4); //Set servo_pin4 as PWM0A, to which servo is connected
-        break;
-    }
-}
+void WingTranslate::actuateServo(double targetPos, uint8_t pin) {
+    ledc_timer_config_t ledc_timer;
+    ledc_timer.speed_mode       = LEDC_LOW_SPEED_MODE;
+    ledc_timer.timer_num        = LEDC_TIMER_0;
+    ledc_timer.duty_resolution  = LEDC_TIMER_13_BIT;
+    ledc_timer.freq_hz          = 50;
+    ledc_timer.clk_cfg          = LEDC_AUTO_CLK;
 
+    ledc_timer_config(&ledc_timer);
+    ledc_channel_config_t ledc_channel;
+    ledc_channel.speed_mode     = LEDC_LOW_SPEED_MODE;
+    ledc_channel.channel        = LEDC_CHANNEL_0;
+    ledc_channel.timer_sel      = LEDC_TIMER_0;
+    ledc_channel.intr_type      = LEDC_INTR_DISABLE;
+    ledc_channel.gpio_num       = pin;
+    ledc_channel.duty           = 0;
+    ledc_channel.hpoint         = 0;
 
-//____________________________________________________________
-/* Utillity subroutine -> angle to pulsewidth converter
-===========================================================================
-|    motor rotation degree   The motor rotation bounded between 0 deg to 90 deg
-===========================================================================
-*/
-uint32_t WingTranslate::servo_per_degree_init(uint32_t degree_of_rotation)
-{
-    uint32_t cal_pulsewidth = 0;
-    cal_pulsewidth = (SERVO_MIN_PULSEWIDTH + (((SERVO_MAX_PULSEWIDTH - SERVO_MIN_PULSEWIDTH) * (degree_of_rotation)) / (SERVO_MAX_DEGREE)));
-    return cal_pulsewidth;
+    ledc_channel_config(&ledc_channel);  
+    int duty = (int)(100.0 * (targetPos / 20.0) * 81.91);
+    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, duty);
+    ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);  
+    vTaskDelay( 2000 / portTICK_PERIOD_MS ); 
+    ledc_stop(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 0);
 }
 
 //____________________________________________________________
@@ -90,50 +96,13 @@ uint32_t WingTranslate::servo_per_degree_init(uint32_t degree_of_rotation)
 |    motor selection   The identification of the motor intended to be interfaced
 ===========================================================================
 */
-uint8_t WingTranslate::mcpwm_servo_control(uint32_t target,uint8_t pin)
-{
-    uint32_t angle, count;
-    uint32_t SERVO_TARGET_ANGLE = target;
-    //1. mcpwm gpio initialization
-    mcpwm_gpio_initialize(pin);
-
-    //2. initial mcpwm configuration
-    mcpwm_config_t pwm_config;
-    pwm_config.frequency = 50; //frequency = 50Hz, i.e. for every servo motor time period should be 20ms
-    pwm_config.cmpr_a = 0;     //duty cycle of PWMxA = 0
-    pwm_config.cmpr_b = 0;     //duty cycle of PWMxb = 0
-    pwm_config.counter_mode = MCPWM_UP_COUNTER;
-    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;
-    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config); //Configure PWM0A & PWM0B with above settings
-    
-    //Hardware Check
-    if(target > 90){
-        //MARS LOGGER SOFT FAIL 
-        return 0;
-    }
-    uint8_t SP = GET_SERVO_POS(pin);
-
-    if(SP != target){
-        if(target > SP){
-            for (count = SP; count < SERVO_TARGET_ANGLE; count += (SERVO_TARGET_ANGLE - SP)){
-                angle = servo_per_degree_init(count);
-                mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);
-                vTaskDelay(10 * (SERVO_TARGET_ANGLE - SP)); //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
-            }
-            UPDATE_SERVO_POS(pin,target);
-        }
-        if(target < SP){
-            for (count = SP; count > SERVO_TARGET_ANGLE; count -= (SERVO_TARGET_ANGLE - SP)){
-                angle = servo_per_degree_init(count);
-                mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);
-                vTaskDelay(10 * (SERVO_TARGET_ANGLE - SP)); //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
-            }
-            UPDATE_SERVO_POS(pin,target);
-        }
-    }
-    return 1;
+uint8_t WingTranslate::servo_control(double target, uint8_t pin){
+    //Map target in the 0 - 360 range to ServoMsMin and ServoMsMax
+    double mapped_target = linearInterpolate(target, 0, 360, ServoMsMin, ServoMsMax);
+    actuateServo(mapped_target, pin);
+    UPDATE_SERVO_POS(pin,target);
+    return mapped_target;
 }
-
 
 //____________________________________________________________
 /* Utillity subroutine -> retrieve current motor position 
@@ -159,7 +128,6 @@ uint8_t WingTranslate::GET_SERVO_POS(uint8_t pin)
     }
     return 0;
 }
-
 
 //____________________________________________________________
 /* Utillity subroutine -> update current motor position after movement change

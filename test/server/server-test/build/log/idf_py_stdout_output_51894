@@ -1,146 +1,0 @@
-ets Jul 29 2019 12:21:46
-
-rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
-configsip: 0, SPIWP:0xee
-clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
-mode:DIO, clock div:2
-load:0x3fff0030,len:7084
-ho 0 tail 12 room 4
-load:0x40078000,len:15576
-ho 0 tail 12 room 4
-load:0x40080400,len:4
-load:0x40080404,len:3876
-entry 0x4008064c
-[0;32mI (33) boot: ESP-IDF v5.1-dirty 2nd stage bootloader[0m
-[0;32mI (33) boot: compile time Jul 31 2023 23:59:43[0m
-[0;32mI (33) boot: Multicore bootloader[0m
-[0;32mI (38) boot: chip revision: v3.0[0m
-[0;32mI (41) boot.esp32: SPI Speed      : 40MHz[0m
-[0;32mI (46) boot.esp32: SPI Mode       : DIO[0m
-[0;32mI (51) boot.esp32: SPI Flash Size : 2MB[0m
-[0;32mI (55) boot: Enabling RNG early entropy source...[0m
-[0;32mI (61) boot: Partition Table:[0m
-[0;32mI (64) boot: ## Label            Usage          Type ST Offset   Length[0m
-[0;32mI (71) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
-[0;32mI (79) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
-[0;32mI (86) boot:  2 factory          factory app      00 00 00010000 00177000[0m
-[0;32mI (94) boot: End of partition table[0m
-[0;32mI (98) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=4caa8h (314024) map[0m
-[0;32mI (220) esp_image: segment 1: paddr=0005cad0 vaddr=3ffb0000 size=03548h ( 13640) load[0m
-[0;32mI (225) esp_image: segment 2: paddr=00060020 vaddr=400d0020 size=ba22ch (762412) map[0m
-[0;32mI (501) esp_image: segment 3: paddr=0011a254 vaddr=3ffb3548 size=002f8h (   760) load[0m
-[0;32mI (502) esp_image: segment 4: paddr=0011a554 vaddr=40080000 size=16930h ( 92464) load[0m
-[0;32mI (556) boot: Loaded app from partition at offset 0x10000[0m
-[0;32mI (557) boot: Disabling RNG early entropy source...[0m
-[0;32mI (568) cpu_start: Multicore app[0m
-[0;32mI (568) cpu_start: Pro cpu up.[0m
-[0;32mI (569) cpu_start: Starting app cpu, entry point is 0x40081480[0m
-[0;32mI (0) cpu_start: App cpu up.[0m
-[0;32mI (586) cpu_start: Pro cpu start user code[0m
-[0;32mI (586) cpu_start: cpu freq: 160000000 Hz[0m
-[0;32mI (586) cpu_start: Application information:[0m
-[0;32mI (591) cpu_start: Project name:     server-test[0m
-[0;32mI (596) cpu_start: App version:      3b93bc3-dirty[0m
-[0;32mI (602) cpu_start: Compile time:     Aug 10 2023 18:56:56[0m
-[0;32mI (608) cpu_start: ELF file SHA256:  8fd5911758756fbc...[0m
-[0;32mI (614) cpu_start: ESP-IDF:          v5.1-dirty[0m
-[0;32mI (619) cpu_start: Min chip rev:     v0.0[0m
-[0;32mI (624) cpu_start: Max chip rev:     v3.99 [0m
-[0;32mI (629) cpu_start: Chip rev:         v3.0[0m
-[0;32mI (634) heap_init: Initializing. RAM available for dynamic allocation:[0m
-[0;32mI (641) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
-[0;32mI (647) heap_init: At 3FFB8EA0 len 00027160 (156 KiB): DRAM[0m
-[0;32mI (653) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
-[0;32mI (659) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
-[0;32mI (666) heap_init: At 40096930 len 000096D0 (37 KiB): IRAM[0m
-[0;32mI (673) spi_flash: detected chip: generic[0m
-[0;32mI (677) spi_flash: flash io: dio[0m
-[0;33mW (680) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
-[0;32mI (695) app_start: Starting scheduler on CPU0[0m
-[0;32mI (699) app_start: Starting scheduler on CPU1[0m
-[0;32mI (699) main_task: Started on CPU0[0m
-[0;32mI (709) main_task: Calling app_main()[0m
-I (2749) wifi:wifi driver task: 3ffc0dc0, prio:23, stack:6656, core=0
-I (2759) wifi:wifi firmware version: b2f1f86
-I (2759) wifi:wifi certification version: v7.0
-I (2759) wifi:config NVS flash: enabled
-I (2759) wifi:config nano formating: disabled
-I (2759) wifi:Init data frame dynamic rx buffer num: 32
-I (2769) wifi:Init management frame dynamic rx buffer num: 32
-I (2769) wifi:Init management short buffer num: 32
-I (2779) wifi:Init dynamic tx buffer num: 32
-I (2779) wifi:Init static rx buffer size: 1600
-I (2779) wifi:Init static rx buffer num: 10
-I (2789) wifi:Init dynamic rx buffer num: 32
-[0;32mI (2789) wifi_init: rx ba win: 6[0m
-[0;32mI (2799) wifi_init: tcpip mbox: 32[0m
-[0;32mI (2799) wifi_init: udp mbox: 6[0m
-[0;32mI (2799) wifi_init: tcp mbox: 6[0m
-[0;32mI (2809) wifi_init: tcp tx win: 5744[0m
-[0;32mI (2809) wifi_init: tcp rx win: 5744[0m
-[0;32mI (2819) wifi_init: tcp mss: 1440[0m
-[0;32mI (2819) wifi_init: WiFi IRAM OP enabled[0m
-[0;32mI (2829) wifi_init: WiFi RX IRAM OP enabled[0m
-[0;32mI (2839) phy_init: phy_version 4670,719f9f6,Feb 18 2021,17:07:07[0m
-I (2939) wifi:mode : softAP (ec:62:60:76:2c:8d)
-I (2939) wifi:Total power save buffer number: 16
-I (2939) wifi:Init max length of beacon: 752/752
-I (2949) wifi:Init max length of beacon: 752/752
-[0;32mI (2949) wifi softAP: wifi_init_softap finished. SSID:HIVE2 password:HIVE_PASS channel:6[0m
-[0;32mI (2949) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
-SSD1306 Initialized..
-[0;32mI (3879) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (4089) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (4419) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (4869) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (5369) TAG: Received NMEA: $GPGSV,2,1,07,01,,,16,05,,,22,12,,,24,24,,,14*78[0m
-[0;32mI (5789) TAG: Received NMEA: $GPGSV,2,2,07,25,,,26,26,,,24,30,,,23*7D[0m
-[0;32mI (5989) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (6239) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (6449) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (6779) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (7229) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (7729) TAG: Received NMEA: $GPGSV,2,1,08,01,,,17,05,,,19,08,,,25,12,,,23*75[0m
-[0;32mI (8229) TAG: Received NMEA: $GPGSV,2,2,08,24,,,13,25,,,24,26,,,24,30,,,23*74[0m
-[0;32mI (8429) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (8679) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (8889) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (9219) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (9669) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (10169) TAG: Received NMEA: $GPGSV,2,1,07,01,,,17,08,,,22,12,,,21,24,,,13*76[0m
-[0;32mI (10589) TAG: Received NMEA: $GPGSV,2,2,07,25,,,21,26,,,21,30,,,23*7F[0m
-[0;32mI (10789) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (11039) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (11249) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (11579) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (12029) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (12529) TAG: Received NMEA: $GPGSV,2,1,08,01,,,16,05,,,24,08,,,25,09,,,25*76[0m
-[0;32mI (13029) TAG: Received NMEA: $GPGSV,2,2,08,12,,,19,24,,,14,26,,,19,30,,,22*76[0m
-[0;32mI (13229) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (13479) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (13689) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (14019) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (14469) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (14969) TAG: Received NMEA: $GPGSV,3,1,09,01,,,25,05,,,21,08,,,24,09,,,22*75[0m
-[0;32mI (15469) TAG: Received NMEA: $GPGSV,3,2,09,10,,,26,12,,,25,25,,,24,26,,,24*73[0m
-[0;32mI (15729) TAG: Received NMEA: $GPGSV,3,3,09,30,,,21*70[0m
-[0;32mI (15929) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (16179) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (16389) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (16719) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (17169) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (17669) TAG: Received NMEA: $GPGSV,2,1,07,01,,,24,08,,,22,09,,,25,10,,,23*7C[0m
-[0;32mI (18089) TAG: Received NMEA: $GPGSV,2,2,07,12,,,24,25,,,23,30,,,23*7F[0m
-[0;32mI (18289) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (18539) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (18749) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (19079) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (19529) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m
-[0;32mI (20029) TAG: Received NMEA: $GPGSV,3,1,09,01,,,24,02,,,27,03,,,27,08,,,22*7C[0m
-[0;32mI (20529) TAG: Received NMEA: $GPGSV,3,2,09,09,,,22,10,,,20,12,,,22,25,,,20*7D[0m
-[0;32mI (20789) TAG: Received NMEA: $GPGSV,3,3,09,30,,,20*71[0m
-[0;32mI (20989) TAG: Received NMEA: $GPGLL,,,,,,V,N*64[0m
-[0;32mI (21239) TAG: Received NMEA: $GPRMC,,V,,,,,,,,,,N*53[0m
-[0;32mI (21449) TAG: Received NMEA: $GPVTG,,,,,,,,,N*30[0m
-[0;32mI (21779) TAG: Received NMEA: $GPGGA,,,,,,0,00,99.99,,,,,,*48[0m
-[0;32mI (22229) TAG: Received NMEA: $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30[0m

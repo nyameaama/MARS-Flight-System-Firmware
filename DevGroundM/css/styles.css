@@ -1228,3 +1228,236 @@ top:10%;
     background-color: #000000;
     color: #ffffff;
   }
+
+  #su-text1{
+    position: absolute;
+    left: 5%;
+    top: 0%;
+  }
+
+  #su-text2{
+    position: absolute;
+    left: 5%;
+    top: 18%;
+    font-weight: lighter;
+  }
+
+  #supdater-menu-button{
+    position: absolute;
+    left: 5%;
+    top: 55%;
+    width: 70%;
+    height: 30%;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+  }
+
+  #supdater-menu-button:hover{
+    color: #ffffff;
+    background-color: rgb(57, 57, 57);
+  } 
+
+  #supdater-menu{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    z-index: 1100;
+    width: 80%;
+    height: 80%;
+    background-color: rgb(22, 21, 21);
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+  }
+
+  #supdater-menu-close{
+    position: absolute;
+    width: 1%;
+    height: 1%;
+    border-radius: 40px;
+    padding: 2%;
+    left: 93%;
+    top: 3%;
+    border-width: 0pt;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;
+  }
+
+  #supdater-menu-close:hover{
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  #su-topbar-PIC{
+    position: absolute;
+    left:40%;
+    top:0%;
+    width: 60%;
+    height: 40%;
+  }
+
+  #su-topbar{
+    position: absolute;
+    left:0%;
+    top:0%;
+    width: 40%;
+    height: 40%;
+    background-color:#000;
+    color: #fff;
+  }
+
+  #su-topbar-title{
+    position: absolute;
+    left: 10%;
+    top: 70%;
+  }
+
+  #supdater-settings{
+    position: absolute;
+    left: 2%;
+    top:43%;
+    border-radius: 20px;
+    width: 40%;
+    height: 55%;
+    background-color:#000;
+    color: #fff;
+  }
+
+  #supdater-release-notes{
+    position: absolute;
+    left:43%;
+    top:43%;
+    border-radius: 20px;
+    width: 55%;
+    height: 55%;
+    background-color:#000;
+    color: #fff;
+  }
+
+  /* Add a black background color to the top navigation */
+  .settings-nav {
+    background-color: #333;
+    overflow: hidden;
+    }
+  
+    /* Style the links inside the navigation bar */
+    .settings-nav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    }
+  
+    /* Change the color of links on hover */
+    .settings-nav a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+  
+    /* Add a color to the active/current link */
+    .settings-nav a.active {
+    background-color: #04AA6D;
+    color: white;
+    }
+  
+    .settings-nav a.nonactive {
+      background-color: #333;
+      color: white;
+    }
+
+    #standard-menu{
+      visibility: hidden;
+    }
+
+    #advanced-menu{
+      visibility: inherit;
+    }
+
+    #upload-box {
+      position: absolute;
+      top: 60%;
+      left: 9%;
+      width: 80%;
+      height: 30%;
+      border: 5px dashed #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+  }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    #firmware-push-button{
+      position: absolute;
+      top: 18%;
+      left: 70%;
+      width: 20%;
+      height: 30%;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background-color: #fff;
+      color: #000;
+    }
+    #firmware-push-button:hover{
+      background-color: rgb(57, 57, 57);
+      color: #ffffff;
+    }
+
+    #advanced-menu-text1{
+      position: absolute;
+      left: 10%;
+      top: 15%;
+    }
+
+    #advanced-menu-text2{
+      position: absolute;
+      left: 10%;
+      top: 30%;
+    }
+    
+    #advanced-menu-text3{
+      position: absolute;
+      left: 10%;
+      top: 45%;
+      font-weight: lighter;
+    }
+
+    #input-text1-advanced{
+      position: absolute;
+      left: 30%;
+      top: 20%;
+    }
+
+    #input-text2-advanced{
+      position: absolute;
+      left: 30%;
+      top: 35%;
+    }
+
+    #input-text2-advanced{
+      position: absolute;
+    }
+
+    #release-notes-text{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }

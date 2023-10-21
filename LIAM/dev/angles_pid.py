@@ -7,7 +7,7 @@ def define_target(initial_values,target_values, min, max):
     ki = 0.1
     kd = 0.7
 
-    dt = 0.1
+    dt = 0.6
 
     # Initialize variables
     integral = [0.0, 0.0, 0.0]

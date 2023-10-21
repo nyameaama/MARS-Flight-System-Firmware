@@ -47,6 +47,10 @@
             writeToArmTerminal("<b>AUTH SENT");
           });
 
+          document.getElementById("firmware-push-button").addEventListener("click", function () {
+            handleFileUpload();
+          });
+
           ////////////////////////////
           class LiveDataGraph {
           constructor(canvasId, maxDataPoints = 100, updateInterval = 1000) {
@@ -1337,4 +1341,38 @@ function THRInput(){
             terminal.innerHTML += `<div>${text}</div>`;
             // Scroll to the bottom to show the latest output
             terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function handleFileUpload() {
+          const fileInput = document.getElementById('file-input');
+          var otafile = document.getElementById('file-input').files;
+          const fileName = fileInput.value.split(/(\\|\/)/g).pop(); // Extract file name from the path
+          alert(`File "${fileName}" has been selected.`);
+          //further logic to handle the uploaded file here
+          var file = otafile[0];
+					var xhr = new XMLHttpRequest();
+
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState == 4) {
+							if (xhr.status == 200) {
+								document.open();
+								document.write(xhr.responseText);
+								document.close();
+							} else if (xhr.status == 0) {
+								alert("Server closed the connection abruptly!");
+								location.reload()
+							} else {
+								alert(xhr.status + " Error!\n" + xhr.responseText);
+								location.reload()
+							}
+						}
+					};
+
+					xhr.upload.onprogress = function (e) {
+						var progress = document.getElementById("advanced-menu-text3");
+						progress.textContent = "Progress: " + (e.loaded / e.total * 100).toFixed(0) + "%";
+					};
+					xhr.open("POST", "/INC_OTA", true);
+					xhr.send(file);
+
         }
