@@ -96,7 +96,7 @@ extern "C" {
     delete cool;*/
 
     
-    WingTranslate *obj = new WingTranslate();
+    /*WingTranslate *obj = new WingTranslate();
     while(1){
     obj -> servo_control(45, SERVO_FL);
     obj -> servo_control(45, SERVO_FR);
@@ -106,7 +106,7 @@ extern "C" {
     obj -> servo_control(90, SERVO_FR);
     vTaskDelay(pdMS_TO_TICKS(500)); 
     }
-    delete obj;
+    delete obj;*/
     
 
     //SSD1306_GotoXY(10,10);
@@ -133,29 +133,30 @@ extern "C" {
     ec -> setThrottle(30);
     //ec -> stop();
     delete ec;*/
-    //V_MOTOR *motor = new V_MOTOR();
-    //motor -> mcpwm_gpio_initialize();
-    //motor -> motor_control_task();
+    V_MOTOR *motor = new V_MOTOR();
+    motor -> mcpwm_gpio_initialize();
+    //
     
     //motor -> esc_arm_sequence();
-    /*motor -> mcpwm_motor_control(uint8_t(0));
+    //motor -> motor_control_task();
+    motor -> mcpwm_motor_control(uint8_t(0));
     vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
     motor -> mcpwm_motor_control(uint16_t(1000));
     vTaskDelay(pdMS_TO_TICKS(7000)); // Delay for 2 seconds
-    motor -> mcpwm_motor_control(uint8_t(0));*/
+    motor -> mcpwm_motor_control(uint8_t(0));
 
 
 
     //motor -> mcpwm_motor_control(uint8_t(0));
     //vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
-    /*motor -> mcpwm_motor_control(uint8_t(1));
-    vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
+    //motor -> mcpwm_motor_control(uint8_t(1));
+    //vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
     //motor -> mcpwm_motor_control(uint8_t(0));
     
     //motor -> esc_disarm();
     //delete motor;
 
-
+/*
 uint8_t flag,flag2 = 1;
     int16_t ax,ay,az;
     int16_t gx,gy,gz;

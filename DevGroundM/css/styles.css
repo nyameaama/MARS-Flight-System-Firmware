@@ -971,11 +971,11 @@ top:10%;
 
   #supdater-subMenu{
     position: absolute;
-    top: 2%;
+    top: 15%;
     left: 1%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -987,11 +987,11 @@ top:10%;
 
   #subMenu2{
     position: absolute;
-    top: 2%;
+    top: 15%;
     left: 51%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -1003,11 +1003,11 @@ top:10%;
 
   #subMenu3{
     position: absolute;
-    top: 53%;
+    top: 57%;
     left: 1%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -1019,11 +1019,11 @@ top:10%;
 
   #subMenu4{
     position: absolute;
-    top: 53%;
+    top: 57%;
     left: 51%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);

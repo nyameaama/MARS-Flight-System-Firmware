@@ -118,7 +118,7 @@ double BATTERY::returnBatteryPercent(int adc){
     //Now we do the same to get a percent value
     // Percent Value Scale (0% to 100%)
     double brp = mapValue(vrs, VOLTAGE_MIN, VOLTAGE_MAX, 0, 100);
-
+    
     return brp;
 }
 

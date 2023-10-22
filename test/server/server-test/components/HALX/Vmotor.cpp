@@ -7,7 +7,7 @@
 #include "driver/mcpwm.h"
 #include "soc/mcpwm_periph.h"
 
-#define MOTOR_GPIO 17
+#define MOTOR_GPIO 15
 #define THROTTLE_MAX 2000
 #define THROTTLE_MIN 1000
 #define THROTTLE_IDLE 1500
@@ -64,11 +64,11 @@ uint16_t V_MOTOR::map(uint8_t value, uint8_t fromLow, uint8_t fromHigh, uint16_t
 void V_MOTOR::esc_arm_sequence(){
     // Send maximum duty cycle for a few seconds
     mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, ESC_PWM_DUTY_MAX);
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    vTaskDelay(pdMS_TO_TICKS(2000));
 
     // Send minimum duty cycle for a moment
     mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, ESC_PWM_DUTY_MIN);
-    vTaskDelay(pdMS_TO_TICKS(500));
+    vTaskDelay(pdMS_TO_TICKS(2000));
 
     // Send middle duty cycle (neutral position)
     mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, ESC_PWM_DUTY_NEUTRAL);
