@@ -33,6 +33,7 @@ public:
   void begin();
   void setThrottle(int throttleValue);
   void stop();
+  void arm();
 };
 
 #endif

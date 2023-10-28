@@ -20,8 +20,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
+#ifndef BAROMETER_
+#define BAROMETER_
+
 #include"esp_log.h"
 #include"../PTAM/_ptam.h"
+#include<math.h>
+
+#define DEFAULT_SEA_LEVEL 1013.25
 
 class VEHICLE_BARO {
     public:
@@ -34,4 +40,8 @@ class VEHICLE_BARO {
         static float pushPressure();
 
         static float pushHumidity();
+
+        static double pushAltitude(double seaLevelhPa);
 };
+
+#endif //BAROMETER_

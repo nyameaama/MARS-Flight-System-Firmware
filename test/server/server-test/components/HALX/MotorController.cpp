@@ -27,8 +27,13 @@ void MotorController::begin() {
 }
 
 void MotorController::setThrottle(int throttleValue) {
-  int mappedValue = map(throttleValue, 0, 180, 1000, 2000);  // Map throttle value to pulse width range
+  int mappedValue = map(throttleValue, 0, 100, 1000, 2000);  // Map throttle value to pulse width range
   esc.writeMicroSeconds(mappedValue);  // Set the motor speed by adjusting the pulse width
+}
+
+void MotorController::arm() {
+  esc.attach(throttlePin);
+  esc.writeMicroSeconds(500);  // Set the motor speed by adjusting the pulse width
 }
 
 void MotorController::stop() {

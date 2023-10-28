@@ -50,6 +50,12 @@
           document.getElementById("firmware-push-button").addEventListener("click", function () {
             handleFileUpload();
           });
+
+          document.getElementById("newWayPoint-button").addEventListener("click", function () {
+            addNewWayPoint();
+          });
+
+
     function deleteWayPoint() {
             var waypointContainer = document.getElementById("wayPointContainer");
             waypointContainer.parentNode.removeChild(waypointContainer);
@@ -306,6 +312,7 @@
             updateIMU1();
             updateIMU2();
             updateAMB();
+            updateBATT();
             //updateNative();
           }
 
@@ -1309,6 +1316,42 @@ function THRInput(){
                         var throttle = parseFloat(unpackedData[2][1]);
                         document.getElementById('label8').innerHTML = "THROTTLE: " + throttle;
                         _thr = throttle;
+
+                    } else {
+                        // Request failed, handle the error here
+                        //var errorResponse = "Error: " + xhr.status + " - " + xhr.statusText;
+                        //document.getElementById('Lat-num').innerHTML = errorResponse;
+                    }
+                }
+            };
+
+            // You can add any data you want to send in the request body
+            var data = "key1=value1&key2=value2"; // Replace with your data
+            xhr.send(data);
+          }
+
+          function updateBATT(){
+            //Call API
+            //Send backend request
+            var xhr = new XMLHttpRequest();
+            var url = "/GET_BATT";
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Request successful, handle the response here
+                        var response = xhr.responseText;
+                        const unpackedData = unpackData(response);
+                        //Voltage
+                        var Voltage = parseFloat(unpackedData[0][1]);
+                        //Current
+                        var Current = parseFloat(unpackedData[1][1]);
+                        //Percent
+                        var Percent = parseFloat(unpackedData[2][1]);
+                        document.getElementById('label5').innerHTML = "BATTERY : " + Percent + "% " + Voltage + "V " + Current + "mA";
 
                     } else {
                         // Request failed, handle the error here

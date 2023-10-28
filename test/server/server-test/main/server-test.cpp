@@ -126,26 +126,41 @@ extern "C" {
     delete baro;*/
 
 
-    /*MotorController *ec = new MotorController(gpio_num_t(15));
-    ec -> begin();
-    ec -> setThrottle(100);
+    MotorController *ec = new MotorController(gpio_num_t(15));
+    ec -> arm();
+    //ec -> setThrottle(100);
     vTaskDelay(pdMS_TO_TICKS(5000));
-    ec -> setThrottle(30);
-    //ec -> stop();
-    delete ec;*/
-    V_MOTOR *motor = new V_MOTOR();
-    motor -> mcpwm_gpio_initialize();
+    
+    ec -> setThrottle(80);
+    vTaskDelay(pdMS_TO_TICKS(5000));
+    ec -> stop();
+    delete ec;
+    //V_MOTOR *motor = new V_MOTOR();
+    //motor -> mcpwm_gpio_initialize();
     //
     
     //motor -> esc_arm_sequence();
     //motor -> motor_control_task();
-    motor -> mcpwm_motor_control(uint8_t(0));
-    vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
-    motor -> mcpwm_motor_control(uint16_t(1000));
-    vTaskDelay(pdMS_TO_TICKS(7000)); // Delay for 2 seconds
-    motor -> mcpwm_motor_control(uint8_t(0));
+    //motor -> mcpwm_motor_control(uint8_t(100));
+    //vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
+    //motor -> mcpwm_motor_control(uint8_t(50));
+    //vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 seconds
+    //motor -> mcpwm_motor_control(uint16_t(500));
+    //vTaskDelay(pdMS_TO_TICKS(5000)); // Delay for 5 seconds
 
-
+    /*for(uint16_t i = 1000; i < 2000; i+=1){
+        motor -> mcpwm_motor_control(i);
+        vTaskDelay(pdMS_TO_TICKS(10)); // Delay for 1 seconds
+    }
+    
+    for(uint16_t j = 2000; j > 1000; j=j-1){
+        motor -> mcpwm_motor_control(j);
+        vTaskDelay(pdMS_TO_TICKS(10)); // Delay for 1 seconds
+    }*/
+     
+    //motor -> mcpwm_motor_control(uint8_t(100));
+    //vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 seconds
+    //motor -> mcpwm_motor_control(uint8_t(40));
 
     //motor -> mcpwm_motor_control(uint8_t(0));
     //vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds

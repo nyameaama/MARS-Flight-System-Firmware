@@ -10,7 +10,7 @@
 #define MOTOR_GPIO 15
 #define THROTTLE_MAX 2000
 #define THROTTLE_MIN 1000
-#define THROTTLE_IDLE 1500
+#define THROTTLE_IDLE 500
 
 #define ESC_PWM_DUTY_MAX 2000
 #define ESC_PWM_DUTY_MIN 1000
@@ -35,7 +35,7 @@ uint8_t V_MOTOR::mcpwm_motor_control(uint8_t throttleValue){
         mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, THROTTLE_IDLE);
         return throttleValue;
     }
-    uint16_t pulseWidth = map(throttleValue, 0, 180, THROTTLE_MIN, THROTTLE_MAX);  // Map throttle value to pulse width range
+    uint16_t pulseWidth = map(throttleValue, 1, 100, THROTTLE_MIN, THROTTLE_MAX);  // Map throttle value to pulse width range
     mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulseWidth);
     return throttleValue;
 }
@@ -86,13 +86,13 @@ void V_MOTOR::motor_control_task() {
         // Increase duty cycle to speed up the motor
         for (int duty = 1500; duty <= 2000; duty += 100) {
             mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_GEN_A, duty);
-            vTaskDelay(pdMS_TO_TICKS(100)); // Delay for motor to respond
+            vTaskDelay(pdMS_TO_TICKS(10)); // Delay for motor to respond
         }
 
         // Decrease duty cycle to slow down the motor
         for (int duty = 2000; duty >= 1500; duty -= 100) {
             mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_GEN_A, duty);
-            vTaskDelay(pdMS_TO_TICKS(100)); // Delay for motor to respond
+            vTaskDelay(pdMS_TO_TICKS(10)); // Delay for motor to respond
         }
     }
 }
