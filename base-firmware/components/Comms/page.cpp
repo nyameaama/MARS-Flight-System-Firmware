@@ -2004,7 +2004,7 @@ top:10%;
             updateIMU1();
             updateIMU2();
             updateAMB();
-            updateBATT();
+            //updateBATT();
             //updateNative();
           }
 
@@ -2936,7 +2936,7 @@ function THRInput(){
             //Call API
             //Send backend request
             var xhr = new XMLHttpRequest();
-            var url = "/GET_W1"; // Replace with your ESP32 server URL
+            var url = "/GET_W1"; 
 
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -3005,8 +3005,8 @@ function THRInput(){
                         document.getElementById('gyroZ-num').innerHTML = gyroZ;
                         gyZ = gyroZ;
                         //Piggyback throttle data through this uri_handler to save memory
-                        var throttle = parseFloat(unpackedData[2][1]);
-                        document.getElementById('label8').innerHTML = "THROTTLE: " + throttle;
+                        var throttle = parseFloat(unpackedData[3][1]);
+                        document.getElementById('label5').innerHTML = "BATTERY : " + throttle + "%";
                         _thr = throttle;
 
                     } else {
@@ -3018,7 +3018,7 @@ function THRInput(){
             };
 
             // You can add any data you want to send in the request body
-            var data = "key1=value1&key2=value2"; // Replace with your data
+            var data = "key1=value1&key2=value2"; 
             xhr.send(data);
           }
 
@@ -3039,10 +3039,14 @@ function THRInput(){
                         const unpackedData = unpackData(response);
                         //Voltage
                         var Voltage = parseFloat(unpackedData[0][1]);
+                        console.log(Voltage);
                         //Current
                         var Current = parseFloat(unpackedData[1][1]);
+                        console.log(Current);
                         //Percent
                         var Percent = parseFloat(unpackedData[2][1]);
+                        console.log(Percent);
+
                         document.getElementById('label5').innerHTML = "BATTERY : " + Percent + "% " + Voltage + "V " + Current + "mA";
 
                     } else {
@@ -3054,7 +3058,7 @@ function THRInput(){
             };
 
             // You can add any data you want to send in the request body
-            var data = "key1=value1&key2=value2"; // Replace with your data
+            var data = "key1=value1&key2=value2"; 
             xhr.send(data);
           }
 
@@ -3162,7 +3166,7 @@ function THRInput(){
             };
 
             // You can add any data you want to send in the request body
-            var data = "key1=value1&key2=value2"; // Replace with your data
+            var data = "key1=value1&key2=value2"; 
             xhr.send(data);
           }
 

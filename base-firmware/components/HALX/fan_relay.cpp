@@ -80,8 +80,8 @@ void FAN_COOLING::fan_relay_off(){
 */
 void FAN_COOLING::coolSierra_task(double sierraTemp){
     // Setpoints for turning the fan on and off
-    double fanOnSetpoint = 33.0;
-    double fanOffSetpoint = 30.0;
+    double fanOnSetpoint = 45.0;
+    double fanOffSetpoint = 35.0;
 
     // Check if the temperature is above the fanOnSetpoint
     if (sierraTemp > fanOnSetpoint && !fanIsOn) {

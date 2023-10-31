@@ -153,6 +153,20 @@ std::string CONTROLLER_TASKS::generateRandomAlphanumericToken(uint32_t seed1, ui
     return token;
 }
 
+void CONTROLLER_TASKS::restart_after_idle_task() {
+    const uint32_t restart_interval = 12 * 60 * 60;  // 12 hours in seconds
+
+    // Get the time elapsed since boot in seconds
+    uint32_t uptime = esp_timer_get_time() / 1000000;  // Convert microseconds to seconds
+
+    // Check if it's time to restart after every 12-hour period
+    if (uptime % restart_interval == 0) {
+        ESP_LOGI("Restart", "Restarting after %d hours of idle time.", int(restart_interval / 3600));
+        esp_restart();
+    }
+
+}
+
 void CONTROLLER_TASKS::_ARMED_(){
     //Start App
 }
