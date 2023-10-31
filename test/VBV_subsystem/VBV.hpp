@@ -34,6 +34,19 @@
 #include "../Logging/logger.hpp"
 #include <vector>
 
+
+#define ALT_LIMIT               12001.0  // Altitude limit in feet
+
+#define LATITUDE_THRESHOLD      90.0     // Latitude threshold in degrees
+#define LONGITUDE_THRESHOLD     180.0    // Longitude threshold in degrees
+
+#define PITCH_THRESHOLD         90.0     // Pitch threshold in degrees
+
+#define ROLL_THRESHOLD          180.0    // Roll threshold in degrees
+
+#define PRESSURE_CHECK          101.3    // Atmospheric pressure threshold
+
+
 class VBV: public SharedMemory
 {
     /**
@@ -45,88 +58,67 @@ class VBV: public SharedMemory
     static bool validate_reg_data();
 
     /**
-     * @brief Validates GPS sensor data
-     *
-     * @return uint8_t
-     */
-    static uint8_t gps_sensor_check();
-
-    /**
-     * @brief Validates IMU sensor data
-     *
-     * @return uint8_t
-     */
-    static uint8_t imu_sensor_check();
-
-    /**
-     * @brief Validates BMP sensor data
-     *
-     * @return uint8_t
-     */
-    static uint8_t bmp_sensor_check();
-
-    /**
      * @brief Validates Altitude sensor data
      *
      * @return uint8_t
      */
-    static uint8_t alt_sensor_check();
+    static uint8_t alt_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Latitude sensor data
      *
      * @return uint8_t
      */
-    static uint8_t lat_sensor_check();
+    static uint8_t lat_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Longitude sensor data
      *
      * @return uint8_t
      */
-    static uint8_t lon_sensor_check();
+    static uint8_t lon_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Velocity sensor data
      *
      * @return uint8_t
      */
-    static uint8_t vel_sensor_check();
+    static uint8_t vel_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Pitch sensor data
      *
      * @return uint8_t
      */
-    static uint8_t pit_sensor_check();
+    static uint8_t pit_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Roll sensor data
      *
      * @return uint8_t
      */
-    static uint8_t roll_sensor_check();
+    static uint8_t roll_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Yaw sensor data
      *
      * @return uint8_t
      */
-    static uint8_t yaw_sensor_check();
+    static uint8_t yaw_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Temperature sensor data
      *
      * @return uint8_t
      */
-    static uint8_t temp_sensor_check();
+    static uint8_t temp_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Pressure sensor data
      *
      * @return uint8_t
      */
-    static uint8_t pres_sensor_check();
+    static uint8_t pres_sensor_check(double sensor_data);
 };
 
 
