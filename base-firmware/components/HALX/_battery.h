@@ -36,13 +36,13 @@ class BATTERY{
     public:
         static double batteryInterfaceInit();
         
-        static uint16_t returnBatteryVoltage();
+        static double returnBatteryVoltage();
 
         static double returnBatteryCurrentDraw();
 
         static void initCurrentADC();
 
-        static double returnBatteryPercent(int adc);
+        static double returnBatteryPercent();
 
         static void print_char_val_type(esp_adc_cal_value_t val_type);
 

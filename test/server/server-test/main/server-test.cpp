@@ -96,7 +96,7 @@ extern "C" {
     delete cool;*/
 
     
-    WingTranslate *obj = new WingTranslate();
+    /*WingTranslate *obj = new WingTranslate();
     while(1){
     obj -> servo_control(45, SERVO_FL);
     obj -> servo_control(45, SERVO_FR);
@@ -106,7 +106,7 @@ extern "C" {
     obj -> servo_control(90, SERVO_FR);
     vTaskDelay(pdMS_TO_TICKS(500)); 
     }
-    delete obj;
+    delete obj;*/
     
 
     //SSD1306_GotoXY(10,10);
@@ -126,36 +126,52 @@ extern "C" {
     delete baro;*/
 
 
-    /*MotorController *ec = new MotorController(gpio_num_t(15));
-    ec -> begin();
-    ec -> setThrottle(100);
+    MotorController *ec = new MotorController(gpio_num_t(15));
+    ec -> arm();
+    //ec -> setThrottle(100);
     vTaskDelay(pdMS_TO_TICKS(5000));
-    ec -> setThrottle(30);
-    //ec -> stop();
-    delete ec;*/
+    
+    ec -> setThrottle(80);
+    vTaskDelay(pdMS_TO_TICKS(5000));
+    ec -> stop();
+    delete ec;
     //V_MOTOR *motor = new V_MOTOR();
     //motor -> mcpwm_gpio_initialize();
-    //motor -> motor_control_task();
+    //
     
     //motor -> esc_arm_sequence();
-    /*motor -> mcpwm_motor_control(uint8_t(0));
-    vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
-    motor -> mcpwm_motor_control(uint16_t(1000));
-    vTaskDelay(pdMS_TO_TICKS(7000)); // Delay for 2 seconds
-    motor -> mcpwm_motor_control(uint8_t(0));*/
+    //motor -> motor_control_task();
+    //motor -> mcpwm_motor_control(uint8_t(100));
+    //vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
+    //motor -> mcpwm_motor_control(uint8_t(50));
+    //vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 seconds
+    //motor -> mcpwm_motor_control(uint16_t(500));
+    //vTaskDelay(pdMS_TO_TICKS(5000)); // Delay for 5 seconds
 
-
+    /*for(uint16_t i = 1000; i < 2000; i+=1){
+        motor -> mcpwm_motor_control(i);
+        vTaskDelay(pdMS_TO_TICKS(10)); // Delay for 1 seconds
+    }
+    
+    for(uint16_t j = 2000; j > 1000; j=j-1){
+        motor -> mcpwm_motor_control(j);
+        vTaskDelay(pdMS_TO_TICKS(10)); // Delay for 1 seconds
+    }*/
+     
+    //motor -> mcpwm_motor_control(uint8_t(100));
+    //vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 seconds
+    //motor -> mcpwm_motor_control(uint8_t(40));
 
     //motor -> mcpwm_motor_control(uint8_t(0));
     //vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
-    /*motor -> mcpwm_motor_control(uint8_t(1));
-    vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
+    //motor -> mcpwm_motor_control(uint8_t(1));
+    //vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
     //motor -> mcpwm_motor_control(uint8_t(0));
     
     //motor -> esc_disarm();
     //delete motor;
 
-
+/*
 uint8_t flag,flag2 = 1;
     int16_t ax,ay,az;
     int16_t gx,gy,gz;

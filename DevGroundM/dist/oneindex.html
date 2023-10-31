@@ -219,7 +219,7 @@ canvas { border: 1px solid #ccc; display: block; }
     background-color: #333;
     color: white;
   }
-
+/* 
   #actions-menu{
       position: absolute;
       width:96%;
@@ -228,8 +228,7 @@ canvas { border: 1px solid #ccc; display: block; }
       left:2%;
       top:12%;
       z-index: 100;
-      
-  }
+  } */
 
   #opt-menu{
       position: absolute;
@@ -828,17 +827,13 @@ top:10%;
     color: white;
   }
   
-  .form{
-    background-color: white;
-    color: white;
-  }
-
-  #wayPointContainer{
+  .wayPointContainer{
     background-color: black;
     position: absolute;
-    font-size: 1.6em;
-    width: 5em;
-    height: 5em;
+    font-size: 1em;
+    color: white;
+    width: 165px;
+    height: 165px;
     left: 50%;
     top: 50%;
     display: grid;
@@ -846,19 +841,68 @@ top:10%;
     font-family: "Poppins",sans-serif;
     border-radius: 0.3em;
     cursor:move;
-
+    text-align: left;
   }
-  .pill{
+
+  .wayPointContainer #exit_waypoint{
+    background-color: transparent;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 2px;
+    top:2px;
+    border-radius: 50%;
+    transition: all 0.2s ease-in;
+  }
+
+  .wayPointContainer .label{
+    width: 50px;
+    display: inline;
+    cursor: auto;
+  }
+
+  .wayPointContainer #latitude{
     position: relative;
-    left: 50px;
     font:message-box;
     color: white;
-    background-color: #000000;
-    text-align: center;
-    border-radius: 5000px;
+    background-color: grey;
+    border-radius: 200px;
+    width: 50px;
+    margin-left: auto;
+    cursor: auto;
+  }
+
+  .wayPointContainer #longitude{
+    position: relative;
+    font:message-box;
+    color: white;
+    background-color: grey;
+    border-radius: 200px;
+    width: 50px;
+    cursor: auto;
+
+  }
+  
+  .wayPointContainer #altitude{
+    position: relative;
+    font:message-box;
+    color: white;
+    background-color: grey;
+    border-radius: 200px;
+    width: 50px;
+    cursor: auto;
+
   }
 
  #newWayPoint-button{
+  position: relative;
+  font:message-box;
+  color: white;
+  background-color: #000000;
+  text-align: center;
+  border-radius: 200px;
   width: 150px;
   height: 50px;
   position: absolute;
@@ -867,6 +911,12 @@ top:10%;
  }
 
  #setMissionPlan-button{
+  position: relative;
+  font:message-box;
+  color: white;
+  background-color: #000000;
+  text-align: center;
+  border-radius: 200px;
   width: 150px;
   height: 50px;
   position: absolute;
@@ -931,11 +981,11 @@ top:10%;
 
   #supdater-subMenu{
     position: absolute;
-    top: 2%;
+    top: 15%;
     left: 1%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -947,11 +997,11 @@ top:10%;
 
   #subMenu2{
     position: absolute;
-    top: 2%;
+    top: 15%;
     left: 51%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -963,11 +1013,11 @@ top:10%;
 
   #subMenu3{
     position: absolute;
-    top: 53%;
+    top: 57%;
     left: 1%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -979,11 +1029,11 @@ top:10%;
 
   #subMenu4{
     position: absolute;
-    top: 53%;
+    top: 57%;
     left: 51%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -1531,11 +1581,6 @@ top:10%;
 <button class="pill" id="newWayPoint-button">
           Add New Waypoint
         </button>
-<div class="draggable" id="wayPointContainer">
-<form>Latitude</form>
-<form>Longitude</form>
-<form>Altitude</form>
-</div>
 </div>
 </div>
 <div id="ECV-menu">
@@ -1696,6 +1741,107 @@ top:10%;
             handleFileUpload();
           });
 
+          document.getElementById("newWayPoint-button").addEventListener("click", function () {
+            addNewWayPoint();
+          });
+
+
+    function deleteWayPoint() {
+            var waypointContainer = document.getElementById("wayPointContainer");
+            waypointContainer.parentNode.removeChild(waypointContainer);
+          }
+    function addNewWayPoint() {
+      // Create a new div element with class draggable
+      var newWayPoint = document.createElement("div");
+      newWayPoint.className = "wayPointContainer draggable";
+    
+      // Add the close button and form elements to the div
+      newWayPoint.innerHTML = `
+        <button class="btn-close">&times;</button>
+        <form id="container_text">
+          <label for="latitude">Latitude:</label>
+          <input type="number" class="pill" id="latitude" name="latitude">
+          <br>
+          <label for="longitude">Longitude:</label>
+          <input type="number" class="pill" id="longitude" name="longitude">
+          <br>
+          <label for="altitude">Altitude:</label>
+          <input type="number" class="pill" id="altitude" name="altitude">
+        </form>
+      `;
+    
+      // Add the new div element to the mission menu
+      var missionMenu = document.getElementById("mission-menu");
+      missionMenu.insertBefore(newWayPoint, missionMenu.childNodes[2]);
+    
+      // Add an event listener to the close button to remove the div when clicked
+      newWayPoint.querySelector(".btn-close").addEventListener("click", function() {
+        newWayPoint.remove();
+      });
+    
+      makeDraggable(newWayPoint);
+    }
+    function makeDraggable(element) {
+      var active = false;
+      var currentX;
+      var currentY;
+      var initialX;
+      var initialY;
+      var xOffset = 0;
+      var yOffset = 0;
+    
+      element.addEventListener("mousedown", dragStart, false);
+      element.addEventListener("mouseup", dragEnd, false);
+      element.addEventListener("mousemove", drag, false);
+    
+      element.addEventListener("touchstart", dragStart, false);
+      element.addEventListener("touchend", dragEnd, false);
+      element.addEventListener("touchmove", drag, false);
+    
+      function dragStart(e) {
+        if (e.type === "touchstart") {
+          initialX = e.touches[0].clientX - xOffset;
+          initialY = e.touches[0].clientY - yOffset;
+        } else {
+          initialX = e.clientX - xOffset;
+          initialY = e.clientY - yOffset;
+        }
+    
+        if (e.target === element) {
+          active = true;
+        }
+      }
+    
+      function dragEnd(e) {
+        initialX = currentX;
+        initialY = currentY;
+    
+        active = false;
+      }
+    
+      function drag(e) {
+        if (active) {
+          e.preventDefault();
+    
+          if (e.type === "touchmove") {
+            currentX = e.touches[0].clientX - initialX;
+            currentY = e.touches[0].clientY - initialY;
+          } else {
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+          }
+    
+          xOffset = currentX;
+          yOffset = currentY;
+    
+          setTranslate(currentX, currentY, element);
+        }
+      }
+    
+      function setTranslate(xPos, yPos, el) {
+        el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+      }
+    }
           ////////////////////////////
           class LiveDataGraph {
           constructor(canvasId, maxDataPoints = 100, updateInterval = 1000) {
@@ -1856,6 +2002,7 @@ top:10%;
             updateIMU1();
             updateIMU2();
             updateAMB();
+            updateBATT();
             //updateNative();
           }
 
@@ -2873,6 +3020,42 @@ function THRInput(){
             xhr.send(data);
           }
 
+          function updateBATT(){
+            //Call API
+            //Send backend request
+            var xhr = new XMLHttpRequest();
+            var url = "/GET_BATT";
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Request successful, handle the response here
+                        var response = xhr.responseText;
+                        const unpackedData = unpackData(response);
+                        //Voltage
+                        var Voltage = parseFloat(unpackedData[0][1]);
+                        //Current
+                        var Current = parseFloat(unpackedData[1][1]);
+                        //Percent
+                        var Percent = parseFloat(unpackedData[2][1]);
+                        document.getElementById('label5').innerHTML = "BATTERY : " + Percent + "% " + Voltage + "V " + Current + "mA";
+
+                    } else {
+                        // Request failed, handle the error here
+                        //var errorResponse = "Error: " + xhr.status + " - " + xhr.statusText;
+                        //document.getElementById('Lat-num').innerHTML = errorResponse;
+                    }
+                }
+            };
+
+            // You can add any data you want to send in the request body
+            var data = "key1=value1&key2=value2"; // Replace with your data
+            xhr.send(data);
+          }
+
           function sendFLIGHTDIRECTORSWP(lat,long,Talt,Calt,vel){
             //Call API
             //Send backend request
@@ -3021,6 +3204,7 @@ function THRInput(){
 					xhr.send(file);
 
         }
+
 var cPage = 1;
 
 document.getElementById("emi-select").addEventListener("click", function () {
@@ -3128,6 +3312,7 @@ function hideMissionMenu(){
     smnu.style.visibility = "hidden";
 }
 
+
 function utilitySwitcher(pageFlag){
     /*
         1 -> Stats Menu
@@ -3186,71 +3371,6 @@ function utilitySwitcher(pageFlag){
     cPage = pageFlag;
 }
 
-var dragItem = document.querySelector("#wayPointContainer");
-var container = document.querySelector("#mission-menu");
-
-var active = false;
-var currentX;
-var currentY;
-var initialX;
-var initialY;
-var xOffset = 0;
-var yOffset = 0;
-
-container.addEventListener("touchstart", dragStart, false);
-container.addEventListener("touchend", dragEnd, false);
-container.addEventListener("touchmove", drag, false);
-
-container.addEventListener("mousedown", dragStart, false);
-container.addEventListener("mouseup", dragEnd, false);
-container.addEventListener("mousemove", drag, false);
-
-function dragStart(e) {
-  if (e.type === "touchstart") {
-    initialX = e.touches[0].clientX - xOffset;
-    initialY = e.touches[0].clientY - yOffset;
-  } else {
-    initialX = e.clientX - xOffset;
-    initialY = e.clientY - yOffset;
-  }
-
-  if (e.target === dragItem) {
-    active = true;
-  }
-}
-
-function dragEnd(e) {
-  initialX = currentX;
-  initialY = currentY;
-
-  active = false;
-}
-
-function drag(e) {
-  if (active) {
-  
-    e.preventDefault();
-  
-    if (e.type === "touchmove") {
-      currentX = e.touches[0].clientX - initialX;
-      currentY = e.touches[0].clientY - initialY;
-    } else {
-      currentX = e.clientX - initialX;
-      currentY = e.clientY - initialY;
-    }
-
-    xOffset = currentX;
-    yOffset = currentY;
-
-    setTranslate(currentX, currentY, dragItem);
-  }
-}
-
-function setTranslate(xPos, yPos, el) {
-  el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-}
-
-
 class Node{
     constructor(latitude, longitude, altitude){
         this.latitude = latitude;
@@ -3292,6 +3412,35 @@ class Waypoint{
     }
     }
 }
+function deleteWayPoint() {
+    var waypointContainer = document.getElementById("wayPointContainer");
+    waypointContainer.parentNode.removeChild(waypointContainer);
+}
+
+function addNewWayPoint() {
+    var wayPointContainer = document.getElementById("wayPointContainer");
+    if (wayPointContainer) {
+      // Create a new div for the waypoint
+      var newWayPointDiv = document.createElement("div");
+      newWayPointDiv.className = "draggable";
+  
+      // Create the input fields for latitude, longitude, and altitude
+      newWayPointDiv.innerHTML = `
+        <button class="btn-close" onclick="deleteWayPoint()">&times;</button>
+        <form>
+          <label for="latitude">Latitude:</label>
+          <input type="number" class="pill" name="latitude"><br>
+          <label for="longitude">Longitude:</label>
+          <input type="number" class="pill" name="longitude"><br>
+          <label for="altitude">Altitude:</label>
+          <input type="number" class="pill" name="altitude"><br>
+        </form>
+      `;
+  
+      // Append the new waypoint div to the wayPointContainer
+      wayPointContainer.appendChild(newWayPointDiv);
+    }
+  }
 
 var Xconnected = true
 
