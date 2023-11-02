@@ -209,7 +209,7 @@ canvas { border: 1px solid #ccc; display: block; }
     background-color: #333;
     color: white;
   }
-
+/* 
   #actions-menu{
       position: absolute;
       width:96%;
@@ -218,8 +218,7 @@ canvas { border: 1px solid #ccc; display: block; }
       left:2%;
       top:12%;
       z-index: 100;
-      
-  }
+  } */
 
   #opt-menu{
       position: absolute;
@@ -818,17 +817,13 @@ top:10%;
     color: white;
   }
   
-  .form{
-    background-color: white;
-    color: white;
-  }
-
-  #wayPointContainer{
+  .wayPointContainer{
     background-color: black;
     position: absolute;
-    font-size: 1.6em;
-    width: 5em;
-    height: 5em;
+    font-size: 1em;
+    color: white;
+    width: 165px;
+    height: 165px;
     left: 50%;
     top: 50%;
     display: grid;
@@ -836,19 +831,68 @@ top:10%;
     font-family: "Poppins",sans-serif;
     border-radius: 0.3em;
     cursor:move;
-
+    text-align: left;
   }
-  .pill{
+
+  .wayPointContainer #exit_waypoint{
+    background-color: transparent;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 2px;
+    top:2px;
+    border-radius: 50%;
+    transition: all 0.2s ease-in;
+  }
+
+  .wayPointContainer .label{
+    width: 50px;
+    display: inline;
+    cursor: auto;
+  }
+
+  .wayPointContainer #latitude{
     position: relative;
-    left: 50px;
     font:message-box;
     color: white;
-    background-color: #000000;
-    text-align: center;
-    border-radius: 5000px;
+    background-color: grey;
+    border-radius: 200px;
+    width: 50px;
+    margin-left: auto;
+    cursor: auto;
+  }
+
+  .wayPointContainer #longitude{
+    position: relative;
+    font:message-box;
+    color: white;
+    background-color: grey;
+    border-radius: 200px;
+    width: 50px;
+    cursor: auto;
+
+  }
+  
+  .wayPointContainer #altitude{
+    position: relative;
+    font:message-box;
+    color: white;
+    background-color: grey;
+    border-radius: 200px;
+    width: 50px;
+    cursor: auto;
+
   }
 
  #newWayPoint-button{
+  position: relative;
+  font:message-box;
+  color: white;
+  background-color: #000000;
+  text-align: center;
+  border-radius: 200px;
   width: 150px;
   height: 50px;
   position: absolute;
@@ -857,6 +901,12 @@ top:10%;
  }
 
  #setMissionPlan-button{
+  position: relative;
+  font:message-box;
+  color: white;
+  background-color: #000000;
+  text-align: center;
+  border-radius: 200px;
   width: 150px;
   height: 50px;
   position: absolute;
@@ -921,11 +971,11 @@ top:10%;
 
   #supdater-subMenu{
     position: absolute;
-    top: 2%;
+    top: 15%;
     left: 1%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -937,11 +987,11 @@ top:10%;
 
   #subMenu2{
     position: absolute;
-    top: 2%;
+    top: 15%;
     left: 51%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -953,11 +1003,11 @@ top:10%;
 
   #subMenu3{
     position: absolute;
-    top: 53%;
+    top: 57%;
     left: 1%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -969,11 +1019,11 @@ top:10%;
 
   #subMenu4{
     position: absolute;
-    top: 53%;
+    top: 57%;
     left: 51%;
     z-index: 500;
     width: 48%;
-    height: 48%;
+    height: 40%;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);

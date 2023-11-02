@@ -22,7 +22,7 @@ SOFTWARE.*/
 
 #include "ssd1306.h"
 
-#define I2C_NUM I2C_NUM_0
+#define I2C_NUM I2C_NUM_1
 /* Write command */
 #define SSD1306_WRITECOMMAND(command)      ssd1306_I2C_Write(SSD1306_I2C_ADDR, 0x00, (command))
 /* Write data */
@@ -751,9 +751,9 @@ void ssd1306_I2C_Init() {
     // .clk_flags = 0,          /*!< Optional, you can use I2C_SCLK_SRC_FLAG_* flags to choose i2c source clock here. */
 
     i2c_err = i2c_param_config(I2C_NUM,&i2c_conf);
-    if(i2c_err != ESP_OK) printf(" parameter config error code: %d \r\n",i2c_err);
+    if(i2c_err != ESP_OK) printf(" display parameter config error code: %d \r\n",i2c_err);
     i2c_err = i2c_driver_install(I2C_NUM,I2C_MODE_MASTER, 0,0, 0);
-    if(i2c_err != ESP_OK) printf(" driver install error code: %d \r\n ",i2c_err);   
+    if(i2c_err != ESP_OK) printf(" display driver install error code: %d \r\n ",i2c_err);   
 }
 
 void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {

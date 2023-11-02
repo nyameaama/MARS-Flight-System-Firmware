@@ -34,6 +34,8 @@ SOFTWARE.*/
 #include"esp_random.h"
 #include"../PTAM/_ptam.h"
 #include"../system/sys_controller.h"
+#include"../HALX/_barometerEntry.h"
+#include"../HALX/_battery.h"
 #include "os_config.h"
 
 class BroadcastedServer {
@@ -64,6 +66,8 @@ class BroadcastedServer {
         static esp_err_t handle_AMB_request(httpd_req_t *req);
 
         static esp_err_t handle_arm_token_request(httpd_req_t *req);
+
+        static esp_err_t handle_battery_request(httpd_req_t *req);
 
         static esp_err_t handle_SWP_incoming(httpd_req_t *req);
 

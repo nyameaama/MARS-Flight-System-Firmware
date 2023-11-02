@@ -109,7 +109,7 @@ double BATTERY::batteryInterfaceInit()
     //print_char_val_type(val_type);
 
     // Sample ADC1
-    int adc_reading = 0;
+    double adc_reading = 0;
     // Multisampling
     for (int i = 0; i < NO_OF_SAMPLES; i++) {
         if (unit == ADC_UNIT_1) {
@@ -122,26 +122,34 @@ double BATTERY::batteryInterfaceInit()
     }
     adc_reading /= NO_OF_SAMPLES;
     // Convert adc_reading to voltage in mV
-    int voltage = esp_adc_cal_raw_to_voltage(adc_reading, adc_chars);
-    ESP_LOGI(TAG, "Raw: %d\tVoltage: %dmV", adc_reading, voltage);
-    double percent = returnBatteryPercent(voltage);
-    return percent;
+    //int voltage = esp_adc_cal_raw_to_voltage(adc_reading, adc_chars);
+    //ESP_LOGI(TAG, "Raw: %d\tVoltage: %dmV", adc_reading, voltage);
+    //double percent = returnBatteryPercent(voltage);
+    return adc_reading;
 }
 
-double BATTERY::returnBatteryPercent(int adc){
+double BATTERY::returnBatteryPercent(){
+    double adc = returnBatteryVoltage();
     // Calculate the ratio of the value within the source range
     //Attenuation Low = 150 mv
     //Attenuation High = 2450 mv
-    ESP_LOGI("TAG","VX: %d",adc);
+    //ESP_LOGI("TAG","VX: %d",adc);
     // Battery voltage scale (10V to 12.6V)
     double vrs = mapValue(adc, 150, 2450, VOLTAGE_MIN, VOLTAGE_MAX);
 
-    ESP_LOGI("TAG","VA: %f",vrs);
+    //ESP_LOGI("TAG","VA: %f",vrs);
     //Now we do the same to get a percent value
     // Percent Value Scale (0% to 100%)
     double brp = mapValue(vrs, VOLTAGE_MIN, VOLTAGE_MAX, 0, 100);
 
     return brp;
+}
+
+double BATTERY::returnBatteryVoltage(){
+    double b_II = batteryInterfaceInit();
+    //Convert adc_reading to voltage in mV
+    double voltage = esp_adc_cal_raw_to_voltage(b_II, adc_chars);
+    return voltage;
 }
 
 //Returns current in ma

@@ -145,6 +145,13 @@ void BroadcastedServer::wifi_init_softap(void)
         .user_ctx  = NULL
     };
 
+    httpd_uri_t BATT_uri = {
+        .uri       = "/GET_BATT",
+        .method    = HTTP_POST,
+        .handler   = handle_battery_request,
+        .user_ctx  = NULL
+    };
+
     httpd_uri_t SWP_uri = {
         .uri       = "/INC_SWP",
         .method    = HTTP_POST,
@@ -195,6 +202,7 @@ void BroadcastedServer::wifi_init_softap(void)
         httpd_register_uri_handler(server, &TOKEN_uri);
         httpd_register_uri_handler(server, &AUTH_uri);
         httpd_register_uri_handler(server, &OTA_uri);
+        httpd_register_uri_handler(server, &BATT_uri);
     }
 
 }
@@ -237,6 +245,7 @@ esp_err_t BroadcastedServer::root_handler(httpd_req_t *req) {
 
 /* Handler for the "/GET_GPS" endpoint */
 esp_err_t BroadcastedServer::handle_GPS_request(httpd_req_t *req) {
+    VEHICLE_BARO *baro = new VEHICLE_BARO();
     // Check if the request is a POST request
     if (req->method == HTTP_POST) {
 
@@ -247,7 +256,7 @@ esp_err_t BroadcastedServer::handle_GPS_request(httpd_req_t *req) {
         std::string id3 = "SAT";
         double value3 = 72.34;
         std::string id4 = "ALT";
-        double value4 = 40;
+        double value4 = baro -> pushAltitude(DEFAULT_SEA_LEVEL);
 
         std::string packed_data = packData(id1, value1, id2, value2, id3, value3, id4, value4);
 
@@ -258,6 +267,8 @@ esp_err_t BroadcastedServer::handle_GPS_request(httpd_req_t *req) {
 
     // If the request is not a POST request, return 404 Not Found
     httpd_resp_send_err(req, HTTPD_404_NOT_FOUND, "Not Found");
+
+    delete baro;
     return ESP_OK;
 }
 
@@ -388,6 +399,34 @@ esp_err_t BroadcastedServer::handle_arm_token_request(httpd_req_t *req) {
 
     // If the request is not a POST request, return 404 Not Found
     httpd_resp_send_err(req, HTTPD_404_NOT_FOUND, "Not Found");
+    return ESP_OK;
+}
+
+esp_err_t BroadcastedServer::handle_battery_request(httpd_req_t *req) {
+    BATTERY *power = new BATTERY();
+    // Check if the request is a POST request
+    if (req->method == HTTP_POST) {
+
+       std::string id1 = "VOLTAGE";
+        double value1 = power -> returnBatteryVoltage();
+        std::string id2 = "CURRENT";
+        double value2 = power -> returnBatteryCurrentDraw();
+        std::string id3 = "PERCENT";
+        double value3 = power -> returnBatteryPercent();
+        std::string id4 = "XXX";
+        double value4 = 112;
+
+        std::string packed_data = packData(id1, value1, id2, value2, id3, value3, id4, value4);
+
+        // Send a response to the client
+        httpd_resp_send(req, packed_data.c_str(), packed_data.length());
+        return ESP_OK;
+    }
+
+    // If the request is not a POST request, return 404 Not Found
+    httpd_resp_send_err(req, HTTPD_404_NOT_FOUND, "Not Found");
+
+    delete power;
     return ESP_OK;
 }
 
