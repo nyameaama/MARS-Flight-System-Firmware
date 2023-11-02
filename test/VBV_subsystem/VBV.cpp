@@ -49,13 +49,13 @@ uint8_t VBV::alt_sensor_check(double sensor_data)
     SharedMemory &obj = SharedMemory::getInstance();
 
     /* Check if sensor data is below altitude limit*/
-    if(sensor_data < ALT_LIMIT && sensor_data > 0)
+    if(sensor_data < ALT_LIMIT)
     {
         obj.storeInt("ALTITUDE_CHECK", 0);
         return 0;
     }
-    /* Check if the sensor data is above the altitude limit */
-    else if(sensor_data > ALT_LIMIT)
+    /* If the data is anything else, raise an error */
+    else
     {
         obj.storeInt("ALTITUDE_CHECK", 1);
         return 1;
@@ -75,12 +75,13 @@ uint8_t VBV::lat_sensor_check(double sensor_data)
 {
     SharedMemory &obj = SharedMemory::getInstance();
 
-    if(sensor_data < LATITUDE_THRESHOLD)
+    /* Verify if the sensor data is between -90 and 90 degrees */
+    if(sensor_data < LATITUDE_THRESHOLD && -LATITUDE_THRESHOLD)
     {
         obj.storeInt("LATITUDE_CHECK", 0);
         return 0;
     }
-    /* Since Latitude cannot be higher than 90 degrees*/
+    /* Since Latitude cannot be higher than 90 degrees or lower than -90 */
     else
     {
         obj.storeInt("LATITUDE_CHECK", 1);
@@ -101,11 +102,13 @@ uint8_t VBV::lon_sensor_check(double sensor_data)
 {
     SharedMemory &obj = SharedMemory::getInstance();
 
+    /* Verify if longitude is between 180 and -180 degrees */
     if(sensor_data < LONGITUDE_THRESHOLD && sensor_data > -LONGITUDE_THRESHOLD)
     {
         obj.storeInt("LONGITUDE_CHECK", 0);
         return 0;
     }
+    /* If longitude is not within the -180 and 180 degree theshold */
     else
     {
         obj.storeInt("LONGITUDE_CHECK", 1);
@@ -126,11 +129,13 @@ uint8_t VBV::vel_sensor_check(double sensor_data)
 {
     SharedMemory &obj = SharedMemory::getInstance();
 
+    /* Verify if velocity is greater than zero. It is assumed that displacement is not zero. */
     if(sensor_data > 0)
     {
         obj.storeInt("VELOCITY_CHECK", 0);
         return 0;
     }
+    /* If displacement is not zero but velocity is */
     else
     {
         obj.storeInt("VELOCITY_CHECK", 1);
@@ -151,12 +156,14 @@ uint8_t VBV::pit_sensor_check(double sensor_data)
 {
     SharedMemory &obj = SharedMemory::getInstance();
 
-    if (sensor_data <= PITCH_THRESHOLD)
+    /* Verify if pitch data is between -90 and 90 degrees */
+    if (sensor_data >= -PITCH_THRESHOLD && sensor_data <= PITCH_THRESHOLD)
     {
         obj.storeInt("PITCH_CHECK", 0);
         return 0;
     }
-    else if (sensor_data < -PITCH_THRESHOLD)
+    /* If pitch is outside the bounds of threshold */
+    else
     {
         obj.storeInt("PITCH_CHECK", 1);
         return 1;
@@ -178,11 +185,13 @@ uint8_t VBV::roll_sensor_check(double sensor_data)
 {
     SharedMemory &obj = SharedMemory::getInstance();
 
-    if (sensor_data >= 0.0 || sensor_data < 0.0)
+    /* Verify if sensor data is between -180 and 180 degrees */
+    if (sensor_data >= -180 && sensor_data <= 180)
     {
         obj.storeInt("ROLL_CHECK", 0);
         return 0;
     }
+    /* If sensor data is outside the threshold */
     else
     {
         obj.storeInt("ROLL_CHECK", 1);
@@ -204,11 +213,13 @@ uint8_t VBV::yaw_sensor_check(double sensor_data)
 {
     SharedMemory &obj = SharedMemory::getInstance();
 
+    /* Verify if sensor data is between -180 and 180 degrees */
     if (sensor_data >= -180 && sensor_data <= 180)
     {
         obj.storeInt("YAW_CHECK", 0);
         return 0;
     }
+    /* If sensor data is outside the threshold */
     else
     {
         obj.storeInt("YAW_CHECK", 1);
@@ -230,11 +241,13 @@ uint8_t VBV::temp_sensor_check(double sensor_data)
 {
     SharedMemory &obj = SharedMemory::getInstance();
 
-    if (sensor_data >= 0 || sensor_data <= 0)
+    /* Verify if sensor data is between -20 and 100 degrees (TEMPERATURE) */
+    if (sensor_data >= -20 && sensor_data <= 100)
     {
         obj.storeInt("TEMPERATURE_CHECK", 0);
         return 0;
     }
+    /* If Data is outside the bounds */
     else
     {
         obj.storeInt("TEMPERATURE_CHECK", 1);
@@ -256,12 +269,14 @@ uint8_t VBV::pres_sensor_check(double sensor_data)
 {
     SharedMemory &obj = SharedMemory::getInstance();
 
-    if (sensor_data <= PRESSURE_CHECK)
+    /* Verify if sensor data is 101325 and 97716.57 pascals */
+    if (sensor_data >= LOWER_PASCAL_THRES && sensor_data <= HIGHER_PASCAL_THRES)
     {
         obj.storeInt("PRESSURE_CHECK", 0);
         return 0;
     }
-    else if (sensor_data > PRESSURE_CHECK)
+    /* If data is outside the threshold */
+    else
     {
         obj.storeInt("PRESSURE_CHECK", 1);
         return 1;

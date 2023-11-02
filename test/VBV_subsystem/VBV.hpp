@@ -32,7 +32,6 @@
 
 #include "../statemachine/_ptam.h"
 #include "../Logging/logger.hpp"
-#include <vector>
 
 
 #define ALT_LIMIT               12001.0  // Altitude limit in feet
@@ -44,7 +43,8 @@
 
 #define ROLL_THRESHOLD          180.0    // Roll threshold in degrees
 
-#define PRESSURE_CHECK          101.3    // Atmospheric pressure threshold
+#define LOWER_PASCAL_THRES      101325   // Lower pressure threshold in pascals
+#define HIGHER_PASCAL_THRES     97716.57 // Higher pressure threshold in pascals
 
 
 class VBV: public SharedMemory
