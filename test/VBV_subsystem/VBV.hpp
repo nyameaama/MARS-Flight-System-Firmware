@@ -120,6 +120,4 @@ class VBV: public SharedMemory
      */
     static uint8_t pres_sensor_check(double sensor_data);
 };
-
-
 #endif /* VBV_HPP */
