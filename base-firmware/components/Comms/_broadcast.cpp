@@ -617,32 +617,25 @@ esp_err_t BroadcastedServer::handle_STATE_incoming(httpd_req_t *req){
         std::vector<double> values;
 
         extractValuesAndIds(data, ids, values);
-        //ESP_LOGI("TAG", "%f",values[0]);
-        
-        //UPDATE PTAM REGISTERS
-        SharedMemory& sharedMemory = SharedMemory::getInstance();
-        //If value from frontend is not 0, update PTAM register for respective variable
-        if(values[0] != 0){
-            //Latitude
-            //Clear previous register to avoid memory overflow
-            sharedMemory.clearData("state");
-            sharedMemory.storeDouble("state", values[0]);
 
+        //If value from frontend is not 0, update respective variable
+        if(values[0] != 0){
+            STATE *switchS = new STATE();
             switch(int(values[0])){
                 case 1:
-                    sharedMemory.clearData("stateDescript");
-                    sharedMemory.storeString("stateDescript", "PREP");
+                    //State switch to PREP
+                    switchS -> updateState(PREP);
                     break;
                 case 2:
-                    sharedMemory.clearData("stateDescript");
-                    sharedMemory.storeString("stateDescript", "ARMED");
+                    //State switch to ARMED
+                    switchS -> updateState(ARMED);
                     break;
                 case 3:
-                    sharedMemory.clearData("stateDescript");
-                    sharedMemory.storeString("stateDescript", "BYPASS");
+                    //State switch to BYPASS
+                    switchS -> updateState(BYPASS);
                     break;
             }
-            
+            delete switchS;
         }
         if(values[1] != 0){
 

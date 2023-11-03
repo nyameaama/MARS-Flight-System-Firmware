@@ -36,6 +36,7 @@ SOFTWARE.*/
 #include"../system/sys_controller.h"
 #include"../HALX/_barometerEntry.h"
 #include"../HALX/_battery.h"
+#include"../system/_state.h"
 #include "os_config.h"
 
 class BroadcastedServer {

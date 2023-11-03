@@ -96,10 +96,6 @@ void CONTROLLER_TASKS::_IDLE_(){
 
 //Telemetry checks, peripheral checks
 void CONTROLLER_TASKS::_PREP_(){
-    SharedMemory& sharedMemory = SharedMemory::getInstance();
-    auto lat = sharedMemory.getLastDouble("TLat");
-    //ESP_LOGI("LAT", "%f",lat);
-    //Check for full configuraton completion
 
 }
 
