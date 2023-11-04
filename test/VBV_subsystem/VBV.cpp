@@ -29,12 +29,6 @@
 
 #include "VBV.hpp"
 
-bool VBV::validate_reg_data()
-{
-
-}
-
-
 /**
  * @brief Pass sensor data to verify altitude data
  *
@@ -270,7 +264,7 @@ uint8_t VBV::pres_sensor_check(double sensor_data)
     SharedMemory &obj = SharedMemory::getInstance();
 
     /* Verify if sensor data is 101325 and 97716.57 pascals */
-    if (sensor_data >= LOWER_PASCAL_THRES && sensor_data <= HIGHER_PASCAL_THRES)
+    if (sensor_data <= LOWER_PASCAL_THRES && sensor_data >= HIGHER_PASCAL_THRES)
     {
         obj.storeInt("PRESSURE_CHECK", 0);
         return 0;

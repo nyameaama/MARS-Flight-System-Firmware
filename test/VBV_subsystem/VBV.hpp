@@ -4,9 +4,9 @@
  *
  *
  * @date October 19th, 2023
- * @copyright Copyright (c) 2023 limitless Aeronautics
+ * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
- * @author Lukas Jackson
+ * @author Lukas Jackson (LukasJacksonEG@gmail.com)
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics
@@ -31,7 +31,6 @@
 #define VBV_HPP
 
 #include "../statemachine/_ptam.h"
-#include "../Logging/logger.hpp"
 
 
 #define ALT_LIMIT               12001.0  // Altitude limit in feet
@@ -47,77 +46,70 @@
 #define HIGHER_PASCAL_THRES     97716.57 // Higher pressure threshold in pascals
 
 
-class VBV: public SharedMemory
+class VBV
 {
-    /**
-     * @brief Returns a bool depending if sensors are operating correctly
-     *
-     * @return true
-     * @return false
-     */
-    static bool validate_reg_data();
-
+public:
     /**
      * @brief Validates Altitude sensor data
      *
      * @return uint8_t
      */
-    static uint8_t alt_sensor_check(double sensor_data);
+    uint8_t alt_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Latitude sensor data
      *
      * @return uint8_t
      */
-    static uint8_t lat_sensor_check(double sensor_data);
+    uint8_t lat_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Longitude sensor data
      *
      * @return uint8_t
      */
-    static uint8_t lon_sensor_check(double sensor_data);
+    uint8_t lon_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Velocity sensor data
      *
      * @return uint8_t
      */
-    static uint8_t vel_sensor_check(double sensor_data);
+    uint8_t vel_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Pitch sensor data
      *
      * @return uint8_t
      */
-    static uint8_t pit_sensor_check(double sensor_data);
+    uint8_t pit_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Roll sensor data
      *
      * @return uint8_t
      */
-    static uint8_t roll_sensor_check(double sensor_data);
+    uint8_t roll_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Yaw sensor data
      *
      * @return uint8_t
      */
-    static uint8_t yaw_sensor_check(double sensor_data);
+    uint8_t yaw_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Temperature sensor data
      *
      * @return uint8_t
      */
-    static uint8_t temp_sensor_check(double sensor_data);
+    uint8_t temp_sensor_check(double sensor_data);
 
     /**
      * @brief Validates Pressure sensor data
      *
      * @return uint8_t
      */
-    static uint8_t pres_sensor_check(double sensor_data);
+    uint8_t pres_sensor_check(double sensor_data);
 };
 #endif /* VBV_HPP */
