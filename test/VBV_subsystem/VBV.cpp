@@ -6,7 +6,7 @@
  * @date October 19th, 2023
  * @copyright Copyright (c) 2023 limitless Aeronautics
  *
- * @author Lukas Jackson
+ * @author Lukas Jackson (LukasJacksonEG@gmail.com)
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics

@@ -5,9 +5,9 @@
  * Functions defined from logger.hpp prototypes
  *
  * @date August 18th 2023
- * @copyright Copyright (c) 2023 limitless Aeronautics
+ * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
- * @author Lukas Jackson
+ * @author Lukas Jackson (LukasJacksonEG@gmail.com)
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics
