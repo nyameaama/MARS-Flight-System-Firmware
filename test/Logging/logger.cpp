@@ -5,9 +5,9 @@
  * Functions defined from logger.hpp prototypes
  *
  * @date August 18th 2023
- * @copyright Copyright (c) 2023 limitless Aeronautics
+ * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
- * @author Lukas Jackson
+ * @author Lukas Jackson (LukasJacksonEG@gmail.com)
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics
@@ -255,3 +255,18 @@ uint8_t Logger::get_event_exptn(std::string formatted_data)
     return eventEXPT;
 }
 
+std::string Logger::LOG_EVENT(int8_t log_data)
+{
+    std::string formatted_data;
+
+    formatted_data += "LOG-MSG[" + log_data + "]";
+    return formatted_data;
+}
+
+std::string Logger::LOG_EVENT(std::string log_data)
+{
+    std::string formatted_data;
+
+    formatted_data += "LOG-MSG[" + log_data + "]";
+    return formatted_data;
+}

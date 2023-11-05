@@ -82,7 +82,7 @@ public:
     /**
      * @brief Get the event state from log message
      * 
-     * @param formatted_data 
+     * @param formatted_data
      * @return uint8_t 
      */
     uint8_t get_event_state(std::string formatted_data);
@@ -94,5 +94,21 @@ public:
      * @return uint8_t 
      */
     uint8_t get_event_exptn(std::string formatted_data);
+
+    /**
+     * @brief Logs integer data
+     *
+     * @param log_data
+     * @return void
+     */
+    std::string LOG_EVENT(int8_t log_data);
+
+    /**
+     * @brief Logs string data
+     *
+     * @param log_data
+     * @return void
+     */
+    std::string LOG_EVENT(std::string log_data);
 };
 #endif /* LOGGER_HPP_ */
