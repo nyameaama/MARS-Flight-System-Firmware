@@ -26,68 +26,7 @@ SOFTWARE.*/
 //ATTACH PIN NUMBERS
 void CONTROLLER_TASKS::_init_(){
     PTAM_REGISTER_SET();
-    //Setup pins - SPI,sensors
-    //pin_setup();
 
-    //SENSORS
-    /*DataStore *ptObject = new DataStore();
-
-    SensorValidator *valD = new SensorValidator();
-    bool GPScheck = valD.validateGPSData();
-    if(GPScheck == true){
-        //Update PTAM Register = 1 denoting sensor success
-        std::string reg_name = "GPScheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,1);
-    }else{
-        //Update PTAM Register = 0 denoting sensor fail
-        std::string reg_name = "GPScheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,0);
-    }
-
-    bool IMUcheck = valD.validateIMUData();
-    if(IMUcheck == true){
-        //Update PTAM Register = 1 denoting sensor success
-        std::string reg_name = "IMUcheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,1);
-    }else{
-        //Update PTAM Register = 0 denoting sensor fail
-        std::string reg_name = "IMUcheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,0);
-    }
-
-    bool BMPcheck = valD.validateBMP280Data();
-    if(BMPcheck == true){
-        //Update PTAM Register = 1 denoting sensor success
-        std::string reg_name = "BMPcheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,1);
-    }else{
-        //Update PTAM Register = 0 denoting sensor fail
-        std::string reg_name = "BMPcheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,0);
-    }*/
-    //SETUP ONBOARD DISPLAY
-   // _ONBOARD_DISPLAY *dispInit = new  _ONBOARD_DISPLAY();
-    //dispInit._init_();
-    //dispInit._showBoot();
-    //delete dispInit;
 }
 
 void CONTROLLER_TASKS::_IDLE_(){

@@ -52,7 +52,7 @@ void monitor_memory_task(void *pvParameters) {
             esp_restart();
         }
         // Delay for some time before checking again
-        vTaskDelay(pdMS_TO_TICKS(5000)); // Delay for 5 seconds
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 5 seconds
     }
 }
 
@@ -71,19 +71,20 @@ void INIT_CORE0(void *pvParameters){
         displayBOOT();
         vTaskDelay(pdMS_TO_TICKS(4000)); // Boot delay
 
-        VEHICLE_BARO *baro = new VEHICLE_BARO();
-        baro -> init_barometer();
-        delete baro;
+        //VEHICLE_BARO *baro = new VEHICLE_BARO();
+        //baro -> init_barometer();
+        //delete baro;
 
-        FAN_COOLING *cool = new FAN_COOLING();
-        cool -> init_relay();
-        delete cool;
+        //FAN_COOLING *cool = new FAN_COOLING();
+        //cool -> init_relay();
+        //delete cool;
 
         CONTROLLER_TASKS *CTobj = new CONTROLLER_TASKS();
         //Boot 
         CTobj -> _init_();
         delete CTobj;
 
+        
         // Wait for Wi-Fi to initialize
         vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
         //Initialize NVS
@@ -100,8 +101,8 @@ void INIT_CORE0(void *pvParameters){
         while(1){
             CONTROLLER_TASKS *CTobj = new CONTROLLER_TASKS();
             STATE *change = new STATE(); 
-            VEHICLE_BARO *baro = new VEHICLE_BARO();
-            FAN_COOLING *cool = new FAN_COOLING();
+            //VEHICLE_BARO *baro = new VEHICLE_BARO();
+            //FAN_COOLING *cool = new FAN_COOLING();
 
             if(DRONE_STATE == 1){ // STANDBY
                 //Idle Restart Task
@@ -109,7 +110,7 @@ void INIT_CORE0(void *pvParameters){
                 //Display Controller
                 displayStandByClientSuccess();
                 //Fan Controller
-                cool -> coolSierra_task(baro -> pushTemperature());
+                //cool -> coolSierra_task(baro -> pushTemperature());
                 //FROM STANDBY PREP WE CAN EITHER SWITCH TO ARMED OR BYPASS
                 CTobj -> _PREP_();
                 if(change -> SWITCH2ARMED() == 1){
@@ -130,7 +131,7 @@ void INIT_CORE0(void *pvParameters){
                 //Display Controller
                 displayARMED();
                 //Fan Controller
-                cool -> coolSierra_task(baro -> pushTemperature());
+                //cool -> coolSierra_task(baro -> pushTemperature());
                 //FROM ARMED WE CAN EITHER SWITCH TO STANDY PREP OR BYPASS
                 CTobj -> _ARMED_();
                 if(change -> SWITCH2PREP() == 1){
@@ -153,7 +154,7 @@ void INIT_CORE0(void *pvParameters){
                 //Display Controller
                 displayBYPASS();
                 //Fan Controller
-                cool -> coolSierra_task(baro -> pushTemperature());
+                //cool -> coolSierra_task(baro -> pushTemperature());
                 //FROM BYPASS WE CAN EITHER SWITCH TO STANDY PREP OR ARMED
                 CTobj -> _bypass_(std::string("ID"));
                 if(change -> SWITCH2PREP() == 1){
@@ -170,9 +171,10 @@ void INIT_CORE0(void *pvParameters){
                 }
             }
 
-            delete cool;
+            //delete cool;
             delete change;
-            delete baro;
+            //delete baro;
+            delete CTobj;
         }
 }
 

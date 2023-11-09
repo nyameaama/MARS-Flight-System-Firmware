@@ -88,19 +88,19 @@ void displayStandByClientSuccess(){
         #define StandByClientSuccess_FONT FontDef_t Font_16x26
         #define StandByClientSuccess_COLOR SSD1306_COLOR_WHITE
     */
-   	BATTERY *batObj = new BATTERY();
+   	//BATTERY batObj;
+	//uint8_t batteryLevel = (batObj.returnBatteryCurrentDraw());
     char strp[10];
-    char strp2[300];
-	double batteryLevel = batObj -> returnBatteryPercent();
+    char strp2[10];
     sprintf(strp, "STANDBY");
-	sprintf(strp2, "BAT:%f", batteryLevel);
+	sprintf(strp2, "CLIENT -");
+	//sprintf(strp2, "BAT:%d", batteryLevel);
     SSD1306_GotoXY(5,5);
     SSD1306_Puts(strp, &Font_16x26, SSD1306_COLOR_WHITE);
     SSD1306_GotoXY(23,40);
     SSD1306_Puts(strp2, &Font_11x18, SSD1306_COLOR_WHITE);
 
     SSD1306_UpdateScreen();
-	delete batObj;
 }
 
 void displayStandByClientFail(){

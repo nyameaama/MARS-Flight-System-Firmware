@@ -23,7 +23,7 @@ SOFTWARE.*/
 #include "_state.h"
 
 std::string stateDescript;
-uint8_t state;
+uint8_t state = 1;
 
 //____________________________________________________________
 /* Change state to prep
@@ -37,7 +37,7 @@ uint8_t state;
         //PREP -> 1
         if(compareX(stateDescript,std::string("PREP"))){
             change = 1;
-            state = 2;
+            state = 1;
         } 
         return change;
     }
