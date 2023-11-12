@@ -33,6 +33,7 @@
 
 /* Log includes */
 #include "include/logtypes.h"
+#include "logger_config.h"
 
 class Logger
 {

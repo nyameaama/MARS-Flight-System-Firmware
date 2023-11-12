@@ -30,7 +30,6 @@
 
 #include "../statemachine/_ptam.h"
 #include "logger.hpp"
-#include "esp_timer.h"
 
 /**
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
@@ -254,3 +253,4 @@ uint8_t Logger::get_event_exptn(std::string formatted_data)
     }
     return eventEXPT;
 }
+
