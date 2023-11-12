@@ -254,19 +254,3 @@ uint8_t Logger::get_event_exptn(std::string formatted_data)
     }
     return eventEXPT;
 }
-
-std::string Logger::LOG_EVENT(int8_t log_data)
-{
-    std::string formatted_data;
-
-    formatted_data += "LOG-MSG[" + log_data + "]";
-    return formatted_data;
-}
-
-std::string Logger::LOG_EVENT(std::string log_data)
-{
-    std::string formatted_data;
-
-    formatted_data += "LOG-MSG[" + log_data + "]";
-    return formatted_data;
-}

@@ -111,4 +111,9 @@ public:
      */
     std::string LOG_EVENT(std::string log_data);
 };
+
+
+
+
+
 #endif /* LOGGER_HPP_ */

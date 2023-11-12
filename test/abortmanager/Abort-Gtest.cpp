@@ -3,8 +3,8 @@
  * @brief Optional Gtest suite for abort manager
  *
  *
- * @date Created September 7th 2023 | modified Octoober 16th 2023
- * @copyright Copyright (c) 2023 limitless Aeronautics
+ * @date Created September 7th 2023 | modified October 16th 2023
+ * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
  * @author Lukas Jackson (LukasJacksonEG@gmail.com)
  *
