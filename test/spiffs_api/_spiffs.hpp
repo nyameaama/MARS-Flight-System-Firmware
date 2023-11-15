@@ -36,105 +36,100 @@
 #include "esp_err.h"
 #include "esp_log.h"
 #include "esp_spiffs.h"
-#include "../Logging/logger.hpp"
-
-#ifdef _spiffs_test
-static const char *TAG = "spiffs_api";
-#endif /* _spiffs_test */
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 static const char *TAG = "example";
 
-class _spiffs_l
+/**
+ * @brief Handles SPIFFS filesystem operations.
+ */
+class SpiffsHandler
 {
 public:
-    _spiffs_l(const char* base_path, const char* partition_label, size_t max_file, bool format_if_mount_failed)
-        : base_path(base_path), partition_label(partition_label), max_file(max_file), format_if_mount_failed(format_if_mount_failed)
-    {}
-
-    _spiffs_l(esp_vfs_spiffs_conf_t& config)
-        : config(config)
-    {}
-
-    ~_spiffs_l()
-    {
-        esp_vfs_spiffs_unregister(const char* partition_label);
-    }
-
     /**
-     * @brief
+     * @brief Constructor for the SpiffsHandler class.
      *
-     * @param config
-     * @return esp_err_t
+     * @param base_path Base path for the SPIFFS filesystem.
+     * @param partition_label Label of the SPIFFS partition.
+     * @param max_files Maximum number of files that can be open simultaneously.
      */
-    esp_err_t _spiffs_register(esp_err_t &config);
+    SpiffsHandler(const char *base_path, const char *partition_label, size_t max_files);
 
     /**
-     * @brief Check spiffs partition label
+     * @brief Destructor for the SpiffsHandler class.
+     */
+    ~SpiffsHandler();
+
+    /**
+     * @brief Initializes SPIFFS with the provided configuration.
      *
-     * @param partition_label
+     * @return esp_err_t ESP_OK on success, otherwise an error code.
+     */
+    esp_err_t init_spiffs();
+
+    /**
+     * @brief Checks the consistency of the SPIFFS filesystem.
      *
-     * @return esp_err_t
+     * @return esp_err_t ESP_OK on success, otherwise an error code.
      */
-    esp_err_t _spiffs_partition_check(const char* partition_label);
+    esp_err_t check_spiffs();
 
     /**
-     * @brief Get spiffs information
+     * @brief Retrieves information about the SPIFFS partition.
      *
-     * @param partition_label
-     * @param total
-     * @param used
+     * @param total Pointer to store the total size of the partition.
+     * @param used Pointer to store the used size of the partition.
+     * @return esp_err_t ESP_OK on success, otherwise an error code.
+     */
+    esp_err_t get_spiffs_info(size_t &total, size_t &used);
+
+    /**
+     * @brief Writes data to a file in the SPIFFS filesystem.
      *
-     * @return esp_err_t
+     * @param path Path to the file.
+     * @param data Data to be written to the file.
+     * @return esp_err_t ESP_OK on success, otherwise an error code.
      */
-    esp_err_t _spiffs_info(const char* partition_label, int& total, int& used);
+    esp_err_t write_to_file(const char *path, const char *data);
 
     /**
-     * @brief Open a file for manipulation
-     * 
-     * @param filename 
-     * @param privs 
-     * @return const char* 
+     * @brief Reads data from a file in the SPIFFS filesystem.
+     *
+     * @param path Path to the file.
+     * @param buffer Buffer to store the read data.
+     * @param buffer_size Size of the buffer.
+     * @return esp_err_t ESP_OK on success, otherwise an error code.
      */
-    const char* edit_file(const char* filename, char privs);
+    esp_err_t read_from_file(const char *path, char *buffer, size_t buffer_size);
 
     /**
-     * @brief Write data to a file
-     * 
-     * @param f 
-     * @param data 
+     * @brief Renames a file in the SPIFFS filesystem.
+     *
+     * @param old_path Current path of the file.
+     * @param new_path New path for the file.
+     * @return esp_err_t ESP_OK on success, otherwise an error code.
      */
-    void writeToFile(FILE* f, const char* data);
+    esp_err_t rename_file(const char *old_path, const char *new_path);
 
     /**
-     * @brief Searches for file given the param and deletes it
-     * 
-     * @param filename 
+     * @brief Deletes a file from the SPIFFS filesystem.
+     *
+     * @param path Path to the file to be deleted.
+     * @return esp_err_t ESP_OK on success, otherwise an error code.
      */
-    void checkAndDeleteFile(const char* filename);
+    esp_err_t delete_file(const char *path);
 
     /**
-     * @brief Renames file given old name and new name
-     * 
-     * @param oldname 
-     * @param newname 
+     * @brief Unmounts the SPIFFS filesystem.
      */
-    void renameFile(const char* oldname, const char* newname);
-
-    /**
-     * @brief Reads file and returns its contents
-     * 
-     * @param filename 
-     * @return char* 
-     */
-    char* readFile(const char* filename);
-
+    void unmount_spiffs();
 
 private:
-    esp_vfs_spiffs_conf_t config;
-    const char* base_path;
-    const char* partition_label;
-    size_t max_file;
-    bool format_if_mount_failed;
+    const char *base_path_;       /**< Base path for the SPIFFS filesystem. */
+    const char *partition_label_; /**< Label of the SPIFFS partition. */
+    size_t max_files_;            /**< Maximum number of files that can be open simultaneously. */
+    bool is_initialized_;         /**< Flag indicating whether SPIFFS is initialized. */
 };
 
 #endif /* _spiffs_api_hpp_ */

@@ -28,9 +28,30 @@
 
 #include "_spiffs.hpp"
 
-esp_err_t _spiffs_l::_spiffs_register(&config)
+SpiffsHandler::SpiffsHandler(const char *base_path, const char *partition_label, size_t max_files)
+    : base_path_(base_path), partition_label_(partition_label), max_files_(max_files), is_initialized_(false) {}
+
+// Destructor
+SpiffsHandler::~SpiffsHandler()
 {
-    esp_err_t ret = esp_vfs_spiffs_register(&config);
+    if (is_initialized_)
+    {
+        unmount_spiffs();
+    }
+}
+
+// Function to initialize SPIFFS
+esp_err_t SpiffsHandler::init_spiffs()
+{
+    ESP_LOGI(TAG, "Initializing SPIFFS");
+
+    esp_vfs_spiffs_conf_t conf = {
+        .base_path = base_path_,
+        .partition_label = partition_label_,
+        .max_files = max_files_,
+        .format_if_mount_failed = true};
+
+    esp_err_t ret = esp_vfs_spiffs_register(&conf);
 
     if (ret != ESP_OK)
     {
@@ -46,100 +67,129 @@ esp_err_t _spiffs_l::_spiffs_register(&config)
         {
             ESP_LOGE(TAG, "Failed to initialize SPIFFS (%s)", esp_err_to_name(ret));
         }
-        ESP_LOGE(TAG, "Initialized SPIFFS ");
-        return ret;
+    }
+    else
+    {
+        is_initialized_ = true;
     }
 
-#ifdef SPIFFS_CHECK
+    return ret;
+}
 
+// Function to check SPIFFS consistency
+esp_err_t SpiffsHandler::check_spiffs()
+{
+#ifdef CONFIG_EXAMPLE_SPIFFS_CHECK_ON_START
     ESP_LOGI(TAG, "Performing SPIFFS_check().");
-    ret = esp_spiffs_check(config.partition_label);
-    if (ret != ESP_OK) {
+    esp_err_t ret = esp_spiffs_check(partition_label_);
+    if (ret != ESP_OK)
+    {
         ESP_LOGE(TAG, "SPIFFS_check() failed (%s)", esp_err_to_name(ret));
-        return;
-    } else {
+    }
+    else
+    {
         ESP_LOGI(TAG, "SPIFFS_check() successful");
     }
+    return ret;
+#else
+    // If CONFIG_EXAMPLE_SPIFFS_CHECK_ON_START is not defined, you might want to handle it differently.
+    // You can return ESP_OK or handle it according to your needs.
+    return ESP_OK;
+#endif
+}
 
-
-    size_t total = 0, used = 0;
-    ret = esp_spiffs_info(conf.partition_label, &total, &used);
-    if (ret != ESP_OK) {
+// Function to get SPIFFS partition information
+esp_err_t SpiffsHandler::get_spiffs_info(size_t &total, size_t &used)
+{
+    esp_err_t ret = esp_spiffs_info(partition_label_, &total, &used);
+    if (ret != ESP_OK)
+    {
         ESP_LOGE(TAG, "Failed to get SPIFFS partition information (%s). Formatting...", esp_err_to_name(ret));
-        esp_spiffs_format(conf.partition_label);
-        return;
-    } else {
+        esp_spiffs_format(partition_label_);
+    }
+    else
+    {
         ESP_LOGI(TAG, "Partition size: total: %d, used: %d", total, used);
     }
 
-    if (used > total) {
-        ESP_LOGW(TAG, "Number of used bytes cannot be larger than total. Performing SPIFFS_check().");
-        ret = esp_spiffs_check(conf.partition_label);
-        // Could be also used to mend broken files, to clean unreferenced pages, etc.
-        // More info at https://github.com/pellepl/spiffs/wiki/FAQ#powerlosses-contd-when-should-i-run-spiffs_check
-        if (ret != ESP_OK) {
-            ESP_LOGE(TAG, "SPIFFS_check() failed (%s)", esp_err_to_name(ret));
-            return;
-        } else {
-            ESP_LOGI(TAG, "SPIFFS_check() successful");
-        }
-    }
-#endif /* SPIFFS_CHECK */
-    return ESP_ERR_OK
+    return ret;
 }
 
-FILE* _spiffs_l::edit_file(const char* filename)
+// Function to write data to a file
+esp_err_t SpiffsHandler::write_to_file(const char *path, const char *data)
 {
-    ESP_LOGI(TAG, "Opening file for writing: %s", filename);
-    FILE* f = fopen(filename, "w");
-    if (f == NULL) {
-        ESP_LOGE(TAG, "Failed to open file for writing: %s", filename);
+    ESP_LOGI(TAG, "Opening file");
+    FILE *f = fopen(path, "w");
+    if (f == NULL)
+    {
+        ESP_LOGE(TAG, "Failed to open file for writing");
+        return ESP_FAIL;
     }
-    return f;
+    fprintf(f, "%s\n", data);
+    fclose(f);
+    ESP_LOGI(TAG, "File written");
+
+    return ESP_OK;
 }
 
-void _spiffs_l::writeToFile(FILE* f, const char* data) {
-    if (f) {
-        fprintf(f, "%s\n", data);
-        fclose(f);
-        ESP_LOGI(TAG, "Data written to file");
+// Function to read data from a file
+esp_err_t SpiffsHandler::read_from_file(const char *path, char *buffer, size_t buffer_size)
+{
+    ESP_LOGI(TAG, "Reading file");
+    FILE *f = fopen(path, "r");
+    if (f == NULL)
+    {
+        ESP_LOGE(TAG, "Failed to open file for reading");
+        return ESP_FAIL;
     }
-}
-
-void _spiffs_l::checkAndDeleteFile(const char* filename) {
-    struct stat st;
-    if (stat(filename, &st) == 0) {
-        ESP_LOGI(TAG, "File %s exists, deleting it.", filename);
-        unlink(filename);
-    }
-}
-
-void _spiffs_l::renameFile(const char* oldname, const char* newname) {
-    ESP_LOGI(TAG, "Renaming file from %s to %s", oldname, newname);
-    if (rename(oldname, newname) != 0) {
-        ESP_LOGE(TAG, "Rename failed");
-    }
-}
-
-char* _spiffs_l::readFile(const char* filename) {
-    ESP_LOGI(TAG, "Reading file: %s", filename);
-    FILE* f = fopen(filename, "r");
-    if (f == NULL) {
-        ESP_LOGE(TAG, "Failed to open file for reading: %s", filename);
-        return NULL;
-    }
-
-    char line[64];
-    fgets(line, sizeof(line), f);
+    fgets(buffer, buffer_size, f);
     fclose(f);
 
-    char* pos = strchr(line, '\n');
-    if (pos) {
+    // strip newline
+    char *pos = strchr(buffer, '\n');
+    if (pos)
+    {
         *pos = '\0';
     }
-    
-    ESP_LOGI(TAG, "Read from file: '%s'", line);
-    
-    char* content = strdup(line); // You can return the content if needed.
-    return content;
+
+    ESP_LOGI(TAG, "Read from file: '%s'", buffer);
+
+    return ESP_OK;
+}
+
+// Function to rename a file
+esp_err_t SpiffsHandler::rename_file(const char *old_path, const char *new_path)
+{
+    ESP_LOGI(TAG, "Renaming file");
+    if (rename(old_path, new_path) != 0)
+    {
+        ESP_LOGE(TAG, "Rename failed");
+        return ESP_FAIL;
+    }
+
+    return ESP_OK;
+}
+
+// Function to delete a file
+esp_err_t SpiffsHandler::delete_file(const char *path)
+{
+    ESP_LOGI(TAG, "Deleting file");
+    if (unlink(path) != 0)
+    {
+        ESP_LOGE(TAG, "Delete failed");
+        return ESP_FAIL;
+    }
+
+    return ESP_OK;
+}
+
+// Function to unmount SPIFFS
+void SpiffsHandler::unmount_spiffs()
+{
+    if (is_initialized_)
+    {
+        esp_vfs_spiffs_unregister(partition_label_);
+        ESP_LOGI(TAG, "SPIFFS unmounted");
+        is_initialized_ = false;
+    }
 }
