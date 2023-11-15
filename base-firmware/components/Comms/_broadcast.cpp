@@ -76,7 +76,7 @@ void BroadcastedServer::wifi_init_softap(void)
         .ssid = _ESP_WIFI_SSID,
         .password = _ESP_WIFI_PASS,
         .channel = _ESP_WIFI_CHANNEL,
-        .max_connection = _MAX_STA_CONN
+        .max_connection = _MAX_STA_CONN,
         },
     };
 
@@ -256,7 +256,7 @@ esp_err_t BroadcastedServer::handle_GPS_request(httpd_req_t *req) {
         std::string id3 = "SAT";
         double value3 = 72.34;
         std::string id4 = "ALT";
-        double value4 = baro -> pushAltitude(DEFAULT_SEA_LEVEL);
+        double value4 = 48.2; //baro -> pushAltitude(DEFAULT_SEA_LEVEL);
 
         std::string packed_data = packData(id1, value1, id2, value2, id3, value3, id4, value4);
 
@@ -351,6 +351,7 @@ esp_err_t BroadcastedServer::handle_W1_request(httpd_req_t *req) {
 
 
 esp_err_t BroadcastedServer::handle_AMB_request(httpd_req_t *req) {
+    BATTERY *power = new BATTERY();
     // Check if the request is a POST request
     if (req->method == HTTP_POST) {
 
@@ -361,7 +362,7 @@ esp_err_t BroadcastedServer::handle_AMB_request(httpd_req_t *req) {
         std::string id3 = "GYROZ";
         double value3 = 109;
         std::string id4 = "THROT";
-        double value4 = 112;
+        double value4 = power -> returnBatteryPercent();
 
         std::string packed_data = packData(id1, value1, id2, value2, id3, value3, id4, value4);
 
@@ -372,6 +373,7 @@ esp_err_t BroadcastedServer::handle_AMB_request(httpd_req_t *req) {
 
     // If the request is not a POST request, return 404 Not Found
     httpd_resp_send_err(req, HTTPD_404_NOT_FOUND, "Not Found");
+    delete power;
     return ESP_OK;
 }
 
@@ -615,32 +617,25 @@ esp_err_t BroadcastedServer::handle_STATE_incoming(httpd_req_t *req){
         std::vector<double> values;
 
         extractValuesAndIds(data, ids, values);
-        //ESP_LOGI("TAG", "%f",values[0]);
-        
-        //UPDATE PTAM REGISTERS
-        SharedMemory& sharedMemory = SharedMemory::getInstance();
-        //If value from frontend is not 0, update PTAM register for respective variable
-        if(values[0] != 0){
-            //Latitude
-            //Clear previous register to avoid memory overflow
-            sharedMemory.clearData("state");
-            sharedMemory.storeDouble("state", values[0]);
 
+        //If value from frontend is not 0, update respective variable
+        if(values[0] != 0){
+            STATE *switchS = new STATE();
             switch(int(values[0])){
                 case 1:
-                    sharedMemory.clearData("stateDescript");
-                    sharedMemory.storeString("stateDescript", "PREP");
+                    //State switch to PREP
+                    switchS -> updateState(PREP);
                     break;
                 case 2:
-                    sharedMemory.clearData("stateDescript");
-                    sharedMemory.storeString("stateDescript", "ARMED");
+                    //State switch to ARMED
+                    switchS -> updateState(ARMED);
                     break;
                 case 3:
-                    sharedMemory.clearData("stateDescript");
-                    sharedMemory.storeString("stateDescript", "BYPASS");
+                    //State switch to BYPASS
+                    switchS -> updateState(BYPASS);
                     break;
             }
-            
+            delete switchS;
         }
         if(values[1] != 0){
 

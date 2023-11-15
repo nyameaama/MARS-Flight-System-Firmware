@@ -28,6 +28,8 @@ SOFTWARE.*/
 #include"../PTAM/_ptam.h"
 #include"validateSensors.h"
 #include"esp_log.h"
+#include "esp_timer.h"
+#include "esp_system.h"
 #include"../HALX/mg90s_servo.h"
 
 class CONTROLLER_TASKS {
@@ -35,6 +37,8 @@ class CONTROLLER_TASKS {
         uint8_t verifyFlightConfiguration();
 
         std::string generateRandomAlphanumericToken(uint32_t seed1, uint32_t seed2, int length);
+
+        void restart_after_idle_task();
 
         bool log_event_handler();
 

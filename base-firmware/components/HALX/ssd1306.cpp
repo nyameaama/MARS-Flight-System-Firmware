@@ -57,6 +57,8 @@ static SSD1306_t SSD1306;
 #define SSD1306_INVERTDISPLAY       0xA7
 
 void displayBOOT(){
+	/* Clear screen */
+	SSD1306_Fill(SSD1306_COLOR_BLACK);
     /*//Boot
         #define BOOT_TITLE "HIVE 2"
         #define BOOT_TITLEX_POS 15
@@ -72,6 +74,8 @@ void displayBOOT(){
 }
 
 void displayStandByClientSuccess(){
+	/* Clear screen */
+	SSD1306_Fill(SSD1306_COLOR_BLACK);
     /*Standby
         #define StandByClientSuccess "STANDBY"
         #define StandByClientSuccess "CLIENT +"
@@ -84,20 +88,24 @@ void displayStandByClientSuccess(){
         #define StandByClientSuccess_FONT FontDef_t Font_16x26
         #define StandByClientSuccess_COLOR SSD1306_COLOR_WHITE
     */
-   	SSD1306_Clear();
+   	//BATTERY batObj;
+	//uint8_t batteryLevel = (batObj.returnBatteryCurrentDraw());
     char strp[10];
     char strp2[10];
     sprintf(strp, "STANDBY");
-    sprintf(strp2, "CLIENT +");
+	sprintf(strp2, "CLIENT -");
+	//sprintf(strp2, "BAT:%d", batteryLevel);
     SSD1306_GotoXY(5,5);
     SSD1306_Puts(strp, &Font_16x26, SSD1306_COLOR_WHITE);
-    SSD1306_GotoXY(25,40);
+    SSD1306_GotoXY(23,40);
     SSD1306_Puts(strp2, &Font_11x18, SSD1306_COLOR_WHITE);
 
     SSD1306_UpdateScreen();
 }
 
 void displayStandByClientFail(){
+	/* Clear screen */
+	SSD1306_Fill(SSD1306_COLOR_BLACK);
     /*Standby
         #define StandByClientFail "STANDBY"
         #define StandByClientFail "CLIENT -"
@@ -110,7 +118,6 @@ void displayStandByClientFail(){
         #define StandByClientFail_FONT FontDef_t Font_16x26
         #define StandByClientFail_COLOR SSD1306_COLOR_WHITE
     */
-   	SSD1306_Clear();
     char strp[10];
     char strp2[10];
     sprintf(strp, "STANDBY");
@@ -124,6 +131,8 @@ void displayStandByClientFail(){
 }
 
 void displayBYPASS(){
+	/* Clear screen */
+	SSD1306_Fill(SSD1306_COLOR_BLACK);
     /*Standby
         #define BYPASS "BYPASS"
 
@@ -133,7 +142,6 @@ void displayBYPASS(){
         #define BYPASS_FONT FontDef_t Font_16x26
         #define BYPASS_COLOR SSD1306_COLOR_WHITE
     */
-   	SSD1306_Clear();
     char strp[10];
     sprintf(strp, "BYPASS");
     SSD1306_GotoXY(15,30);
@@ -143,6 +151,8 @@ void displayBYPASS(){
 }
 
 void displayARMED(){
+	/* Clear screen */
+	SSD1306_Fill(SSD1306_COLOR_BLACK);
     /*Standby
         #define ARMED "BYPASS"
 
@@ -152,7 +162,6 @@ void displayARMED(){
         #define ARMED_FONT FontDef_t Font_16x26
         #define ARMED_COLOR SSD1306_COLOR_WHITE
     */
-   	SSD1306_Clear();
     char strp[10];
     sprintf(strp, "ARMED");
     SSD1306_GotoXY(20,30);
@@ -162,6 +171,8 @@ void displayARMED(){
 }
 
 void displayERROR(){
+	/* Clear screen */
+	SSD1306_Fill(SSD1306_COLOR_BLACK);
     /*Standby
         #define ERROR "ERROR-S"
 
@@ -171,7 +182,6 @@ void displayERROR(){
         #define ERROR_FONT FontDef_t Font_16x26
         #define ERROR_COLOR SSD1306_COLOR_WHITE
     */
-   	SSD1306_Clear();
     char strp[10];
     sprintf(strp, "ERROR-S");
     SSD1306_GotoXY(20,30);
@@ -743,17 +753,17 @@ void ssd1306_I2C_Init() {
 	esp_err_t i2c_err;
     i2c_config_t i2c_conf;
     i2c_conf.mode = I2C_MODE_MASTER;
-    i2c_conf.sda_io_num = I2C_MASTER_SDA_IO;         // select GPIO specific to your project
+    i2c_conf.sda_io_num = GPIO_NUM_21;         // select GPIO specific to your project
     i2c_conf.sda_pullup_en = GPIO_PULLUP_DISABLE;
-    i2c_conf.scl_io_num = I2C_MASTER_SCL_IO;         // select GPIO specific to your project
+    i2c_conf.scl_io_num = GPIO_NUM_22;         // select GPIO specific to your project
     i2c_conf.scl_pullup_en = GPIO_PULLUP_DISABLE;
     i2c_conf.master.clk_speed = I2C_MASTER_FREQ_HZ;  // select frequency specific to your project
-    // .clk_flags = 0,          /*!< Optional, you can use I2C_SCLK_SRC_FLAG_* flags to choose i2c source clock here. */
+    i2c_conf.clk_flags = 0;          /*!< Optional, you can use I2C_SCLK_SRC_FLAG_* flags to choose i2c source clock here. */
 
     i2c_err = i2c_param_config(I2C_NUM,&i2c_conf);
-    if(i2c_err != ESP_OK) printf(" display parameter config error code: %d \r\n",i2c_err);
+    if(i2c_err != ESP_OK) printf(" parameter config error code: %d \r\n",i2c_err);
     i2c_err = i2c_driver_install(I2C_NUM,I2C_MODE_MASTER, 0,0, 0);
-    if(i2c_err != ESP_OK) printf(" display driver install error code: %d \r\n ",i2c_err);   
+    if(i2c_err != ESP_OK) printf(" driver install error code: %d \r\n ",i2c_err);   
 }
 
 void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {

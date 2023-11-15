@@ -41,22 +41,23 @@ SOFTWARE.*/
 
 uint8_t DRONE_STATE = 1;
 
-extern "C"{
-    void app_main(void){
-        // Wait for Wi-Fi to initialize
-        vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
-        //Initialize NVS
-        esp_err_t ret = nvs_flash_init();
-        if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
+void monitor_memory_task(void *pvParameters) {
+    while (1) {
+        // Get the free heap memory size in bytes
+        size_t free_heap_size = esp_get_free_heap_size();
+        
+        // Print the free heap memory size
+        ESP_LOGI("Memory", "Free Heap Size: %u bytes", free_heap_size);
+        if(free_heap_size < 10000){
+            esp_restart();
         }
-        ESP_ERROR_CHECK(ret);
+        // Delay for some time before checking again
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 5 seconds
+    }
+}
 
-        BroadcastedServer server;
-        server.wifi_init_softap();
-
-        /* Mark current app as valid */
+void INIT_CORE0(void *pvParameters){
+    /* Mark current app as valid */
         const esp_partition_t *partition = esp_ota_get_running_partition();
 
         esp_ota_img_states_t ota_state;
@@ -70,24 +71,46 @@ extern "C"{
         displayBOOT();
         vTaskDelay(pdMS_TO_TICKS(4000)); // Boot delay
 
-        FAN_COOLING *cool = new FAN_COOLING();
-        cool -> init_relay();
+        //VEHICLE_BARO *baro = new VEHICLE_BARO();
+        //baro -> init_barometer();
+        //delete baro;
 
-        VEHICLE_BARO *baro = new VEHICLE_BARO();
-        baro -> init_barometer();
-        double tp;
+        //FAN_COOLING *cool = new FAN_COOLING();
+        //cool -> init_relay();
+        //delete cool;
 
         CONTROLLER_TASKS *CTobj = new CONTROLLER_TASKS();
         //Boot 
         CTobj -> _init_();
+        delete CTobj;
 
-        STATE *change = new STATE();   
+        
+        // Wait for Wi-Fi to initialize
+        vTaskDelay(pdMS_TO_TICKS(2000)); // Delay for 2 seconds
+        //Initialize NVS
+        esp_err_t ret = nvs_flash_init();
+        if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+        }
+        ESP_ERROR_CHECK(ret);
+
+        BroadcastedServer server;
+        server.wifi_init_softap();
+
         while(1){
+            CONTROLLER_TASKS *CTobj = new CONTROLLER_TASKS();
+            STATE *change = new STATE(); 
+            //VEHICLE_BARO *baro = new VEHICLE_BARO();
+            //FAN_COOLING *cool = new FAN_COOLING();
+
             if(DRONE_STATE == 1){ // STANDBY
+                //Idle Restart Task
+                CTobj -> restart_after_idle_task();
                 //Display Controller
-                displayStandByClientFail();
+                displayStandByClientSuccess();
                 //Fan Controller
-                cool -> coolSierra_task(baro -> pushTemperature());
+                //cool -> coolSierra_task(baro -> pushTemperature());
                 //FROM STANDBY PREP WE CAN EITHER SWITCH TO ARMED OR BYPASS
                 CTobj -> _PREP_();
                 if(change -> SWITCH2ARMED() == 1){
@@ -108,7 +131,7 @@ extern "C"{
                 //Display Controller
                 displayARMED();
                 //Fan Controller
-                cool -> coolSierra_task(baro -> pushTemperature());
+                //cool -> coolSierra_task(baro -> pushTemperature());
                 //FROM ARMED WE CAN EITHER SWITCH TO STANDY PREP OR BYPASS
                 CTobj -> _ARMED_();
                 if(change -> SWITCH2PREP() == 1){
@@ -126,10 +149,12 @@ extern "C"{
             }
             
             if(DRONE_STATE == 3){ // BYPASS
+                //Idle Restart Task
+                CTobj -> restart_after_idle_task();
                 //Display Controller
                 displayBYPASS();
                 //Fan Controller
-                cool -> coolSierra_task(baro -> pushTemperature());
+                //cool -> coolSierra_task(baro -> pushTemperature());
                 //FROM BYPASS WE CAN EITHER SWITCH TO STANDY PREP OR ARMED
                 CTobj -> _bypass_(std::string("ID"));
                 if(change -> SWITCH2PREP() == 1){
@@ -146,10 +171,16 @@ extern "C"{
                 }
             }
 
+            //delete cool;
+            delete change;
+            //delete baro;
+            delete CTobj;
         }
-        delete cool;
-        delete change;
-        delete CTobj;
-        delete baro;
+}
+
+extern "C"{
+    void app_main(void){
+        xTaskCreate(&monitor_memory_task, "memory_task", 2048, NULL, 5, NULL);
+        xTaskCreate(&INIT_CORE0, "INIT_CORE0", 4096, NULL, 5, NULL);
     }
 }

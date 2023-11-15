@@ -721,7 +721,7 @@ void ssd1306_I2C_Init() {
     i2c_conf.scl_io_num = I2C_MASTER_SCL_IO;         // select GPIO specific to your project
     i2c_conf.scl_pullup_en = GPIO_PULLUP_DISABLE;
     i2c_conf.master.clk_speed = I2C_MASTER_FREQ_HZ;  // select frequency specific to your project
-    // .clk_flags = 0,          /*!< Optional, you can use I2C_SCLK_SRC_FLAG_* flags to choose i2c source clock here. */
+    i2c_conf.clk_flags = 0;          /*!< Optional, you can use I2C_SCLK_SRC_FLAG_* flags to choose i2c source clock here. */
 
     i2c_err = i2c_param_config(I2C_NUM,&i2c_conf);
     if(i2c_err != ESP_OK) printf(" parameter config error code: %d \r\n",i2c_err);

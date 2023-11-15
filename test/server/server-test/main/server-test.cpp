@@ -15,11 +15,26 @@
 #include "esp_wifi.h"
 #include "esp_event.h"
 #include "esp_log.h"
+#include "esp_timer.h"
 #include"nvs_flash.h"
 #include<cmath>
 #include"esp_random.h"
 
 //#define LOG_LOCAL_LEVEL ESP_LOG_VERBOSE
+
+void restart_after_idle_task() {
+    const uint32_t restart_interval = 12 * 60 * 60;  // 12 hours in seconds
+
+    // Get the time elapsed since boot in seconds
+    uint32_t uptime = esp_timer_get_time() / 1000000;  // Convert milliseconds to seconds
+
+    // Check if it's time to restart after every 12-hour period
+    if (uptime % restart_interval == 0) {
+        ESP_LOGI("Restart", "Restarting after %d hours of idle time.", int(restart_interval / 3600));
+        esp_restart();
+    }
+
+}
 
 extern "C" {
     void app_main() {
@@ -41,6 +56,7 @@ extern "C" {
 
 
     SSD1306_Init();
+    //displayBOOT();
     printf("SSD1306 Initialized..\n");
     /*char strp[16];
     char strp2[16];
@@ -55,11 +71,13 @@ extern "C" {
     displayStandByClientSuccess();
     vTaskDelay(1);
 
-    /*BATTERY *battObj = new BATTERY();
+    BATTERY *battObj = new BATTERY();
     while(1){ 
+        restart_after_idle_task();
         ESP_LOGI("TAG","BATT: %f",battObj -> batteryInterfaceInit());
         ESP_LOGI("TAG","CURR: %f",battObj -> returnBatteryCurrentDraw());
-    }*/
+         vTaskDelay(pdMS_TO_TICKS(1000));  // Check every 1 second
+    }
 
     /*SD_FILESYSTEM *sdobj = new SD_FILESYSTEM();
     const char *file = MOUNT_POINT"/init_config.txt";
@@ -114,19 +132,18 @@ extern "C" {
     /*VEHICLE_BARO *baro = new VEHICLE_BARO();
     baro -> init_barometer();
     while(1){
-        
         double gb = baro -> pushPressure();
         double tp = baro -> pushTemperature();
-        double hy = baro -> pushHumidity();
+        double alt = baro -> pushAltitude(DEFAULT_SEA_LEVEL);
         ESP_LOGI("TAG","Pressure: %f",gb);
         ESP_LOGI("TAG","Temp: %f",tp);
-        ESP_LOGI("TAG","Humidity: %f",hy);
+        ESP_LOGI("TAG","Altitude: %f",alt);
         vTaskDelay(pdMS_TO_TICKS(100)); 
     }
     delete baro;*/
 
 
-    MotorController *ec = new MotorController(gpio_num_t(15));
+    /*MotorController *ec = new MotorController(gpio_num_t(15));
     ec -> arm();
     //ec -> setThrottle(100);
     vTaskDelay(pdMS_TO_TICKS(5000));
@@ -134,7 +151,7 @@ extern "C" {
     ec -> setThrottle(80);
     vTaskDelay(pdMS_TO_TICKS(5000));
     ec -> stop();
-    delete ec;
+    delete ec;*/
     //V_MOTOR *motor = new V_MOTOR();
     //motor -> mcpwm_gpio_initialize();
     //

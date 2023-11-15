@@ -23,9 +23,9 @@ SOFTWARE.
 ]]
 
 idf_component_register(SRCS "_state.cpp"
-                            "validateSensors.cpp" 
+                            "VBV.cpp" 
                             "sys_controller.cpp"
                         INCLUDE_DIRS "."
-                        REQUIRES PTAM HALX
+                        REQUIRES PTAM HALX esp_timer esp_system
                          )
 
