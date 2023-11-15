@@ -26,68 +26,7 @@ SOFTWARE.*/
 //ATTACH PIN NUMBERS
 void CONTROLLER_TASKS::_init_(){
     PTAM_REGISTER_SET();
-    //Setup pins - SPI,sensors
-    //pin_setup();
 
-    //SENSORS
-    /*DataStore *ptObject = new DataStore();
-
-    SensorValidator *valD = new SensorValidator();
-    bool GPScheck = valD.validateGPSData();
-    if(GPScheck == true){
-        //Update PTAM Register = 1 denoting sensor success
-        std::string reg_name = "GPScheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,1);
-    }else{
-        //Update PTAM Register = 0 denoting sensor fail
-        std::string reg_name = "GPScheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,0);
-    }
-
-    bool IMUcheck = valD.validateIMUData();
-    if(IMUcheck == true){
-        //Update PTAM Register = 1 denoting sensor success
-        std::string reg_name = "IMUcheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,1);
-    }else{
-        //Update PTAM Register = 0 denoting sensor fail
-        std::string reg_name = "IMUcheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,0);
-    }
-
-    bool BMPcheck = valD.validateBMP280Data();
-    if(BMPcheck == true){
-        //Update PTAM Register = 1 denoting sensor success
-        std::string reg_name = "BMPcheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,1);
-    }else{
-        //Update PTAM Register = 0 denoting sensor fail
-        std::string reg_name = "BMPcheck";
-        //Remove previous value
-        ptObject.clearData(reg_name);
-        //Push Update
-        ptObject.storeData(reg_name,0);
-    }*/
-    //SETUP ONBOARD DISPLAY
-   // _ONBOARD_DISPLAY *dispInit = new  _ONBOARD_DISPLAY();
-    //dispInit._init_();
-    //dispInit._showBoot();
-    //delete dispInit;
 }
 
 void CONTROLLER_TASKS::_IDLE_(){
@@ -96,10 +35,6 @@ void CONTROLLER_TASKS::_IDLE_(){
 
 //Telemetry checks, peripheral checks
 void CONTROLLER_TASKS::_PREP_(){
-    SharedMemory& sharedMemory = SharedMemory::getInstance();
-    auto lat = sharedMemory.getLastDouble("TLat");
-    //ESP_LOGI("LAT", "%f",lat);
-    //Check for full configuraton completion
 
 }
 
@@ -151,6 +86,20 @@ std::string CONTROLLER_TASKS::generateRandomAlphanumericToken(uint32_t seed1, ui
     }
 
     return token;
+}
+
+void CONTROLLER_TASKS::restart_after_idle_task() {
+    const uint32_t restart_interval = 12 * 60 * 60;  // 12 hours in seconds
+
+    // Get the time elapsed since boot in seconds
+    uint32_t uptime = esp_timer_get_time() / 1000000;  // Convert microseconds to seconds
+
+    // Check if it's time to restart after every 12-hour period
+    if (uptime % restart_interval == 0) {
+        ESP_LOGI("Restart", "Restarting after %d hours of idle time.", int(restart_interval / 3600));
+        esp_restart();
+    }
+
 }
 
 void CONTROLLER_TASKS::_ARMED_(){

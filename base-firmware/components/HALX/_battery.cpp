@@ -121,10 +121,7 @@ double BATTERY::batteryInterfaceInit()
         }
     }
     adc_reading /= NO_OF_SAMPLES;
-    // Convert adc_reading to voltage in mV
-    //int voltage = esp_adc_cal_raw_to_voltage(adc_reading, adc_chars);
-    //ESP_LOGI(TAG, "Raw: %d\tVoltage: %dmV", adc_reading, voltage);
-    //double percent = returnBatteryPercent(voltage);
+
     return adc_reading;
 }
 
@@ -133,7 +130,6 @@ double BATTERY::returnBatteryPercent(){
     // Calculate the ratio of the value within the source range
     //Attenuation Low = 150 mv
     //Attenuation High = 2450 mv
-    //ESP_LOGI("TAG","VX: %d",adc);
     // Battery voltage scale (10V to 12.6V)
     double vrs = mapValue(adc, 150, 2450, VOLTAGE_MIN, VOLTAGE_MAX);
 

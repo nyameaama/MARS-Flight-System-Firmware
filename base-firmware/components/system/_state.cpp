@@ -22,6 +22,9 @@ SOFTWARE.*/
 
 #include "_state.h"
 
+std::string stateDescript;
+uint8_t state = 1;
+
 //____________________________________________________________
 /* Change state to prep
 ===========================================================================
@@ -32,15 +35,9 @@ SOFTWARE.*/
         //Change variable
         uint8_t change = 0;
         //PREP -> 1
-        if(compareX(getLastStateRequest(),std::string("PREP"))){
+        if(compareX(stateDescript,std::string("PREP"))){
             change = 1;
-            SharedMemory& sharedMemory = SharedMemory::getInstance();
-            //Clear previous register to avoid memory overflow
-            sharedMemory.clearData("state");
-            sharedMemory.clearData("stateDescript");
-
-            sharedMemory.storeInt("state", 1);
-            sharedMemory.storeString(std::string("stateDescript"),std::string("PREP"));
+            state = 1;
         } 
         return change;
     }
@@ -55,15 +52,9 @@ SOFTWARE.*/
         //Change variable
         uint8_t change = 0;
         //ARMED -> 2
-        if(compareX(getLastStateRequest(),std::string("ARMED"))){
+        if(compareX(stateDescript,std::string("ARMED"))){
             change = 1;
-            SharedMemory& sharedMemory = SharedMemory::getInstance();
-            //Clear previous register to avoid memory overflow
-            sharedMemory.clearData("state");
-            sharedMemory.clearData("stateDescript");
-
-            sharedMemory.storeInt("state", 2);
-            sharedMemory.storeString(std::string("stateDescript"),std::string("ARMED"));
+            state = 2;
         }
         return change;
     }
@@ -74,36 +65,26 @@ SOFTWARE.*/
 |    void
 ===========================================================================
 */
-    //Change state to bypass
     uint8_t STATE::SWITCH2BYPASS(){
         //Change variable
         uint8_t change = 0;
         //BYPASS -> 3
-        if(compareX(getLastStateRequest(),std::string("BYPASS"))){
+        if(compareX(stateDescript,std::string("BYPASS"))){
             change = 1;
-            SharedMemory& sharedMemory = SharedMemory::getInstance();
-            //Clear previous register to avoid memory overflow
-            sharedMemory.clearData("state");
-            sharedMemory.clearData("stateDescript");
-
-            sharedMemory.storeInt("state", 3);
-            sharedMemory.storeString(std::string("stateDescript"),std::string("BYPASS"));
+            state = 3;
         }
         return change;
     }
 
 //____________________________________________________________
-/* Get last state request from PTAM
+/* Handler to update state description
 ===========================================================================
 |    void
 ===========================================================================
 */
-    std::string STATE::getLastStateRequest(){
-        SharedMemory& obj = SharedMemory::getInstance();
-        //Get STATE data from PTAM
-        auto dta = obj.getLastString("stateDescript");
-        //ESP_LOGI("STATE", "%s",dta.c_str());
-        return dta;
+    void STATE::updateState(std::string state){
+        //Update state description value
+        stateDescript = state;
     }
 
 //____________________________________________________________
