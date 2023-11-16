@@ -49,7 +49,7 @@ extern "C"
                 result = Log.EVENT_LOG_SSL();
                 std::cout << result;
                 time = Log.get_event_time(result);
-                uint8_t state = Log.get_event_state(result);
+                state = Log.get_event_state(result);
                 std::cout << state;
                 ID = Log.get_event_id(result);
                 std::cout << result << "\n\nTime captured from callback: " << time << "\n\nID: " << ID;
@@ -60,7 +60,7 @@ extern "C"
                 result = Log.EVENT_LOG_SEL("UAV-SEL-TEST-SOFT-FAIL", mars_exception_t::ROUTINE_SOFT_FAIL, "Submodule nonresponsive");
                 std::cout << result;
 
-                uint8_t state = Log.get_event_state(result);
+                state = Log.get_event_state(result);
                 std::cout << state;
         }
 }
