@@ -3,7 +3,7 @@ idf_component_register(SRCS "_battery.cpp" "_SD_FileSystem.cpp"
                             "MotorController.cpp" 
                             "minmea.cpp"
                             "Vmotor.cpp"
-                           
+                            "nrf24.cpp"
                             "ssd1306_fonts.cpp"
                             "ssd1306.cpp"
                             "mg90s_servo.cpp"

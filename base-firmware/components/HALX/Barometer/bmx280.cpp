@@ -20,21 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-/**
- * BMX280 - BME280 & BMP280 Driver for Esspressif ESP-32.
- *
- * MIT License
- *
- * Copyright (C) 2020 Halit Utku Maden
- * Please contact at <utkumaden@hotmail.com>
- */
-
-// LEGAL NOTE:
-// Any code between below the caption "// HERE BE DRAGONS" and above the caption 
-// "// END OF DRAGONS" contains modified versions of code owned by Bosch 
-// Sensortec GmbH and it is not clearly licensed, therefore this code is not 
-// covered by the MIT of this repository. Use at your own risk.
-
 #include "bmx280.h"
 #include "esp_log.h"
 

@@ -62,7 +62,12 @@ static const adc_unit_t unit = ADC_UNIT_1;
 #define BATTERY_MIN_ADC VOLTAGE_TO_ADC(VOLTAGE_OUT(VOLTAGE_MIN))
 
 
-
+//________________________________________________________________________
+    /* Check the eFuse settings
+    ===========================================================================
+    | void
+    ===========================================================================
+    */
 void  BATTERY::check_efuse(void)
 {
     // Check if TP is burned into eFuse
@@ -79,6 +84,12 @@ void  BATTERY::check_efuse(void)
     }
 }
 
+//________________________________________________________________________
+    /* Print the character value type for ADC calibration
+    ===========================================================================
+    | void
+    ===========================================================================
+    */
 void BATTERY::print_char_val_type(esp_adc_cal_value_t val_type)
 {
     if (val_type == ESP_ADC_CAL_VAL_EFUSE_TP) {
@@ -90,6 +101,12 @@ void BATTERY::print_char_val_type(esp_adc_cal_value_t val_type)
     }
 }
 
+//________________________________________________________________________
+    /* Initialize the battery interface
+    ===========================================================================
+    | Returns: double - The initialized battery voltage.
+    ===========================================================================
+    */
 double BATTERY::batteryInterfaceInit()
 {
     // Check if Two Point or Vref are burned into eFuse
@@ -125,6 +142,12 @@ double BATTERY::batteryInterfaceInit()
     return adc_reading;
 }
 
+//________________________________________________________________________
+    /* Get the battery percentage
+    ===========================================================================
+    | Returns: double - The battery percentage.
+    ===========================================================================
+    */
 double BATTERY::returnBatteryPercent(){
     double adc = returnBatteryVoltage();
     // Calculate the ratio of the value within the source range
@@ -141,6 +164,12 @@ double BATTERY::returnBatteryPercent(){
     return brp;
 }
 
+//________________________________________________________________________
+    /* Get the current battery voltage
+    ===========================================================================
+    | Returns: double - The current battery voltage.
+    ===========================================================================
+    */
 double BATTERY::returnBatteryVoltage(){
     double b_II = batteryInterfaceInit();
     //Convert adc_reading to voltage in mV
@@ -148,7 +177,12 @@ double BATTERY::returnBatteryVoltage(){
     return voltage;
 }
 
-//Returns current in ma
+//________________________________________________________________________
+    /* Get the current battery current draw
+    ===========================================================================
+    | Returns: double - The current battery current draw.
+    ===========================================================================
+    */
 double BATTERY::returnBatteryCurrentDraw(){
     initCurrentADC();
     // Sample ADC1
@@ -173,6 +207,12 @@ double BATTERY::returnBatteryCurrentDraw(){
     return current * 1000;
 }
 
+//________________________________________________________________________
+    /* Initialize the ADC for measuring current
+    ===========================================================================
+    | void
+    ===========================================================================
+    */
 void BATTERY::initCurrentADC(){
     // Configure ADC
     if (unit == ADC_UNIT_1) {
@@ -187,6 +227,18 @@ void BATTERY::initCurrentADC(){
     esp_adc_cal_value_t val_type = esp_adc_cal_characterize(unit, atten, width, DEFAULT_VREF, adc_chars);
 }
 
+//________________________________________________________________________
+    /* Map a value from one range to another
+    ===========================================================================
+    | Parameters:
+    |    - value: The value to map.
+    |    - fromLow: The low end of the input range.
+    |    - fromHigh: The high end of the input range.
+    |    - toLow: The low end of the output range.
+    |    - toHigh: The high end of the output range.
+    | Returns: double - The mapped value.
+    ===========================================================================
+    */
 double BATTERY::mapValue(double value, double fromLow, double fromHigh, double toLow, double toHigh) {
     // Check if the value is within the source range
     if (value < fromLow) {

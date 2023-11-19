@@ -32,6 +32,12 @@ static gpio_num_t i2c_gpio_scl = GPIO_NUM_22;
 double GroundRef = 0;
 bmx280_t* bmx280;
 
+//________________________________________________________________________
+/* Initialize the barometer sensor
+===========================================================================
+| void
+===========================================================================
+*/
 void VEHICLE_BARO::init_barometer(void){
     esp_err_t i2c_err;
     i2c_config_t i2c_conf;
@@ -53,6 +59,12 @@ void VEHICLE_BARO::init_barometer(void){
     GroundRef = zero_ref;
 }
 
+//________________________________________________________________________
+/* Start a measurement with the barometer sensor
+===========================================================================
+| void
+===========================================================================
+*/
 void VEHICLE_BARO::startMeasurement(){
     /*bmx280_t**/ bmx280 = bmx280_create(I2C_NUM_1);
     ESP_ERROR_CHECK(bmx280_init(bmx280));
@@ -64,6 +76,12 @@ void VEHICLE_BARO::startMeasurement(){
         } while(bmx280_isSampling(bmx280));
 }
 
+//________________________________________________________________________
+/* Push the temperature data from the barometer sensor
+===========================================================================
+| Returns: float - The temperature data.
+===========================================================================
+*/
 float VEHICLE_BARO::pushTemperature(){
     startMeasurement();
     float temp = 0, pres = 0, hum = 0;
@@ -73,6 +91,12 @@ float VEHICLE_BARO::pushTemperature(){
     return temp;
 }
 
+//________________________________________________________________________
+/* Push the pressure data from the barometer sensor
+===========================================================================
+| Returns: float - The pressure data.
+===========================================================================
+*/
 float VEHICLE_BARO::pushPressure(){
     startMeasurement();
     float temp = 0, pres = 0, hum = 0;
@@ -81,6 +105,12 @@ float VEHICLE_BARO::pushPressure(){
     return pres;
 }
 
+//________________________________________________________________________
+/* Push the humidity data from the barometer sensor
+===========================================================================
+| Returns: float - The humidity data.
+===========================================================================
+*/
 float VEHICLE_BARO::pushHumidity(){
     startMeasurement();
     float temp = 0, pres = 0, hum = 0;
@@ -89,6 +119,14 @@ float VEHICLE_BARO::pushHumidity(){
     return hum;
 }
 
+//________________________________________________________________________
+/* Push the altitude data calculated based on sea level pressure
+===========================================================================
+| Parameters:
+|    - seaLevelhPa: Sea level pressure in hectopascals.
+| Returns: double - The calculated altitude.
+===========================================================================
+*/
 double VEHICLE_BARO::pushAltitude(double seaLevelhPa){
     //Get reference altitude from zeroed point
     double zer_pressure = GroundRef;

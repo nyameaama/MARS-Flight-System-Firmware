@@ -1,4 +1,5 @@
-/*MIT License
+#[[
+MIT License
 
 Copyright (c) 2023 limitless Aeronautics
 
@@ -18,30 +19,8 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.*/
+SOFTWARE.
+]]
 
-#ifndef BAROMETER_
-#define BAROMETER_
 
-#include"esp_log.h"
-#include"../PTAM/_ptam.h"
-#include<math.h>
-
-#define DEFAULT_SEA_LEVEL 1013.25
-
-class VEHICLE_BARO {
-    public:
-        static void init_barometer(void);
-
-        static void startMeasurement();
-
-        static float pushTemperature();
-
-        static float pushPressure();
-
-        static float pushHumidity();
-
-        static double pushAltitude(double seaLevelhPa);
-};
-
-#endif //BAROMETER_
+idf_component_register(SRCS "bmi088.cpp")

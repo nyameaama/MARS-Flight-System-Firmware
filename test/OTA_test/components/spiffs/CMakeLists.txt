@@ -1,5 +1,4 @@
-#[[idf_component_register(SRCS "_spiffs_fs.cpp"
+idf_component_register(SRCS "network.cpp" 
                     INCLUDE_DIRS "."
                     REQUIRES spiffs )
 
-]]#

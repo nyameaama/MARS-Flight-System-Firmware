@@ -20,15 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-/**
- * BMX280 - BME280 & BMP280 Driver for Esspressif ESP-32.
- *
- * MIT License
- *
- * Copyright (C) 2020 Halit Utku Maden
- * Please contact at <utkumaden@hotmail.com>
- */
-
 #ifndef _BMX280_H_
 #define _BMX280_H_
 

@@ -34,8 +34,8 @@ SOFTWARE.*/
 #include"esp_random.h"
 #include"../PTAM/_ptam.h"
 #include"../system/sys_controller.h"
-#include"../HALX/_barometerEntry.h"
-#include"../HALX/_battery.h"
+#include"../HALX/Barometer/_barometerEntry.h"
+#include"../HALX/Battery/_battery.h"
 #include"../system/_state.h"
 #include "os_config.h"
 

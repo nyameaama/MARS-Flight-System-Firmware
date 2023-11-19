@@ -27,7 +27,7 @@ SOFTWARE.*/
 #include "stdlib.h"
 #include "string.h"
 #include "driver/i2c.h"
-#include "_battery.h"
+//#include "_battery.h"
 
 //VEHICLE PAGES
 //Boot
