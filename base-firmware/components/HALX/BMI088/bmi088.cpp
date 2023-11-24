@@ -384,3 +384,32 @@ double BMI088_IMU::angle_read_yaw(){
     double yaw = GyroZ * elapsedTime;
     return yaw;
 }
+
+double BMI088_IMU::linearInterpolate(double input, double input_start, double input_end, 
+                                        double output_start, double output_end) {
+    // Map input range to output range
+    double slope = (output_end - output_start) / (input_end - input_start);
+    double output = output_start + slope * (input - input_start);
+    return output;
+}
+
+double BMI088_IMU::readAugmentedIMUData(uint8_t angle_type){
+    //Roll -> -90 to 90 Augmented to Pitch -90 to 90
+    //Pitch -> Augmented to Roll; Left = positive; Right = negative
+
+    //The BMI088 IMU is not oriented in the same direction as the vehicle's
+    //intended direction for accurate values so the data has to be augmented for
+    //accurate angle results
+    switch(angle_type){
+        case PITCH:
+            return -(angle_read_roll());
+            break;
+        case ROLL:
+            return -(linearInterpolate(angle_read_pitch(), -90, 90, -180, 180));
+            break;
+        case YAW:
+            return angle_read_yaw();
+            break;
+    }
+    return 0;
+}

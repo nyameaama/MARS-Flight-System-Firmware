@@ -50,9 +50,13 @@ void app_main(void)
         ESP_LOGI(TAG, "gyro_read_rawX = %f", obj -> gyro_read_rawX());
         ESP_LOGI(TAG, "gyro_read_rawY = %f", obj -> gyro_read_rawY());
         ESP_LOGI(TAG, "gyro_read_rawZ = %f", obj -> gyro_read_rawZ());
-        ESP_LOGI(TAG, "pitch = %f", obj -> angle_read_pitch());
+        /*ESP_LOGI(TAG, "pitch = %f", obj -> angle_read_pitch());
         ESP_LOGI(TAG, "roll = %f", obj -> angle_read_roll());
-        ESP_LOGI(TAG, "yaw = %f", obj -> angle_read_yaw());
+        ESP_LOGI(TAG, "yaw = %f", obj -> angle_read_yaw());*/
+
+        ESP_LOGI(TAG, "pitch = %f", obj -> readAugmentedIMUData(PITCH));
+        ESP_LOGI(TAG, "roll = %f", obj -> readAugmentedIMUData(ROLL));
+        ESP_LOGI(TAG, "yaw = %f", obj -> readAugmentedIMUData(YAW));
 
         vTaskDelay(pdMS_TO_TICKS(200));
     }

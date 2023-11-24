@@ -11,7 +11,6 @@
 #include"../components/HALX/_SD_FileSystem.h"
 #include"../components/HALX/MotorController.h"
 #include"../components/HALX/_battery.h"
-#include"../components/HALX/nrf24.h"
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "esp_event.h"
