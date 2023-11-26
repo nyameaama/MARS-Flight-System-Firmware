@@ -26,6 +26,12 @@
  *          OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *          SOFTWARE.
  */
+#ifndef logger_config_h
+#define logger_config_h
+
+#include<stdio.h>
+#include"esp_timer.h"
+#include<cinttypes>
 
 /* Logger version */
 #define LOGGER_VERSION 1.000
@@ -42,13 +48,6 @@
 
 #define CRESET "\e[0m"
 
-#define LOGGER_VERBOSE
-/* Logger Verbose mode */
-
-#ifdef LOGGER_VERBOSE
-
-#include<stdio.h>
-#include"esp_timer.h"
 
 //Regular bold text
 #define BBLK "\e[1;30m"
@@ -140,6 +139,4 @@ void LOG_ERROR(const char* message) {
 }
 
 
-
-
-#endif /* LOGGER_VERBOSE */
+#endif /* logger_config_h */

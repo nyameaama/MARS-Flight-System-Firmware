@@ -32,6 +32,8 @@
 
 #include "../../statemachine/_ptam.h"
 #include "../logger.hpp"
+#include "../logger_config.h"
+
 
 extern "C"
 {
@@ -62,5 +64,6 @@ extern "C"
 
                 state = Log.get_event_state(result);
                 std::cout << state;
+
         }
 }
