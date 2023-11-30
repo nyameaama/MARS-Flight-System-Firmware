@@ -428,7 +428,7 @@ std::string Logger::get_tag(std::string formatted_data, std::string label)
     size_t start = formatted_data.find(label);
     if (start != std::string::npos)
     {
-        start += label.length() + 1;
+        start += label.length();
         size_t end = formatted_data.find("\n", start);
         if (end != std::string::npos)
         {
@@ -436,5 +436,5 @@ std::string Logger::get_tag(std::string formatted_data, std::string label)
             eventTAG = ID;
         }
     }
-    return eventTAG;
+    return eventTAG += "\n \n";
 }
