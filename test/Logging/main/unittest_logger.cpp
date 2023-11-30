@@ -32,8 +32,6 @@
 
 #include "../../statemachine/_ptam.h"
 #include "../logger.hpp"
-#include "../logger_config.h"
-
 
 extern "C"
 {
@@ -65,5 +63,27 @@ extern "C"
                 state = Log.get_event_state(result);
                 std::cout << state;
 
+                std::string data = "Data message test";
+                data = Log.LOG_INFO(data);
+                std::string info_get = Log.get_info(data);
+
+                std::cout << data;
+                std::cout << "INFO: DATA " << info_get;
+
+                data = "Data message test";
+                std::string label = "CUSTOM";
+                data = Log.LOG_INFO(label, data);
+
+                std::cout << data;
+
+                int64_t data_2 = 10'000;
+                label = "CUSTOM INT";
+                std::string marker = Log.LOG_INFO(label, data_2);
+
+                std::cout << marker;
+
+                std::string INFO_GET = Log.get_info(marker);
+
+                std::cout << INFO_GET;
         }
 }

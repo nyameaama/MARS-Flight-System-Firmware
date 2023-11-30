@@ -5,9 +5,9 @@
  * This is the main logger module where prototypes are declared
  *
  * @date August 18th 2023
- * @copyright Copyright (c) 2023 limitless Aeronautics
+ * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
- * @author Lukas Jackson
+ * @author Lukas Jackson (LukasJacksonEG@gmail.com)
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics
@@ -33,7 +33,9 @@
 
 /* Log includes */
 #include "include/logtypes.h"
-#include "logger_config.h"
+#include <iomanip>
+#include "esp_timer.h"
+
 
 class Logger
 {
@@ -81,8 +83,23 @@ public:
     uint64_t get_event_time(std::string formatted_data);
 
     /**
-     * @brief Get the event state from log message
+     * @brief Return the current runtime in H-M-S-M
+     *
+     *
+     */
+    uint64_t get_timestamp();
+
+    /**
+     * @brief Converts timestampt into H-M-S-M format
      * 
+     * @param ms 
+     * @return std::string 
+     */
+    std::string convert_time(uint64_t ms);
+
+    /**
+     * @brief Get the event state from log message
+     *
      * @param formatted_data
      * @return uint8_t 
      */
@@ -111,10 +128,41 @@ public:
      * @return void
      */
     std::string LOG_EVENT(std::string log_data);
+
+    /**
+     * @brief Specifically logs an info event
+     *
+     * @param info
+     * @return std::string
+     */
+    std::string LOG_INFO(std::string data);
+
+    /**
+     * @brief Specifcally logs an event along with specified tag
+     *
+     * @param label
+     * @param data
+     * @return std::string
+     */
+    std::string LOG_INFO(std::string label, std::string data);
+
+    /**
+     * @brief Specifcally logs an event along with specified tag
+     *
+     * @param label
+     * @param data
+     * @return std::string
+     */
+    std::string LOG_INFO(std::string label, int64_t data);
+
+    /**
+     * @brief deparse info data from given formatted string
+     *
+     * @param formatted_data 
+     * @return std::string
+     */
+    std::string get_info(std::string formatted_data);
+
 };
-
-
-
-
 
 #endif /* LOGGER_HPP_ */

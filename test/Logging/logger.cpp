@@ -40,6 +40,7 @@
 std::string Logger::EVENT_LOG_SDD(void)
 {
     SharedMemory &obj = SharedMemory::getInstance();
+    Logger log;
 
     /* Query ptam registers for required data */
     std::string ID = obj.getLastString("stateDescript");
@@ -53,8 +54,8 @@ std::string Logger::EVENT_LOG_SDD(void)
 
     double RRS = obj.getLastDouble("WingRR");
 
-    uint64_t end_time = esp_timer_get_time();
-    uint64_t elapsed_time = end_time;
+    uint64_t elapsed_time = log.get_timestamp();
+    std::string formatted_time = log.convert_time(elapsed_time);
 
     std::string log_ev = "LOG_SDD";
 
@@ -63,7 +64,7 @@ std::string Logger::EVENT_LOG_SDD(void)
     formatted_output += "\n\n" + log_ev + ":\n";
     formatted_output += "\t{\n";
     formatted_output += "\t\tID: " + ID + "\n";
-    formatted_output += "\t\tTIME: " + std::to_string(elapsed_time) + "\n";
+    formatted_output += "\t\tTIME: " + formatted_time + "\n";
     formatted_output += "\t\tDATA: " + std::to_string(state_data) + "\n";
     formatted_output += "\t\tMACHINE-STATE: " + std::to_string(state_data) + "\n";
     formatted_output += "\t\tWING-FL-POS: " + std::to_string(FLS) + "\n";
@@ -84,6 +85,7 @@ std::string Logger::EVENT_LOG_SDD(void)
 std::string Logger::EVENT_LOG_SSL(void)
 {
     SharedMemory &obj = SharedMemory::getInstance();
+    Logger log;
 
     /* Query ptam registers */
     std::string state = obj.getLastString("stateDescript");
@@ -91,8 +93,8 @@ std::string Logger::EVENT_LOG_SSL(void)
 
     int state_data = obj.getLastInt("state");
 
-    uint64_t end_time = esp_timer_get_time();
-    uint64_t elapsed_time = end_time;
+    uint64_t elapsed_time = log.get_timestamp();
+    std::string formatted_time = log.convert_time(elapsed_time);
 
     /* Format and output data */
     std::string log_ev = "LOG_SSL";
@@ -101,7 +103,7 @@ std::string Logger::EVENT_LOG_SSL(void)
     formatted_output += "\n\n" + log_ev + ":\n";
     formatted_output += "\t{\n";
     formatted_output += "\t\tID: " + ID + "\n";
-    formatted_output += "\t\tTIME: " + std::to_string(elapsed_time) + "\n";
+    formatted_output += "\t\tTIME: " + formatted_time + "\n";
     formatted_output += "\t\tMACHINE-STATE: " + std::to_string(state_data) + "\n";
     formatted_output += "\t\tSTATE: " + state + "\n";
     formatted_output += "\t}\n\n";
@@ -121,12 +123,13 @@ std::string Logger::EVENT_LOG_SEL(std::string ID, mars_exception_t::Type excepti
                                   std::string additional_info)
 {
     SharedMemory &obj = SharedMemory::getInstance();
+    Logger log;
 
     /* Get ptam data */
     int state_data = obj.getLastInt("state");
 
-    uint64_t end_time = esp_timer_get_time();
-    uint64_t elapsed_time = end_time;
+    uint64_t elapsed_time = log.get_timestamp();
+    std::string formatted_time = log.convert_time(elapsed_time);
 
     /* Check which routine fail occurred */
     std::string exceptionTypeStr;
@@ -149,7 +152,7 @@ std::string Logger::EVENT_LOG_SEL(std::string ID, mars_exception_t::Type excepti
     formatted_output += "\n\n" + log_ev + ":\n";
     formatted_output += "\t{\n";
     formatted_output += "\t\tID: " + ID + "\n";
-    formatted_output += "\t\tTIME: " + std::to_string(elapsed_time) + "\n";
+    formatted_output += "\t\tTIME: " + formatted_time + "\n";
     formatted_output += "\t\tMACHINE-STATE: " + std::to_string(state_data) + "\n";
     formatted_output += "\t\tEXCEPTION-TYPE: " + std::to_string(exception_type) + "\n";
     formatted_output += "\t\tINFO: " + additional_info + "\n";
@@ -207,10 +210,66 @@ uint64_t Logger::get_event_time(std::string formatted_data)
 }
 
 /**
+ * @brief Formats timestamps and returns it
+ *
+ * @return uint64_t
+ */
+uint64_t Logger::get_timestamp()
+{
+    uint64_t microseconds = esp_timer_get_time();
+    time_t seconds = microseconds / 1000000;
+
+    // Calculate milliseconds
+    uint64_t milliseconds = microseconds % 1000000;
+
+    // Convert to hours, minutes, and seconds
+    int hours = seconds / 3600;
+    int minutes = (seconds % 3600) / 60;
+    int secs = seconds % 60;
+
+    // Pack the time components into a uint64_t
+    uint64_t packed_time = ((uint64_t)hours << 48) | ((uint64_t)minutes << 32) | ((uint64_t)secs << 16) | milliseconds;
+
+    return packed_time;
+}
+
+/**
+ * @brief Convert timestampt into H-M-S-M format
+ *
+ * @param milliseconds
+ * @return std::string
+ */
+std::string Logger::convert_time(uint64_t milliseconds)
+{
+    // Calculate seconds
+    uint64_t seconds = milliseconds / 1000;
+
+    // Extract hours, minutes, and remaining seconds
+    int hours = seconds / 3600;
+    int minutes = (seconds % 3600) / 60;
+    int secs = seconds % 60;
+
+    // Extract remaining milliseconds
+    int remaining_milliseconds = milliseconds % 1000;
+
+    // Create a stringstream to build the string
+    std::stringstream time_string;
+
+    // Format and append hours, minutes, seconds, and milliseconds
+    time_string << std::setfill('0') << std::setw(2) << hours << ":"
+                << std::setfill('0') << std::setw(2) << minutes << ":"
+                << std::setfill('0') << std::setw(2) << secs << "."
+                << std::setfill('0') << std::setw(3) << remaining_milliseconds;
+
+    // Return the string representation of the time
+    return time_string.str();
+}
+
+/**
  * @brief Parses a log to return the machine state of the specifc event
  *
- * @param formatted_data 
- * @return uint8_t 
+ * @param formatted_data
+ * @return uint8_t
  */
 uint8_t Logger::get_event_state(std::string formatted_data)
 {
@@ -221,9 +280,9 @@ uint8_t Logger::get_event_state(std::string formatted_data)
     {
         start += 15;
         size_t end = formatted_data.find("\n", start);
-        if(end!=std::string::npos)
+        if (end != std::string::npos)
         {
-            std::string stateStr = formatted_data.substr(start, end-start);
+            std::string stateStr = formatted_data.substr(start, end - start);
             eventState = std::stoul(stateStr);
         }
     }
@@ -232,9 +291,9 @@ uint8_t Logger::get_event_state(std::string formatted_data)
 
 /**
  * @brief Parses a SEL log to return the event exception
- * 
- * @param formatted_data 
- * @return uint8_t 
+ *
+ * @param formatted_data
+ * @return uint8_t
  */
 uint8_t Logger::get_event_exptn(std::string formatted_data)
 {
@@ -245,12 +304,112 @@ uint8_t Logger::get_event_exptn(std::string formatted_data)
     {
         start += 16;
         size_t end = formatted_data.find("\n", start);
-        if(end!=std::string::npos)
+        if (end != std::string::npos)
         {
-            std::string stateStr = formatted_data.substr(start, end-start);
+            std::string stateStr = formatted_data.substr(start, end - start);
             eventEXPT = std::stoul(stateStr);
         }
     }
     return eventEXPT;
 }
 
+/**
+ * @brief Specifically logs an info event
+ *
+ * @param info
+ * @return std::string
+ */
+std::string Logger::LOG_INFO(std::string data)
+{
+    Logger log;
+
+    uint64_t elapsed_time = log.get_timestamp();
+    std::string formatted_time = log.convert_time(elapsed_time);
+
+    std::string log_ev = "LOG_INFO";
+
+    std::string formatted_output;
+    formatted_output += "\n\n" + log_ev + ":\n";
+    formatted_output += "\t{\n";
+    formatted_output += "\t\tTIME: " + formatted_time + "\n";
+    formatted_output += "\t\tINFO: " + data + "\n";
+    formatted_output += "\t}\n\n";
+
+    return formatted_output;
+}
+
+/**
+ * @brief Specifcally logs an event along with specified tag
+ *
+ * @param label
+ * @param data
+ * @return std::string
+ */
+std::string Logger::LOG_INFO(std::string label, std::string data)
+{
+    Logger log;
+
+    uint64_t elapsed_time = log.get_timestamp();
+    std::string formatted_time = log.convert_time(elapsed_time);
+
+    std::string log_ev = "LOG_INFO";
+
+    std::string formatted_output;
+    formatted_output += "\n\n" + log_ev + ":\n";
+    formatted_output += "\t{\n";
+    formatted_output += "\t\tTIME: " + formatted_time + "\n";
+    formatted_output += "\t\t" + label + ": " + data + "\n";
+    formatted_output += "\t}\n\n";
+
+    return formatted_output;
+}
+
+/**
+ * @brief Specifcally logs an event along with specified tag
+ *
+ * @param label
+ * @param data
+ * @return std::string
+ */
+std::string Logger::LOG_INFO(std::string label, int64_t data)
+{
+    Logger log;
+
+    uint64_t elapsed_time = log.get_timestamp();
+    std::string formatted_time = log.convert_time(elapsed_time);
+
+    std::string log_ev = "LOG_INFO";
+
+    std::string formatted_output;
+    formatted_output += "\n\n" + log_ev + ":\n";
+    formatted_output += "\t{\n";
+    formatted_output += "\t\tTIME: " + formatted_time + "\n";
+    formatted_output += "\t\t" + label + ": " + std::to_string(data) + "\n";
+    formatted_output += "\t}\n\n";
+
+    return formatted_output;
+}
+
+/**
+ * @brief deparse info data from given formatted string
+ *
+ * @param formatted_data
+ * @return std::string
+ */
+std::string Logger::get_info(std::string formatted_data)
+{
+    std::string eventINFO = ""; // Default value if not found
+
+    size_t start = formatted_data.find("INFO: ");
+    if (start != std::string::npos)
+    {
+        start += 6; // Move to the start of the actual ID (skip "ID: ")
+        size_t end = formatted_data.find("\n", start);
+        if (end != std::string::npos)
+        {
+            std::string ID = formatted_data.substr(start, end - start);
+            eventINFO = ID;
+        }
+    }
+    return eventINFO;
+}
