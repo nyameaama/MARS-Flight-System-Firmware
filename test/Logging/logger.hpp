@@ -155,6 +155,14 @@ public:
      */
     std::string LOG_INFO(std::string label, int64_t data);
 
+    /**
+     * @brief deparse info data from given formatted string
+     *
+     * @param formatted_data 
+     * @return std::string
+     */
+    std::string get_info(std::string formatted_data);
+
 };
 
 #endif /* LOGGER_HPP_ */

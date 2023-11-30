@@ -389,3 +389,27 @@ std::string Logger::LOG_INFO(std::string label, int64_t data)
 
     return formatted_output;
 }
+
+/**
+ * @brief deparse info data from given formatted string
+ *
+ * @param formatted_data
+ * @return std::string
+ */
+std::string Logger::get_info(std::string formatted_data)
+{
+    std::string eventINFO = ""; // Default value if not found
+
+    size_t start = formatted_data.find("INFO: ");
+    if (start != std::string::npos)
+    {
+        start += 6; // Move to the start of the actual ID (skip "ID: ")
+        size_t end = formatted_data.find("\n", start);
+        if (end != std::string::npos)
+        {
+            std::string ID = formatted_data.substr(start, end - start);
+            eventINFO = ID;
+        }
+    }
+    return eventINFO;
+}
