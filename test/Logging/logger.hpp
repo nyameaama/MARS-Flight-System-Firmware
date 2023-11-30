@@ -163,6 +163,15 @@ public:
      */
     std::string get_info(std::string formatted_data);
 
+    /**
+     * @brief Pass formatted data and a specified label to retrieve data
+     * 
+     * @param formatted_data 
+     * @param label 
+     * @return std::string 
+     */
+    std::string get_tag(std::string formatted_data, std::string label);
+
 };
 
 #endif /* LOGGER_HPP_ */
