@@ -85,5 +85,9 @@ extern "C"
                 std::string INFO_GET = Log.get_info(marker);
 
                 std::cout << INFO_GET;
+
+                std::string formatted_data = Log.get_tag(marker, "TIME: ");
+
+                std::cout << formatted_data;
         }
 }
