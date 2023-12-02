@@ -1,5 +1,4 @@
-#[[
-MIT License
+/*MIT License
 
 Copyright (c) 2023 limitless Aeronautics
 
@@ -19,19 +18,25 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-]]
+SOFTWARE.*/
 
+#ifndef V_MOTOR_DEF
+#define V_MOTOR_DEF
 
-idf_component_register(SRCS "SD/_SD_FileSystem.cpp" 
-                            "Barometer/_barometerEntry.cpp"
-                            "Barometer/bmx280.cpp"
-                            "Display/ssd1306_fonts.cpp"
-                            "Display/ssd1306.cpp"
-                            "Servo/mg90s_servo.cpp"
-                            "Fan_cooling/fan_relay.cpp"
-                            "Barometer/_barometerEntry.cpp" 
-                            "Battery/_battery.cpp"
-                            "PWR_Motor/Vmotor.cpp"
-                        INCLUDE_DIRS "."
-                        REQUIRES PTAM esp_wifi esp_netif esp_http_server nvs_flash driver fatfs sdmmc vfs esp_adc)
+#include <cstdint>
+
+class V_MOTOR {
+    public:
+        static void motor_initialize(void);
+        
+        static uint8_t mcpwm_motor_control(uint8_t throttleValue);
+
+        static uint16_t map(uint8_t value, uint8_t fromLow, uint8_t fromHigh, uint16_t toLow, uint16_t toHigh);
+
+        static void esc_arm_sequence();
+
+        static void esc_disarm();
+
+};
+
+#endif // V_MOTOR_DEF
