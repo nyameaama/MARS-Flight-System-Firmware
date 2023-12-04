@@ -28,7 +28,7 @@
  */
 
 #include "../Logging/logger.hpp"
-#include "i2c.h"
+#include "driver/i2c.h"
 
 
 class i2c: protected Logger
