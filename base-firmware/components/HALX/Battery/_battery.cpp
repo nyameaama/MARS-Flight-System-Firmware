@@ -61,6 +61,9 @@ static const adc_unit_t unit = ADC_UNIT_1;
 #define BATTERY_MAX_ADC VOLTAGE_TO_ADC(VOLTAGE_OUT(VOLTAGE_MAX))
 #define BATTERY_MIN_ADC VOLTAGE_TO_ADC(VOLTAGE_OUT(VOLTAGE_MIN))
 
+#define ADC_FULL (2450)
+#define ADC_EMPTY ((int)((ADC_FULL * VOLTAGE_MIN) / VOLTAGE_MAX))
+
 
 //________________________________________________________________________
     /* Check the eFuse settings
@@ -154,7 +157,7 @@ double BATTERY::returnBatteryPercent(){
     //Attenuation Low = 150 mv
     //Attenuation High = 2450 mv
     // Battery voltage scale (10V to 12.6V)
-    double vrs = mapValue(adc, 150, 2450, VOLTAGE_MIN, VOLTAGE_MAX);
+    double vrs = mapValue(adc, ADC_EMPTY, ADC_FULL, VOLTAGE_MIN, VOLTAGE_MAX);
 
     //ESP_LOGI("TAG","VA: %f",vrs);
     //Now we do the same to get a percent value
