@@ -1,5 +1,6 @@
 /**
  * @file i2c.hpp
+ *
  * @brief Inter-Integrated Circuit(I2C) API declarations
  *
  *
@@ -27,14 +28,37 @@
  *          SOFTWARE.
  */
 
-#include "../Logging/logger.hpp"
+#ifndef i2c_master_hpp
+#define i2c_master_hpp
+
+#include <stdio.h>
+#include <string.h>
+#include "esp_log.h"
 #include "driver/i2c.h"
+#include "../Logging/logger.hpp"
+
+/* Master Config Macros */
+
+static const char *TAG = "i2c-master";
+
+#define I2C_MASTER_SCL_IO 22        /*!< gpio number for I2C master clock */
+#define I2C_MASTER_SDA_IO 21        /*!< gpio number for I2C master data  */
+#define I2C_MASTER_FREQ_HZ 100000   /*!< I2C master clock frequency */
+#define I2C_MASTER_TX_BUF_DISABLE 0 /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_RX_BUF_DISABLE 0 /*!< I2C master doesn't need buffer */
+#define SLAVE_ADDRESS 0x0A
+
+#define WRITE_BIT I2C_MASTER_WRITE /*!< I2C master write */
+#define READ_BIT I2C_MASTER_READ   /*!< I2C master read */
+#define ACK_CHECK_EN 0x1           /*!< I2C master will check ack from slave*/
+#define ACK_CHECK_DIS 0x0          /*!< I2C master will not check ack from slave */
+#define ACK_VAL 0x0                /*!< I2C ack value */
+#define NACK_VAL 0x1               /*!< I2C nack value */
 
 
-class i2c: protected Logger
+class I2C
 {
 public:
-
     /**
      * @brief Configure the master for use in I2C communications
      *
@@ -49,18 +73,30 @@ public:
      */
     esp_err_t i2c_master_conf(int i2c_master_port, i2c_mode_t mode, int sda_io_num, bool sda_pullup_en, int scl_io_num, bool scl_pullup_en, uint32_t clk_speed);
 
-        /**
-     * @brief Configure the slave for use in I2C communications
+    /**
+     * @brief Configure the master for use in I2C communications
      *
-     * @param i2c_slave_port   Port the slave will be assigned
+     * @param i2c_master_port   Port the master will be assigned
      * @param mode              I2C mode
      * @param sda_io_num        GPIO number for I2C SDA signal
      * @param sda_pullup_en     Enable pull mode for I2C SDA signal
      * @param scl_io_num        GPIO number for I2c SCL signal
      * @param scl_pullup_en     Enable pull mode for I2C SCL signal
-     * @param clk_speed         Clock frequency for master mode
      * @return esp_err_t
      */
-    esp_err_t i2c_slave_conf(int i2c_slave_port, int sda_io_num, bool sda_pullup_en, int scl_io_num, bool scl_pullup_en, i2c_mode_t mode, uint8_t addr_10bit_en, uint16_t slave_addr, uint32_t clk_speed);
+    esp_err_t i2c_master_conf(int i2c_master_port, i2c_mode_t mode, int sda_io_num, bool sda_pullup_en, int scl_io_num, bool scl_pullup_en);
 
+    /**
+     * @brief Sends a message over i2c master
+     *
+     * @param message   The message to be sent
+     * @param len       The exact size of the message sent
+     * @return esp_err_t
+     */
+    esp_err_t i2c_master_send_dta(uint8_t message[], int len);
+
+public:
+    int i2c_slave_port = 0;
 }
+
+#endif /* i2c_master_hpp */
