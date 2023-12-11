@@ -54,8 +54,8 @@ std::string Logger::EVENT_LOG_SDD(void)
 
     double RRS = obj.getLastDouble("WingRR");
 
-    uint64_t elapsed_time = log.get_timestamp();
-    std::string formatted_time = log.convert_time(elapsed_time);
+
+    std::string formatted_time = log.convert_time(72'000);
 
     std::string log_ev = "LOG_SDD";
 
@@ -93,8 +93,8 @@ std::string Logger::EVENT_LOG_SSL(void)
 
     int state_data = obj.getLastInt("state");
 
-    uint64_t elapsed_time = log.get_timestamp();
-    std::string formatted_time = log.convert_time(elapsed_time);
+
+    std::string formatted_time = log.convert_time(72'000);
 
     /* Format and output data */
     std::string log_ev = "LOG_SSL";
@@ -128,8 +128,7 @@ std::string Logger::EVENT_LOG_SEL(std::string ID, mars_exception_t::Type excepti
     /* Get ptam data */
     int state_data = obj.getLastInt("state");
 
-    uint64_t elapsed_time = log.get_timestamp();
-    std::string formatted_time = log.convert_time(elapsed_time);
+    std::string formatted_time = log.convert_time(72'000);
 
     /* Check which routine fail occurred */
     std::string exceptionTypeStr;
@@ -207,30 +206,6 @@ uint64_t Logger::get_event_time(std::string formatted_data)
         }
     }
     return eventTime;
-}
-
-/**
- * @brief Formats timestamps and returns it
- *
- * @return uint64_t
- */
-uint64_t Logger::get_timestamp()
-{
-    uint64_t microseconds = esp_timer_get_time();
-    time_t seconds = microseconds / 1000000;
-
-    // Calculate milliseconds
-    uint64_t milliseconds = microseconds % 1000000;
-
-    // Convert to hours, minutes, and seconds
-    int hours = seconds / 3600;
-    int minutes = (seconds % 3600) / 60;
-    int secs = seconds % 60;
-
-    // Pack the time components into a uint64_t
-    uint64_t packed_time = ((uint64_t)hours << 48) | ((uint64_t)minutes << 32) | ((uint64_t)secs << 16) | milliseconds;
-
-    return packed_time;
 }
 
 /**
@@ -323,8 +298,7 @@ std::string Logger::LOG_INFO(std::string data)
 {
     Logger log;
 
-    uint64_t elapsed_time = log.get_timestamp();
-    std::string formatted_time = log.convert_time(elapsed_time);
+    std::string formatted_time = log.convert_time(72'000);
 
     std::string log_ev = "LOG_INFO";
 
@@ -349,8 +323,7 @@ std::string Logger::LOG_INFO(std::string label, std::string data)
 {
     Logger log;
 
-    uint64_t elapsed_time = log.get_timestamp();
-    std::string formatted_time = log.convert_time(elapsed_time);
+    std::string formatted_time = log.convert_time(72'000);
 
     std::string log_ev = "LOG_INFO";
 
@@ -375,8 +348,7 @@ std::string Logger::LOG_INFO(std::string label, int64_t data)
 {
     Logger log;
 
-    uint64_t elapsed_time = log.get_timestamp();
-    std::string formatted_time = log.convert_time(elapsed_time);
+    std::string formatted_time = log.convert_time(72'000);
 
     std::string log_ev = "LOG_INFO";
 

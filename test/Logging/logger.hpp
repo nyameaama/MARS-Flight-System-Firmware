@@ -35,6 +35,7 @@
 #include "include/logtypes.h"
 #include <iomanip>
 #include "esp_timer.h"
+#include <time.h>
 
 
 class Logger
@@ -85,9 +86,13 @@ public:
     /**
      * @brief Return the current runtime in H-M-S-M
      *
+     * @param milliseconds
+     *
+     * @deprecated Please use convert_time() directly and pass milliseconds(ms).
      *
      */
-    uint64_t get_timestamp();
+    [[deprecated("This function is useless, please use convert_time() directly and pass milliseconds(ms).")]]
+    uint64_t get_timestamp(uint64_t milliseconds);
 
     /**
      * @brief Converts timestampt into H-M-S-M format
