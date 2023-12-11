@@ -38,6 +38,7 @@
 #include<string>
 #include<cstdio> // Include the C standard I/O library for printf
 #include<cstdint> // For uint types
+#include<stdio.h>
 
 /**
  * @brief mars expected return types

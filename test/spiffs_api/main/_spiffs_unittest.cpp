@@ -193,6 +193,7 @@ void performSpiffsOperations()
         return;
     }
 
+    /**
     for (int i = 1; i <= 5; ++i)
     {
         // Create a file path
@@ -214,6 +215,7 @@ void performSpiffsOperations()
             std::cout << "File created: " << file_path << std::endl;
         }
     }
+    **/
 
     // Confirm the existence of the old file before renaming
     FILE *test_file = fopen(file_path, "r");
@@ -265,6 +267,21 @@ void performSpiffsOperations()
         return;
     }
 
+    const char* new_data = "\e[1;35m Testing write to file second \e[0m";
+    esp_err_t write_ret_2 = spiffs_handler.write_to_file(new_file_path, new_data);
+    if (write_ret_2 != ESP_OK)
+    {
+        std::cerr << "Failed to write to file" << std::endl;
+        return;
+    }
+
+    char read_buffer2[64];
+    esp_err_t read_ret2 = spiffs_handler.read_from_file(new_file_path, read_buffer2, sizeof(read_buffer2));
+    if (read_ret2 != ESP_OK)
+    {
+        std::cerr << "Failed to read from file: " << new_file_path << std::endl;
+        return;
+    }
 
     // Unmount SPIFFS
     spiffs_handler.unmount_spiffs();
