@@ -30,7 +30,7 @@ SOFTWARE.*/
 #include"esp_log.h"
 #include "esp_timer.h"
 #include "esp_system.h"
-#include"../HALX/mg90s_servo.h"
+#include"../HALX/Servo/mg90s_servo.h"
 
 class CONTROLLER_TASKS {
     public: 

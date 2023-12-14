@@ -1,0 +1,16 @@
+dependencies:
+  RadioLib:
+    component_hash: 64b58cd2667c6d9eb57fbba4fb6259a16650aaea65216c3c04d682311b62148b
+    source:
+      git: https://github.com/jgromes/RadioLib.git
+      path: .
+      type: git
+    version: 77562c963a7c9940d29e062d1df921455989b85a
+  idf:
+    component_hash: null
+    source:
+      type: idf
+    version: 5.1.0
+manifest_hash: c9826bf20a07d840f0e038300225b0dd5ffb9110afd776bb5315c9a7f034fd6f
+target: esp32
+version: 1.0.0

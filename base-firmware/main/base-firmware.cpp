@@ -21,10 +21,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 #include"../components/Comms/_broadcast.h"
-#include"../components/HALX/mg90s_servo.h"
-#include"../components/HALX/ssd1306.h"
-#include"../components/HALX/fan_relay.h"
-#include"../components/HALX/_barometerEntry.h"
+#include"../components/HALX/Servo/mg90s_servo.h"
+#include"../components/HALX/Display/ssd1306.h"
+#include"../components/HALX/Fan_cooling/fan_relay.h"
+#include"../components/HALX/Barometer/_barometerEntry.h"
 #include"../components/PTAM/_ptam.h"
 #include"../components/system/validateSensors.h"
 #include"../components/system/_state.h"
@@ -40,6 +40,16 @@ SOFTWARE.*/
 #include"os_config.h"
 
 uint8_t DRONE_STATE = 1;
+
+void monitor_memory_task(void *pvParameters);
+void INIT_CORE0(void *pvParameters);
+
+extern "C"{
+    void app_main(void){
+        xTaskCreate(&monitor_memory_task, "memory_task", 2048, NULL, 5, NULL);
+        xTaskCreate(&INIT_CORE0, "INIT_CORE0", 4096, NULL, 5, NULL);
+    }
+}
 
 void monitor_memory_task(void *pvParameters) {
     while (1) {
@@ -178,9 +188,3 @@ void INIT_CORE0(void *pvParameters){
         }
 }
 
-extern "C"{
-    void app_main(void){
-        xTaskCreate(&monitor_memory_task, "memory_task", 2048, NULL, 5, NULL);
-        xTaskCreate(&INIT_CORE0, "INIT_CORE0", 4096, NULL, 5, NULL);
-    }
-}

@@ -1,4 +1,4 @@
-idf_component_register(SRCS "_battery.cpp" "_SD_FileSystem.cpp"
+idf_component_register(SRCS "I2Cdev.cpp" "HMC5883L.cpp" "_battery.cpp" "_SD_FileSystem.cpp"
                             "servoControl.cpp" 
                             "MotorController.cpp" 
                             "minmea.cpp"
@@ -14,4 +14,4 @@ idf_component_register(SRCS "_battery.cpp" "_SD_FileSystem.cpp"
                             "bno055.cpp"
                             "atgm336H.cpp"
                         INCLUDE_DIRS "."
-                        REQUIRES esp_wifi esp_netif esp_http_server nvs_flash driver fatfs sdmmc vfs esp_adc)
+                        REQUIRES esp_wifi esp_netif esp_http_server nvs_flash driver fatfs sdmmc vfs esp_adc esp_timer)

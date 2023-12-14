@@ -10,6 +10,10 @@
 #include "esp_log.h"
 #include "driver/i2c.h"
 
+#define PITCH (uint8_t) 0
+#define ROLL (uint8_t) 1
+#define YAW (uint8_t) 2
+
 class BMI088_IMU {
     public:
         static void IMU_INIT();
@@ -85,6 +89,12 @@ class BMI088_IMU {
         static double angle_read_roll();
 
         static double angle_read_yaw();
+
+        static double linearInterpolate(double input, double input_start, double input_end,
+                                            double output_start, double output_end);
+
+        static double readAugmentedIMUData(uint8_t angle_type);
+
 };
 
 #endif //IMU

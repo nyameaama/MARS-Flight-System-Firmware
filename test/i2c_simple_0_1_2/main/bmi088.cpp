@@ -158,8 +158,8 @@ void BMI088_IMU::IMU_INIT(){
 */
 esp_err_t BMI088_IMU::bm1088_accel_read(uint8_t reg_addr, uint8_t *data, size_t len){
     for (size_t i = 0; i < len; i++) {
-        ret = i2c_master_write_read_device(i2c_port_t(I2C_MASTER_NUM), BM1088_ACCEL_ADDRESS, (&reg_addr + i), 1,
-                                     (data + i), 1, I2C_MASTER_TIMEOUT_MS / portTICK_PERIOD_MS );
+        ret = i2c_master_write_read_device(i2c_port_t(I2C_MASTER_NUM), BM1088_ACCEL_ADDRESS, &reg_addr, 1,
+            data, len, I2C_MASTER_TIMEOUT_MS / portTICK_PERIOD_MS );
     }    
     return ret;
 }
@@ -169,8 +169,8 @@ esp_err_t BMI088_IMU::bm1088_accel_read(uint8_t reg_addr, uint8_t *data, size_t 
 */
 esp_err_t BMI088_IMU::bm1088_gyro_read(uint8_t reg_addr, uint8_t *data, size_t len){
     for (size_t i = 0; i < len; i++) {
-        ret = i2c_master_write_read_device(i2c_port_t(I2C_MASTER_NUM), BM1088_GYRO_ADDRESS, (&reg_addr + i), 1,
-                                     (data + i), 1, I2C_MASTER_TIMEOUT_MS / portTICK_PERIOD_MS );
+        ret = i2c_master_write_read_device(i2c_port_t(I2C_MASTER_NUM), BM1088_GYRO_ADDRESS, &reg_addr, 1,
+            data, len, I2C_MASTER_TIMEOUT_MS / portTICK_PERIOD_MS );
     }
     return ret;
 }
@@ -337,20 +337,57 @@ double BMI088_IMU::gyro_read_rawZ(){
 }
 
 double BMI088_IMU::angle_read_pitch(){
-    double x_Buff = gyro_read_rawX();
-    double y_Buff = gyro_read_rawY();
-    double z_Buff = gyro_read_rawZ();
+    double x_Buff = accel_read_rawX();
+    double y_Buff = accel_read_rawY();
+    double z_Buff = accel_read_rawZ();
     double pitch = atan2((- x_Buff) , sqrt(y_Buff * y_Buff + z_Buff * z_Buff)) * 57.3;
     return pitch;
 }
 
 double BMI088_IMU::angle_read_roll(){
-    double y_Buff = gyro_read_rawY();
-    double z_Buff = gyro_read_rawZ();
+    double y_Buff = accel_read_rawY();
+    double z_Buff = accel_read_rawZ();
     double roll = atan2(y_Buff , z_Buff) * 57.3;
     return roll;
 }
 
 double BMI088_IMU::angle_read_yaw(){
+    double previousTime, currentTime, elapsedTime;
+    previousTime = esp_timer_get_time();        // Previous time is stored before the actual time read
+    currentTime = esp_timer_get_time();           // Current time actual time read
+    elapsedTime = (currentTime - previousTime) / 1000; // Divide by 1000 to get seconds
+
+    double GyroZ = gyro_read_rawZ();
+    
+    double yaw = GyroZ * elapsedTime;
+    return yaw;
+}
+
+double BMI088_IMU::linearInterpolate(double input, double input_start, double input_end, 
+                                        double output_start, double output_end) {
+    // Map input range to output range
+    double slope = (output_end - output_start) / (input_end - input_start);
+    double output = output_start + slope * (input - input_start);
+    return output;
+}
+
+double BMI088_IMU::readAugmentedIMUData(uint8_t angle_type){
+    //Roll -> -90 to 90 Augmented to Pitch -90 to 90
+    //Pitch -> Augmented to Roll; Left = positive; Right = negative
+
+    //The BMI088 IMU is not oriented in the same direction as the vehicle's
+    //intended direction for accurate values so the data has to be augmented for
+    //accurate angle results
+    switch(angle_type){
+        case PITCH:
+            return -(angle_read_roll());
+            break;
+        case ROLL:
+            return -(linearInterpolate(angle_read_pitch(), -90, 90, -180, 180));
+            break;
+        case YAW:
+            return angle_read_yaw();
+            break;
+    }
     return 0;
 }
