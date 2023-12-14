@@ -42,6 +42,7 @@ extern "C" void app_main(void)
 {
     try
     {
+        Logger log;
         int master_port = 0;
         // creating master bus
         shared_ptr<I2CMaster> master(new I2CMaster(I2C_MASTER_NUM,
@@ -49,21 +50,37 @@ extern "C" void app_main(void)
                                                    I2C_MASTER_SDA_IO,
                                                    Frequency(400000)));
 
-        uint8_t on_command[] = "LED_ON";
-        uint8_t off_command[] = "LED_OFF";
-
-        uint8_t custom_command[] = "I2C Connection Successful!";
-
         ESP_LOGI(TAG, "I2C initialized successfully");
 
         while (1)
         {
-            master->i2c_master_send(on_command, sizeof(on_command), static_cast<int>(SLAVE_ADDRESS), static_cast<int>(ACK_CHECK_EN), static_cast<i2c_port_t>(master_port));
-            vTaskDelay(1000 / portTICK_PERIOD_MS);
-            master->i2c_master_send(off_command, sizeof(on_command), static_cast<int>(SLAVE_ADDRESS), static_cast<int>(ACK_CHECK_EN), static_cast<i2c_port_t>(master_port));
-            vTaskDelay(1000 / portTICK_PERIOD_MS);
-            master->i2c_master_send(custom_command, sizeof(on_command), static_cast<int>(SLAVE_ADDRESS), static_cast<int>(ACK_CHECK_EN), static_cast<i2c_port_t>(master_port));
-            vTaskDelay(1000 / portTICK_PERIOD_MS);
+            auto result = log.EVENT_LOG_SDD();
+            std::vector<uint8_t> resultVec(result.begin(), result.end());
+            uint8_t *res = &resultVec[0];
+
+            master->i2c_master_send(res, resultVec.size(), static_cast<int>(SLAVE_ADDRESS), static_cast<int>(ACK_CHECK_EN), static_cast<i2c_port_t>(master_port));
+            vTaskDelay(2000 / portTICK_PERIOD_MS);
+
+            auto result2 = log.EVENT_LOG_SEL("UAV-SEL-TEST-HARD-FAIL", mars_exception_t::ROUTINE_HARD_FAIL, "Submodule Down");
+            std::vector<uint8_t> resultVec2(result2.begin(), result2.end());
+            uint8_t *res2 = &resultVec2[0];
+
+            master->i2c_master_send(res2, resultVec2.size(), static_cast<int>(SLAVE_ADDRESS), static_cast<int>(ACK_CHECK_EN), static_cast<i2c_port_t>(master_port));
+            vTaskDelay(2000 / portTICK_PERIOD_MS);
+
+            auto result3 = log.EVENT_LOG_SSL();
+            std::vector<uint8_t> resultVec3(result3.begin(), result3.end());
+            uint8_t *res3 = &resultVec3[0];
+
+            master->i2c_master_send(res3, resultVec3.size(), static_cast<int>(SLAVE_ADDRESS), static_cast<int>(ACK_CHECK_EN), static_cast<i2c_port_t>(master_port));
+            vTaskDelay(2000 / portTICK_PERIOD_MS);
+
+            result2 = log.EVENT_LOG_SEL("UAV-SEL-TEST-SOFT-FAIL", mars_exception_t::ROUTINE_SOFT_FAIL, "Submodule Unresponsive");
+            std::vector<uint8_t> resultVec2_soft(result2.begin(), result2.end());
+            uint8_t *res2_soft = &resultVec2_soft[0];
+
+            master->i2c_master_send(res2_soft, resultVec2_soft.size(), static_cast<int>(SLAVE_ADDRESS), static_cast<int>(ACK_CHECK_EN), static_cast<i2c_port_t>(master_port));
+            vTaskDelay(2000 / portTICK_PERIOD_MS);
         }
     }
     catch (const I2CException &e)

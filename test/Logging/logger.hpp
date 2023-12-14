@@ -36,7 +36,13 @@
 #include <iomanip>
 #include "esp_timer.h"
 #include <time.h>
+#include <vector>
 
+struct LogEntry
+{
+    std::string logName;
+    std::string formattedLog;
+};
 
 class Logger
 {
@@ -178,5 +184,9 @@ public:
     std::string get_tag(std::string formatted_data, std::string label);
 
 };
+
+// Function to parse logs and extract log name and formatted log
+std::vector<LogEntry> parseLogs(const std::string& logData);
+
 
 #endif /* LOGGER_HPP_ */
