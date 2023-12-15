@@ -1,5 +1,5 @@
 /**
- * @file i2c_slave.cpp
+ * @file i2c_Master.cpp
  * @brief Inter-Integrated Circuit(I2C) SLAVE API definitions
  *
  *

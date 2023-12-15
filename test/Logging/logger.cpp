@@ -31,6 +31,40 @@
 #include "../statemachine/_ptam.h"
 #include "logger.hpp"
 
+// Function to parse logs and extract log name and formatted log
+std::vector<LogEntry> parseLogs(const std::string& logData) {
+    std::istringstream logStream(logData);
+    std::string line;
+
+    std::vector<LogEntry> logEntries;
+    LogEntry currentLog;
+
+    while (std::getline(logStream, line)) {
+        // Check if the line contains '{'
+        size_t braceStart = line.find('{');
+        if (braceStart != std::string::npos) {
+            currentLog.logName.clear();  // Clear logName for a new log entry
+            currentLog.formattedLog.clear();  // Clear formattedLog for a new log entry
+            currentLog.logName = line.substr(braceStart + 1, 6); // Assuming 6 characters for the log name (e.g., "LOG_SDD")
+            currentLog.formattedLog += line; // Include the current line in the formatted log
+        }
+
+        // Check if the line contains '}'
+        size_t braceEnd = line.find('}');
+        if (braceEnd != std::string::npos) {
+            currentLog.formattedLog += line.substr(0, braceEnd + 1); // Include the closing bracket
+            logEntries.push_back(currentLog);
+            currentLog.logName.clear(); // Clear logName for the next log entry
+            currentLog.formattedLog.clear(); // Clear formattedLog for the next log entry
+        } else if (!currentLog.logName.empty()) {
+            // If the log entry has started and not ended on this line
+            currentLog.formattedLog += line + "\n"; // Include the newline character
+        }
+    }
+
+    return logEntries;
+}
+
 /**
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
  *
@@ -71,7 +105,7 @@ std::string Logger::EVENT_LOG_SDD(void)
     formatted_output += "\t\tWING-FR-POS: " + std::to_string(FRS) + "\n";
     formatted_output += "\t\tWING-RL-POS: " + std::to_string(RLS) + "\n";
     formatted_output += "\t\tWING-RR-POS: " + std::to_string(RRS) + "\n";
-    formatted_output += "\t}\n\n";
+    formatted_output += "\t}\n\n\0";
 
     return formatted_output;
 }

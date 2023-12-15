@@ -174,6 +174,7 @@
 #include "gpio_cxx.hpp"
 #include "driver/i2c.h"
 #include "esp_log.h"
+#include "../Logging/logger.hpp"
 
 #include <stdio.h>
 #include <string.h>

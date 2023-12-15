@@ -174,9 +174,11 @@
 #include "gpio_cxx.hpp"
 #include "driver/i2c.h"
 #include "esp_log.h"
+#include "../Logging/logger.hpp"
 
 #include <stdio.h>
 #include <string.h>
+#include <vector>
 
 /* Predefined I2C Slave Macros */
 static const char *TAG = "i2c-master";
