@@ -20,85 +20,77 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include "_state.h"
+#include"fan_relay.h"
 
-std::string stateDescript;
-uint8_t state = 1;
+/* The devicetree node identifier for the "led0" alias. */
+#define LED0_NODE DT_ALIAS(led0)
+int ret;
+bool fanIsOn = false;
 
 //____________________________________________________________
-/* Change state to prep
+/* Initializes Fan Relay
 ===========================================================================
 |    void
 ===========================================================================
 */
-    uint8_t STATE::SWITCH2PREP(){
-        //Change variable
-        uint8_t change = 0;
-        //PREP -> 1
-        if(compareX(stateDescript,std::string("PREP"))){
-            change = 1;
-            state = 1;
-        } 
-        return change;
+void init_relay(){
+    /*
+    * A build error on this line means board is unsupported.
+    * See the sample documentation for information on how to fix this.
+    */
+    static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
+
+    if (!gpio_is_ready_dt(&led)) {
+        return 0;
     }
+    ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
+    if (ret < 0) {
+        return 0;
+    }
+}
+
 
 //____________________________________________________________
-/* Change state to armed
+/* Utillity subroutine -> Turn on cooling fan
 ===========================================================================
 |    void
 ===========================================================================
 */
-    uint8_t STATE::SWITCH2ARMED(){
-        //Change variable
-        uint8_t change = 0;
-        //ARMED -> 2
-        if(compareX(stateDescript,std::string("ARMED"))){
-            change = 1;
-            state = 2;
-        }
-        return change;
-    }
+void fan_relay_on(){
+    gpio_set_level(RELAY_GPIO_PIN, 1);
+}
+
 
 //____________________________________________________________
-/* Change state to bypass
+/* Utillity subroutine -> Turn off cooling fan
 ===========================================================================
 |    void
 ===========================================================================
 */
-    uint8_t STATE::SWITCH2BYPASS(){
-        //Change variable
-        uint8_t change = 0;
-        //BYPASS -> 3
-        if(compareX(stateDescript,std::string("BYPASS"))){
-            change = 1;
-            state = 3;
-        }
-        return change;
-    }
+void fan_relay_off(){
+    gpio_set_level(RELAY_GPIO_PIN, 0);
+}
+
 
 //____________________________________________________________
-/* Handler to update state description
+/* Main API routine -> Hard Regulate Temperature 
 ===========================================================================
 |    void
 ===========================================================================
 */
-    void STATE::updateState(std::string state){
-        //Update state description value
-        stateDescript = state;
-    }
+void coolSierra_task(double sierraTemp){
+    // Setpoints for turning the fan on and off
+    double fanOnSetpoint = 45.0;
+    double fanOffSetpoint = 35.0;
 
-//____________________________________________________________
-/* Compare two strings of type <std::string>
-===========================================================================
-|    void
-===========================================================================
-*/
-    //If output = 1, strings match
-    uint8_t STATE::compareX(std::string x, std::string y){
-        if (x != y){
-            return 0;
-        }
-        else{
-            return 1;
-        }
+    // Check if the temperature is above the fanOnSetpoint
+    if (sierraTemp > fanOnSetpoint && !fanIsOn) {
+        // Turn the fan on
+        fan_relay_on();
+        fanIsOn = true;
+    } else if (sierraTemp < fanOffSetpoint && fanIsOn) {
+        // Turn the fan off
+        fan_relay_off();
+        fanIsOn = false;
     }
+}

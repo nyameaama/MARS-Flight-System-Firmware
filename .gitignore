@@ -6,4 +6,5 @@
 .DS_Store
 .vscode/settings.json
 build/
+build_1/
 sdkconfig.old

@@ -3,4 +3,8 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(base-firmware-V2)
 
-target_sources(app PRIVATE src/main.cpp)
+target_sources(app PRIVATE src/main.c)
+
+# Application sources
+
+add_subdirectory(src/Fan_cooling)
