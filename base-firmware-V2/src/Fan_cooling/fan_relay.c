@@ -26,6 +26,7 @@ SOFTWARE.*/
 #define LED0_NODE DT_ALIAS(led0)
 int ret;
 bool fanIsOn = false;
+static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 
 //____________________________________________________________
 /* Initializes Fan Relay
@@ -38,8 +39,6 @@ void init_relay(){
     * A build error on this line means board is unsupported.
     * See the sample documentation for information on how to fix this.
     */
-    static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
-
     if (!gpio_is_ready_dt(&led)) {
         return 0;
     }
@@ -57,7 +56,7 @@ void init_relay(){
 ===========================================================================
 */
 void fan_relay_on(){
-    gpio_set_level(RELAY_GPIO_PIN, 1);
+    gpio_pin_set_dt(&led, 1);
 }
 
 
@@ -68,7 +67,7 @@ void fan_relay_on(){
 ===========================================================================
 */
 void fan_relay_off(){
-    gpio_set_level(RELAY_GPIO_PIN, 0);
+    gpio_pin_set_dt(&led, 0);
 }
 
 

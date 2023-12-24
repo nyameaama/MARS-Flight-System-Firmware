@@ -1,0 +1,23 @@
+&i2c1 {
+    display: display@40{
+        compatible = "i2c-device";
+        reg = < 0x40 >;
+        label = "ONBOARD_DISPLAY";
+    };
+};
+
+&i2c1 {
+    bmi088_acc: bmi088_acc@18{
+        compatible = "i2c-device";
+        reg = < 0x18 >;
+        label = "accel_bmi088";
+    };
+};
+
+&i2c1 {
+    bmi088_gyro: bmi088_gyro@68{
+        compatible = "i2c-device";
+        reg = < 0x68 >;
+        label = "gyro_bmi088";
+    };
+};
