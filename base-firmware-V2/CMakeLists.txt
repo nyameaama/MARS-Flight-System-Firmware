@@ -8,3 +8,5 @@ target_sources(app PRIVATE src/main.c)
 # Application sources
 
 add_subdirectory(src/Fan_cooling)
+add_subdirectory(src/Display)
+add_subdirectory(src/BMI088)

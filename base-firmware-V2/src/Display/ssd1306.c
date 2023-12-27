@@ -766,6 +766,7 @@ void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_
 	for(i = 0; i < count; i++){
 		dt[i+1] = data[i];
 	}
+	uint8_t ret;
 	ret = i2c_write_dt(&dev_i2c, dt, sizeof(dt));
 	if(ret != 0){
 		printk("Failed to write to I2C device address");
@@ -774,6 +775,7 @@ void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_
 
 void ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data) {
 	uint8_t msg[2] = {reg, data};
+	uint8_t ret;
 	ret = i2c_write_dt(&dev_i2c, msg, sizeof(data));
 	if(ret != 0){
 		printk("Failed to write to I2C device address");
