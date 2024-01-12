@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int hmac_set_callback (subscribe_upcall callback, void* callback_args);
+int hmac_set_callback(subscribe_upcall callback, void* callback_args);
 
 int hmac_set_key_buffer(uint8_t* buffer, uint32_t len);
 int hmac_set_data_buffer(uint8_t* buffer, uint32_t len);

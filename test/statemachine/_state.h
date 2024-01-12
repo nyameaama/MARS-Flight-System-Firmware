@@ -23,25 +23,26 @@ SOFTWARE.*/
 #ifndef _STATE_
 #define _STATE_
 
-#include<iostream>
-#include<string>
-#include"_ptam.h"
+#include <iostream>
+#include <string>
+#include "_ptam.h"
 
-class STATE {
-    public:
-        uint8_t SWITCH2PREP();
+class STATE
+{
+  public:
+    uint8_t SWITCH2PREP();
 
-        uint8_t SWITCH2ARMED();
+    uint8_t SWITCH2ARMED();
 
-        uint8_t SWITCH2BYPASS();
+    uint8_t SWITCH2BYPASS();
 
-        void ASSIGN_PREP_TASKS();
+    void ASSIGN_PREP_TASKS();
 
-        void UNDEF_FLAGS(std::string state);
+    void UNDEF_FLAGS(std::string state);
 
-        uint8_t compareX(std::string x, std::string y);
+    uint8_t compareX(std::string x, std::string y);
 
-        std::string getLastStateRequest();
+    std::string getLastStateRequest();
 };
 
-#endif //_STATE_
+#endif  //_STATE_

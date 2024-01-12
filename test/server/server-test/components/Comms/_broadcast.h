@@ -24,52 +24,53 @@ SOFTWARE.*/
 #define BROADCASTED_SERVER_H
 
 #include <esp_http_server.h>
-#include<cstdlib>
-#include<string>
-#include<sstream>
+#include <cstdlib>
 #include <iomanip>
-#include<vector>
-#include"page.h"
-#include"esp_log.h"
+#include <sstream>
+#include <string>
+#include <vector>
+#include "esp_log.h"
+#include "page.h"
 //#include"../PTAM/_ptam.h"
 
-class BroadcastedServer {
-    public:
-        static void wifi_event_handler(void* arg, esp_event_base_t event_base,
-                                    int32_t event_id, void* event_data);
-        void wifi_init_softap(void);
+class BroadcastedServer
+{
+  public:
+    static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t event_id,
+                                   void* event_data);
+    void wifi_init_softap(void);
 
-    private:
-        static std::string packData(const std::string& id1, float value1,
-                     const std::string& id2, float value2,
-                     const std::string& id3, float value3,
-                     const std::string& id4, float value4);
-        
-        static void extractValuesAndIds(const std::string& data, std::vector<std::string>& ids, std::vector<double>& values);
+  private:
+    static std::string packData(const std::string& id1, float value1, const std::string& id2,
+                                float value2, const std::string& id3, float value3,
+                                const std::string& id4, float value4);
 
-    private:
-        static esp_err_t root_handler(httpd_req_t *req);
+    static void extractValuesAndIds(const std::string& data, std::vector<std::string>& ids,
+                                    std::vector<double>& values);
 
-        static esp_err_t handle_GPS_request(httpd_req_t *req);
+  private:
+    static esp_err_t root_handler(httpd_req_t* req);
 
-        static esp_err_t handle_IMU1_request(httpd_req_t *req);
+    static esp_err_t handle_GPS_request(httpd_req_t* req);
 
-        static esp_err_t handle_IMU2_request(httpd_req_t *req);
+    static esp_err_t handle_IMU1_request(httpd_req_t* req);
 
-        static esp_err_t handle_W1_request(httpd_req_t *req);
+    static esp_err_t handle_IMU2_request(httpd_req_t* req);
 
-        static esp_err_t handle_AMB_request(httpd_req_t *req);
+    static esp_err_t handle_W1_request(httpd_req_t* req);
 
-        static esp_err_t handle_arm_token_request(httpd_req_t *req);
+    static esp_err_t handle_AMB_request(httpd_req_t* req);
 
-        static esp_err_t handle_SWP_incoming(httpd_req_t *req);
+    static esp_err_t handle_arm_token_request(httpd_req_t* req);
 
-        static esp_err_t handle_SYS_incoming(httpd_req_t *req);
+    static esp_err_t handle_SWP_incoming(httpd_req_t* req);
 
-        static esp_err_t handle_STATE_incoming(httpd_req_t *req);
+    static esp_err_t handle_SYS_incoming(httpd_req_t* req);
 
-    private:
-        const char *html_content = responseXX;
+    static esp_err_t handle_STATE_incoming(httpd_req_t* req);
+
+  private:
+    const char* html_content = responseXX;
 };
 
 #endif

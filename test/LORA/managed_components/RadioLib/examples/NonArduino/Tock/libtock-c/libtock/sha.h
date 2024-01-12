@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-int sha_set_callback (subscribe_upcall callback, void* callback_args);
+int sha_set_callback(subscribe_upcall callback, void* callback_args);
 
 int sha_set_data_buffer(uint8_t* buffer, uint32_t len);
 int sha_set_dest_buffer(uint8_t* buffer, uint32_t len);

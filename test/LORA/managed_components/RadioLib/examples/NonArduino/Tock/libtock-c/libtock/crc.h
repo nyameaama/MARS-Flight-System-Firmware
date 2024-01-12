@@ -15,7 +15,8 @@ extern "C" {
 // Algorithms prefixed with `SAM4L_` are native to that chip and thus require
 // no software post-processing on platforms using it.
 //
-enum crc_alg {
+enum crc_alg
+{
     // Polynomial 0x04C11DB7, output reversed then inverted ("CRC-32")
     CRC_32,
     // Polynomial 0x1EDC6F41, output reversed then inverted ("CRC-32C" / "Castagnoli")
@@ -33,14 +34,14 @@ int crc_exists(void);
 // Returns SUCCESS and sets `result` on success.
 // Returns EBUSY if a computation is already in progress.
 // Returns ESIZE if the buffer is too big for the unit.
-int crc_compute(const void *buf, size_t buflen, enum crc_alg, uint32_t *result);
+int crc_compute(const void* buf, size_t buflen, enum crc_alg, uint32_t* result);
 
 // Register a callback to receive CRC results
 //
 // The callback will receive these parameters, in order:
 //    status: SUCCESS if all inputs are valid, else EINVAL
 //    result: When status == SUCCESS, the CRC result
-int crc_subscribe(subscribe_upcall, void *);
+int crc_subscribe(subscribe_upcall, void*);
 
 // Provide the buffer over which to compute a CRC
 int crc_set_buffer(const void*, size_t);

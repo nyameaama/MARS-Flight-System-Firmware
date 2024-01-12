@@ -25,15 +25,16 @@ SOFTWARE.*/
 
 #include <iostream>
 #include <string>
-#include"../PTAM/_ptam.h"
+#include "../PTAM/_ptam.h"
 
-class SensorValidator {
-    public:
-        bool validateGPSData();
+class SensorValidator
+{
+  public:
+    bool validateGPSData();
 
-        bool validateIMUData();
-        
-        bool validateBMP280Data();
+    bool validateIMUData();
+
+    bool validateBMP280Data();
 };
 
-#endif // SENSOR_VALIDATOR_HPP
+#endif  // SENSOR_VALIDATOR_HPP

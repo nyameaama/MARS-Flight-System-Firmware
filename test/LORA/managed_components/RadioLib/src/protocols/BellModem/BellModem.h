@@ -1,48 +1,49 @@
 #if !defined(_RADIOLIB_BELL_MODEM_H)
 #define _RADIOLIB_BELL_MODEM_H
 
-#include "../../TypeDef.h"
 #include "../../Module.h"
+#include "../../TypeDef.h"
 #if defined(RADIOLIB_BUILD_ARDUINO)
 #include "../../ArduinoHal.h"
 #endif
 
 #if !RADIOLIB_EXCLUDE_BELL
 
-#include "../PhysicalLayer/PhysicalLayer.h"
 #include "../AFSK/AFSK.h"
-#include "../Print/Print.h"
+#include "../PhysicalLayer/PhysicalLayer.h"
 #include "../Print/ITA2String.h"
+#include "../Print/Print.h"
 
 /*!
   \struct BellModem_t
   \brief Definition of the Bell-compatible modem.
 */
-struct BellModem_t {
-  /*!
-    \brief Frequency of the mark tone.
-  */
-  int16_t freqMark;
+struct BellModem_t
+{
+    /*!
+      \brief Frequency of the mark tone.
+    */
+    int16_t freqMark;
 
-  /*!
-    \brief Frequency of the space tone.
-  */
-  int16_t freqSpace;
+    /*!
+      \brief Frequency of the space tone.
+    */
+    int16_t freqSpace;
 
-  /*!
-    \brief Baud rate.
-  */
-  int16_t baudRate;
+    /*!
+      \brief Baud rate.
+    */
+    int16_t baudRate;
 
-  /*!
-    \brief Frequency of the mark tone when replying.
-  */
-  int16_t freqMarkReply;
+    /*!
+      \brief Frequency of the mark tone when replying.
+    */
+    int16_t freqMarkReply;
 
-  /*!
-    \brief Frequency of the space tone when replying.
-  */
-  int16_t freqSpaceReply;
+    /*!
+      \brief Frequency of the space tone when replying.
+    */
+    int16_t freqSpaceReply;
 };
 
 // currently implemented Bell modems
@@ -54,10 +55,9 @@ extern const struct BellModem_t Bell202;
   \class BellClient
   \brief Client for Bell modem communication. The public interface is the same as Arduino Serial.
 */
-class BellClient: public AFSKClient, public RadioLibPrint {
-  
+class BellClient : public AFSKClient, public RadioLibPrint
+{
   public:
-    
     /*!
       \brief Whether the modem is replying.
       On some modems, the replying station has different tone frequencies.
@@ -123,7 +123,6 @@ class BellClient: public AFSKClient, public RadioLibPrint {
     float correction = 1.0;
     uint16_t toneLen = 0;
     bool autoStart = true;
-
 };
 
 #endif

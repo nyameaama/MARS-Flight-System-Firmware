@@ -24,23 +24,24 @@ SOFTWARE.*/
 #include <unordered_map>
 #include <vector>
 
-class DataStore {
-    private:
-        static std::unordered_map<std::string, std::vector<void*>>* data_map;
+class DataStore
+{
+  private:
+    static std::unordered_map<std::string, std::vector<void*>>* data_map;
 
-    public:
-        //+2 OVERLOADS
-        static void storeData(const std::string& id, const std::string& data);
-        static void storeData(const std::string& id, int data);
-        static void storeData(const std::string& id, double data);
+  public:
+    //+2 OVERLOADS
+    static void storeData(const std::string& id, const std::string& data);
+    static void storeData(const std::string& id, int data);
+    static void storeData(const std::string& id, double data);
 
-        static std::vector<std::string> getStringData(const std::string& id);
-        static std::vector<int> getIntData(const std::string& id);
-        static std::vector<double> getDoubleData(const std::string& id);
+    static std::vector<std::string> getStringData(const std::string& id);
+    static std::vector<int> getIntData(const std::string& id);
+    static std::vector<double> getDoubleData(const std::string& id);
 
-        static void clearData(const std::string& id);
-        static void clearData();
-        ~DataStore();
+    static void clearData(const std::string& id);
+    static void clearData();
+    ~DataStore();
 };
 
-#endif // DATASTORE_HPP
+#endif  // DATASTORE_HPP

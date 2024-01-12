@@ -18,7 +18,8 @@ const unsigned char PDU_TYPE_HEADER_MASK = 0xF;
 const unsigned char PDU_TXADD_HEADER_MASK = 0x40;
 const unsigned char PDU_RXADD_HEADER_MASK = 0x80;
 
-class Advertisement {
+class Advertisement
+{
   private:
     unsigned char header_[HEADER_SIZE];
     unsigned char address_[ADDRESS_SIZE];

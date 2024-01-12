@@ -3,16 +3,17 @@
 
 /* System includes */
 #include <iostream>
+#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <mutex>
 
 /* logger includes */
 #include "../Logging/logger.hpp"
 
-class SharedMemory {
-public:
+class SharedMemory
+{
+  public:
     static SharedMemory& getInstance();
 
     void storeString(const std::string& id, const std::string& data);
@@ -30,7 +31,7 @@ public:
     double getLastDouble(const std::string& id);
     int getLastInt(const std::string& id);
 
-private:
+  private:
     SharedMemory();
     ~SharedMemory();
 
@@ -40,10 +41,10 @@ private:
 
     std::mutex mutex_;
 
-private:
+  private:
     std::string getLastElement(const std::vector<std::string>& vec);
     double getLastElement(const std::vector<double>& vec);
     int getLastElement(const std::vector<int>& vec);
 };
 
-#endif // SHARED_MEMORY_H
+#endif  // SHARED_MEMORY_H

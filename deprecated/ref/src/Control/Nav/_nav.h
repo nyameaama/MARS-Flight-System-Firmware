@@ -23,14 +23,17 @@ SOFTWARE.*/
 #ifndef NAV_STACK
 #define NAV_STACK
 
-#include"../../util/defi.h"
-#include"../../util/utility.h"
+#include "../../util/defi.h"
+#include "../../util/utility.h"
 
-class NAVIGATION_STACK {
-    public:
-        double COMPUTE_BEARING(double current_lat,double current_long,double final_lat,double final_long);
+class NAVIGATION_STACK
+{
+  public:
+    double COMPUTE_BEARING(double current_lat, double current_long, double final_lat,
+                           double final_long);
 
-        double DISTANCE_BETWEEN(double current_lat,double current_long,double final_lat,double final_long);
+    double DISTANCE_BETWEEN(double current_lat, double current_long, double final_lat,
+                            double final_long);
 };
 
-#endif //NAV_STACK
+#endif  // NAV_STACK

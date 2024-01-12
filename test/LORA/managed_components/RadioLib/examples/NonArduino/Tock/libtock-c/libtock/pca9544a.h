@@ -23,7 +23,6 @@ int pca9544a_read_interrupts(void);
 // Get which channels are currently selected.
 int pca9544a_read_selected(void);
 
-
 //
 // Synchronous Versions
 //

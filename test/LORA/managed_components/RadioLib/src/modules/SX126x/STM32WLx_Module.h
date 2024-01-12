@@ -23,11 +23,12 @@ This file is licensed under the MIT License: https://opensource.org/licenses/MIT
  * radio control signals that are wired to internal registers instead of
  * actual GPIO pins.
  */
-class STM32WLx_Module : public Module {
-  // Note: We cannot easily override any methods here, since most calls
-  // are non-virtual and made through a Module*, so they would not be
-  // calling any overridden methods. This means this class works by
-  // overriding some of the callbacks in its constructor.
+class STM32WLx_Module : public Module
+{
+    // Note: We cannot easily override any methods here, since most calls
+    // are non-virtual and made through a Module*, so they would not be
+    // calling any overridden methods. This means this class works by
+    // overriding some of the callbacks in its constructor.
 
   public:
     STM32WLx_Module();

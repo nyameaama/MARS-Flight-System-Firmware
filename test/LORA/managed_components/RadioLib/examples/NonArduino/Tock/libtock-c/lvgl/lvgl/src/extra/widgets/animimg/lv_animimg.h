@@ -33,17 +33,18 @@ extern "C" {
 extern const lv_obj_class_t lv_animimg_class;
 
 /*Data of image*/
-typedef struct {
+typedef struct
+{
     lv_img_t img;
     lv_anim_t anim;
     /*picture sequence */
-    lv_img_dsc_t **dsc;
-    int8_t	pic_count;
+    lv_img_dsc_t** dsc;
+    int8_t pic_count;
 } lv_animimg_t;
 
-
 /*Image parts*/
-enum {
+enum
+{
     LV_ANIM_IMG_PART_MAIN,
 };
 typedef uint8_t lv_animimg_part_t;
@@ -58,7 +59,7 @@ typedef uint8_t lv_animimg_part_t;
  * @param copy pointer to a image object, if not NULL then the new object will be copied from it
  * @return pointer to the created animation image object
  */
-lv_obj_t * lv_animimg_create(lv_obj_t * parent);
+lv_obj_t* lv_animimg_create(lv_obj_t* parent);
 
 /*=====================
  * Setter functions
@@ -70,25 +71,25 @@ lv_obj_t * lv_animimg_create(lv_obj_t * parent);
  * @param dsc pointer to a series images
  * @param num images' number
  */
-void lv_animimg_set_src(lv_obj_t * img,  lv_img_dsc_t * dsc[], uint8_t num);
+void lv_animimg_set_src(lv_obj_t* img, lv_img_dsc_t* dsc[], uint8_t num);
 
 /**
  * Startup the  image animation.
  * @param img pointer to an animation image object
  */
-void lv_animimg_start(lv_obj_t * obj);
+void lv_animimg_start(lv_obj_t* obj);
 
 /**
  * Set the  image animation duration time. unit:ms
  * @param img pointer to an animation image object
  */
-void lv_animimg_set_duration(lv_obj_t * img, uint32_t duration);
+void lv_animimg_set_duration(lv_obj_t* img, uint32_t duration);
 
 /**
  * Set the image animation reapeatly play times.
  * @param img pointer to an animation image object
  */
-void lv_animimg_set_repeat_count(lv_obj_t * img, uint16_t count);
+void lv_animimg_set_repeat_count(lv_obj_t* img, uint16_t count);
 
 /*=====================
  * Getter functions

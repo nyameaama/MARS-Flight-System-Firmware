@@ -16,7 +16,7 @@ extern "C" {
  *
  * Side-effects: cancels any existing/outstanding timers
  */
-int alarm_internal_subscribe(subscribe_upcall cb, void *userdata);
+int alarm_internal_subscribe(subscribe_upcall cb, void* userdata);
 
 /*
  * Starts a oneshot alarm
@@ -28,7 +28,6 @@ int alarm_internal_subscribe(subscribe_upcall cb, void *userdata);
  * Side-effects: cancels any existing/outstanding timers
  */
 int alarm_internal_set(uint32_t reference, uint32_t dt);
-
 
 /*
  * Stops any outstanding hardware alarm.

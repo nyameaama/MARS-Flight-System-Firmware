@@ -11,9 +11,11 @@
 
 /*!
   \class AFSKClient
-  \brief Client for audio-based transmissions. Requires Arduino tone() function, and a module capable of direct mode transmission using DIO pins.
+  \brief Client for audio-based transmissions. Requires Arduino tone() function, and a module
+  capable of direct mode transmission using DIO pins.
 */
-class AFSKClient  {
+class AFSKClient
+{
   public:
     /*!
       \brief Default contructor.

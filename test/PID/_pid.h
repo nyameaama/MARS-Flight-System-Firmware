@@ -3,38 +3,37 @@
 
 //#include"../util/defi.h"
 
-#include<string.h>
-#include<stdint.h>
+#include <stdint.h>
+#include <string.h>
 
-//Different instances of PID computation will be called from this class so each unique process will
-//need to have constants stored so individual processes can be continued after end of class call
+// Different instances of PID computation will be called from this class so each unique process will
+// need to have constants stored so individual processes can be continued after end of class call
 
-class PROPORTIONAL_INTEGRAL_DERIVATIVE {
-    private:
-        uint8_t dt;
+class PROPORTIONAL_INTEGRAL_DERIVATIVE
+{
+  private:
+    uint8_t dt;
 
-    private:
-        void updateConstants(char* Process);
+  private:
+    void updateConstants(char* Process);
 
-        double getProportional();
+    double getProportional();
 
-        double getIntegral();
+    double getIntegral();
 
-        double getDerivative();
+    double getDerivative();
 
-        bool compare(char* x, char* y);
+    bool compare(char* x, char* y);
 
-        bool checkforInstance(char* tag);
+    bool checkforInstance(char* tag);
 
-    public:
-        //
-        double PID_MAIN(char* Process,double rocketPos,double setpoint);
+  public:
+    //
+    double PID_MAIN(char* Process, double rocketPos, double setpoint);
 
-        void createPIDinstance(char* tag,double kp,double ki,double kd);
+    void createPIDinstance(char* tag, double kp, double ki, double kd);
 
-        uint8_t retTests();
+    uint8_t retTests();
 };
-
-
 
 #endif

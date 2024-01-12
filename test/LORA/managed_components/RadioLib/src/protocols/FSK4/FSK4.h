@@ -5,14 +5,15 @@
 
 #if !RADIOLIB_EXCLUDE_FSK4
 
-#include "../PhysicalLayer/PhysicalLayer.h"
 #include "../AFSK/AFSK.h"
+#include "../PhysicalLayer/PhysicalLayer.h"
 
 /*!
   \class FSK4Client
   \brief Client for FSK-4 communication. The public interface is the same as Arduino Serial.
 */
-class FSK4Client {
+class FSK4Client
+{
   public:
     /*!
       \brief Constructor for FSK-4 mode.
@@ -20,13 +21,13 @@ class FSK4Client {
     */
     explicit FSK4Client(PhysicalLayer* phy);
 
-    #if !RADIOLIB_EXCLUDE_AFSK
+#if !RADIOLIB_EXCLUDE_AFSK
     /*!
       \brief Constructor for AFSK mode.
       \param audio Pointer to the AFSK instance providing audio.
     */
     explicit FSK4Client(AFSKClient* audio);
-    #endif
+#endif
 
     // basic methods
 
@@ -78,9 +79,9 @@ class FSK4Client {
   private:
 #endif
     PhysicalLayer* phyLayer;
-    #if !RADIOLIB_EXCLUDE_AFSK
+#if !RADIOLIB_EXCLUDE_AFSK
     AFSKClient* audioClient;
-    #endif
+#endif
 
     uint32_t baseFreq = 0, baseFreqHz = 0;
     uint32_t shiftFreq = 0, shiftFreqHz = 0;

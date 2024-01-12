@@ -7,12 +7,13 @@
 // code-generation bug?!
 const int MAX_SIZE = 10;
 
-class AdvertisementList {
+class AdvertisementList
+{
   private:
     int currentSize_;
     std::forward_list<Advertisement> list_;
     bool containsDevice(const Advertisement& advertisement) const;
-  
+
   public:
     // Constructor
     AdvertisementList();

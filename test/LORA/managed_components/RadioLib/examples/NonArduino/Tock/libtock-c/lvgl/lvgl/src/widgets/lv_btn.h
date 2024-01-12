@@ -26,9 +26,10 @@ extern "C" {
  *      TYPEDEFS
  **********************/
 
-typedef struct {
+typedef struct
+{
     lv_obj_t obj;
-}lv_btn_t;
+} lv_btn_t;
 
 extern const lv_obj_class_t lv_btn_class;
 
@@ -41,7 +42,7 @@ extern const lv_obj_class_t lv_btn_class;
  * @param parent    pointer to an object, it will be the parent of the new button
  * @return          pointer to the created button
  */
-lv_obj_t * lv_btn_create(lv_obj_t * parent);
+lv_obj_t* lv_btn_create(lv_obj_t* parent);
 
 /**********************
  *      MACROS

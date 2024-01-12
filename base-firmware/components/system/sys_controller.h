@@ -23,43 +23,43 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include<iostream>
-#include<string>
-#include"../PTAM/_ptam.h"
-#include"validateSensors.h"
-#include"esp_log.h"
-#include "esp_timer.h"
+#include <iostream>
+#include <string>
+#include "../HALX/Servo/mg90s_servo.h"
+#include "../PTAM/_ptam.h"
+#include "esp_log.h"
 #include "esp_system.h"
-#include"../HALX/Servo/mg90s_servo.h"
+#include "esp_timer.h"
+#include "validateSensors.h"
 
-class CONTROLLER_TASKS {
-    public: 
-        uint8_t verifyFlightConfiguration();
+class CONTROLLER_TASKS
+{
+  public:
+    uint8_t verifyFlightConfiguration();
 
-        std::string generateRandomAlphanumericToken(uint32_t seed1, uint32_t seed2, int length);
+    std::string generateRandomAlphanumericToken(uint32_t seed1, uint32_t seed2, int length);
 
-        void restart_after_idle_task();
+    void restart_after_idle_task();
 
-        bool log_event_handler();
+    bool log_event_handler();
 
-        void PTAM_REGISTER_SET();
+    void PTAM_REGISTER_SET();
 
-        //Start comms and attach interrupts 
-        void _init_();
+    // Start comms and attach interrupts
+    void _init_();
 
-        void _IDLE_();
+    void _IDLE_();
 
-        //Telemetry checks, peripheral checks
-        void _PREP_();
+    // Telemetry checks, peripheral checks
+    void _PREP_();
 
-        void _ARMED_();
+    void _ARMED_();
 
-        //For manual testing, implement bypass to respond to sensor and valve
-        //comms without additional processes.
-        //+1 Overload
-        void _bypass_(std::string sbc_id);
-        //void _bypass_(char* sbc_id,uint8_t peripheral_type=1); 
-
+    // For manual testing, implement bypass to respond to sensor and valve
+    // comms without additional processes.
+    //+1 Overload
+    void _bypass_(std::string sbc_id);
+    // void _bypass_(char* sbc_id,uint8_t peripheral_type=1);
 };
 
 #endif

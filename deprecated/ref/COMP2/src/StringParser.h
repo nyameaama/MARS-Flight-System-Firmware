@@ -21,13 +21,14 @@ SOFTWARE.*/
 
 #include <string>
 
-class StringParser {
-private:
+class StringParser
+{
+  private:
     std::string inputString;
     std::string extractedString;
     int extractedNumber;
 
-public:
+  public:
     StringParser(const std::string& input);
 
     void parse();

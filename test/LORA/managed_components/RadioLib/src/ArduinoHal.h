@@ -18,12 +18,15 @@
 /*!
   \class ArduinoHal
   \brief Arduino default hardware abstraction library implementation.
-  This class can be extended to support other Arduino platform or change behaviour of the default implementation.
+  This class can be extended to support other Arduino platform or change behaviour of the default
+  implementation.
 */
-class ArduinoHal : public RadioLibHal {
+class ArduinoHal : public RadioLibHal
+{
   public:
     /*!
-      \brief Arduino Hal constructor. Will use the default SPI interface and automatically initialize it.
+      \brief Arduino Hal constructor. Will use the default SPI interface and automatically
+      initialize it.
     */
     ArduinoHal();
 
@@ -69,13 +72,13 @@ class ArduinoHal : public RadioLibHal {
     SPISettings spiSettings = RADIOLIB_DEFAULT_SPI_SETTINGS;
     bool initInterface = false;
 
-    #if defined(RADIOLIB_MBED_TONE_OVERRIDE)
-    mbed::PwmOut *pwmPin = NULL;
-    #endif
+#if defined(RADIOLIB_MBED_TONE_OVERRIDE)
+    mbed::PwmOut* pwmPin = NULL;
+#endif
 
-    #if defined(RADIOLIB_ESP32)
+#if defined(RADIOLIB_ESP32)
     int32_t prev = -1;
-    #endif
+#endif
 };
 
 #endif

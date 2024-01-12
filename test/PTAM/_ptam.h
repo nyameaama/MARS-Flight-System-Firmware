@@ -30,7 +30,6 @@
  *          SOFTWARE.
  */
 
-
 #ifndef DATASTORE_HPP
 #define DATASTORE_HPP
 
@@ -41,17 +40,17 @@
 #include <vector>
 
 /* Logger includes */
-#include"../Logging/logger.hpp"
+#include "../Logging/logger.hpp"
 
-class DataStore {
-private:
+class DataStore
+{
+  private:
     static std::unordered_map<std::string, std::vector<void*>>* data_map;
 
-public:
+  public:
     static void storeData(const std::string& id, const std::string& data);
     static void storeData(const std::string& id, int data);
     static void storeData(const std::string& id, double data);
-
 
     static std::vector<std::string> getStringData(const std::string& id);
     static std::vector<int> getIntData(const std::string& id);
@@ -62,4 +61,4 @@ public:
     ~DataStore();
 };
 
-#endif // DATASTORE_HPP
+#endif  // DATASTORE_HPP

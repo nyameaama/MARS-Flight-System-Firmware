@@ -23,63 +23,64 @@ SOFTWARE.*/
 #ifndef BAROMETER_
 #define BAROMETER_
 
-#include"esp_log.h"
-#include"../PTAM/_ptam.h"
-#include<math.h>
+#include <math.h>
+#include "../PTAM/_ptam.h"
+#include "esp_log.h"
 
 #define DEFAULT_SEA_LEVEL 1013.25
 
-class VEHICLE_BARO {
-    public:
-        //________________________________________________________________________
-        /* Initialize the barometer sensor
-        ===========================================================================
-        | void
-        ===========================================================================
-        */
-        static void init_barometer(void);
+class VEHICLE_BARO
+{
+  public:
+    //________________________________________________________________________
+    /* Initialize the barometer sensor
+    ===========================================================================
+    | void
+    ===========================================================================
+    */
+    static void init_barometer(void);
 
-        //________________________________________________________________________
-        /* Start a measurement with the barometer sensor
-        ===========================================================================
-        | void
-        ===========================================================================
-        */
-        static void startMeasurement();
+    //________________________________________________________________________
+    /* Start a measurement with the barometer sensor
+    ===========================================================================
+    | void
+    ===========================================================================
+    */
+    static void startMeasurement();
 
-        //________________________________________________________________________
-        /* Push the temperature data from the barometer sensor
-        ===========================================================================
-        | Returns: float - The temperature data.
-        ===========================================================================
-        */
-        static float pushTemperature();
+    //________________________________________________________________________
+    /* Push the temperature data from the barometer sensor
+    ===========================================================================
+    | Returns: float - The temperature data.
+    ===========================================================================
+    */
+    static float pushTemperature();
 
-        //________________________________________________________________________
-        /* Push the pressure data from the barometer sensor
-        ===========================================================================
-        | Returns: float - The pressure data.
-        ===========================================================================
-        */
-        static float pushPressure();
+    //________________________________________________________________________
+    /* Push the pressure data from the barometer sensor
+    ===========================================================================
+    | Returns: float - The pressure data.
+    ===========================================================================
+    */
+    static float pushPressure();
 
-        //________________________________________________________________________
-        /* Push the humidity data from the barometer sensor
-        ===========================================================================
-        | Returns: float - The humidity data.
-        ===========================================================================
-        */
-        static float pushHumidity();
+    //________________________________________________________________________
+    /* Push the humidity data from the barometer sensor
+    ===========================================================================
+    | Returns: float - The humidity data.
+    ===========================================================================
+    */
+    static float pushHumidity();
 
-        //________________________________________________________________________
-        /* Push the altitude data calculated based on sea level pressure
-        ===========================================================================
-        | Parameters:
-        |    - seaLevelhPa: Sea level pressure in hectopascals.
-        | Returns: double - The calculated altitude.
-        ===========================================================================
-        */
-        static double pushAltitude(double seaLevelhPa);
+    //________________________________________________________________________
+    /* Push the altitude data calculated based on sea level pressure
+    ===========================================================================
+    | Parameters:
+    |    - seaLevelhPa: Sea level pressure in hectopascals.
+    | Returns: double - The calculated altitude.
+    ===========================================================================
+    */
+    static double pushAltitude(double seaLevelhPa);
 };
 
-#endif //BAROMETER_
+#endif  // BAROMETER_

@@ -23,25 +23,26 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include"../util/defi.h"
+#include "../util/defi.h"
 
-#define INDIVIDUAL (uint8_t) 0
-#define SIMULTANEOUS (uint8_t) 1
+#define INDIVIDUAL (uint8_t)0
+#define SIMULTANEOUS (uint8_t)1
 
 #define MOTOR_FL 1
 #define MOTOR_FR 2
 #define MOTOR_RL 3
 #define MOTOR_RR 4
 
-class _WING_DYNAMICS{
-    public:
-        uint8_t _translateRight(uint8_t range);
+class _WING_DYNAMICS
+{
+  public:
+    uint8_t _translateRight(uint8_t range);
 
-        uint8_t _translateLeft(uint8_t range);
+    uint8_t _translateLeft(uint8_t range);
 
-        uint8_t _translateUp(uint8_t range);
+    uint8_t _translateUp(uint8_t range);
 
-        uint8_t _translateDown(uint8_t range);
+    uint8_t _translateDown(uint8_t range);
 };
 
-#endif //_WINGC
+#endif  //_WINGC

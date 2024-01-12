@@ -1,8 +1,8 @@
 /*L3GD20 3 axis gyroscope and temperature sensor
-*
-* <https://www.pololu.com/file/0J563/L3GD20.pdf>
-*
-*/
+ *
+ * <https://www.pololu.com/file/0J563/L3GD20.pdf>
+ *
+ */
 
 #pragma once
 
@@ -20,12 +20,12 @@ extern "C" {
 #define L3GD20_SCALE_2000 2
 
 // HPF Divider
-#define L3GD20_HPF_DIV_1 0 
+#define L3GD20_HPF_DIV_1 0
 #define L3GD20_HPF_DIV_2 1
 #define L3GD20_HPF_DIV_4 2
 #define L3GD20_HPF_DIV_8 3
 #define L3GD20_HPF_DIV_16 4
-#define L3GD20_HPF_DIV_32 5     
+#define L3GD20_HPF_DIV_32 5
 #define L3GD20_HPF_DIV_64 6
 #define L3GD20_HPF_DIV_128 7
 #define L3GD20_HPF_DIV_256 8
@@ -37,19 +37,20 @@ extern "C" {
 #define L3GD20_HPF_MODE_NORMAL 2
 #define L3GD20_HPF_MODE_AUTO_RESET 3
 
-typedef struct l3gd20xyz {
-	float x;
-	float y;
-	float z;
+typedef struct l3gd20xyz
+{
+    float x;
+    float y;
+    float z;
 } L3GD20XYZ;
 
-bool l3gd20_is_present (void);
-int l3gd20_power_on (void);
-int l3gd20_set_scale (unsigned char scale);
-int l3gd20_enable_hpf (bool enabled);
-int l3gd20_set_hpf_parameters (unsigned char mode, unsigned char divider);
-int l3gd20_read_xyz (L3GD20XYZ *xyz);
-int l3gd20_read_temperature (int *temperature);
+bool l3gd20_is_present(void);
+int l3gd20_power_on(void);
+int l3gd20_set_scale(unsigned char scale);
+int l3gd20_enable_hpf(bool enabled);
+int l3gd20_set_hpf_parameters(unsigned char mode, unsigned char divider);
+int l3gd20_read_xyz(L3GD20XYZ* xyz);
+int l3gd20_read_temperature(int* temperature);
 
 #ifdef __cplusplus
 }

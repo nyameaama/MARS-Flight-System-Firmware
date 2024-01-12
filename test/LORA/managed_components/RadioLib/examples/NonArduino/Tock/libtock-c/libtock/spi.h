@@ -29,19 +29,19 @@ int spi_get_chip_select(void);
 int spi_set_rate(int rate);
 int spi_get_rate(void);
 
-  /* false means sample on a leading (low to high) clock edge
-   * true means sample on a trailing (high to low) clock edge */
+/* false means sample on a leading (low to high) clock edge
+ * true means sample on a trailing (high to low) clock edge */
 int spi_set_phase(bool phase);
 int spi_get_phase(void);
 
-  /* false means an idle clock is low
-   * true means an idle clock is high. */
+/* false means an idle clock is low
+ * true means an idle clock is high. */
 int spi_set_polarity(bool pol);
 int spi_get_polarity(void);
 
-  /* Only partially supported, depending on implementation. In some cases
-     allows a process to hold its chip select line low over multiple SPI
-     operations*/
+/* Only partially supported, depending on implementation. In some cases
+   allows a process to hold its chip select line low over multiple SPI
+   operations*/
 int spi_hold_low(void);
 int spi_release_low(void);
 

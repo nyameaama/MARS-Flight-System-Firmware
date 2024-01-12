@@ -12,7 +12,8 @@
   \class SX1281
   \brief Derived class for %SX1281 modules.
 */
-class SX1281: public SX128x {
+class SX1281 : public SX128x
+{
   public:
     /*!
       \brief Default constructor.
@@ -23,7 +24,6 @@ class SX1281: public SX128x {
 #if !RADIOLIB_GODMODE
   private:
 #endif
-
 };
 
 #endif
