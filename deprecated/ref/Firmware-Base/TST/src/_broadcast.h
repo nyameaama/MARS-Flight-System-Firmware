@@ -1,33 +1,34 @@
 #ifndef BROADCASTED_SERVER_H
 #define BROADCASTED_SERVER_H
 
-#include <WiFi.h>
 #include <WebServer.h>
+#include <WiFi.h>
 #include "page.h"
 
-class BroadcastedServer {
-    public:
-        BroadcastedServer();
+class BroadcastedServer
+{
+  public:
+    BroadcastedServer();
 
-        void begin();
+    void begin();
 
-        void handleClient();
+    void handleClient();
 
-        void sendWebpage();
+    void sendWebpage();
 
-        void performTask();
+    void performTask();
 
-        void handleNotFound();
+    void handleNotFound();
 
-    private:
-        void set_ALT_REGISTER();
+  private:
+    void set_ALT_REGISTER();
 
-        void set_LAT_REGISTER();
+    void set_LAT_REGISTER();
 
-        void set_LNG_REGISTER();
+    void set_LNG_REGISTER();
 
-    private:
-        WebServer server;
+  private:
+    WebServer server;
 };
 
 #endif

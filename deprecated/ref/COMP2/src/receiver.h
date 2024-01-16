@@ -21,11 +21,12 @@ SOFTWARE.*/
 
 #include <SoftwareSerial.h>
 
-class UnoReceiver {
-    private:
+class UnoReceiver
+{
+  private:
     SoftwareSerial mySerial;
-    
-    public:
+
+  public:
     UnoReceiver(int rxPin, int txPin);
 
     void setup();

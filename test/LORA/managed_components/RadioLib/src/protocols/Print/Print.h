@@ -6,33 +6,39 @@
 #include "ITA2String.h"
 
 // supported encoding schemes
-#define RADIOLIB_ASCII                                          0
-#define RADIOLIB_ASCII_EXTENDED                                 1
-#define RADIOLIB_ITA2                                           2
+#define RADIOLIB_ASCII 0
+#define RADIOLIB_ASCII_EXTENDED 1
+#define RADIOLIB_ITA2 2
 
 // based on Arduino Print class
-class RadioLibPrint {
+class RadioLibPrint
+{
   public:
     virtual size_t write(uint8_t) = 0;
-    size_t write(const char *str) {
-      if (str == NULL) return 0;
-      return write((const uint8_t *)str, strlen(str));
+    size_t
+    write(const char* str)
+    {
+        if (str == NULL)
+            return 0;
+        return write((const uint8_t*)str, strlen(str));
     }
-    virtual size_t write(const uint8_t *buffer, size_t size);
-    size_t write(const char *buffer, size_t size) {
-      return write((const uint8_t *)buffer, size);
+    virtual size_t write(const uint8_t* buffer, size_t size);
+    size_t
+    write(const char* buffer, size_t size)
+    {
+        return write((const uint8_t*)buffer, size);
     }
 
     size_t print(ITA2String& ita2);
     size_t println(ITA2String& ita2);
 
-    #if defined(RADIOLIB_BUILD_ARDUINO)
-    size_t print(const __FlashStringHelper *);
-    size_t print(const String &);
+#if defined(RADIOLIB_BUILD_ARDUINO)
+    size_t print(const __FlashStringHelper*);
+    size_t print(const String&);
 
-    size_t println(const __FlashStringHelper *);
-    size_t println(const String &);
-    #endif
+    size_t println(const __FlashStringHelper*);
+    size_t println(const String&);
+#endif
 
     size_t print(const char[]);
     size_t print(char);
@@ -61,7 +67,6 @@ class RadioLibPrint {
 
     size_t printNumber(unsigned long, uint8_t);
     size_t printFloat(double, uint8_t);
-
 };
 
 #endif

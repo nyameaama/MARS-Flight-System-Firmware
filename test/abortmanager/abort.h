@@ -30,31 +30,31 @@
 #ifndef ABORT_H
 #define ABORT_H
 
-#include<cmath> // For math related functions
-#include"include/aborttypes.h" // For abort_t
+#include <cmath>                 // For math related functions
+#include "include/aborttypes.h"  // For abort_t
 
-#define ALPHA                                 0.98
+#define ALPHA 0.98
 
-#define PITCH_THRESHOLD_DEGREES             (int16_t)       90.00
-#define PITCH_THRESHOLD_RADIANS             (int16_t)       (PITCH_THRESHOLD_DEGREES * M_PI / 180)
+#define PITCH_THRESHOLD_DEGREES (int16_t)90.00
+#define PITCH_THRESHOLD_RADIANS (int16_t)(PITCH_THRESHOLD_DEGREES * M_PI / 180)
 
-#define YAW_THRESHOLD_DEGREES               (int16_t)       180.00
-#define YAW_THRESHOLD_RADIANS               (int16_t)       (YAW_THRESHOLD_DEGREES * M_PI / 180)
+#define YAW_THRESHOLD_DEGREES (int16_t)180.00
+#define YAW_THRESHOLD_RADIANS (int16_t)(YAW_THRESHOLD_DEGREES * M_PI / 180)
 
-#define ROLL_THRESHOLD_DEGREES              (int16_t)       180.00
-#define ROLL_THRESHOLD_RADIANS              (int16_t)       (ROLL_THRESHOLD_DEGREES * M_PI / 180)
+#define ROLL_THRESHOLD_DEGREES (int16_t)180.00
+#define ROLL_THRESHOLD_RADIANS (int16_t)(ROLL_THRESHOLD_DEGREES * M_PI / 180)
 
-#define FLIGHT_PATH_THRESHOLD_LATITUDE      (int16_t)       90.00
-#define FLIGHT_PATH_THRESHOLD_LONGITUDE     (int16_t)       180.00
+#define FLIGHT_PATH_THRESHOLD_LATITUDE (int16_t)90.00
+#define FLIGHT_PATH_THRESHOLD_LONGITUDE (int16_t)180.00
 
-#define EARTH_RADIUS                        (int16_t)       6371.00
-#define TO_RADIANS                          (degrees)       ((degrees) * M_PI / 180.0)
+#define EARTH_RADIUS (int16_t)6371.00
+#define TO_RADIANS (degrees)((degrees)*M_PI / 180.0)
 
 #define WEIGHTED_THRESHOLD 2
 
 class VAMS
 {
-public:
+  public:
     /**
      * @brief Verifies the range of vehicle PITCH
      *
@@ -64,7 +64,8 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    weighted_t VERIFY_PITCH(double accel_x, double accel_y, double accel_z, double gyro_x, double gyro_y, double gyro_z)noexcept(true);
+    weighted_t VERIFY_PITCH(double accel_x, double accel_y, double accel_z, double gyro_x,
+                            double gyro_y, double gyro_z) noexcept(true);
 
     /**
      * @brief Verifies the range of vehicle YAW
@@ -74,7 +75,7 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    weighted_t VERIFY_YAW(double magn_x, double magn_y)noexcept(true);
+    weighted_t VERIFY_YAW(double magn_x, double magn_y) noexcept(true);
 
     /**
      * @brief Verifies the range of vehicle ROLL
@@ -85,7 +86,7 @@ public:
      *
      * @return uint8_t | 0 if within -90 and 90 degrees OR 1 if out of those bounds.
      */
-    weighted_t VERIFY_ROLL(double accel_x, double accel_y, double accel_z)noexcept(true);
+    weighted_t VERIFY_ROLL(double accel_x, double accel_y, double accel_z) noexcept(true);
 
     /**
      * @brief The Haversine formula
@@ -96,7 +97,7 @@ public:
      * @param lon2      Ending Longitude
      * @return double | The distance calculated with parameters. (in KM)
      */
-    double haversine(double lat1, double lon1, double lat2, double lon2)noexcept(true);
+    double haversine(double lat1, double lon1, double lat2, double lon2) noexcept(true);
 
     /**
      * @brief Verifies the vehicle PATH
@@ -106,7 +107,8 @@ public:
      * @param boundaryRadius    Boundary radius set by the user
      * @return weighted_t | 0 or 2
      */
-    weighted_t VERIFY_PATH(const Vector3D& initloc, const Vector3D& targetloc, double boundaryRadius)noexcept(true);
+    weighted_t VERIFY_PATH(const Vector3D& initloc, const Vector3D& targetloc,
+                           double boundaryRadius) noexcept(true);
 
     /**
      * @brief Verifies the battery percentage.
@@ -115,7 +117,7 @@ public:
      *
      * @return double   | Battery percentage
      */
-    double VERIFY_BATTERY(double voltage)noexcept(true);
+    double VERIFY_BATTERY(double voltage) noexcept(true);
 
     /**
      * @brief VAMS decision matrix
@@ -126,9 +128,10 @@ public:
      * @param weightedPA    PATH weighted total
      * @return abort_t | If it shall abort or not
      */
-    abort_t VAMS_MATRIX(weighted_t weighted_PI, weighted_t weighted_YA, weighted_t weighted_RO, weighted_t weightedPA);
+    abort_t VAMS_MATRIX(weighted_t weighted_PI, weighted_t weighted_YA, weighted_t weighted_RO,
+                        weighted_t weightedPA);
 
-private:
+  private:
     static weighted_t weighted_pitch;
     static weighted_t weighted_yaw;
     static weighted_t weighted_roll;

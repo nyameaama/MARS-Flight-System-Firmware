@@ -13,8 +13,8 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../lv_conf_internal.h"
 #include <stdint.h>
+#include "../lv_conf_internal.h"
 
 /*********************
  *      DEFINES
@@ -23,12 +23,12 @@ extern "C" {
 /*Possible log level. For compatibility declare it independently from `LV_USE_LOG`*/
 
 #define LV_LOG_LEVEL_TRACE 0 /**< A lot of logs to give detailed information*/
-#define LV_LOG_LEVEL_INFO  1 /**< Log important events*/
-#define LV_LOG_LEVEL_WARN  2 /**< Log if something unwanted happened but didn't caused problem*/
+#define LV_LOG_LEVEL_INFO 1  /**< Log important events*/
+#define LV_LOG_LEVEL_WARN 2  /**< Log if something unwanted happened but didn't caused problem*/
 #define LV_LOG_LEVEL_ERROR 3 /**< Only critical issue, when the system may fail*/
-#define LV_LOG_LEVEL_USER  4 /**< Custom logs from the user*/
-#define LV_LOG_LEVEL_NONE  5 /**< Do not log anything*/
-#define _LV_LOG_LEVEL_NUM  6 /**< Number of log levels*/
+#define LV_LOG_LEVEL_USER 4  /**< Custom logs from the user*/
+#define LV_LOG_LEVEL_NONE 5  /**< Do not log anything*/
+#define _LV_LOG_LEVEL_NUM 6  /**< Number of log levels*/
 
 LV_EXPORT_CONST_INT(LV_LOG_LEVEL_TRACE);
 LV_EXPORT_CONST_INT(LV_LOG_LEVEL_INFO);
@@ -47,7 +47,7 @@ typedef int8_t lv_log_level_t;
 /**
  * Log print function. Receives a string buffer to print".
  */
-typedef void (*lv_log_print_g_cb_t)(const char *buf);
+typedef void (*lv_log_print_g_cb_t)(const char* buf);
 
 /**********************
  * GLOBAL PROTOTYPES
@@ -66,7 +66,7 @@ void lv_log_register_print_cb(lv_log_print_g_cb_t print_cb);
  * and/or a print callback if registered with `lv_log_register_print_cb`
  * @param buf       a string message to print
  */
-void lv_log(const char * buf);
+void lv_log(const char* buf);
 
 /**
  * Add a log
@@ -77,14 +77,16 @@ void lv_log(const char * buf);
  * @param format    printf-like format string
  * @param ...       parameters for `format`
  */
-void _lv_log_add(lv_log_level_t level, const char * file, int line, const char * func, const char * format, ...);
+void _lv_log_add(lv_log_level_t level, const char* file, int line, const char* func,
+                 const char* format, ...);
 
 /**********************
  *      MACROS
  **********************/
 
 #if LV_LOG_LEVEL <= LV_LOG_LEVEL_TRACE
-#define LV_LOG_TRACE(...) _lv_log_add(LV_LOG_LEVEL_TRACE, __FILE__, __LINE__, __func__, __VA_ARGS__);
+#define LV_LOG_TRACE(...) \
+    _lv_log_add(LV_LOG_LEVEL_TRACE, __FILE__, __LINE__, __func__, __VA_ARGS__);
 #else
 #define LV_LOG_TRACE(...)
 #endif
@@ -102,7 +104,8 @@ void _lv_log_add(lv_log_level_t level, const char * file, int line, const char *
 #endif
 
 #if LV_LOG_LEVEL <= LV_LOG_LEVEL_ERROR
-#define LV_LOG_ERROR(...) _lv_log_add(LV_LOG_LEVEL_ERROR, __FILE__, __LINE__, __func__, __VA_ARGS__);
+#define LV_LOG_ERROR(...) \
+    _lv_log_add(LV_LOG_LEVEL_ERROR, __FILE__, __LINE__, __func__, __VA_ARGS__);
 #else
 #define LV_LOG_ERROR(...)
 #endif

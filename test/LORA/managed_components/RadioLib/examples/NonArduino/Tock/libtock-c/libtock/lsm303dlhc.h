@@ -1,8 +1,8 @@
 /*LSM303DLHC 3D accelerometer and 3D magnetometer
-*
-* <https://www.st.com/en/mems-and-sensors/lsm303dlhc.html>
-*
-*/
+ *
+ * <https://www.st.com/en/mems-and-sensors/lsm303dlhc.html>
+ *
+ */
 
 #pragma once
 
@@ -24,7 +24,7 @@ extern "C" {
 #define LSM303DLHC_1HZ 1
 #define LSM303DLHC_10HZ 2
 #define LSM303DLHC_25HZ 3
-#define LSM303DLHC_50HZ	4
+#define LSM303DLHC_50HZ 4
 #define LSM303DLHC_100HZ 5
 #define LSM303DLHC_200HZ 6
 #define LSM303DLHC_400HZ 7
@@ -61,22 +61,23 @@ extern "C" {
 // Experimental
 #define LSM303DLHC_TEMPERATURE_OFFSET 17
 
-typedef struct lsm303dlhcxyz {
-	float x;
-	float y;
-	float z;
+typedef struct lsm303dlhcxyz
+{
+    float x;
+    float y;
+    float z;
 } LSM303DLHCXYZ;
 
-bool lsm303dlhc_is_present (void);
-bool lsm303dlhc_set_power_mode (unsigned char power_mode, bool low_power);
-bool lsm303dlhc_set_accelerometer_scale_and_resolution (unsigned char scale, bool high_resolution);
+bool lsm303dlhc_is_present(void);
+bool lsm303dlhc_set_power_mode(unsigned char power_mode, bool low_power);
+bool lsm303dlhc_set_accelerometer_scale_and_resolution(unsigned char scale, bool high_resolution);
 
-bool lsm303dlhc_set_temperature_and_magnetometer_rate (bool temperature, unsigned char rate);
-bool lsm303dlhc_set_magnetometer_range (unsigned char range);
+bool lsm303dlhc_set_temperature_and_magnetometer_rate(bool temperature, unsigned char rate);
+bool lsm303dlhc_set_magnetometer_range(unsigned char range);
 
-int lsm303dlhc_read_acceleration_xyz (LSM303DLHCXYZ *xyz);
-int lsm303dlhc_read_temperature (float *temperature);
-int lsm303dlhc_read_magnetometer_xyz (LSM303DLHCXYZ *xyz);
+int lsm303dlhc_read_acceleration_xyz(LSM303DLHCXYZ* xyz);
+int lsm303dlhc_read_temperature(float* temperature);
+int lsm303dlhc_read_magnetometer_xyz(LSM303DLHCXYZ* xyz);
 
 #ifdef __cplusplus
 }

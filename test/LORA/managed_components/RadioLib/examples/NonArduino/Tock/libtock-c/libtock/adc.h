@@ -13,11 +13,12 @@ extern "C" {
 
 // mode of the ADC
 // Used to tell which operation a callback corresponds to
-typedef enum {
-  SingleSample = 0,
-  ContinuousSample = 1,
-  SingleBuffer = 2,
-  ContinuousBuffer = 3
+typedef enum
+{
+    SingleSample = 0,
+    ContinuousSample = 1,
+    SingleBuffer = 2,
+    ContinuousBuffer = 3
 } ADCMode_t;
 
 // ***** System Call Interface *****
@@ -80,7 +81,6 @@ int adc_continuous_buffered_sample(uint8_t channel, uint32_t frequency);
 // to stop a continuous sampling operation
 int adc_stop_sampling(void);
 
-
 // ***** Callback Wrappers *****
 
 // set the function called by the ADC when a single_sample operation
@@ -90,8 +90,7 @@ int adc_stop_sampling(void);
 //      uint8_t - channel the sample was taken on
 //      uint16_t - sample value
 //      void* - user pointer to pass to callback
-int adc_set_single_sample_callback(void(*callback)(uint8_t, uint16_t, void*),
-                                   void* callback_args);
+int adc_set_single_sample_callback(void (*callback)(uint8_t, uint16_t, void*), void* callback_args);
 
 // set the function called by the ADC when a continuous_sample operation
 // completes.
@@ -100,7 +99,7 @@ int adc_set_single_sample_callback(void(*callback)(uint8_t, uint16_t, void*),
 //      uint8_t - channel the sample was taken on
 //      uint16_t - sample value
 //      void* - user pointer to pass to callback
-int adc_set_continuous_sample_callback(void(*callback)(uint8_t, uint16_t, void*),
+int adc_set_continuous_sample_callback(void (*callback)(uint8_t, uint16_t, void*),
                                        void* callback_args);
 
 // set the function called by the ADC when a buffered_sample operation
@@ -111,7 +110,7 @@ int adc_set_continuous_sample_callback(void(*callback)(uint8_t, uint16_t, void*)
 //      uint32_t - number of samples
 //      uint16_t* - pointer to buffer containing samples
 //      void* - user pointer to pass to callback
-int adc_set_buffered_sample_callback(void(*callback)(uint8_t, uint32_t, uint16_t*, void*),
+int adc_set_buffered_sample_callback(void (*callback)(uint8_t, uint32_t, uint16_t*, void*),
                                      void* callback_args);
 
 // set the function called by the ADC when a continuous_buffered_sample operation
@@ -122,9 +121,9 @@ int adc_set_buffered_sample_callback(void(*callback)(uint8_t, uint32_t, uint16_t
 //      uint32_t - number of samples
 //      uint16_t* - pointer to buffer containing samples
 //      void* - user pointer to pass to callback
-int adc_set_continuous_buffered_sample_callback(void(*callback)(uint8_t, uint32_t, uint16_t*, void*),
+int adc_set_continuous_buffered_sample_callback(void (*callback)(uint8_t, uint32_t, uint16_t*,
+                                                                 void*),
                                                 void* callback_args);
-
 
 // ***** Synchronous Calls *****
 
@@ -147,10 +146,10 @@ int adc_sample_buffer_sync(uint8_t channel, uint32_t frequency, uint16_t* buffer
 
 // returns the reference voltage in mV or an error ( < 0)
 // it this is not available
-int adc_get_reference_voltage (void);
+int adc_get_reference_voltage(void);
 
 // returns the adc resolution bits
-int adc_get_resolution_bits (void);
+int adc_get_resolution_bits(void);
 
 #ifdef __cplusplus
 }

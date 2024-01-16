@@ -28,16 +28,15 @@
  *          SOFTWARE.
  */
 
-
 #ifndef LOGTYPES_H_
 #define LOGTYPES_H_
 
-#include<iostream>
-#include<fstream>
-#include<sstream>
-#include<string>
-#include<cstdio> // Include the C standard I/O library for printf
-#include<cstdint> // For uint types
+#include <cstdint>  // For uint types
+#include <cstdio>   // Include the C standard I/O library for printf
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 /**
  * @brief mars expected return types
@@ -48,11 +47,11 @@
  */
 struct mars_exception_t
 {
-    enum Type : uint8_t {
+    enum Type : uint8_t
+    {
         ROUTINE_SOFT_FAIL,
         ROUTINE_HARD_FAIL
     };
-}__attribute__((packed));
-
+} __attribute__((packed));
 
 #endif /* LOGTYPES_H_ */

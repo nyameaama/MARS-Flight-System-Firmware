@@ -33,51 +33,51 @@ SOFTWARE.*/
 #define SERVO_RL 26
 #define SERVO_RR 27
 
-class WingTranslate {
-    public:
-        //____________________________________________________________
-        /* Utillity subroutine -> linear interpolation method
-        ===========================================================================
-        ===========================================================================
-        */
-        static double linearInterpolate(double input, double input_start, double input_end, 
-                                        double output_start, double output_end);
+class WingTranslate
+{
+  public:
+    //____________________________________________________________
+    /* Utillity subroutine -> linear interpolation method
+    ===========================================================================
+    ===========================================================================
+    */
+    static double linearInterpolate(double input, double input_start, double input_end,
+                                    double output_start, double output_end);
 
-        //____________________________________________________________
-        /* Initializes MG90S Servo using LEDC
-        ===========================================================================
-        |    motor selection   The identification of the motor intended to be interfaced
-        |    motor selection   The identification of the motor intended to be interfaced
-        ===========================================================================
-        */
-        static void actuateServo(double targetPos, uint8_t pin);
-        
-        //____________________________________________________________
-        /* Main API routine
-        ===========================================================================
-        |    motor target angle   The motor rotation angle bounded between 0 deg to 90 deg
-        |    motor selection   The identification of the motor intended to be interfaced
-        ===========================================================================
-        */
-        static uint8_t servo_control(double angle, uint8_t pin);
+    //____________________________________________________________
+    /* Initializes MG90S Servo using LEDC
+    ===========================================================================
+    |    motor selection   The identification of the motor intended to be interfaced
+    |    motor selection   The identification of the motor intended to be interfaced
+    ===========================================================================
+    */
+    static void actuateServo(double targetPos, uint8_t pin);
 
-        //____________________________________________________________
-        /* Utillity subroutine -> retrieve current motor position 
-        ===========================================================================
-        |    motor selection   The identification of the motor intended to be interfaced
-        ===========================================================================
-        */
-        static uint8_t GET_SERVO_POS(uint8_t pin);
+    //____________________________________________________________
+    /* Main API routine
+    ===========================================================================
+    |    motor target angle   The motor rotation angle bounded between 0 deg to 90 deg
+    |    motor selection   The identification of the motor intended to be interfaced
+    ===========================================================================
+    */
+    static uint8_t servo_control(double angle, uint8_t pin);
 
-        //____________________________________________________________
-        /* Utillity subroutine -> update current motor position after movement change
-        ===========================================================================
-        |    motor selection   The identification of the motor intended to be interfaced
-        |    updated servo position      New motor position to be updated
-        ===========================================================================
-        */
-        static void UPDATE_SERVO_POS(uint8_t pin, uint8_t updatedValue);
+    //____________________________________________________________
+    /* Utillity subroutine -> retrieve current motor position
+    ===========================================================================
+    |    motor selection   The identification of the motor intended to be interfaced
+    ===========================================================================
+    */
+    static uint8_t GET_SERVO_POS(uint8_t pin);
 
+    //____________________________________________________________
+    /* Utillity subroutine -> update current motor position after movement change
+    ===========================================================================
+    |    motor selection   The identification of the motor intended to be interfaced
+    |    updated servo position      New motor position to be updated
+    ===========================================================================
+    */
+    static void UPDATE_SERVO_POS(uint8_t pin, uint8_t updatedValue);
 };
 
-#endif // MG90S_SERVO_H
+#endif  // MG90S_SERVO_H

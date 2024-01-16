@@ -19,8 +19,9 @@ SOFTWARE.*/
 #ifndef MPU6050_H
 #define MPU6050_H
 
-class MPU6050 {
-public:
+class MPU6050
+{
+  public:
     MPU6050();
     void initialize();
     void update();
@@ -28,7 +29,7 @@ public:
     float getRoll();
     float getYaw();
 
-private:
+  private:
     float accelX, accelY, accelZ;
     float gyroX, gyroY, gyroZ;
     float pitch, roll, yaw;

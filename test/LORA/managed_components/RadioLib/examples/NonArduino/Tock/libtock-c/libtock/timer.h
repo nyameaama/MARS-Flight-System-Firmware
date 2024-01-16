@@ -28,21 +28,20 @@
 extern "C" {
 #endif
 
-#include "tock.h"
 #include "alarm.h"
+#include "tock.h"
 
 /** \brief Opaque handle to a repeating alarm.
  *
  * An opaque handle to a repeating alarm created by `alarm_every`.
  */
-typedef struct tock_timer {
-  uint32_t interval;
-  subscribe_upcall* cb;
-  void* ud;
-  alarm_t alarm;
+typedef struct tock_timer
+{
+    uint32_t interval;
+    subscribe_upcall* cb;
+    void* ud;
+    alarm_t alarm;
 } tock_timer_t;
-
-
 
 /** \brief Create a new alarm to fire in `ms` milliseconds.
  *
@@ -86,14 +85,13 @@ int delay_ms(uint32_t ms);
 /** \brief Functions as yield_for with a timeout.
  *
  * This yields on a condition variable, but will return early
- * if that condition is not met before the timeout in milliseconds. 
+ * if that condition is not met before the timeout in milliseconds.
  *
  * \param cond the condition to yield_for.
  * \param ms the amount of time before returning without the condition.
  * \return An error code. Either TOCK_SUCCESS or TOCK_FAIL for timeout.
  */
 int yield_for_with_timeout(bool* cond, uint32_t ms);
-
 
 #ifdef __cplusplus
 }

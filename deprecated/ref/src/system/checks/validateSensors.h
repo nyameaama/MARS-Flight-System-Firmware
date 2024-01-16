@@ -4,15 +4,16 @@
 #include <iostream>
 #include <string>
 
-#include"../../util/defi.h"
+#include "../../util/defi.h"
 
-class SensorValidator {
-    public:
-        bool validateGPSData();
+class SensorValidator
+{
+  public:
+    bool validateGPSData();
 
-        bool validateIMUData();
-        
-        bool validateBMP280Data();
+    bool validateIMUData();
+
+    bool validateBMP280Data();
 };
 
-#endif // SENSOR_VALIDATOR_HPP
+#endif  // SENSOR_VALIDATOR_HPP

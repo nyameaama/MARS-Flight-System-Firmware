@@ -33,9 +33,9 @@
 #ifndef _RF233_ARCH_H_
 #define _RF233_ARCH_H_
 
-#include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 void wake_from_sleep(void);
 void goto_sleep(void);
 /*
@@ -51,4 +51,4 @@ int      rf233_arch_write_frame(uint8_t *buf, uint8_t len);
 int      rf233_arch_burstread_sram(uint8_t *buf, uint8_t offset, uint8_t len);
 int      rf233_arch_burstwrite_sram(uint8_t *buf, uint8_t offset, uint8_t len);*/
 
-#endif  /* _RF233_ARCH_H_ */
+#endif /* _RF233_ARCH_H_ */

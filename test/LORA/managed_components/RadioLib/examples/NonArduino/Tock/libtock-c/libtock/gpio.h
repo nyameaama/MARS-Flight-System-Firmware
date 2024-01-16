@@ -13,16 +13,18 @@ extern "C" {
 // For example, on imix board, pin8's GPIO_Pin_t value is 6.
 typedef uint32_t GPIO_Pin_t;
 
-typedef enum {
-  PullNone=0,
-  PullUp,
-  PullDown,
+typedef enum
+{
+    PullNone = 0,
+    PullUp,
+    PullDown,
 } GPIO_InputMode_t;
 
-typedef enum {
-  Change=0,
-  RisingEdge,
-  FallingEdge,
+typedef enum
+{
+    Change = 0,
+    RisingEdge,
+    FallingEdge,
 } GPIO_InterruptMode_t;
 
 // Returns the number of GPIO pins configured on the board.

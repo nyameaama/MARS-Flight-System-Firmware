@@ -29,14 +29,16 @@ extern "C" {
 /*********************
  *      DEFINES
  *********************/
-#define LV_KEYBOARD_CTRL_BTN_FLAGS (LV_BTNMATRIX_CTRL_NO_REPEAT | LV_BTNMATRIX_CTRL_CLICK_TRIG | LV_BTNMATRIX_CTRL_CHECKED)
+#define LV_KEYBOARD_CTRL_BTN_FLAGS \
+    (LV_BTNMATRIX_CTRL_NO_REPEAT | LV_BTNMATRIX_CTRL_CLICK_TRIG | LV_BTNMATRIX_CTRL_CHECKED)
 
 /**********************
  *      TYPEDEFS
  **********************/
 
 /** Current keyboard mode.*/
-enum {
+enum
+{
     LV_KEYBOARD_MODE_TEXT_LOWER,
     LV_KEYBOARD_MODE_TEXT_UPPER,
     LV_KEYBOARD_MODE_SPECIAL,
@@ -45,10 +47,11 @@ enum {
 typedef uint8_t lv_keyboard_mode_t;
 
 /*Data of keyboard*/
-typedef struct {
+typedef struct
+{
     lv_btnmatrix_t btnm;
-    lv_obj_t * ta;              /*Pointer to the assigned text area*/
-    lv_keyboard_mode_t mode;    /*Key map type*/
+    lv_obj_t* ta;            /*Pointer to the assigned text area*/
+    lv_keyboard_mode_t mode; /*Key map type*/
 } lv_keyboard_t;
 
 extern const lv_obj_class_t lv_keyboard_class;
@@ -62,7 +65,7 @@ extern const lv_obj_class_t lv_keyboard_class;
  * @param par pointer to an object, it will be the parent of the new keyboard
  * @return pointer to the created keyboard
  */
-lv_obj_t * lv_keyboard_create(lv_obj_t * parent);
+lv_obj_t* lv_keyboard_create(lv_obj_t* parent);
 
 /*=====================
  * Setter functions
@@ -73,14 +76,14 @@ lv_obj_t * lv_keyboard_create(lv_obj_t * parent);
  * @param kb pointer to a Keyboard object
  * @param ta pointer to a Text Area object to write there
  */
-void lv_keyboard_set_textarea(lv_obj_t * kb, lv_obj_t * ta);
+void lv_keyboard_set_textarea(lv_obj_t* kb, lv_obj_t* ta);
 
 /**
  * Set a new a mode (text or number map)
  * @param kb pointer to a Keyboard object
  * @param mode the mode from 'lv_keyboard_mode_t'
  */
-void lv_keyboard_set_mode(lv_obj_t * kb, lv_keyboard_mode_t mode);
+void lv_keyboard_set_mode(lv_obj_t* kb, lv_keyboard_mode_t mode);
 
 /**
  * Set a new map for the keyboard
@@ -89,7 +92,8 @@ void lv_keyboard_set_mode(lv_obj_t * kb, lv_keyboard_mode_t mode);
  * @param map pointer to a string array to describe the map.
  *            See 'lv_btnmatrix_set_map()' for more info.
  */
-void lv_keyboard_set_map(lv_obj_t * kb, lv_keyboard_mode_t mode, const char * map[], const lv_btnmatrix_ctrl_t ctrl_map[]);
+void lv_keyboard_set_map(lv_obj_t* kb, lv_keyboard_mode_t mode, const char* map[],
+                         const lv_btnmatrix_ctrl_t ctrl_map[]);
 
 /*=====================
  * Getter functions
@@ -100,21 +104,22 @@ void lv_keyboard_set_map(lv_obj_t * kb, lv_keyboard_mode_t mode, const char * ma
  * @param kb pointer to a Keyboard object
  * @return pointer to the assigned Text Area object
  */
-lv_obj_t * lv_keyboard_get_textarea(const lv_obj_t * kb);
+lv_obj_t* lv_keyboard_get_textarea(const lv_obj_t* kb);
 
 /**
  * Set a new a mode (text or number map)
  * @param kb pointer to a Keyboard object
  * @return the current mode from 'lv_keyboard_mode_t'
  */
-lv_keyboard_mode_t lv_keyboard_get_mode(const lv_obj_t * kb);
+lv_keyboard_mode_t lv_keyboard_get_mode(const lv_obj_t* kb);
 
 /**
  * Get the current map of a keyboard
  * @param kb pointer to a keyboard object
  * @return the current map
  */
-static inline const char ** lv_keyboard_get_map_array(const lv_obj_t * kb)
+static inline const char**
+lv_keyboard_get_map_array(const lv_obj_t* kb)
 {
     return lv_btnmatrix_get_map(kb);
 }
@@ -130,13 +135,13 @@ static inline const char ** lv_keyboard_get_map_array(const lv_obj_t * kb)
  * @param kb pointer to a  keyboard
  * @param event the triggering event
  */
-void lv_keyboard_def_event_cb(lv_event_t * e);
+void lv_keyboard_def_event_cb(lv_event_t* e);
 
 /**********************
  *      MACROS
  **********************/
 
-#endif  /*LV_USE_KEYBOARD*/
+#endif /*LV_USE_KEYBOARD*/
 
 #ifdef __cplusplus
 } /*extern "C"*/

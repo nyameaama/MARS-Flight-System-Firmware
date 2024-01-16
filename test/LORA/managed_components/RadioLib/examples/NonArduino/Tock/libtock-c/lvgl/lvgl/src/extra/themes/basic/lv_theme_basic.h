@@ -34,7 +34,7 @@ extern "C" {
  * @param disp pointer to display to attach the theme
  * @return a pointer to reference this theme later
  */
-lv_theme_t * lv_theme_basic_init(lv_disp_t * disp);
+lv_theme_t* lv_theme_basic_init(lv_disp_t* disp);
 
 /**********************
  *      MACROS

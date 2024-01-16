@@ -1,25 +1,26 @@
 #ifndef ATGM336HX
 #define ATGM336HX
 
-#include<vector>
+#include <vector>
 
-class ATGM336H {
-    public:
-        static void init_ATGM_module();
+class ATGM336H
+{
+  public:
+    static void init_ATGM_module();
 
-        static char* pullATGM_data();
+    static char* pullATGM_data();
 
-        static void updateStack();
+    static void updateStack();
 
-        static double getLatitude();
+    static double getLatitude();
 
-        static double getLongitude();
+    static double getLongitude();
 
-        static double getAltitude();
+    static double getAltitude();
 
-        static double getSpeed();
+    static double getSpeed();
 
-        std::vector<int> getTimeVector();
+    std::vector<int> getTimeVector();
 };
 
-#endif //ATGM336HX
+#endif  // ATGM336HX

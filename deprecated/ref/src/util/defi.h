@@ -21,41 +21,40 @@ SOFTWARE.
 #ifndef DEFINITION
 #define DEFINITION
 
-#include <unordered_map>
-#include <vector>
+#include <Arduino.h>
 #include <iostream>
 #include <string>
-#include<Arduino.h>
+#include <unordered_map>
+#include <vector>
 //#include <SoftwareSerial.h>
-#include<SPI.h>
-#include<WiFi.h>
-#include<esp_now.h>
-#include<Wire.h>
-#include"PTAM/_ptam.h"
-#include"system/sys_controller.h"
-#include"system/flight_tasks.h"
-#include"Control/_pid.h"
-#include"system/Comms/_broadcast.h"
-#include"_encode.h"
-#include"WingControl/_wingDynamics.h"
-#include"module-router/route.h"
-#include"system/_state.h"
-#include"system/display/onboardDisplay.h"
-#include"HALX/drivers/_motors.h"
-#include"HALX/drivers/MotorController.h"
-#include"HALX/drivers/mpu6050.h"
-#include"HALX/drivers/_neo6M.h"
-#include"system/checks/validateSensors.h"
+#include <SPI.h>
+#include <WiFi.h>
+#include <Wire.h>
+#include <esp_now.h>
+#include "Control/_pid.h"
+#include "HALX/drivers/MotorController.h"
+#include "HALX/drivers/_motors.h"
+#include "HALX/drivers/_neo6M.h"
+#include "HALX/drivers/mpu6050.h"
+#include "PTAM/_ptam.h"
+#include "WingControl/_wingDynamics.h"
+#include "_encode.h"
+#include "module-router/route.h"
+#include "system/Comms/_broadcast.h"
+#include "system/_state.h"
+#include "system/checks/validateSensors.h"
+#include "system/display/onboardDisplay.h"
+#include "system/flight_tasks.h"
+#include "system/sys_controller.h"
 
-
-//PTAM REGISTER INFO
+// PTAM REGISTER INFO
 //"state" -> StateMachine main status
 //"GPScheck" -> GPS functionality flag
 //"IMUcheck" -> IMU functionality flag
 //"BMPcheck" -> BMP functionality flag
-//setupSFlag -> ServerSetupFlag
-//TARGET-LAT -> destination latitude
-//TARGET-LONG -> destination longitude
-//TARGET-ALT -> destination altitude
+// setupSFlag -> ServerSetupFlag
+// TARGET-LAT -> destination latitude
+// TARGET-LONG -> destination longitude
+// TARGET-ALT -> destination altitude
 
-#endif //DEFINITION
+#endif  // DEFINITION

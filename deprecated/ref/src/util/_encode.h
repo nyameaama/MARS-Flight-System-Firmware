@@ -24,30 +24,31 @@ SOFTWARE.*/
 #include <string>
 #include <tuple>
 
-class EncoderDecoder {
-public:
-  // Encodes two or more items of any datatype as a single string
-  template<typename T, typename... Ts>
-  static std::string encode(const T& first, const Ts&... rest);
+class EncoderDecoder
+{
+  public:
+    // Encodes two or more items of any datatype as a single string
+    template <typename T, typename... Ts>
+    static std::string encode(const T& first, const Ts&... rest);
 
-  // Decodes the data back to its original items of data
-  template<typename T, typename... Ts>
-  static std::tuple<T, Ts...> decode(const std::string& encoded);
+    // Decodes the data back to its original items of data
+    template <typename T, typename... Ts>
+    static std::tuple<T, Ts...> decode(const std::string& encoded);
 
-private:
-  // Helper method to encode items recursively
-  template<typename T, typename... Ts>
-  static void encodeHelper(std::ostringstream& oss, const T& first, const Ts&... rest);
+  private:
+    // Helper method to encode items recursively
+    template <typename T, typename... Ts>
+    static void encodeHelper(std::ostringstream& oss, const T& first, const Ts&... rest);
 
-  // Base case for encoding
-  static void encodeHelper(std::ostringstream& oss);
+    // Base case for encoding
+    static void encodeHelper(std::ostringstream& oss);
 
-  // Helper method to decode items recursively
-  template<typename T>
-  static T decodeHelper(std::istringstream& iss);
+    // Helper method to decode items recursively
+    template <typename T>
+    static T decodeHelper(std::istringstream& iss);
 
-  // The delimiter used to separate encoded items
-  static const char DELIMITER = '|';
+    // The delimiter used to separate encoded items
+    static const char DELIMITER = '|';
 };
 
-#endif // ENCODER_DECODER_HPP
+#endif  // ENCODER_DECODER_HPP

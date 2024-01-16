@@ -22,23 +22,24 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
-#include<stdio.h>
-#include"_motors.h"
-#include<cstdint>
-#include<iostream>
+#include <stdio.h>
+#include <cstdint>
+#include <iostream>
+#include "_motors.h"
 
-#define INDIVIDUAL (uint8_t) 0
-#define SIMULTANEOUS (uint8_t) 1
+#define INDIVIDUAL (uint8_t)0
+#define SIMULTANEOUS (uint8_t)1
 
-class _WING_DYNAMICS{
-    public:
-        uint8_t _translateRight(uint8_t range, uint8_t _mode);
+class _WING_DYNAMICS
+{
+  public:
+    uint8_t _translateRight(uint8_t range, uint8_t _mode);
 
-        uint8_t _translateLeft(uint8_t range, uint8_t _mode);
+    uint8_t _translateLeft(uint8_t range, uint8_t _mode);
 
-        uint8_t _translateUp(uint8_t range, uint8_t _mode);
+    uint8_t _translateUp(uint8_t range, uint8_t _mode);
 
-        uint8_t _translateDown(uint8_t range, uint8_t _mode);
+    uint8_t _translateDown(uint8_t range, uint8_t _mode);
 };
 
-#endif //_WINGC
+#endif  //_WINGC
