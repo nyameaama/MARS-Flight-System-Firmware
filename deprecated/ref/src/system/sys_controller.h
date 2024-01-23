@@ -23,41 +23,41 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include"../util/defi.h"
+#include "../util/defi.h"
 
-class CONTROLLER_TASKS {
-    private:
-        //Setup Pins
-        void pin_setup();
+class CONTROLLER_TASKS
+{
+  private:
+    // Setup Pins
+    void pin_setup();
 
-        //Reset all tags
-        void reset_();
+    // Reset all tags
+    void reset_();
 
-        //If output = 1, strings match
-        uint8_t compareX(char* x, char* y);
+    // If output = 1, strings match
+    uint8_t compareX(char* x, char* y);
 
-        void PTAM_REGISTER_SET();
+    void PTAM_REGISTER_SET();
 
-    public: 
-        //Setup NodeMCU wifi comms
-        void GSE_COMMS_SETUP();
+  public:
+    // Setup NodeMCU wifi comms
+    void GSE_COMMS_SETUP();
 
-        //Start comms and attach interrupts 
-        void _init_();
+    // Start comms and attach interrupts
+    void _init_();
 
-        void _IDLE_();
+    void _IDLE_();
 
-        //Telemetry checks, peripheral checks
-        void _PREP_();
+    // Telemetry checks, peripheral checks
+    void _PREP_();
 
-        void _ARMED_();
+    void _ARMED_();
 
-        //For manual testing, implement bypass to respond to sensor and valve
-        //comms without additional processes.
-        //+1 Overload
-        void _bypass_(char* sbc_id);
-        //void _bypass_(char* sbc_id,uint8_t peripheral_type=1); 
-
+    // For manual testing, implement bypass to respond to sensor and valve
+    // comms without additional processes.
+    //+1 Overload
+    void _bypass_(char* sbc_id);
+    // void _bypass_(char* sbc_id,uint8_t peripheral_type=1);
 };
 
 #endif

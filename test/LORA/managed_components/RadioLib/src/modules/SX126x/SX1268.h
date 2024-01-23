@@ -8,17 +8,18 @@
 #include "../../Module.h"
 #include "SX126x.h"
 
-//RADIOLIB_SX126X_CMD_SET_PA_CONFIG
-#define RADIOLIB_SX126X_PA_CONFIG_SX1268                        0x00
+// RADIOLIB_SX126X_CMD_SET_PA_CONFIG
+#define RADIOLIB_SX126X_PA_CONFIG_SX1268 0x00
 
-//RADIOLIB_SX126X_REG_VERSION_STRING
-#define RADIOLIB_SX1268_CHIP_TYPE                               "SX1268"
+// RADIOLIB_SX126X_REG_VERSION_STRING
+#define RADIOLIB_SX1268_CHIP_TYPE "SX1268"
 
 /*!
   \class SX1268
   \brief Derived class for %SX1268 modules.
 */
-class SX1268: public SX126x {
+class SX1268 : public SX126x
+{
   public:
     /*!
       \brief Default constructor.
@@ -38,12 +39,15 @@ class SX1268: public SX126x {
       \param power Output power in dBm. Defaults to 10 dBm.
       \param preambleLength LoRa preamble length in symbols. Defaults to 8 symbols.
       \param tcxoVoltage TCXO reference voltage to be set on DIO3. Defaults to 1.6 V.
-      If you are seeing -706/-707 error codes, it likely means you are using non-0 value for module with XTAL.
-      To use XTAL, either set this value to 0, or set SX126x::XTAL to true.
-      \param useRegulatorLDO Whether to use only LDO regulator (true) or DC-DC regulator (false). Defaults to false.
-      \returns \ref status_codes
+      If you are seeing -706/-707 error codes, it likely means you are using non-0 value for module
+      with XTAL. To use XTAL, either set this value to 0, or set SX126x::XTAL to true. \param
+      useRegulatorLDO Whether to use only LDO regulator (true) or DC-DC regulator (false). Defaults
+      to false. \returns \ref status_codes
     */
-    int16_t begin(float freq = 434.0, float bw = 125.0, uint8_t sf = 9, uint8_t cr = 7, uint8_t syncWord = RADIOLIB_SX126X_SYNC_WORD_PRIVATE, int8_t power = 10, uint16_t preambleLength = 8, float tcxoVoltage = 1.6, bool useRegulatorLDO = false);
+    int16_t begin(float freq = 434.0, float bw = 125.0, uint8_t sf = 9, uint8_t cr = 7,
+                  uint8_t syncWord = RADIOLIB_SX126X_SYNC_WORD_PRIVATE, int8_t power = 10,
+                  uint16_t preambleLength = 8, float tcxoVoltage = 1.6,
+                  bool useRegulatorLDO = false);
 
     /*!
       \brief Initialization method for FSK modem.
@@ -54,12 +58,14 @@ class SX1268: public SX126x {
       \param power Output power in dBm. Defaults to 10 dBm.
       \param preambleLength FSK preamble length in bits. Defaults to 16 bits.
       \param tcxoVoltage TCXO reference voltage to be set on DIO3. Defaults to 1.6 V.
-      If you are seeing -706/-707 error codes, it likely means you are using non-0 value for module with XTAL.
-      To use XTAL, either set this value to 0, or set SX126x::XTAL to true.
-      \param useRegulatorLDO Whether to use only LDO regulator (true) or DC-DC regulator (false). Defaults to false.
-      \returns \ref status_codes
+      If you are seeing -706/-707 error codes, it likely means you are using non-0 value for module
+      with XTAL. To use XTAL, either set this value to 0, or set SX126x::XTAL to true. \param
+      useRegulatorLDO Whether to use only LDO regulator (true) or DC-DC regulator (false). Defaults
+      to false. \returns \ref status_codes
     */
-    int16_t beginFSK(float freq = 434.0, float br = 4.8, float freqDev = 5.0, float rxBw = 156.2, int8_t power = 10, uint16_t preambleLength = 16, float tcxoVoltage = 1.6, bool useRegulatorLDO = false);
+    int16_t beginFSK(float freq = 434.0, float br = 4.8, float freqDev = 5.0, float rxBw = 156.2,
+                     int8_t power = 10, uint16_t preambleLength = 16, float tcxoVoltage = 1.6,
+                     bool useRegulatorLDO = false);
 
     // configuration methods
 
@@ -88,7 +94,6 @@ class SX1268: public SX126x {
 #if !RADIOLIB_GODMODE
   private:
 #endif
-
 };
 
 #endif

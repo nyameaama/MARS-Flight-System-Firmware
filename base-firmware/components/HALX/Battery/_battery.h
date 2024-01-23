@@ -25,84 +25,86 @@ SOFTWARE.*/
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "driver/gpio.h"
 #include "driver/adc.h"
+#include "driver/gpio.h"
 #include "esp_adc_cal.h"
 #include "esp_log.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
-class BATTERY{
-    public:
-        //________________________________________________________________________
-        /* Initialize the battery interface
-        ===========================================================================
-        | Returns: double - The initialized battery voltage.
-        ===========================================================================
-        */
-        static double batteryInterfaceInit();
-        
-        //________________________________________________________________________
-        /* Get the current battery voltage
-        ===========================================================================
-        | Returns: double - The current battery voltage.
-        ===========================================================================
-        */
-        static double returnBatteryVoltage();
+class BATTERY
+{
+  public:
+    //________________________________________________________________________
+    /* Initialize the battery interface
+    ===========================================================================
+    | Returns: double - The initialized battery voltage.
+    ===========================================================================
+    */
+    static double batteryInterfaceInit();
 
-        //________________________________________________________________________
-        /* Get the current battery current draw
-        ===========================================================================
-        | Returns: double - The current battery current draw.
-        ===========================================================================
-        */
-        static double returnBatteryCurrentDraw();
+    //________________________________________________________________________
+    /* Get the current battery voltage
+    ===========================================================================
+    | Returns: double - The current battery voltage.
+    ===========================================================================
+    */
+    static double returnBatteryVoltage();
 
-        //________________________________________________________________________
-        /* Initialize the ADC for measuring current
-        ===========================================================================
-        | void
-        ===========================================================================
-        */
-        static void initCurrentADC();
+    //________________________________________________________________________
+    /* Get the current battery current draw
+    ===========================================================================
+    | Returns: double - The current battery current draw.
+    ===========================================================================
+    */
+    static double returnBatteryCurrentDraw();
 
-        //________________________________________________________________________
-        /* Get the battery percentage
-        ===========================================================================
-        | Returns: double - The battery percentage.
-        ===========================================================================
-        */
-        static double returnBatteryPercent();
+    //________________________________________________________________________
+    /* Initialize the ADC for measuring current
+    ===========================================================================
+    | void
+    ===========================================================================
+    */
+    static void initCurrentADC();
 
-        //________________________________________________________________________
-        /* Print the character value type for ADC calibration
-        ===========================================================================
-        | void
-        ===========================================================================
-        */
-        static void print_char_val_type(esp_adc_cal_value_t val_type);
+    //________________________________________________________________________
+    /* Get the battery percentage
+    ===========================================================================
+    | Returns: double - The battery percentage.
+    ===========================================================================
+    */
+    static double returnBatteryPercent();
 
-        //________________________________________________________________________
-        /* Check the eFuse settings
-        ===========================================================================
-        | void
-        ===========================================================================
-        */
-        static void check_efuse(void);
+    //________________________________________________________________________
+    /* Print the character value type for ADC calibration
+    ===========================================================================
+    | void
+    ===========================================================================
+    */
+    static void print_char_val_type(esp_adc_cal_value_t val_type);
 
-        //________________________________________________________________________
-        /* Map a value from one range to another
-        ===========================================================================
-        | Parameters:
-        |    - value: The value to map.
-        |    - fromLow: The low end of the input range.
-        |    - fromHigh: The high end of the input range.
-        |    - toLow: The low end of the output range.
-        |    - toHigh: The high end of the output range.
-        | Returns: double - The mapped value.
-        ===========================================================================
-        */
-        static double mapValue(double value, double fromLow, double fromHigh, double toLow, double toHigh);
+    //________________________________________________________________________
+    /* Check the eFuse settings
+    ===========================================================================
+    | void
+    ===========================================================================
+    */
+    static void check_efuse(void);
+
+    //________________________________________________________________________
+    /* Map a value from one range to another
+    ===========================================================================
+    | Parameters:
+    |    - value: The value to map.
+    |    - fromLow: The low end of the input range.
+    |    - fromHigh: The high end of the input range.
+    |    - toLow: The low end of the output range.
+    |    - toHigh: The high end of the output range.
+    | Returns: double - The mapped value.
+    ===========================================================================
+    */
+    static double mapValue(double value, double fromLow, double fromHigh, double toLow,
+                           double toHigh);
 };
 
-#endif //BATTERY
+#endif  // BATTERY

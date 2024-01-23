@@ -21,19 +21,20 @@ SOFTWARE.*/
 
 #include "servoControl.h"
 
-class MotorController {
-private:
-  servoControl esc;  // Create a Servo object
-  gpio_num_t throttlePin;  // Digital pin connected to ESC control signal
-private:
-  int map(int value, int fromLow, int fromHigh, int toLow, int toHigh);
+class MotorController
+{
+  private:
+    servoControl esc;        // Create a Servo object
+    gpio_num_t throttlePin;  // Digital pin connected to ESC control signal
+  private:
+    int map(int value, int fromLow, int fromHigh, int toLow, int toHigh);
 
-public:
-  MotorController(gpio_num_t pin);
-  void begin();
-  void setThrottle(int throttleValue);
-  void stop();
-  void arm();
+  public:
+    MotorController(gpio_num_t pin);
+    void begin();
+    void setThrottle(int throttleValue);
+    void stop();
+    void arm();
 };
 
 #endif

@@ -32,9 +32,10 @@ extern "C" {
  *      TYPEDEFS
  **********************/
 
-typedef struct {
+typedef struct
+{
     lv_obj_t obj;
-}lv_switch_t;
+} lv_switch_t;
 
 extern const lv_obj_class_t lv_switch_class;
 
@@ -47,7 +48,7 @@ extern const lv_obj_class_t lv_switch_class;
  * @param parent pointer to an object, it will be the parent of the new switch
  * @return pointer to the created switch
  */
-lv_obj_t * lv_switch_create(lv_obj_t * parent);
+lv_obj_t* lv_switch_create(lv_obj_t* parent);
 
 /**********************
  *      MACROS

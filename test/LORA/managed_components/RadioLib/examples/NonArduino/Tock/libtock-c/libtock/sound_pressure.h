@@ -14,8 +14,7 @@ extern "C" {
 //
 // callback       - pointer to function to be called
 // callback_args  - pointer to data provided to the callback
-int sound_pressure_set_callback (subscribe_upcall callback, void* callback_args);
-
+int sound_pressure_set_callback(subscribe_upcall callback, void* callback_args);
 
 // initiate an ambient sound_pressure measurement used both for syncronous and asyncronous readings
 int sound_pressure_read(void);
@@ -26,11 +25,11 @@ int sound_pressure_enable(void);
 // disable sound pressure sensor
 int sound_pressure_disable(void);
 
-
 // initiate a syncronous ambient sound_pressure measurement
 //
-// sound_pressure     - pointer/address where the result of the sound_pressure reading should be stored
-int sound_pressure_read_sync (unsigned char* sound_pressure);
+// sound_pressure     - pointer/address where the result of the sound_pressure reading should be
+// stored
+int sound_pressure_read_sync(unsigned char* sound_pressure);
 
 #ifdef __cplusplus
 }

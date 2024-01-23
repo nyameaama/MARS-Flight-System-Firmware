@@ -23,13 +23,15 @@ SOFTWARE.*/
 #ifndef NON_BLOCKING_DELAY_H
 #define NON_BLOCKING_DELAY_H
 
-class NonBlockingDelay {
-private:
-  unsigned long previousTime;
-  unsigned long delayTime;
-public:
-  NonBlockingDelay(unsigned long duration);
-  bool isElapsed();
+class NonBlockingDelay
+{
+  private:
+    unsigned long previousTime;
+    unsigned long delayTime;
+
+  public:
+    NonBlockingDelay(unsigned long duration);
+    bool isElapsed();
 };
 
-#endif // NON_BLOCKING_DELAY_H
+#endif  // NON_BLOCKING_DELAY_H

@@ -23,7 +23,7 @@ SOFTWARE.*/
 #ifndef PTAM_
 #define PTAM_
 
-#include"../../util/defi.h"
+#include "../../util/defi.h"
 /*
     PTAM implementation is a series of statically allocated 1D arrays
     which correspond to their respective data type
@@ -31,40 +31,40 @@ SOFTWARE.*/
     Each data pair has two values
 */
 
-//Arrays declared
-//SPACE DECLARED FOR 5 PAIRS (~10)
+// Arrays declared
+// SPACE DECLARED FOR 5 PAIRS (~10)
 #define length 10
 
-class PTAM {
-    public:
-        //Method to add data to program temp access memory
-        //Returns the size of data sent
-        //+3 Overload
-        
-        uint8_t PTAM_ADD_BASE_DOUBLE(char* baseID,double data);
+class PTAM
+{
+  public:
+    // Method to add data to program temp access memory
+    // Returns the size of data sent
+    //+3 Overload
 
-        uint8_t PTAM_ADD_BASE_8(char* baseID,uint8_t data);
+    uint8_t PTAM_ADD_BASE_DOUBLE(char* baseID, double data);
 
-        uint8_t PTAM_ADD_BASE_32(char* baseID,uint32_t data);
+    uint8_t PTAM_ADD_BASE_8(char* baseID, uint8_t data);
 
-        uint8_t PTAM_ADD_BASE_CHAR(char* baseID,char* data);
+    uint8_t PTAM_ADD_BASE_32(char* baseID, uint32_t data);
 
-        //Method to retrieve data from program temp access memory
-        //Returns queried data
-        //!!!Disclaimer!!!
-        //Unable to use templates so used messy workaround
-        //!!!!!!!!!!!!!!!!!!
-        char* PTAM_RETRIEVE_BASE_CHAR(char* baseID);
+    uint8_t PTAM_ADD_BASE_CHAR(char* baseID, char* data);
 
-        uint8_t PTAM_RETRIEVE_BASE_8(char* baseID);
+    // Method to retrieve data from program temp access memory
+    // Returns queried data
+    //!!!Disclaimer!!!
+    // Unable to use templates so used messy workaround
+    //!!!!!!!!!!!!!!!!!!
+    char* PTAM_RETRIEVE_BASE_CHAR(char* baseID);
 
-        uint32_t PTAM_RETRIEVE_BASE_32(char* baseID);
+    uint8_t PTAM_RETRIEVE_BASE_8(char* baseID);
 
-        double PTAM_RETRIEVE_BASE_DOUBLE(char* baseID);
+    uint32_t PTAM_RETRIEVE_BASE_32(char* baseID);
 
-        //Method to clear entire PTAM data for next program cycle
-        //void PTAM_CLEAR_ALL();
+    double PTAM_RETRIEVE_BASE_DOUBLE(char* baseID);
 
+    // Method to clear entire PTAM data for next program cycle
+    // void PTAM_CLEAR_ALL();
 };
 
-#endif 
+#endif

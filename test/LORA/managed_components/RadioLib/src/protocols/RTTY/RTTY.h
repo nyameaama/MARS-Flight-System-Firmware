@@ -5,16 +5,17 @@
 
 #if !RADIOLIB_EXCLUDE_RTTY
 
-#include "../PhysicalLayer/PhysicalLayer.h"
 #include "../AFSK/AFSK.h"
-#include "../Print/Print.h"
+#include "../PhysicalLayer/PhysicalLayer.h"
 #include "../Print/ITA2String.h"
+#include "../Print/Print.h"
 
 /*!
   \class RTTYClient
   \brief Client for RTTY communication. The public interface is the same as Arduino Serial.
 */
-class RTTYClient: public RadioLibPrint {
+class RTTYClient : public RadioLibPrint
+{
   public:
     /*!
       \brief Constructor for 2-FSK mode.
@@ -22,26 +23,27 @@ class RTTYClient: public RadioLibPrint {
     */
     explicit RTTYClient(PhysicalLayer* phy);
 
-    #if !RADIOLIB_EXCLUDE_AFSK
+#if !RADIOLIB_EXCLUDE_AFSK
     /*!
       \brief Constructor for AFSK mode.
       \param audio Pointer to the AFSK instance providing audio.
     */
     explicit RTTYClient(AFSKClient* audio);
-    #endif
+#endif
 
     // basic methods
 
     /*!
       \brief Initialization method.
-      \param base Base (space) frequency to be used in MHz (in 2-FSK mode), or the space tone frequency in Hz (in AFSK mode)
-      \param shift Frequency shift between mark and space in Hz.
+      \param base Base (space) frequency to be used in MHz (in 2-FSK mode), or the space tone
+      frequency in Hz (in AFSK mode) \param shift Frequency shift between mark and space in Hz.
       \param rate Baud rate to be used during transmission.
       \param enc Encoding to be used. Defaults to ASCII.
       \param stopBits Number of stop bits to be used.
       \returns \ref status_codes
     */
-    int16_t begin(float base, uint32_t shift, uint16_t rate, uint8_t enc = RADIOLIB_ASCII, uint8_t stopBits = 1);
+    int16_t begin(float base, uint32_t shift, uint16_t rate, uint8_t enc = RADIOLIB_ASCII,
+                  uint8_t stopBits = 1);
 
     /*!
       \brief Send out idle condition (RF tone at mark frequency).
@@ -65,9 +67,9 @@ class RTTYClient: public RadioLibPrint {
   private:
 #endif
     PhysicalLayer* phyLayer;
-    #if !RADIOLIB_EXCLUDE_AFSK
+#if !RADIOLIB_EXCLUDE_AFSK
     AFSKClient* audioClient;
-    #endif
+#endif
 
     uint32_t baseFreq = 0, baseFreqHz = 0;
     uint32_t shiftFreq = 0, shiftFreqHz = 0;

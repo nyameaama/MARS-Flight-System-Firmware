@@ -13,7 +13,7 @@ extern "C" {
 // int arg1: callback type
 // int arg2: optional value
 // int arg3: unused
-int gpio_async_set_callback (subscribe_upcall callback, void* callback_args);
+int gpio_async_set_callback(subscribe_upcall callback, void* callback_args);
 
 // Callback for when GPIO interrupts occur.
 // int arg1: port number

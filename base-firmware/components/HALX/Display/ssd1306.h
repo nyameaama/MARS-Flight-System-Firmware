@@ -23,50 +23,49 @@ SOFTWARE.*/
 #ifndef SSD1306X
 #define SSD1306X
 
+#include "driver/i2c.h"
 #include "ssd1306_fonts.h"
 #include "stdlib.h"
 #include "string.h"
-#include "driver/i2c.h"
 //#include "_battery.h"
 
-//VEHICLE PAGES
-//Boot
+// VEHICLE PAGES
+// Boot
 #define BOOT_TITLE "HIVE 2"
 #define BOOT_TITLEX_POS 15
 #define BOOT_TITLEY_POS 30
 #define BOOT_TITLE_FONT FontDef_t Font_16x26
 #define BOOT_TITLE_COLOR SSD1306_COLOR_WHITE
 
-//Mode:STANDBY
-
+// Mode:STANDBY
 
 /* I2C address */
 #define I2C_MASTER_SDA_IO 23
 #define I2C_MASTER_SCL_IO 18
 #define I2C_MASTER_FREQ_HZ 100000
 
-#define SSD1306_I2C_ADDR         0x78
+#define SSD1306_I2C_ADDR 0x78
 
 //#define SSD1306_I2C_ADDR       0x7A
 
 /* SSD1306 settings */
 /* SSD1306 width in pixels */
 #ifndef SSD1306_WIDTH
-#define SSD1306_WIDTH            128
+#define SSD1306_WIDTH 128
 #endif
 /* SSD1306 LCD height in pixels */
 #ifndef SSD1306_HEIGHT
-#define SSD1306_HEIGHT           64
+#define SSD1306_HEIGHT 64
 #endif
 
 /**
  * @brief  SSD1306 color enumeration
  */
-typedef enum {
-	SSD1306_COLOR_BLACK = 0x00, /*!< Black color, no pixel */
-	SSD1306_COLOR_WHITE = 0x01  /*!< Pixel is set. Color depends on LCD */
+typedef enum
+{
+    SSD1306_COLOR_BLACK = 0x00, /*!< Black color, no pixel */
+    SSD1306_COLOR_WHITE = 0x01  /*!< Pixel is set. Color depends on LCD */
 } SSD1306_COLOR_t;
-
 
 void displayBOOT();
 void displayStandByClientSuccess();
@@ -81,13 +80,14 @@ void displayERROR();
  * @retval Initialization status:
  *           - 0: LCD was not detected on I2C port
  *           - > 0: LCD initialized OK and ready to use
- * 
+ *
  */
 uint8_t SSD1306_Init(void);
 
-/** 
+/**
  * @brief  Updates buffer from internal RAM to LCD
- * @note   This function must be called each time you do some changes to LCD, to update buffer from RAM to LCD
+ * @note   This function must be called each time you do some changes to LCD, to update buffer from
+ * RAM to LCD
  * @param  None
  * @retval None
  */
@@ -101,10 +101,11 @@ void SSD1306_UpdateScreen(void);
  */
 void SSD1306_ToggleInvert(void);
 
-/** 
+/**
  * @brief  Fills entire LCD with desired color
  * @note   @ref SSD1306_UpdateScreen() must be called after that in order to see updated LCD screen
- * @param  Color: Color to be used for screen fill. This parameter can be a value of @ref SSD1306_COLOR_t enumeration
+ * @param  Color: Color to be used for screen fill. This parameter can be a value of @ref
+ * SSD1306_COLOR_t enumeration
  * @retval None
  */
 void SSD1306_Fill(SSD1306_COLOR_t Color);
@@ -114,7 +115,8 @@ void SSD1306_Fill(SSD1306_COLOR_t Color);
  * @note   @ref SSD1306_UpdateScreen() must called after that in order to see updated LCD screen
  * @param  x: X location. This parameter can be a value between 0 and SSD1306_WIDTH - 1
  * @param  y: Y location. This parameter can be a value between 0 and SSD1306_HEIGHT - 1
- * @param  color: Color to be used for screen fill. This parameter can be a value of @ref SSD1306_COLOR_t enumeration
+ * @param  color: Color to be used for screen fill. This parameter can be a value of @ref
+ * SSD1306_COLOR_t enumeration
  * @retval None
  */
 void SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color);
@@ -132,7 +134,8 @@ void SSD1306_GotoXY(uint16_t x, uint16_t y);
  * @note   @ref SSD1306_UpdateScreen() must be called after that in order to see updated LCD screen
  * @param  ch: Character to be written
  * @param  *Font: Pointer to @ref FontDef_t structure with used font
- * @param  color: Color used for drawing. This parameter can be a value of @ref SSD1306_COLOR_t enumeration
+ * @param  color: Color used for drawing. This parameter can be a value of @ref SSD1306_COLOR_t
+ * enumeration
  * @retval Character written
  */
 char SSD1306_Putc(char ch, FontDef_t* Font, SSD1306_COLOR_t color);
@@ -142,7 +145,8 @@ char SSD1306_Putc(char ch, FontDef_t* Font, SSD1306_COLOR_t color);
  * @note   @ref SSD1306_UpdateScreen() must be called after that in order to see updated LCD screen
  * @param  *str: String to be written
  * @param  *Font: Pointer to @ref FontDef_t structure with used font
- * @param  color: Color used for drawing. This parameter can be a value of @ref SSD1306_COLOR_t enumeration
+ * @param  color: Color used for drawing. This parameter can be a value of @ref SSD1306_COLOR_t
+ * enumeration
  * @retval Zero on success or character value when function failed
  */
 char SSD1306_Puts(char* str, FontDef_t* Font, SSD1306_COLOR_t color);
@@ -195,7 +199,8 @@ void SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h,
  * @param  c: Color to be used. This parameter can be a value of @ref SSD1306_COLOR_t enumeration
  * @retval None
  */
-void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color);
+void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3,
+                          uint16_t y3, SSD1306_COLOR_t color);
 
 /**
  * @brief  Draws circle to STM buffer
@@ -219,10 +224,8 @@ void SSD1306_DrawCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c);
  */
 void SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c);
 
-
-
 #ifndef ssd1306_I2C_TIMEOUT
-#define ssd1306_I2C_TIMEOUT					20000
+#define ssd1306_I2C_TIMEOUT 20000
 #endif
 
 /**
@@ -253,7 +256,7 @@ void ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data);
  * @param  count: how many bytes will be written
  * @retval None
  */
-void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_t count);
 
 /**
  * @brief  Draws the Bitmap
@@ -264,38 +267,27 @@ void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t *data, uint16_
  * @param  H : Height of the image
  * @param  color : 1-> white/blue, 0-> black
  */
-void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color);
+void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h,
+                        uint16_t color);
 
 // scroll the screen for fixed rows
 
 void SSD1306_ScrollRight(uint8_t start_row, uint8_t end_row);
 
-
 void SSD1306_ScrollLeft(uint8_t start_row, uint8_t end_row);
-
 
 void SSD1306_Scrolldiagright(uint8_t start_row, uint8_t end_row);
 
-
 void SSD1306_Scrolldiagleft(uint8_t start_row, uint8_t end_row);
-
-
 
 void SSD1306_Stopscroll(void);
 
-
 // inverts the display i = 1->inverted, i = 0->normal
 
-void SSD1306_InvertDisplay (int i);
-
-
-
-
-
+void SSD1306_InvertDisplay(int i);
 
 // clear the display
 
-void SSD1306_Clear (void);
+void SSD1306_Clear(void);
 
-
-#endif //SSD1306X
+#endif  // SSD1306X

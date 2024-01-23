@@ -36,15 +36,15 @@ extern "C" {
  * An opaque handle to an alarm created by `alarm_at` or `alarm_in`. Memory
  * management is handled by the underlying implementation.
  */
-typedef struct alarm {
-  uint32_t reference;
-  uint32_t dt;
-  subscribe_upcall *callback;
-  void* ud;
-  struct alarm* next;
-  struct alarm* prev;
+typedef struct alarm
+{
+    uint32_t reference;
+    uint32_t dt;
+    subscribe_upcall* callback;
+    void* ud;
+    struct alarm* next;
+    struct alarm* prev;
 } alarm_t;
-
 
 /** \brief Create a new alarm to fire at a particular clock value.
  *
@@ -59,7 +59,7 @@ typedef struct alarm {
  *        track of the alarm.
  * \return An error code. Either RETURNCODE_SUCCESS or RETURNCODE_FAIL.
  */
-int alarm_at(uint32_t reference, uint32_t dt, subscribe_upcall, void*, alarm_t *alarm);
+int alarm_at(uint32_t reference, uint32_t dt, subscribe_upcall, void*, alarm_t* alarm);
 
 /** \brief Cancels an existing alarm.
  *
@@ -73,7 +73,6 @@ void alarm_cancel(alarm_t*);
  * \return The current value of the underlying clock.
  */
 uint32_t alarm_read(void);
-
 
 #ifdef __cplusplus
 }

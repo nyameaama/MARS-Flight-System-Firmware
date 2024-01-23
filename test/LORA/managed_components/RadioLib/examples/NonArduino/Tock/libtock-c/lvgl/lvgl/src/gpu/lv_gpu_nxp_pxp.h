@@ -83,7 +83,8 @@ extern "C" {
  * NXP PXP device configuration - call-backs used for
  * interrupt init/wait/deinit.
  */
-typedef struct {
+typedef struct
+{
     /** Callback for PXP interrupt initialization*/
     lv_res_t (*pxp_interrupt_init)(void);
 
@@ -112,7 +113,7 @@ typedef struct {
  *
  * @return LV_RES_OK: PXP init ok; LV_RES_INV: init error. See error log for more information.
  */
-lv_res_t lv_gpu_nxp_pxp_init(lv_nxp_pxp_cfg_t * cfg);
+lv_res_t lv_gpu_nxp_pxp_init(lv_nxp_pxp_cfg_t* cfg);
 
 /**
  * Disable PXP device. Should be called during display deinit sequence.
@@ -128,16 +129,17 @@ void lv_gpu_nxp_pxp_deinit(void);
  * @param[in] color color
  * @param[in] opa transparency of the color
  */
-void lv_gpu_nxp_pxp_fill(lv_color_t * dest_buf, lv_coord_t dest_width, const lv_area_t * fill_area, lv_color_t color,
-                         lv_opa_t opa);
+void lv_gpu_nxp_pxp_fill(lv_color_t* dest_buf, lv_coord_t dest_width, const lv_area_t* fill_area,
+                         lv_color_t color, lv_opa_t opa);
 
 /**
  * @brief BLock Image Transfer - copy rectangular image from src buffer to dst buffer with effects.
  *
  * By default, image is copied directly, with optional opacity configured by \p opa.
- * Color keying can be enabled by calling lv_gpu_nxp_pxp_enable_color_key() before calling this function.
- * Recoloring can be enabled by calling lv_gpu_nxp_pxp_enable_recolor() before calling this function.
- * Note that color keying and recoloring at the same time is not supported and black rectangle is rendered.
+ * Color keying can be enabled by calling lv_gpu_nxp_pxp_enable_color_key() before calling this
+ * function. Recoloring can be enabled by calling lv_gpu_nxp_pxp_enable_recolor() before calling
+ * this function. Note that color keying and recoloring at the same time is not supported and black
+ * rectangle is rendered.
  *
  * @param[in/out] dest destination buffer
  * @param[in] dest_width width (stride) of destination buffer in pixels
@@ -147,8 +149,9 @@ void lv_gpu_nxp_pxp_fill(lv_color_t * dest_buf, lv_coord_t dest_width, const lv_
  * @param[in] copy_h height of area to be copied from src to dest
  * @param[in] opa opacity of the result
  */
-void lv_gpu_nxp_pxp_blit(lv_color_t * dest, lv_coord_t dest_width, const lv_color_t * src, lv_coord_t src_width,
-                         lv_coord_t copy_width, lv_coord_t copy_height, lv_opa_t opa);
+void lv_gpu_nxp_pxp_blit(lv_color_t* dest, lv_coord_t dest_width, const lv_color_t* src,
+                         lv_coord_t src_width, lv_coord_t copy_width, lv_coord_t copy_height,
+                         lv_opa_t opa);
 
 /**
  * @brief Enable color keying for subsequent calls to lv_gpu_nxp_pxp_blit()

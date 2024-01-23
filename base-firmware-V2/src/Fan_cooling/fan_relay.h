@@ -23,8 +23,8 @@ SOFTWARE.*/
 #ifndef FAN_RELAY
 #define FAN_RELAY
 
-#include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
+#include <zephyr/kernel.h>
 
 //____________________________________________________________
 /* Initializes Fan Relay
@@ -51,12 +51,11 @@ static void fan_relay_on();
 static void fan_relay_off();
 
 //____________________________________________________________
-/* Main API routine -> Hard Regulate Temperature 
+/* Main API routine -> Hard Regulate Temperature
 ===========================================================================
 |    void
 ===========================================================================
 */
-static void coolSierra_task(double sierraTemp);        
-
+static void coolSierra_task(double sierraTemp);
 
 #endif

@@ -23,19 +23,20 @@ extern "C" {
  *********************/
 /*Special non printable strong characters.
  *They can be inserted to texts to affect the run's direction*/
-#define LV_BIDI_LRO  "\xE2\x80\xAD" /*U+202D*/
-#define LV_BIDI_RLO  "\xE2\x80\xAE" /*U+202E*/
+#define LV_BIDI_LRO "\xE2\x80\xAD" /*U+202D*/
+#define LV_BIDI_RLO "\xE2\x80\xAE" /*U+202E*/
 
 /**********************
  *      TYPEDEFS
  **********************/
-enum {
-    LV_BASE_DIR_LTR      = 0x00,
-    LV_BASE_DIR_RTL      = 0x01,
-    LV_BASE_DIR_AUTO     = 0x02,
+enum
+{
+    LV_BASE_DIR_LTR = 0x00,
+    LV_BASE_DIR_RTL = 0x01,
+    LV_BASE_DIR_AUTO = 0x02,
 
-    LV_BASE_DIR_NEUTRAL  = 0x20,
-    LV_BASE_DIR_WEAK     = 0x21,
+    LV_BASE_DIR_NEUTRAL = 0x20,
+    LV_BASE_DIR_WEAK = 0x21,
 };
 
 typedef uint8_t lv_base_dir_t;
@@ -52,14 +53,14 @@ typedef uint8_t lv_base_dir_t;
  * @param str_out store the result here. Has the be `strlen(str_in)` length
  * @param base_dir `LV_BASE_DIR_LTR` or `LV_BASE_DIR_RTL`
  */
-void _lv_bidi_process(const char * str_in, char * str_out, lv_base_dir_t base_dir);
+void _lv_bidi_process(const char* str_in, char* str_out, lv_base_dir_t base_dir);
 
 /**
  * Auto-detect the direction of a text based on the first strong character
  * @param txt the text to process
  * @return `LV_BASE_DIR_LTR` or `LV_BASE_DIR_RTL`
  */
-lv_base_dir_t _lv_bidi_detect_base_dir(const char * txt);
+lv_base_dir_t _lv_bidi_detect_base_dir(const char* txt);
 
 /**
  * Get the logical position of a character in a line
@@ -73,8 +74,8 @@ lv_base_dir_t _lv_bidi_detect_base_dir(const char * txt);
  * @param is_rtl tell the char at `visual_pos` is RTL or LTR context
  * @return the logical character position
  */
-uint16_t _lv_bidi_get_logical_pos(const char * str_in, char ** bidi_txt, uint32_t len, lv_base_dir_t base_dir,
-                                  uint32_t visual_pos, bool * is_rtl);
+uint16_t _lv_bidi_get_logical_pos(const char* str_in, char** bidi_txt, uint32_t len,
+                                  lv_base_dir_t base_dir, uint32_t visual_pos, bool* is_rtl);
 
 /**
  * Get the visual position of a character in a line
@@ -88,8 +89,8 @@ uint16_t _lv_bidi_get_logical_pos(const char * str_in, char ** bidi_txt, uint32_
  * @param is_rtl tell the char at `logical_pos` is RTL or LTR context
  * @return the visual character position
  */
-uint16_t _lv_bidi_get_visual_pos(const char * str_in, char ** bidi_txt, uint16_t len, lv_base_dir_t base_dir,
-                                 uint32_t logical_pos, bool * is_rtl);
+uint16_t _lv_bidi_get_visual_pos(const char* str_in, char** bidi_txt, uint16_t len,
+                                 lv_base_dir_t base_dir, uint32_t logical_pos, bool* is_rtl);
 
 /**
  * Bidi process a paragraph of text
@@ -101,8 +102,9 @@ uint16_t _lv_bidi_get_visual_pos(const char * str_in, char ** bidi_txt, uint16_t
  * Can be `NULL` is unused
  * @param pos_conv_len length of `pos_conv_out` in element count
  */
-void _lv_bidi_process_paragraph(const char * str_in, char * str_out, uint32_t len, lv_base_dir_t base_dir,
-                                uint16_t * pos_conv_out, uint16_t pos_conv_len);
+void _lv_bidi_process_paragraph(const char* str_in, char* str_out, uint32_t len,
+                                lv_base_dir_t base_dir, uint16_t* pos_conv_out,
+                                uint16_t pos_conv_len);
 
 /**********************
  *      MACROS

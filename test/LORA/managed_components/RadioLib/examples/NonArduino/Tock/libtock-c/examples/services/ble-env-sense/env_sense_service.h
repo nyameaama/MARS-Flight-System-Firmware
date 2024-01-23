@@ -1,9 +1,9 @@
 #include <stdint.h>
 
-#define ENVIRONMENTAL_SENSING_SERVICE_UUID      0x181A
-#define TEMPERATURE_CHAR_UUID                   0x2A6E
-#define HUMIDITY_CHAR_UUID                      0x2A6F
-#define IRRADIANCE_CHAR_UUID                    0x2A77
+#define ENVIRONMENTAL_SENSING_SERVICE_UUID 0x181A
+#define TEMPERATURE_CHAR_UUID 0x2A6E
+#define HUMIDITY_CHAR_UUID 0x2A6F
+#define IRRADIANCE_CHAR_UUID 0x2A77
 
 void env_sense_service_init(void);
 

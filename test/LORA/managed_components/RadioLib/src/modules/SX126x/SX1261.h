@@ -6,20 +6,21 @@
 #if !RADIOLIB_EXCLUDE_SX126X
 
 #include "../../Module.h"
-#include "SX126x.h"
 #include "SX1262.h"
+#include "SX126x.h"
 
-//RADIOLIB_SX126X_CMD_SET_PA_CONFIG
-#define RADIOLIB_SX126X_PA_CONFIG_SX1261                        0x01
+// RADIOLIB_SX126X_CMD_SET_PA_CONFIG
+#define RADIOLIB_SX126X_PA_CONFIG_SX1261 0x01
 
-//RADIOLIB_SX126X_REG_VERSION_STRING
-#define RADIOLIB_SX1261_CHIP_TYPE                               "SX1261"
+// RADIOLIB_SX126X_REG_VERSION_STRING
+#define RADIOLIB_SX1261_CHIP_TYPE "SX1261"
 
 /*!
   \class SX1261
   \brief Derived class for %SX1261 modules.
 */
-class SX1261 : public SX1262 {
+class SX1261 : public SX1262
+{
   public:
     /*!
       \brief Default constructor.
@@ -37,7 +38,6 @@ class SX1261 : public SX1262 {
 #if !RADIOLIB_GODMODE
   private:
 #endif
-
 };
 
 #endif

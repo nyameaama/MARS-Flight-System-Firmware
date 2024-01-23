@@ -24,31 +24,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 #//include"../../util/defi.h"
-#include<stdio.h>
-#include<cstdint>
+#include <stdio.h>
+#include <cstdint>
 
-class _motors {
-    public:
-        _motors();
-    public:
-        //Motor firmware modules mapped to range 0 - 180 | Neutral = 90
-        uint8_t adjustServoFWLEFT(uint8_t range);
+class _motors
+{
+  public:
+    _motors();
 
-        uint8_t adjustServoFWRIGHT(uint8_t range);
+  public:
+    // Motor firmware modules mapped to range 0 - 180 | Neutral = 90
+    uint8_t adjustServoFWLEFT(uint8_t range);
 
-        uint8_t adjustServoRWLEFT(uint8_t range);
+    uint8_t adjustServoFWRIGHT(uint8_t range);
 
-        uint8_t adjustServoRWRIGHT(uint8_t range);
+    uint8_t adjustServoRWLEFT(uint8_t range);
 
-        uint8_t mainThrottle(uint8_t range);
+    uint8_t adjustServoRWRIGHT(uint8_t range);
 
-        uint8_t returnServoPos();
+    uint8_t mainThrottle(uint8_t range);
 
-    private:
-        uint8_t _init();
-    
-        uint8_t computeOptimumDelay(uint8_t delta);
+    uint8_t returnServoPos();
 
+  private:
+    uint8_t _init();
+
+    uint8_t computeOptimumDelay(uint8_t delta);
 };
 
-#endif //_MOTORSD
+#endif  //_MOTORSD

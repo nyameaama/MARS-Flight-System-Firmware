@@ -24,23 +24,24 @@ SOFTWARE.
 #ifndef UTIL
 #define UTIL
 
-#include<stddef.h>
-#include<string.h>
-#include<stdlib.h>
-#include<time.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 #define pi (3.14159265358979)
 
-class UTILITY_FUNCTIONS {
-    public:
-        //This function converts decimal degrees to radians       
-		double deg2rad(double deg);
+class UTILITY_FUNCTIONS
+{
+  public:
+    // This function converts decimal degrees to radians
+    double deg2rad(double deg);
 
-        //This function converts radians to decimal degrees 
-		double rad2deg(double rad);
-        
-        //This function generates a 5 digit Alphanumeric random string
-        //std::string generateAlphanumericString();
+    // This function converts radians to decimal degrees
+    double rad2deg(double rad);
+
+    // This function generates a 5 digit Alphanumeric random string
+    // std::string generateAlphanumericString();
 };
 
 #endif

@@ -18,11 +18,12 @@ SOFTWARE.*/
 #ifndef FLIGHT
 #define FLIGHT
 
-#include"../util/defi.h"
+#include "../util/defi.h"
 
-class _FLIGHT {
-    public:
-        void _flightMonitor();
+class _FLIGHT
+{
+  public:
+    void _flightMonitor();
 };
 
-#endif //FLIGHT
+#endif  // FLIGHT

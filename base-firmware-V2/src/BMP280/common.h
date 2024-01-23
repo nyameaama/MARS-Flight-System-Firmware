@@ -35,7 +35,8 @@ extern "C" {
  *  @retval != BMP2_INTF_RET_SUCCESS -> Failure.
  *
  */
-BMP2_INTF_RET_TYPE bmp2_spi_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t length, const void *intf_ptr);
+BMP2_INTF_RET_TYPE bmp2_spi_read(uint8_t reg_addr, uint8_t* reg_data, uint32_t length,
+                                 const void* intf_ptr);
 
 /*!
  *  @brief Function for reading the sensor's registers through I2C bus.
@@ -51,7 +52,8 @@ BMP2_INTF_RET_TYPE bmp2_spi_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t l
  *  @retval != BMP2_INTF_RET_SUCCESS -> Failure.
  *
  */
-BMP2_INTF_RET_TYPE bmp2_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t length, const void *intf_ptr);
+BMP2_INTF_RET_TYPE bmp2_i2c_read(uint8_t reg_addr, uint8_t* reg_data, uint32_t length,
+                                 const void* intf_ptr);
 
 /*!
  *  @brief Function for writing the sensor's registers through SPI bus.
@@ -67,7 +69,8 @@ BMP2_INTF_RET_TYPE bmp2_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t l
  *  @retval != BMP2_INTF_RET_SUCCESS -> Failure.
  *
  */
-BMP2_INTF_RET_TYPE bmp2_spi_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t length, const void *intf_ptr);
+BMP2_INTF_RET_TYPE bmp2_spi_write(uint8_t reg_addr, const uint8_t* reg_data, uint32_t length,
+                                  const void* intf_ptr);
 
 /*!
  *  @brief Function for writing the sensor's registers through I2C bus.
@@ -83,18 +86,19 @@ BMP2_INTF_RET_TYPE bmp2_spi_write(uint8_t reg_addr, const uint8_t *reg_data, uin
  *  @retval != BMP2_INTF_RET_SUCCESS -> Failure.
  *
  */
-BMP2_INTF_RET_TYPE bmp2_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t length, const void *intf_ptr);
+BMP2_INTF_RET_TYPE bmp2_i2c_write(uint8_t reg_addr, const uint8_t* reg_data, uint32_t length,
+                                  const void* intf_ptr);
 
 /*!
- *  @brief This function provides the delay for required time (Microsecond) as per the input provided in some of the
- *  APIs.
+ *  @brief This function provides the delay for required time (Microsecond) as per the input
+ * provided in some of the APIs.
  *
  *  @param[in] period_us  : The required wait time in microsecond.
  *  @param[in] intf_ptr   : Interface pointer
  *
  *  @return void.
  */
-void bmp2_delay_us(uint32_t period_us, void *intf_ptr);
+void bmp2_delay_us(uint32_t period_us, void* intf_ptr);
 
 /*!
  *  @brief This function is to select the interface between SPI and I2C.
@@ -108,7 +112,7 @@ void bmp2_delay_us(uint32_t period_us, void *intf_ptr);
  *  @retval 0 -> Success
  *  @retval < 0 -> Failure
  */
-int8_t bmp2_interface_selection(struct bmp2_dev *dev, uint8_t intf);
+int8_t bmp2_interface_selection(struct bmp2_dev* dev, uint8_t intf);
 
 /*!
  *  @brief This API is used to print the execution status.

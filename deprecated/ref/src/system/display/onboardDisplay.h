@@ -20,18 +20,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
- #ifndef ONBOARD_DIS
- #define ONBOARD_DIS
+#ifndef ONBOARD_DIS
+#define ONBOARD_DIS
 
- #define GOOD_CONNECTION 1
- #define BAD_CONNECTION 0
+#define GOOD_CONNECTION 1
+#define BAD_CONNECTION 0
 
-#include <SPI.h>
-#include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <SPI.h>
+#include <Wire.h>
 
-class _ONBOARD_DISPLAY {
+class _ONBOARD_DISPLAY
+{
   public:
     void _init_();
 
@@ -54,4 +55,4 @@ class _ONBOARD_DISPLAY {
     void state_wingAngleFR(uint8_t value);
 };
 
- #endif //ONBOARD_DIS
+#endif  // ONBOARD_DIS

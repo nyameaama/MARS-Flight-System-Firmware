@@ -1,22 +1,23 @@
 #if !defined(_RADIOLIB_CRC_H)
 #define _RADIOLIB_CRC_H
 
-#include "../TypeDef.h"
 #include "../Module.h"
+#include "../TypeDef.h"
 #if defined(RADIOLIB_BUILD_ARDUINO)
 #include "../ArduinoHal.h"
 #endif
 
 // CCITT CRC properties (used by AX.25)
-#define RADIOLIB_CRC_CCITT_POLY                                 (0x1021)
-#define RADIOLIB_CRC_CCITT_INIT                                 (0xFFFF)
-#define RADIOLIB_CRC_CCITT_OUT                                  (0xFFFF)
+#define RADIOLIB_CRC_CCITT_POLY (0x1021)
+#define RADIOLIB_CRC_CCITT_INIT (0xFFFF)
+#define RADIOLIB_CRC_CCITT_OUT (0xFFFF)
 
 /*!
   \class RadioLibCRC
   \brief Class to calculate CRCs of varying formats.
 */
-class RadioLibCRC {
+class RadioLibCRC
+{
   public:
     /*!
       \brief CRC size in bits.

@@ -13,8 +13,8 @@ This file is licensed under the MIT License: https://opensource.org/licenses/MIT
 #if !RADIOLIB_EXCLUDE_STM32WLX
 
 #include "../../Module.h"
-#include "SX1262.h"
 #include "STM32WLx_Module.h"
+#include "SX1262.h"
 
 /*!
   \class STM32WLx
@@ -30,10 +30,11 @@ This file is licensed under the MIT License: https://opensource.org/licenses/MIT
   low-power (LP) and high-power (HP) amplifier. See setOutputPower() and
   setRfSwitchTable() for details on how this is handled.
 */
-class STM32WLx : public SX1262 {
-  // NOTE: This class could not be named STM32WL (or STM32WLxx), since
-  // those are macros defined by
-  // system/Drivers/CMSIS/Device/ST/STM32WLxxx/Include/stm32wlxx.h
+class STM32WLx : public SX1262
+{
+    // NOTE: This class could not be named STM32WL (or STM32WLxx), since
+    // those are macros defined by
+    // system/Drivers/CMSIS/Device/ST/STM32WLxxx/Include/stm32wlxx.h
   public:
     /*!
       \brief Default constructor.
@@ -43,12 +44,13 @@ class STM32WLx : public SX1262 {
 
     /*!
       \brief Custom operation modes for STMWLx.
-     
+
       This splits the TX mode into two modes: Low-power and high-power.
       These constants can be used with the setRfSwitchTable() method,
       instead of the Module::OpMode_t constants.
     */
-    enum OpMode_t {
+    enum OpMode_t
+    {
         /*! End of table marker, use \ref END_OF_MODE_TABLE constant instead */
         MODE_END_OF_TABLE = Module::MODE_END_OF_TABLE,
         /*! Idle mode */
@@ -66,12 +68,17 @@ class STM32WLx : public SX1262 {
     /*!
       \copydoc SX1262::begin
     */
-    int16_t begin(float freq = 434.0, float bw = 125.0, uint8_t sf = 9, uint8_t cr = 7, uint8_t syncWord = RADIOLIB_SX126X_SYNC_WORD_PRIVATE, int8_t power = 10, uint16_t preambleLength = 8, float tcxoVoltage = 1.6, bool useRegulatorLDO = false);
+    int16_t begin(float freq = 434.0, float bw = 125.0, uint8_t sf = 9, uint8_t cr = 7,
+                  uint8_t syncWord = RADIOLIB_SX126X_SYNC_WORD_PRIVATE, int8_t power = 10,
+                  uint16_t preambleLength = 8, float tcxoVoltage = 1.6,
+                  bool useRegulatorLDO = false);
 
     /*!
       \copydoc SX1262::beginFSK
     */
-    int16_t beginFSK(float freq = 434.0, float br = 4.8, float freqDev = 5.0, float rxBw = 156.2, int8_t power = 10, uint16_t preambleLength = 16, float tcxoVoltage = 1.6, bool useRegulatorLDO = false);
+    int16_t beginFSK(float freq = 434.0, float br = 4.8, float freqDev = 5.0, float rxBw = 156.2,
+                     int8_t power = 10, uint16_t preambleLength = 16, float tcxoVoltage = 1.6,
+                     bool useRegulatorLDO = false);
 
     // configuration methods
 
@@ -82,8 +89,8 @@ class STM32WLx : public SX1262 {
 
       LP is preferred and supports -17 to +14dBm. When a higher power is
       requested (or the LP amplifier is marked as unavailable using
-      setRfSwitchTable()), HP is used, which supports -9 to +22dBm. If the LP is marked as unavailable,
-      HP output will be used instead.
+      setRfSwitchTable()), HP is used, which supports -9 to +22dBm. If the LP is marked as
+      unavailable, HP output will be used instead.
 
       \param power Output power to be set in dBm.
 

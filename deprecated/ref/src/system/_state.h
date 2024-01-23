@@ -23,27 +23,28 @@ SOFTWARE.*/
 #ifndef _STATE_
 #define _STATE_
 
-#include"../util/defi.h"
+#include "../util/defi.h"
 
-class STATE {
-    public:
-        uint8_t SWITCH2IDLE();
+class STATE
+{
+  public:
+    uint8_t SWITCH2IDLE();
 
-        uint8_t SWITCH2PREP();
+    uint8_t SWITCH2PREP();
 
-        uint8_t SWITCH2ARMED();
+    uint8_t SWITCH2ARMED();
 
-        uint8_t SWITCH2BYPASS();
+    uint8_t SWITCH2BYPASS();
 
-        void ASSIGN_PREP_TASKS();
+    void ASSIGN_PREP_TASKS();
 
-        void UNDEF_FLAGS(std::string state);
+    void UNDEF_FLAGS(std::string state);
 
-        void reset_();
+    void reset_();
 
-        uint8_t compareX(char* x, char* y);
+    uint8_t compareX(char* x, char* y);
 
-        char* getLastStateRequest();
+    char* getLastStateRequest();
 };
 
-#endif //_STATE_
+#endif  //_STATE_

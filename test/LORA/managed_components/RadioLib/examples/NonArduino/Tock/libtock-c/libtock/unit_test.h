@@ -85,21 +85,26 @@ extern "C" {
  * All unit tests should return a boolean representing true for PASS and false
  * for FAIL.
  */
-typedef struct unit_test_fun_s {
+typedef struct unit_test_fun_s
+{
     bool (*fun)(void);
     char name[24];
 } unit_test_fun;
 
-#define TEST(NAME) { \
-    test_##NAME,     \
-    #NAME            \
-}
+#define TEST(NAME)         \
+    {                      \
+        test_##NAME, #NAME \
+    }
 
 /** \brief remember the reason a test has failed */
-void set_failure_reason(const char *reason);
+void set_failure_reason(const char* reason);
 
-
-#define CHECK(x) if (!(x)) { set_failure_reason(#x); return false; }
+#define CHECK(x)                \
+    if (!(x))                   \
+    {                           \
+        set_failure_reason(#x); \
+        return false;           \
+    }
 
 /** \brief A test setup function */
 bool test_setup(void);
@@ -147,8 +152,8 @@ void test_teardown(void);
  *      return 0;
  *    }
  */
-void unit_test_runner(unit_test_fun *tests, uint32_t test_count,
-                  uint32_t timeout_ms, const char *svc_name);
+void unit_test_runner(unit_test_fun* tests, uint32_t test_count, uint32_t timeout_ms,
+                      const char* svc_name);
 
 /** \brief Test supervisor entry point.
  *

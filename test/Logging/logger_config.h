@@ -30,10 +30,9 @@
 #define logger_config_h
 
 #include <stdio.h>
-#include "esp_timer.h"
-#include <sstream>
 #include <iostream>
-
+#include <sstream>
+#include "esp_timer.h"
 
 // Logger version
 #define LOGGER_VERSION 1.00
@@ -42,9 +41,8 @@
 #ifdef LOG_VERBOSITY_LOW
 
 #include <stdio.h>
-#include "esp_timer.h"
 #include <sstream>
-
+#include "esp_timer.h"
 
 #define Message "LOG_VERBOSITY_LOW ACTIVE \n\n"
 
@@ -53,24 +51,23 @@
     printf("[%s] %s:%d - " format "\n", level, __FILE__, __LINE__, ##__VA_ARGS__)
 
 // Define specific macros for different log levels
-#define LOG_DEBUG(format, ...) do { LOG("DEBUG", format, ##__VA_ARGS__); } while (0)
-#define LOG_INFO(format, ...)  LOG("INFO", format, ##__VA_ARGS__)
-#define LOG_WARN(format, ...)  LOG("WARN", format, ##__VA_ARGS__)
+#define LOG_DEBUG(format, ...)               \
+    do                                       \
+    {                                        \
+        LOG("DEBUG", format, ##__VA_ARGS__); \
+    } while (0)
+#define LOG_INFO(format, ...) LOG("INFO", format, ##__VA_ARGS__)
+#define LOG_WARN(format, ...) LOG("WARN", format, ##__VA_ARGS__)
 #define LOG_ERROR(format, ...) LOG("ERROR", format, ##__VA_ARGS__)
-
 
 #endif /* LOG_VERBOSITY_LOW */
 
 #ifdef LOG_VERBOSITY_MEDIUM
-
-
 
 #endif /* LOG_VERBOSITY_MEDIUM */
 
 #ifdef LOG_VERBOSITY_HIGH
 
 #endif /* LOG_VERBOSITY_HIGH */
-
-
 
 #endif /* logger_config_h */

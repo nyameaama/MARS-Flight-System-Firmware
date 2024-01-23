@@ -6,14 +6,15 @@
 #if !RADIOLIB_EXCLUDE_SX128X
 
 #include "../../Module.h"
-#include "SX128x.h"
 #include "SX1281.h"
+#include "SX128x.h"
 
 /*!
   \class SX1280
   \brief Derived class for %SX1280 modules.
 */
-class SX1280: public SX1281 {
+class SX1280 : public SX1281
+{
   public:
     /*!
       \brief Default constructor.
@@ -48,7 +49,6 @@ class SX1280: public SX1281 {
 #if !RADIOLIB_GODMODE
   private:
 #endif
-
 };
 
 #endif
