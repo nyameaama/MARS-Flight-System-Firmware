@@ -1,13 +1,12 @@
 /**
- * @file logtypes.h
- * @brief log types for logger
+ * @file logger_config.h
+ * @brief logger configuration file containing macros
  *
- * Declared types for the logger and can be used as an API for other subsystems
  *
- * @date August 18th 2023
- * @copyright Copyright (c) 2023 limitless Aeronautics
+ * @date November 10th, 2023
+ * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
- * @author Lukas Jackson
+ * @author Lukas Jackson (LukasJacksonEG@gmail.com)
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics
@@ -27,30 +26,48 @@
  *          OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *          SOFTWARE.
  */
-
-#ifndef LOGTYPES_H_
-#define LOGTYPES_H_
+#ifndef logger_config_h
+#define logger_config_h
 
 #include <stdio.h>
-#include <cstdint>  // For uint types
-#include <cstdio>   // Include the C standard I/O library for printf
-#include <fstream>
 #include <iostream>
 #include <sstream>
-#include <string>
+#include "esp_timer.h"
 
-#include <stdint.h>
+// Logger version
+#define LOGGER_VERSION 1.00
 
-// Define the enum for mars_exception_t
-enum MarsExceptionType {
-    ROUTINE_SOFT_FAIL,
-    ROUTINE_HARD_FAIL
-};
+// Logger verbosity
+#ifdef LOG_VERBOSITY_LOW
 
-// Define the mars_exception_t structure
-struct mars_exception_t {
-    enum MarsExceptionType type;
-} __attribute__((packed));
+#include <stdio.h>
+#include <sstream>
+#include "esp_timer.h"
 
+#define Message "LOG_VERBOSITY_LOW ACTIVE \n\n"
 
-#endif /* LOGTYPES_H_ */
+// Define a macro for logging with severity levels
+#define LOG(level, format, ...) \
+    printf("[%s] %s:%d - " format "\n", level, __FILE__, __LINE__, ##__VA_ARGS__)
+
+// Define specific macros for different log levels
+#define LOG_DEBUG(format, ...)               \
+    do                                       \
+    {                                        \
+        LOG("DEBUG", format, ##__VA_ARGS__); \
+    } while (0)
+#define LOG_INFO(format, ...) LOG("INFO", format, ##__VA_ARGS__)
+#define LOG_WARN(format, ...) LOG("WARN", format, ##__VA_ARGS__)
+#define LOG_ERROR(format, ...) LOG("ERROR", format, ##__VA_ARGS__)
+
+#endif /* LOG_VERBOSITY_LOW */
+
+#ifdef LOG_VERBOSITY_MEDIUM
+
+#endif /* LOG_VERBOSITY_MEDIUM */
+
+#ifdef LOG_VERBOSITY_HIGH
+
+#endif /* LOG_VERBOSITY_HIGH */
+
+#endif /* logger_config_h */
