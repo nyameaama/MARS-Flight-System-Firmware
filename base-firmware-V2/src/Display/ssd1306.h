@@ -23,8 +23,10 @@ SOFTWARE.*/
 #ifndef SSD1306X
 #define SSD1306X
 
+#include <zephyr/kernel.h>
 #include <zephyr/drivers/i2c.h>
 #include <zephyr/sys/printk.h>
+#include <zephyr/devicetree.h>
 #include "ssd1306_fonts.h"
 #include "stdlib.h"
 #include "string.h"

@@ -20,73 +20,55 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include"fan_relay.h"
+#ifndef _STATE_
+#define _STATE_
 
-/* The devicetree node identifier for the "led0" alias. */
-#define LED0_NODE DT_ALIAS(led0)
+#include <stdio.h>
+#include <string.h>
 
-bool fanIsOn = false;
-static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
+#define PREP "PREP"
+#define ARMED "ARMED"
+#define BYPASS "BYPASS"
 
 //____________________________________________________________
-/* Initializes Fan Relay
+/* Change state to prep
 ===========================================================================
 |    void
 ===========================================================================
 */
-void init_relay(){
-    int ret;
-    if (!gpio_is_ready_dt(&led)) {
-        return 0;
-    }
-    ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
-    if (ret < 0) {
-        return 0;
-    }
-}
-
+uint8_t SWITCH2PREP();
 
 //____________________________________________________________
-/* Utillity subroutine -> Turn on cooling fan
+/* Change state to armed
 ===========================================================================
 |    void
 ===========================================================================
 */
-void fan_relay_on(){
-    gpio_pin_set_dt(&led, 1);
-}
-
+uint8_t SWITCH2ARMED();
 
 //____________________________________________________________
-/* Utillity subroutine -> Turn off cooling fan
+/* Change state to bypass
 ===========================================================================
 |    void
 ===========================================================================
 */
-void fan_relay_off(){
-    gpio_pin_set_dt(&led, 0);
-}
-
+uint8_t SWITCH2BYPASS();
 
 //____________________________________________________________
-/* Main API routine -> Hard Regulate Temperature 
+/* Compare two strings of type <std::string>
 ===========================================================================
 |    void
 ===========================================================================
 */
-void coolSierra_task(double sierraTemp){
-    // Setpoints for turning the fan on and off
-    double fanOnSetpoint = 45.0;
-    double fanOffSetpoint = 35.0;
+uint8_t compareX(char* x, char* y);
 
-    // Check if the temperature is above the fanOnSetpoint
-    if (sierraTemp > fanOnSetpoint && !fanIsOn) {
-        // Turn the fan on
-        fan_relay_on();
-        fanIsOn = true;
-    } else if (sierraTemp < fanOffSetpoint && fanIsOn) {
-        // Turn the fan off
-        fan_relay_off();
-        fanIsOn = false;
-    }
-}
+//____________________________________________________________
+/* Handler to update state description
+===========================================================================
+|    void
+===========================================================================
+*/
+void updateState(char* state);
+
+
+#endif  //_STATE_

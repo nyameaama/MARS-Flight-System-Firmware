@@ -23,4 +23,4 @@ SOFTWARE.
 ]]
 
 target_sources(app PRIVATE
-		     ${CMAKE_CURRENT_SOURCE_DIR}/ssd1306.c)
+		     ${CMAKE_CURRENT_SOURCE_DIR}/ssd1306.c ssd1306_fonts.c)

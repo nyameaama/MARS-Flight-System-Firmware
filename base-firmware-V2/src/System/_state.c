@@ -20,73 +20,80 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include"fan_relay.h"
+#include "_state.h"
 
-/* The devicetree node identifier for the "led0" alias. */
-#define LED0_NODE DT_ALIAS(led0)
-
-bool fanIsOn = false;
-static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
+char* stateDescript;
+uint8_t state = 1;
 
 //____________________________________________________________
-/* Initializes Fan Relay
+/* Change state to prep
 ===========================================================================
 |    void
 ===========================================================================
 */
-void init_relay(){
-    int ret;
-    if (!gpio_is_ready_dt(&led)) {
-        return 0;
+    uint8_t SWITCH2PREP(){
+        //Change variable
+        uint8_t change = 0;
+        //PREP -> 1
+        if(compareX(stateDescript, PREP)){
+            change = 1;
+            state = 1;
+        } 
+        return change;
     }
-    ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
-    if (ret < 0) {
-        return 0;
+
+//____________________________________________________________
+/* Change state to armed
+===========================================================================
+|    void
+===========================================================================
+*/
+    uint8_t SWITCH2ARMED(){
+        //Change variable
+        uint8_t change = 0;
+        //ARMED -> 2
+        if(compareX(stateDescript, ARMED)){
+            change = 1;
+            state = 2;
+        }
+        return change;
     }
-}
-
 
 //____________________________________________________________
-/* Utillity subroutine -> Turn on cooling fan
+/* Change state to bypass
 ===========================================================================
 |    void
 ===========================================================================
 */
-void fan_relay_on(){
-    gpio_pin_set_dt(&led, 1);
-}
-
-
-//____________________________________________________________
-/* Utillity subroutine -> Turn off cooling fan
-===========================================================================
-|    void
-===========================================================================
-*/
-void fan_relay_off(){
-    gpio_pin_set_dt(&led, 0);
-}
-
-
-//____________________________________________________________
-/* Main API routine -> Hard Regulate Temperature 
-===========================================================================
-|    void
-===========================================================================
-*/
-void coolSierra_task(double sierraTemp){
-    // Setpoints for turning the fan on and off
-    double fanOnSetpoint = 45.0;
-    double fanOffSetpoint = 35.0;
-
-    // Check if the temperature is above the fanOnSetpoint
-    if (sierraTemp > fanOnSetpoint && !fanIsOn) {
-        // Turn the fan on
-        fan_relay_on();
-        fanIsOn = true;
-    } else if (sierraTemp < fanOffSetpoint && fanIsOn) {
-        // Turn the fan off
-        fan_relay_off();
-        fanIsOn = false;
+    uint8_t SWITCH2BYPASS(){
+        //Change variable
+        uint8_t change = 0;
+        //BYPASS -> 3
+        if(compareX(stateDescript, BYPASS)){
+            change = 1;
+            state = 3;
+        }
+        return change;
     }
-}
+
+//____________________________________________________________
+/* Handler to update state description
+===========================================================================
+|    void
+===========================================================================
+*/
+    void updateState(char* state){
+        //Update state description value
+        stateDescript = state;
+    }
+
+//____________________________________________________________
+/* Compare two strings of type <std::string>
+===========================================================================
+|    void
+===========================================================================
+*/
+    //If output = 1, strings match
+    uint8_t compareX(char* x, char* y){
+        return strcmp(x, y);
+    }
