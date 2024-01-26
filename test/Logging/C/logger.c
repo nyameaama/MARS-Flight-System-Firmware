@@ -28,7 +28,11 @@
  */
 
 #include "logger.h"
-#include "../../statemachine/_ptam.h"
+#include "../../PTAM/C/_ptam.h"
+
+// !The EVENT_LOG functions use primitive data types instead of the PTAM DataType enum.
+// !This will likely need a partial overhaul, however, I can add onto it, since it is in its 
+// !revamp stage...
 
 /**
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
