@@ -22,5 +22,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-target_sources(app PRIVATE
-		     ${CMAKE_CURRENT_SOURCE_DIR}/fan_relay.c)
+
+idf_component_register(SRCS "_ptam.cpp")
