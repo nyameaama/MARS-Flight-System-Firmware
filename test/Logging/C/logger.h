@@ -2,7 +2,6 @@
  * @file logger.h
  * @brief logger prototype functions
  *
- * Declared types for the logger and can be used as an API for other subsystems
  *
  * @date January 24, 2024
  * @copyright Copyright (c) 2023 Limitless Aeronautics
@@ -31,11 +30,12 @@
 #ifndef __LOGGING__H_
 #define __LOGGING__H_
 
-#include <inttypes.h>
+#include <inttypes.h>  //Replace with homemade inttypes
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "include/logtypes.h"
 
 /**
  * @brief Sensor Data Dump(SDD) is ran periodically to collect system data
@@ -59,7 +59,7 @@ const char* EVENT_LOG_SSL(void);
  * @param info
  * @return uint8_t
  */
-const char* EVENT_LOG_SEL(const char* ID, enum MarsExceptionType exceptionType,
+const char* EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType,
                           const char* additionalInfo);
 
 /**
@@ -68,7 +68,7 @@ const char* EVENT_LOG_SEL(const char* ID, enum MarsExceptionType exceptionType,
  * @param MarsExceptionType
  * @return const char*
  */
-const char* exception_t_to_str(enum MarsExceptionType exceptionType);
+const char* exception_t_to_str(MarsExceptionType exceptionType);
 
 /**
  * @brief Get the event id from log message

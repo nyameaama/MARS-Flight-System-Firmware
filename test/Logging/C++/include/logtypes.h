@@ -5,9 +5,9 @@
  * Declared types for the logger and can be used as an API for other subsystems
  *
  * @date August 18th 2023
- * @copyright Copyright (c) 2023 limitless Aeronautics
+ * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
- * @author Lukas Jackson
+ * @author Lukas R. Jackson
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics
@@ -28,8 +28,7 @@
  *          SOFTWARE.
  */
 
-#ifndef LOGTYPES_H_
-#define LOGTYPES_H_
+#pragma once
 
 #include <stdio.h>
 #include <cstdint>  // For uint types
@@ -39,18 +38,18 @@
 #include <sstream>
 #include <string>
 
-#include <stdint.h>
-
-// Define the enum for mars_exception_t
-enum MarsExceptionType {
-    ROUTINE_SOFT_FAIL,
-    ROUTINE_HARD_FAIL
-};
-
-// Define the mars_exception_t structure
-struct mars_exception_t {
-    enum MarsExceptionType type;
+/**
+ * @brief mars expected return types
+ *
+ * @param ROUTINE_SOFT_FAIL
+ * @param ROUTINE_HARD_FAIL
+ *
+ */
+struct mars_exception_t
+{
+    enum Type : uint8_t
+    {
+        ROUTINE_SOFT_FAIL,
+        ROUTINE_HARD_FAIL
+    };
 } __attribute__((packed));
-
-
-#endif /* LOGTYPES_H_ */

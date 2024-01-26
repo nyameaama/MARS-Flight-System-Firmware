@@ -2,7 +2,6 @@
  * @file logger.c
  * @brief logger function definitions
  *
- * Declared types for the logger and can be used as an API for other subsystems
  *
  * @date January 24th, 2024
  * @copyright Copyright (c) 2023 Limitless Aeronautics
@@ -29,6 +28,7 @@
  */
 
 #include "logger.h"
+#include "../../statemachine/_ptam.h"
 
 /**
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
@@ -147,7 +147,7 @@ EVENT_LOG_SSL(void)
  * @return std::string
  */
 const char*
-EVENT_LOG_SEL(const char* ID, enum MarsExceptionType exceptionType, const char* additionalInfo)
+EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* additionalInfo)
 {
     // Implement C variant of PTAM here
 
@@ -198,7 +198,7 @@ EVENT_LOG_SEL(const char* ID, enum MarsExceptionType exceptionType, const char* 
  * @return const char*
  */
 const char*
-exception_type_to_string(enum mars_exception_type exception_type)
+exception_type_to_string(MarsExceptionType exception_type)
 {
     switch (exception_type)
     {
@@ -209,6 +209,7 @@ exception_type_to_string(enum mars_exception_type exception_type)
     default:
         return "UNKNOWN";
     }
+    return "Could not return MARS type";
 }
 
 /**
@@ -306,7 +307,7 @@ const char*
 convert_time(uint64_t ms)
 {
     // Calculate seconds
-    uint64_t seconds = milliseconds / 1000;
+    uint64_t seconds = ms / 1000;
 
     // Extract hours, minutes, and remaining seconds
     int hours = seconds / 3600;
@@ -314,7 +315,7 @@ convert_time(uint64_t ms)
     int secs = seconds % 60;
 
     // Extract remaining milliseconds
-    int remaining_milliseconds = milliseconds % 1000;
+    int remaining_milliseconds = ms % 1000;
 
     // Allocate memory for the time string
     char* time_string = malloc(12);  // Sufficient space for "HH:MM:SS.SSS\0"

@@ -4,10 +4,10 @@
  *
  * Functions defined from logger.hpp prototypes
  *
- * @date August 18th 2023
+ * @date August 18th, 2023
  * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
- * @author Lukas Jackson (LukasJacksonEG@gmail.com)
+ * @author Lukas R. Jackson (LukasJacksonEG@gmail.com)
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics
@@ -28,37 +28,46 @@
  *          SOFTWARE.
  */
 
-#include "../statemachine/_ptam.h"
+#include <iomanip>
+#include "../../statemachine/_ptam.h"
 #include "logger.hpp"
 
 // Function to parse logs and extract log name and formatted log
-std::vector<LogEntry> parseLogs(const std::string& logData) {
+std::vector<LogEntry>
+parseLogs(const std::string& logData)
+{
     std::istringstream logStream(logData);
     std::string line;
 
     std::vector<LogEntry> logEntries;
     LogEntry currentLog;
 
-    while (std::getline(logStream, line)) {
+    while (std::getline(logStream, line))
+    {
         // Check if the line contains '{'
         size_t braceStart = line.find('{');
-        if (braceStart != std::string::npos) {
-            currentLog.logName.clear();  // Clear logName for a new log entry
+        if (braceStart != std::string::npos)
+        {
+            currentLog.logName.clear();       // Clear logName for a new log entry
             currentLog.formattedLog.clear();  // Clear formattedLog for a new log entry
-            currentLog.logName = line.substr(braceStart + 1, 6); // Assuming 6 characters for the log name (e.g., "LOG_SDD")
-            currentLog.formattedLog += line; // Include the current line in the formatted log
+            currentLog.logName = line.substr(
+                braceStart + 1, 6);  // Assuming 6 characters for the log name (e.g., "LOG_SDD")
+            currentLog.formattedLog += line;  // Include the current line in the formatted log
         }
 
         // Check if the line contains '}'
         size_t braceEnd = line.find('}');
-        if (braceEnd != std::string::npos) {
-            currentLog.formattedLog += line.substr(0, braceEnd + 1); // Include the closing bracket
+        if (braceEnd != std::string::npos)
+        {
+            currentLog.formattedLog += line.substr(0, braceEnd + 1);  // Include the closing bracket
             logEntries.push_back(currentLog);
-            currentLog.logName.clear(); // Clear logName for the next log entry
-            currentLog.formattedLog.clear(); // Clear formattedLog for the next log entry
-        } else if (!currentLog.logName.empty()) {
+            currentLog.logName.clear();       // Clear logName for the next log entry
+            currentLog.formattedLog.clear();  // Clear formattedLog for the next log entry
+        }
+        else if (!currentLog.logName.empty())
+        {
             // If the log entry has started and not ended on this line
-            currentLog.formattedLog += line + "\n"; // Include the newline character
+            currentLog.formattedLog += line + "\n";  // Include the newline character
         }
     }
 
@@ -71,9 +80,10 @@ std::vector<LogEntry> parseLogs(const std::string& logData) {
  * @param void
  * @return std::string
  */
-std::string Logger::EVENT_LOG_SDD(void)
+std::string
+Logger::EVENT_LOG_SDD(void)
 {
-    SharedMemory &obj = SharedMemory::getInstance();
+    SharedMemory& obj = SharedMemory::getInstance();
     Logger log;
 
     /* Query ptam registers for required data */
@@ -87,7 +97,6 @@ std::string Logger::EVENT_LOG_SDD(void)
     double RLS = obj.getLastDouble("WingRL");
 
     double RRS = obj.getLastDouble("WingRR");
-
 
     std::string formatted_time = log.convert_time(72'000);
 
@@ -116,9 +125,10 @@ std::string Logger::EVENT_LOG_SDD(void)
  * @param void
  * @return std::string
  */
-std::string Logger::EVENT_LOG_SSL(void)
+std::string
+Logger::EVENT_LOG_SSL(void)
 {
-    SharedMemory &obj = SharedMemory::getInstance();
+    SharedMemory& obj = SharedMemory::getInstance();
     Logger log;
 
     /* Query ptam registers */
@@ -126,7 +136,6 @@ std::string Logger::EVENT_LOG_SSL(void)
     std::string ID = "LOG_SSL_ID";
 
     int state_data = obj.getLastInt("state");
-
 
     std::string formatted_time = log.convert_time(72'000);
 
@@ -153,16 +162,17 @@ std::string Logger::EVENT_LOG_SSL(void)
  * @param additional_info
  * @return std::string
  */
-std::string Logger::EVENT_LOG_SEL(std::string ID, mars_exception_t::Type exception_type,
-                                  std::string additional_info)
+std::string
+Logger::EVENT_LOG_SEL(std::string ID, mars_exception_t::Type exception_type,
+                      std::string additional_info)
 {
-    SharedMemory &obj = SharedMemory::getInstance();
+    SharedMemory& obj = SharedMemory::getInstance();
     Logger log;
 
     /* Get ptam data */
     int state_data = obj.getLastInt("state");
 
-    std::string formatted_time = log.convert_time(72'000);
+    std::string formatted_time = log.convert_time(72000);
 
     /* Check which routine fail occurred */
     std::string exceptionTypeStr;
@@ -200,14 +210,15 @@ std::string Logger::EVENT_LOG_SEL(std::string ID, mars_exception_t::Type excepti
  * @param formatted_data
  * @return std::string
  */
-std::string Logger::get_event_id(std::string formatted_data)
+std::string
+Logger::get_event_id(std::string formatted_data)
 {
-    std::string eventID = ""; // Default value if not found
+    std::string eventID = "";  // Default value if not found
 
     size_t start = formatted_data.find("ID: ");
     if (start != std::string::npos)
     {
-        start += 4; // Move to the start of the actual ID (skip "ID: ")
+        start += 4;  // Move to the start of the actual ID (skip "ID: ")
         size_t end = formatted_data.find("\n", start);
         if (end != std::string::npos)
         {
@@ -224,7 +235,8 @@ std::string Logger::get_event_id(std::string formatted_data)
  * @param formatted_data
  * @return uint64_t
  */
-uint64_t Logger::get_event_time(std::string formatted_data)
+uint64_t
+Logger::get_event_time(std::string formatted_data)
 {
     uint64_t eventTime = 0;
 
@@ -248,7 +260,8 @@ uint64_t Logger::get_event_time(std::string formatted_data)
  * @param milliseconds
  * @return std::string
  */
-std::string Logger::convert_time(uint64_t milliseconds)
+std::string
+Logger::convert_time(uint64_t milliseconds)
 {
     // Calculate seconds
     uint64_t seconds = milliseconds / 1000;
@@ -265,10 +278,9 @@ std::string Logger::convert_time(uint64_t milliseconds)
     std::stringstream time_string;
 
     // Format and append hours, minutes, seconds, and milliseconds
-    time_string << std::setfill('0') << std::setw(2) << hours << ":"
-                << std::setfill('0') << std::setw(2) << minutes << ":"
-                << std::setfill('0') << std::setw(2) << secs << "."
-                << std::setfill('0') << std::setw(3) << remaining_milliseconds;
+    time_string << std::setfill('0') << std::setw(2) << hours << ":" << std::setfill('0')
+                << std::setw(2) << minutes << ":" << std::setfill('0') << std::setw(2) << secs
+                << "." << std::setfill('0') << std::setw(3) << remaining_milliseconds;
 
     // Return the string representation of the time
     return time_string.str();
@@ -280,7 +292,8 @@ std::string Logger::convert_time(uint64_t milliseconds)
  * @param formatted_data
  * @return uint8_t
  */
-uint8_t Logger::get_event_state(std::string formatted_data)
+uint8_t
+Logger::get_event_state(std::string formatted_data)
 {
     uint8_t eventState = 0;
 
@@ -304,7 +317,8 @@ uint8_t Logger::get_event_state(std::string formatted_data)
  * @param formatted_data
  * @return uint8_t
  */
-uint8_t Logger::get_event_exptn(std::string formatted_data)
+uint8_t
+Logger::get_event_exptn(std::string formatted_data)
 {
     uint8_t eventEXPT = 0;
 
@@ -328,11 +342,12 @@ uint8_t Logger::get_event_exptn(std::string formatted_data)
  * @param info
  * @return std::string
  */
-std::string Logger::LOG_INFO(std::string data)
+std::string
+Logger::LOG_INFO(std::string data)
 {
     Logger log;
 
-    std::string formatted_time = log.convert_time(72'000);
+    std::string formatted_time = log.convert_time(72000);
 
     std::string log_ev = "LOG_INFO";
 
@@ -353,11 +368,12 @@ std::string Logger::LOG_INFO(std::string data)
  * @param data
  * @return std::string
  */
-std::string Logger::LOG_INFO(std::string label, std::string data)
+std::string
+Logger::LOG_INFO(std::string label, std::string data)
 {
     Logger log;
 
-    std::string formatted_time = log.convert_time(72'000);
+    std::string formatted_time = log.convert_time(72000);
 
     std::string log_ev = "LOG_INFO";
 
@@ -378,11 +394,12 @@ std::string Logger::LOG_INFO(std::string label, std::string data)
  * @param data
  * @return std::string
  */
-std::string Logger::LOG_INFO(std::string label, int64_t data)
+std::string
+Logger::LOG_INFO(std::string label, int64_t data)
 {
     Logger log;
 
-    std::string formatted_time = log.convert_time(72'000);
+    std::string formatted_time = log.convert_time(72000);
 
     std::string log_ev = "LOG_INFO";
 
@@ -402,9 +419,10 @@ std::string Logger::LOG_INFO(std::string label, int64_t data)
  * @param formatted_data
  * @return std::string
  */
-std::string Logger::get_info(std::string formatted_data)
+std::string
+Logger::get_info(std::string formatted_data)
 {
-    std::string eventINFO = ""; // Default value if not found
+    std::string eventINFO = "";  // Default value if not found
 
     size_t start = formatted_data.find("INFO: ");
     if (start != std::string::npos)
@@ -427,9 +445,10 @@ std::string Logger::get_info(std::string formatted_data)
  * @param label
  * @return std::string
  */
-std::string Logger::get_tag(std::string formatted_data, std::string label)
+std::string
+Logger::get_tag(std::string formatted_data, std::string label)
 {
-    std::string eventTAG = ""; // Default value if not found
+    std::string eventTAG = "";  // Default value if not found
 
     size_t start = formatted_data.find(label);
     if (start != std::string::npos)

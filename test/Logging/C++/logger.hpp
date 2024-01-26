@@ -4,10 +4,10 @@
  *
  * This is the main logger module where prototypes are declared
  *
- * @date August 18th 2023
+ * @date August 18th, 2023
  * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
- * @author Lukas Jackson (LukasJacksonEG@gmail.com)
+ * @author Lukas R. Jackson (LukasJacksonEG@gmail.com)
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics
@@ -28,15 +28,11 @@
  *          SOFTWARE.
  */
 
-#ifndef LOGGER_HPP_
-#define LOGGER_HPP_
+#pragma once
 
 /* Log includes */
-#include "include/logtypes.h"
-#include <iomanip>
-#include "esp_timer.h"
-#include <time.h>
 #include <vector>
+#include "include/logtypes.h"
 
 struct LogEntry
 {
@@ -46,8 +42,7 @@ struct LogEntry
 
 class Logger
 {
-
-public:
+  public:
     /**
      * @brief Sensor Data Dump(SDD) is ran periodically to collect system data
      *
@@ -83,8 +78,8 @@ public:
 
     /**
      * @brief Get the event time from log message
-     * 
-     * @param formatted_data 
+     *
+     * @param formatted_data
      * @return uint64_t
      */
     uint64_t get_event_time(std::string formatted_data);
@@ -97,14 +92,15 @@ public:
      * @deprecated Please use convert_time() directly and pass milliseconds(ms).
      *
      */
-    [[deprecated("This function is useless, please use convert_time() directly and pass milliseconds(ms).")]]
-    uint64_t get_timestamp(uint64_t milliseconds);
+    [[deprecated("This function is useless, please use convert_time() directly and pass "
+                 "milliseconds(ms).")]] uint64_t
+    get_timestamp(uint64_t milliseconds);
 
     /**
      * @brief Converts timestampt into H-M-S-M format
-     * 
-     * @param ms 
-     * @return std::string 
+     *
+     * @param ms
+     * @return std::string
      */
     std::string convert_time(uint64_t ms);
 
@@ -112,15 +108,15 @@ public:
      * @brief Get the event state from log message
      *
      * @param formatted_data
-     * @return uint8_t 
+     * @return uint8_t
      */
     uint8_t get_event_state(std::string formatted_data);
 
     /**
      * @brief Get the event value from log message
-     * 
-     * @param formatted_data 
-     * @return uint8_t 
+     *
+     * @param formatted_data
+     * @return uint8_t
      */
     uint8_t get_event_exptn(std::string formatted_data);
 
@@ -169,24 +165,20 @@ public:
     /**
      * @brief deparse info data from given formatted string
      *
-     * @param formatted_data 
+     * @param formatted_data
      * @return std::string
      */
     std::string get_info(std::string formatted_data);
 
     /**
      * @brief Pass formatted data and a specified label to retrieve data
-     * 
-     * @param formatted_data 
-     * @param label 
-     * @return std::string 
+     *
+     * @param formatted_data
+     * @param label
+     * @return std::string
      */
     std::string get_tag(std::string formatted_data, std::string label);
-
 };
 
 // Function to parse logs and extract log name and formatted log
 std::vector<LogEntry> parseLogs(const std::string& logData);
-
-
-#endif /* LOGGER_HPP_ */

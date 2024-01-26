@@ -9,7 +9,7 @@
 #include <vector>
 
 /* logger includes */
-#include "../Logging/logger.hpp"
+//#include "../Logging/logger.hpp"
 
 class SharedMemory
 {
