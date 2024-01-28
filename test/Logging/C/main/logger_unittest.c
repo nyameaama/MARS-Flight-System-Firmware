@@ -27,10 +27,29 @@
  *          SOFTWARE.
  */
 #include <etest.h>
+#include "../../../PTAM/C/_ptam.h"
 #include "../logger.h"
+#include <inttypes.h>
 
 TEST(LogEvent, SDD)
 {
+    // printf("Made entry LOG-EVENT-SDD_TEST");
+    //  Store the machine data
+    double stateVal = 3.14;
+    storeData("stateDescript", "LOG_SDD_DATA", STRING);
+    storeData("state", &stateVal, DOUBLE);
+    // printf("Made entry LOG-EVENT-SDD_TEST");
+
+    // Store the sensor data
+    double WingFL = 111;
+    double WingFR = 222;
+    double WingRL = 333;
+    double WingRR = 444;
+    storeData("WingFL", &WingFL, DOUBLE);
+    storeData("WingFR", &WingFR, DOUBLE);
+    storeData("WingRL", &WingRL, DOUBLE);
+    storeData("WingRR", &WingRR, DOUBLE);
+
     const char* evt_log_sdd_res = EVENT_LOG_SDD();
 
     printf(" %s %s", evt_log_sdd_res, "\n\n");
@@ -39,13 +58,23 @@ TEST(LogEvent, SDD)
     uint8_t state = get_event_state(evt_log_sdd_res);
     const char* ID = get_event_id(evt_log_sdd_res);
 
-    printf("%s %d", "Captured time: ", time);
-    printf("%s %d", "Captured state: ", state);
-    printf("%s %d", "Captured ID: ", ID);
+    printf("%s %"SCNu64 "%s", "Captured time: ", time, "\n");
+    printf("%s %d %s", "Captured state: ", state, "\n");
+    printf("%s %s %s", "Captured ID: ", ID, "\n\n");
+
+    deleteContainer("WingFL");
+    deleteContainer("WingFR");
+    deleteContainer("WingRL");
+    deleteContainer("WingRR");
+    printf("\n");
 }
 
 TEST(LogEvent, SSL)
 {
+    double stateVal = 4.14;
+    storeData("stateDescript", "LOG_SSL_DATA", DOUBLE);
+    storeData("state", &stateVal, DOUBLE);
+
     const char* evt_log_ssl_res = EVENT_LOG_SSL();
 
     printf(" %s %s", evt_log_ssl_res, "\n\n");
@@ -54,26 +83,36 @@ TEST(LogEvent, SSL)
     uint8_t state = get_event_state(evt_log_ssl_res);
     const char* ID = get_event_id(evt_log_ssl_res);
 
-    printf("%s %d", "Captured time: ", time);
-    printf("%s %d", "Captured state: ", state);
-    printf("%s %d", "Captured ID: ", ID);
+    printf("%s %"SCNu64 "%s", "Captured time: ", time, "\n");
+    printf("%s %d %s", "Captured state: ", state, "\n");
+    printf("%s %s %s", "Captured ID: ", ID, "\n\n");
+
+    deleteContainer("stateDescript");
+    deleteContainer("state");
+    printf("\n");
 }
 
 TEST(LogEvent, SEL)
 {
+    double stateVal = 5.14;
+    storeData("state", &stateVal, DOUBLE);
+
     const char* evt_log_sel_res =
         EVENT_LOG_SEL("UAV-SEL-TEST-HARD-FAIL", ROUTINE_HARD_FAIL, "Submodule Down");
 
-    printf("%s ", evt_log_sel_res);
+    printf("%s %s", evt_log_sel_res, "\n");
 
     evt_log_sel_res =
         EVENT_LOG_SEL("UAV-SEL-TEST-SOFT-FAIL", ROUTINE_SOFT_FAIL, "Submodule Unresponsive");
 
-    printf("%s ", evt_log_sel_res);
+    printf("%s %s", evt_log_sel_res, "\n");
 
     uint8_t state = get_event_state(evt_log_sel_res);
 
-    printf("%d", state);
+    printf("%d %s", state, "\n");
+
+    deleteContainer("state");
+    printf("\n");
 }
 
 TEST(LogInfo, INFO)
@@ -82,12 +121,12 @@ TEST(LogInfo, INFO)
     data = LOG_INFO("LOG_INFO", data);
     const char* info_get = get_info(data);
 
-    printf("%s Data: ", data);
-    printf("%s INFO: DATA ", info_get);
+    printf("%s %sData: ", data, "\n");
+    printf("%s %sINFO: DATA ", info_get, "\n");
 
     const char* formatted_data = get_tag(data, "TIME: ");
 
-    printf("%s", formatted_data);
+    printf("%s %s", formatted_data, "\n");
 }
 
 int

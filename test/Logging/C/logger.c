@@ -27,31 +27,70 @@
  *          SOFTWARE.
  */
 
-#include "logger.h"
 #include "../../PTAM/C/_ptam.h"
+#include "logger.h"
 
-// !The EVENT_LOG functions use primitive data types instead of the PTAM DataType enum.
-// !This will likely need a partial overhaul, however, I can add onto it, since it is in its 
-// !revamp stage...
+#pragma GCC diagnostic ignored "-Wformat-truncation"
 
 /**
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
  *
  * @param void
- * @return std::string
+ * @return const char*
  */
 const char*
 EVENT_LOG_SDD(void)
 {
     // Implement C variant of PTAM here
+    DataType datatype;
 
-    const char* ID = getLastString("stateDescript");
-    int state_data = getLastInt("state");
+    const char* ID = (const char*)retrieveData("stateDescript", &datatype);
+    if (ID == NULL)
+    {
+        // Add logger config LOG macro use here
+        printf("LOG SDD error: %s\n", ID);
+        return ID;
+    }
 
-    double FLS = getLastDouble("WingFL");
-    double FRS = getLastDouble("WingFR");
-    double RLS = getLastDouble("WingRL");
-    double RRS = getLastDouble("WingRR");
+    const int* state_data = (const int*)retrieveData("state", &datatype);
+    if (state_data == NULL)
+    {
+        // Add logger config LOG macro use here
+        printf("LOG SDD error: %p\n", state_data);
+        return ID;
+    }
+
+    const double* FLS = (const double*)retrieveData("WingFL", &datatype);
+    if (FLS == NULL)
+    {
+        // Add logger config LOG macro use here
+        printf("LOG SDD error: %p\n", FLS);
+        return ID;
+    }
+
+    const double* FRS = (const double*)retrieveData("WingFR", &datatype);
+    if (FRS == NULL)
+    {
+        // Add logger config LOG macro use here
+        printf("LOG SDD error: %p\n", FRS);
+        return ID;
+    }
+
+    const double* RLS = (const double*)retrieveData("WingRL", &datatype);
+    if (RLS == NULL)
+    {
+        // Add logger config LOG macro use here
+        printf("LOG SDD error: %p\n", RLS);
+        return ID;
+    }
+
+    const double* RRS = (const double*)retrieveData("WingRR", &datatype);
+    if (RRS == NULL)
+    {
+        // Add logger config LOG macro use here
+        printf("LOG SDD error: %p\n", RRS);
+        return ID;
+    }
 
     const char* formatted_time = convert_time(72000);  // Corrected function name
 
@@ -65,15 +104,15 @@ EVENT_LOG_SDD(void)
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tDATA: %d\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tDATA: %p\n",
              state_data);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FL-POS: %f\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FL-POS: %p\n",
              FLS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FR-POS: %f\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FR-POS: %p\n",
              FRS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RL-POS: %f\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RL-POS: %p\n",
              RLS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RR-POS: %f\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RR-POS: %p\n",
              RRS);  // Use %f for double
     strcat(buffer, "\t}\n\n\0");
 
@@ -84,6 +123,7 @@ EVENT_LOG_SDD(void)
     if (formatted_output == NULL)
     {
         // Handle allocation failure
+        printf("Formatted string returned NULL...");
         return NULL;
     }
 
@@ -103,11 +143,25 @@ const char*
 EVENT_LOG_SSL(void)
 {
     // Implement C variant of PTAM here
+    DataType datatype;
 
-    const char* state = getLastString("stateDescript");
-    const char* ID = "LOG_SSL_ID";
+    const char* ID = "LOG_SSL";
 
-    int state_data = getLastInt("state");
+    const char* state = (const char*)retrieveData("stateDescript", &datatype);
+    if (state == NULL)
+    {
+        // Add logger config LOG macro use here
+        printf("LOG SSL error: %p\n", state);
+        return ID;
+    }
+
+    const int* state_data = (const int*)retrieveData("state", &datatype);
+    if (state_data == NULL)
+    {
+        // Add logger config LOG macro use here
+        printf("LOG SSL error: %p\n", state_data);
+        return ID;
+    }
 
     const char* log_ev = "LOG_SSL";
 
@@ -121,7 +175,7 @@ EVENT_LOG_SSL(void)
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %d\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %p\n",
              state_data);  // Assuming state_data is an integer
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tSTATE: %s\n", state);
     strcat(buffer, "\t}\n\n\0");
@@ -132,7 +186,8 @@ EVENT_LOG_SSL(void)
     // Check if the allocation was successful
     if (formatted_output == NULL)
     {
-        // Handle allocation failure
+        // Handle allocation failure | Add log macros here
+        printf("Formatted string returned NULL...");
         return NULL;
     }
 
@@ -154,8 +209,15 @@ const char*
 EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* additionalInfo)
 {
     // Implement C variant of PTAM here
+    DataType datatype;
 
-    int state_data = getLastInt("state");
+    const int* state_data = (const int*)retrieveData("state", &datatype);
+    if (state_data == NULL)
+    {
+        // Add logger config LOG macro use here
+        printf("LOG SEL error: %p\n", state_data);
+        return ID;
+    }
 
     const char* formatted_time = convert_time(72000);
 
@@ -171,7 +233,7 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %d\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %p\n",
              state_data);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tEXCEPTION-TYPE: %s\n",
              exceptionTypeStr);
@@ -186,6 +248,7 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     if (formatted_output == NULL)
     {
         // Handle allocation failure
+        printf("Formatted string returned NULL...");
         return NULL;
     }
 
@@ -202,7 +265,7 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
  * @return const char*
  */
 const char*
-exception_type_to_string(MarsExceptionType exception_type)
+exception_t_to_str(MarsExceptionType exception_type)
 {
     switch (exception_type)
     {
@@ -241,7 +304,7 @@ get_event_id(const char* formatted_data)
             size_t length = end - start;
 
             // Allocate memory for the ID substring
-            char* ID = malloc(length + 1);
+            char* ID = (char*)malloc(length + 1);
             if (ID != NULL)
             {
                 // Copy the ID substring to the allocated memory
@@ -325,7 +388,7 @@ convert_time(uint64_t ms)
     char* time_string = malloc(12);  // Sufficient space for "HH:MM:SS.SSS\0"
     if (time_string == NULL)
     {
-        // Handle allocation failure
+        printf("Formatted string returned NULL...");
         return NULL;
     }
 
@@ -442,7 +505,7 @@ LOG_INFO(const char* label, const char* data)
 
     // Calculate the size of the buffer needed
     size_t buffer_size = 512;  // Adjust as needed
-    buffer_size += strlen(log_ev) + strlen(label) + snprintf(NULL, 0, "%" PRId64, data);
+    buffer_size += strlen(log_ev) + strlen(label) + snprintf(NULL, 0, "%s", data);
 
     // Allocate memory for the buffer
     char* buffer = malloc(buffer_size);
@@ -457,8 +520,7 @@ LOG_INFO(const char* label, const char* data)
     strcat(buffer, "\t{\n");
     snprintf(buffer + strlen(buffer), buffer_size - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), buffer_size - strlen(buffer), "\t\t%s: %" PRId64 "\n", label,
-             data);
+    snprintf(buffer + strlen(buffer), buffer_size - strlen(buffer), "\t\t%s: %s \n", label, data);
     strcat(buffer, "\t}\n\n\0");
 
     return buffer;
@@ -476,13 +538,13 @@ get_info(const char* formatted_data)
     const char* eventINFO = "";  // Default value if not found
 
     // Find the position of "INFO: "
-    size_t start = strstr(formatted_data, "INFO: ");
+    const char* start = strstr(formatted_data, "INFO: ");
     if (start != NULL)
     {
         start += 6;  // Move to the start of the actual INFO (skip "INFO: ")
 
         // Find the position of the newline character '\n' after INFO
-        size_t end = strchr(start, '\n');
+        const char* end = strchr(start, '\n');
         if (end != NULL)
         {
             // Calculate the length of INFO and extract it
@@ -517,13 +579,13 @@ get_tag(const char* formatted_data, const char* label)
     const char* eventTAG = "";  // Default value if not found
 
     // Find the position of the label
-    size_t start = strstr(formatted_data, label);
+    const char* start = strstr(formatted_data, label);
     if (start != NULL)
     {
         start += strlen(label);
 
         // Find the position of the newline character '\n' after the label
-        size_t end = strchr(start, '\n');
+        const char* end = strchr(start, '\n');
         if (end != NULL)
         {
             // Calculate the length of the TAG and extract it
