@@ -1,5 +1,4 @@
-#[[
-MIT License
+/*MIT License
 
 Copyright (c) 2023 limitless Aeronautics
 
@@ -19,11 +18,14 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-]]
+SOFTWARE.*/
 
-target_sources(app PRIVATE
-		     ${CMAKE_CURRENT_SOURCE_DIR}/_state.c)
+#include "../PTAM/_ptam.h"
+#include <stdio.h>
+#include <string.h>
+#include "stdlib.h"
+#include <stddef.h>
 
-target_sources(app PRIVATE
-		     ${CMAKE_CURRENT_SOURCE_DIR}/sys_controller.c)
+void PTAM_REGISTER_SET();
+
+void _init_();

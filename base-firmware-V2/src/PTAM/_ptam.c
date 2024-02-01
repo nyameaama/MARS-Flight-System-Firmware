@@ -34,6 +34,7 @@ struct DataContainer* findContainer(const char* containerName) {
             return &dataContainers[i];
         }
     }
+    EVENT_LOG_SEL("PTAM_PROCESS", ROUTINE_SOFT_FAIL, "Container undefined access");
     return NULL;
 }
 
@@ -50,6 +51,7 @@ void storeData(const char* containerName, const void* data, DataType dataType) {
     if (container == NULL) {
         if (numContainers >= MAX_DATA_SIZE) {
             //Error: Maximum number of containers reached
+            EVENT_LOG_SEL("PTAM_PROCESS", ROUTINE_SOFT_FAIL, "Maximum number of containers reached");
             return;
         }
 
@@ -69,6 +71,7 @@ void storeData(const char* containerName, const void* data, DataType dataType) {
             break;
         default:
             //Error: datatype
+            EVENT_LOG_SEL("PTAM_PROCESS", ROUTINE_SOFT_FAIL, "undefined datatype");
             break;
     }
 }
@@ -90,11 +93,12 @@ const void* retrieveData(const char* containerName, DataType* dataType) {
                 return &(container->doubleData);
             default:
                 //Error: datatype
+                EVENT_LOG_SEL("PTAM_PROCESS", ROUTINE_SOFT_FAIL, "undefined datatype");
                 break;
         }
     }
-
     //Container not found
+    EVENT_LOG_SEL("PTAM_PROCESS", ROUTINE_SOFT_FAIL, "Container undefined access");
     return NULL;
 }
 
@@ -110,8 +114,8 @@ void deleteContainer(const char* containerName) {
         // Move the last container to the deleted position
         *container = dataContainers[numContainers - 1];
         numContainers--;
-        printf("Container '%s' deleted\n", containerName);
     } else {
-        printf("Error: Container '%s' not found\n", containerName);
+        //Error: Container not found
+        EVENT_LOG_SEL("PTAM_PROCESS", ROUTINE_SOFT_FAIL, "Container undefined access");
     }
 }

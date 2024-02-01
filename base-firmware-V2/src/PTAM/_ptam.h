@@ -23,6 +23,7 @@ SOFTWARE.*/
 
 #include <stdio.h>
 #include <string.h>
+#include "../Logging/logger.h"
 
 typedef enum {
     STRING,
@@ -36,8 +37,29 @@ struct DataContainer {
     DataType dataType;
 };
 
+//____________________________________________________________
+/* Main subroutines -> stores value of datatypes (const char*, const void*, typedef)
+===========================================================================
+|    Designated ID   This creates the PTAM register with this ID an can only be referenced with this ID string
+|    Data Value      Data value of types const char*, const void*, typedef
+===========================================================================
+*/
 void storeData(const char* containerName, const void* data, DataType dataType);
+
+//____________________________________________________________
+/* Main subroutines -> retrieves all the values from PTAM container of appropriate typdef
+===========================================================================
+|   Designated ID   This references the PTAM container assigned with this ID
+===========================================================================
+*/
 const void* retrieveData(const char* containerName, DataType* dataType);
+
+//____________________________________________________________
+/* Main subroutine -> Clear data in specific PTAM register
+===========================================================================
+|    Designated ID   This references the PTAM register assigned with this ID/container
+===========================================================================
+*/
 void deleteContainer(const char* containerName);
 
 #endif // DATA_MODULE_H
