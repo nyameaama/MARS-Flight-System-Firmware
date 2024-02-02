@@ -24,8 +24,8 @@ SOFTWARE.*/
 #define BAROMETER_
 
 #include <math.h>
-#include "../PTAM/_ptam.h"
-#include "esp_log.h"
+//#include "../PTAM/_ptam.h"
+
 
 #define DEFAULT_SEA_LEVEL 1013.25
 

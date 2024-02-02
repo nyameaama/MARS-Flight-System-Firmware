@@ -25,130 +25,50 @@ void print_binary(uint8_t num)
 
 uint8_t read_register(struct bmi270 *sensor, uint8_t reg_addr)
 {
-    uint8_t result = 0;
-    struct i2c_rdwr_ioctl_data i2c_data;
-    struct i2c_msg i2c_msg[2];
-    char write_buf[1] = {reg_addr};
-    char read_buf[1] = {0};
-
-    // Setup I2C write operation to send register address to device
-    i2c_msg[0].addr = sensor->i2c_addr;
-    i2c_msg[0].flags = 0;
-    i2c_msg[0].len = sizeof(write_buf);
-    i2c_msg[0].buf = write_buf;
-
-    // Setup I2C read operation to read data from device
-    i2c_msg[1].addr = sensor->i2c_addr;
-    i2c_msg[1].flags = I2C_M_RD;
-    i2c_msg[1].len = sizeof(read_buf);
-    i2c_msg[1].buf = read_buf;
-
-    // Setup I2C data struct for ioctl
-    i2c_data.msgs = i2c_msg;
-    i2c_data.nmsgs = 2;
-
-    // Send I2C transaction to read data from register    i2c_msg[0].addr = sensor->i2c_addr;
-    i2c_msg[0].flags = 0;
-    i2c_msg[0].len = sizeof(write_buf);
-    i2c_msg[0].buf = write_buf;
-    if (ioctl(sensor->i2c_fd, I2C_RDWR, &i2c_data) < 0)
-    {
-        printf("0x%X --> Failed to read from I2C device\n", sensor->i2c_addr);
-        return -1;
-    }
-
-    // Combine the read buffer to an integer value
-    result = (uint8_t)read_buf[0];
-
-    return result;
+    /*for (size_t i = 0; i < len; i++) {
+        ret = i2c_write_read_dt(&dev_i2c_acc, reg_addr, 1, data, len);
+        if(ret != 0){
+            printk("Failed to write/read I2C device address");
+        }
+    }*/
+    return  0;
 }
 
 int read_register_block(struct bmi270 *sensor, uint8_t reg_addr, uint8_t *data, uint8_t len)
 {
-    struct i2c_rdwr_ioctl_data i2c_data;
-    struct i2c_msg i2c_msg[2];
-    char write_buf[1] = {reg_addr};
-
-    // Setup I2C write operation to send register address to device
-    i2c_msg[0].addr = sensor->i2c_addr;
-    i2c_msg[0].flags = 0;
-    i2c_msg[0].len = sizeof(write_buf);
-    i2c_msg[0].buf = write_buf;
-
-    // Setup I2C read operation to read data from device
-    i2c_msg[1].addr = sensor->i2c_addr;
-    i2c_msg[1].flags = I2C_M_RD;
-    i2c_msg[1].len = len;
-    i2c_msg[1].buf = data;
-
-    // Setup I2C data struct for ioctl
-    i2c_data.msgs = i2c_msg;
-    i2c_data.nmsgs = 2;
-
-    // Send I2C transaction to read data from registers
-    if (ioctl(sensor->i2c_fd, I2C_RDWR, &i2c_data) < 0)
-    {
-        printf("0x%X --> Failed to read from I2C device\n", sensor->i2c_addr);
-        return -1;
+    for (size_t i = 0; i < len; i++) {
+        ret = i2c_write_read_dt(&sensor, reg_addr, 1, data, len);
+        if(ret != 0){
+            printk("Failed to write/read I2C device address");
+        }
     }
-
     return 0;
 }
 
 int write_register(struct bmi270 *sensor, uint8_t reg_addr, uint8_t value)
 {
-    struct i2c_rdwr_ioctl_data i2c_data;
-    struct i2c_msg i2c_msg[1];
-    char write_buf[2] = {reg_addr, value};
-
-    // Setup I2C write operation to send register address and data to device
-    i2c_msg[0].addr = sensor->i2c_addr;
-    i2c_msg[0].flags = 0;
-    i2c_msg[0].len = sizeof(write_buf);
-    i2c_msg[0].buf = write_buf;
-
-    // Setup I2C data struct for ioctl
-    i2c_data.msgs = i2c_msg;
-    i2c_data.nmsgs = 1;
-
-    // Send I2C transaction to write data to register
-    if (ioctl(sensor->i2c_fd, I2C_RDWR, &i2c_data) < 0)
-    {
-        printf("0x%X --> Failed to write to I2C device\n", sensor->i2c_addr);
-        return -1;
-    }
-
+    uint8_t msg[2] = {reg_addr, value};
+	uint8_t ret;
+	ret = i2c_write_dt(&sensor, msg, sizeof(value));
+	if(ret != 0){
+		printk("Failed to write to I2C device address");
+	}
     return 0;
 }
 
 int write_register_block(struct bmi270 *sensor, uint8_t reg_addr, uint8_t len, const uint8_t *data)
 {
-    struct i2c_rdwr_ioctl_data i2c_data;
-    struct i2c_msg i2c_msg[1];
-    char write_buf[33] = {reg_addr};
-
-    for (int i = 0; i < len; i++)
-    {
-        write_buf[i + 1] = data[i];
-    }
-
-    // Setup I2C write operation to send register address and data to device
-    i2c_msg[0].addr = sensor->i2c_addr;
-    i2c_msg[0].flags = 0;
-    i2c_msg[0].len = len + 1;
-    i2c_msg[0].buf = write_buf;
-
-    // Setup I2C data struct for ioctl
-    i2c_data.msgs = i2c_msg;
-    i2c_data.nmsgs = 1;
-
-    // Send I2C transaction to write data to register
-    if (ioctl(sensor->i2c_fd, I2C_RDWR, &i2c_data) < 0)
-    {
-        printf("0x%X --> Failed to write to I2C device\n", sensor->i2c_addr);
-        return -1;
-    }
-
+    uint8_t dt[256];
+	uint8_t i;
+	dt[0] = reg_addr;
+	for(i = 0; i < len; i++){
+		dt[i+1] = data[i];
+	}
+	uint8_t ret;
+	ret = i2c_write_dt(&sensor, dt, sizeof(dt));
+	if(ret != 0){
+		printk("Failed to write to I2C device address");
+	}
     return 0;
 }
 
@@ -168,7 +88,7 @@ int load_config_file(struct bmi270 *sensor)
     {
         printf("0x%x --> Initializing...\n", sensor->i2c_addr);
         write_register(sensor, PWR_CONF, 0x00);
-        usleep(450);
+        //usleep(450);
         write_register(sensor, INIT_CTRL, 0x00);
 
         for (int i = 0; i < 256; i++)
@@ -176,11 +96,11 @@ int load_config_file(struct bmi270 *sensor)
             write_register(sensor, INIT_ADDR_0, 0x00);
             write_register(sensor, INIT_ADDR_1, i);
             write_register_block(sensor, INIT_DATA, 32, &bmi270_config_file[i * 32]);
-            usleep(20);
+            //usleep(20);
         }
 
         write_register(sensor, INIT_CTRL, 0x01);
-        usleep(20000);
+        //usleep(20000);
 
         sensor->internal_status = read_register(sensor, INTERNAL_STATUS);
     }
@@ -190,6 +110,7 @@ int load_config_file(struct bmi270 *sensor)
 
 int bmi270_init(struct bmi270 *sensor)
 {
+    /*
     // Open I2C bus
     if ((sensor->i2c_fd = open(I2C_DEVICE, O_RDWR)) < 0)
     {
@@ -215,7 +136,7 @@ int bmi270_init(struct bmi270 *sensor)
     }
 
     printf("0x%X --> Chip ID: 0x%X\n", sensor->i2c_addr, sensor->chip_id);
-
+    */
     load_config_file(sensor);
 
     return 0;

@@ -21,16 +21,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 #include"_barometerEntry.h"
-#include"bmx280.h"
 
-
-static gpio_num_t i2c_gpio_sda = GPIO_NUM_21;
-static gpio_num_t i2c_gpio_scl = GPIO_NUM_22;
 #define I2C_NUM I2C_NUM_1
 #define I2C_MASTER_FREQ_HZ 100000 /*!< I2C master clock frequency. no higher than 1MHz for now */
 
 double GroundRef = 0;
-bmx280_t* bmx280;
 
 //________________________________________________________________________
 /* Initialize the barometer sensor

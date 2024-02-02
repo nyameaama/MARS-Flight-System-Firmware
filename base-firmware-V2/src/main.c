@@ -43,6 +43,7 @@ void INIT_CORE0(){
     while(1){
 
         if(DRONE_STATE == 1){ // STANDBY
+            printk("StandBy");
             //Display Controller
             displayStandByClientSuccess();
             //Fan Controller
@@ -89,7 +90,8 @@ void INIT_CORE0(){
                 continue;
             }
         }
-        }
+    }
+
 }
 
 
