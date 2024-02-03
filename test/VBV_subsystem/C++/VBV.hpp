@@ -30,7 +30,7 @@
 #ifndef VBV_HPP
 #define VBV_HPP
 
-#include "../statemachine/_ptam.h"
+#include "../../statemachine/_ptam.h"
 
 
 #define ALT_LIMIT               12001.0  // Altitude limit in feet

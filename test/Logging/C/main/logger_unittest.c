@@ -26,14 +26,14 @@
  *          OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *          SOFTWARE.
  */
-#include <etest.h>
 #include "../../../PTAM/C/_ptam.h"
 #include "../logger.h"
 #include <inttypes.h>
 
-TEST(LogEvent, SDD)
+void EVENT_LOG_SDD_TEST(void)
 {
-    // printf("Made entry LOG-EVENT-SDD_TEST");
+    printf("\n-----------------------------------------------------------\n");
+
     //  Store the machine data
     double stateVal = 3.14;
     storeData("stateDescript", "LOG_SDD_DATA", STRING);
@@ -67,10 +67,13 @@ TEST(LogEvent, SDD)
     deleteContainer("WingRL");
     deleteContainer("WingRR");
     printf("\n");
+    printf("\n-----------------------------------------------------------\n");
 }
 
-TEST(LogEvent, SSL)
+void EVENT_LOG_SSL_TEST(void)
 {
+    printf("\n-----------------------------------------------------------\n");
+
     double stateVal = 4.14;
     storeData("stateDescript", "LOG_SSL_DATA", DOUBLE);
     storeData("state", &stateVal, DOUBLE);
@@ -90,10 +93,13 @@ TEST(LogEvent, SSL)
     deleteContainer("stateDescript");
     deleteContainer("state");
     printf("\n");
+    printf("\n-----------------------------------------------------------\n");
 }
 
-TEST(LogEvent, SEL)
+void EVENT_LOG_SEL_TEST(void)
 {
+    printf("\n-----------------------------------------------------------\n");
+
     double stateVal = 5.14;
     storeData("state", &stateVal, DOUBLE);
 
@@ -113,10 +119,12 @@ TEST(LogEvent, SEL)
 
     deleteContainer("state");
     printf("\n");
+    printf("\n-----------------------------------------------------------\n");
 }
 
-TEST(LogInfo, INFO)
+void LOG_EVENT_COMMON(void)
 {
+    printf("\n-----------------------------------------------------------\n");
     const char* data = "Data message test";
     data = LOG_INFO("LOG_INFO", data);
     const char* info_get = get_info(data);
@@ -127,12 +135,13 @@ TEST(LogInfo, INFO)
     const char* formatted_data = get_tag(data, "TIME: ");
 
     printf("%s %s", formatted_data, "\n");
+    printf("\n-----------------------------------------------------------\n");
 }
 
-int
-main(void)
+void app_main(void)
 {
-    RUN_ETESTS();
-
-    return 0;
+    EVENT_LOG_SDD_TEST();
+    EVENT_LOG_SSL_TEST();
+    EVENT_LOG_SEL_TEST();
+    LOG_EVENT_COMMON();
 }

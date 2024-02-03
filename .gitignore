@@ -5,6 +5,7 @@
 .vscode/ipch
 .DS_Store
 .vscode/settings.json
+*.o
 build/
 build_1/
 sdkconfig.old
