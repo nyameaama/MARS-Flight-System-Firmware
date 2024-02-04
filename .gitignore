@@ -6,6 +6,7 @@
 .DS_Store
 .vscode/settings.json
 *.o
+.gdb_history
 build/
 build_1/
 sdkconfig.old

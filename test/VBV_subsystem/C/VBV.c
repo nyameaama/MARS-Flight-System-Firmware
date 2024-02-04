@@ -42,8 +42,6 @@
  */
 uint8_t alt_sensor_check(double sensor_data)
 {
-    DataType datatype;
-
     /* Check if sensor data is below altitude limit*/
     if(sensor_data < ALT_LIMIT)
     {

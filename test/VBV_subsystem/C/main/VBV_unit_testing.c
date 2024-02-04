@@ -228,6 +228,24 @@ test_pressure_suite()
     printf("\n\n---------------------------------------------------------------\n\n");
 }
 
+#ifdef ESP_TARGET
+
+void
+app_main(void)
+{
+    // Call the test functions
+    test_altitude_suite();
+    test_latitude_suite();
+    test_longitude_suite();
+    test_velocity_suite();
+    test_pitch_suite();
+    test_roll_suite();
+    test_yaw_suite();
+    test_temperature_suite();
+    test_pressure_suite();
+}
+#else
+
 int
 main(void)
 {
@@ -244,3 +262,5 @@ main(void)
 
     return 0;
 }
+
+#endif
