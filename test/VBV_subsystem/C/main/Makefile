@@ -13,6 +13,6 @@ OBJS = $(SRCS:.c=.o)
 # Target executables
 VBV_Testing_target = VBV_Unit_Testing_Suite
 
-# Rule to build mem_alloc.out
+# Rule to build VBV_Unit_Testing_Suite
 VBV:
 	$(CC) $(CFLAGS) -o $(VBV_Testing_target) $(SRCS)
