@@ -23,7 +23,5 @@ SOFTWARE.
 ]]
 
 target_sources(app PRIVATE
-		     ${CMAKE_CURRENT_SOURCE_DIR}/_state.c)
+		     ${CMAKE_CURRENT_SOURCE_DIR}/logger.c)
 
-target_sources(app PRIVATE
-		     ${CMAKE_CURRENT_SOURCE_DIR}/sys_controller.c)
