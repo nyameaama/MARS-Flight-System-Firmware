@@ -1,4 +1,4 @@
-# Makefile for memory_allocator
+# Makefile for Vehicle boot-up validator (VBV)
 
 # Compiler and flags
 CC = gcc

@@ -115,7 +115,7 @@ void EVENT_LOG_SEL_TEST(void)
 
     uint8_t state = get_event_state(evt_log_sel_res);
 
-    printf("%d %s", state, "\n");
+    printf("End of state: %d %s", state, "\n\n");
 
     deleteContainer("state");
     printf("\n");
@@ -138,6 +138,7 @@ void LOG_EVENT_COMMON(void)
     printf("\n-----------------------------------------------------------\n");
 }
 
+#ifdef ESP_TARGET
 void app_main(void)
 {
     EVENT_LOG_SDD_TEST();
@@ -145,3 +146,17 @@ void app_main(void)
     EVENT_LOG_SEL_TEST();
     LOG_EVENT_COMMON();
 }
+
+#else 
+
+int main(void)
+{
+    EVENT_LOG_SDD_TEST();
+    EVENT_LOG_SSL_TEST();
+    EVENT_LOG_SEL_TEST();
+    LOG_EVENT_COMMON();
+
+    return 0;
+}
+
+#endif
