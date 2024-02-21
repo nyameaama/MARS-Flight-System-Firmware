@@ -27,16 +27,14 @@
  *          SOFTWARE.
  */
 
+#include <iostream>
 #include "gtest/gtest.h"
 #include "VBV.hpp"
-#include <iostream>
-
 
 class VBV_Test : public ::testing::Test
 {
-protected:
+  protected:
     VBV vbv;
-
 };
 
 TEST_F(VBV_Test, ALTITUDE_SUITE)
@@ -123,7 +121,7 @@ TEST_F(VBV_Test, LONGITUDE_SUITE)
 TEST_F(VBV_Test, VELOCITY_SUITE)
 {
     /* Velocity success test. [SHOULD RETURN 0] */
-    double sensor_data = 90;    // Velocity data is represented in meters per second (m/s).
+    double sensor_data = 90;  // Velocity data is represented in meters per second (m/s).
 
     uint8_t sensor_check = vbv.vel_sensor_check(sensor_data);
 
@@ -280,4 +278,11 @@ TEST_F(VBV_Test, PRES_SUITE)
     std::cout << "\n\n---------------------------------------------------------------\n\n";
 
     EXPECT_TRUE(sensor_check == 1);
+}
+
+int
+main(void)
+{
+    ::testing::InitGoogleTest(void);
+    return RUN_ALL_TESTS();
 }

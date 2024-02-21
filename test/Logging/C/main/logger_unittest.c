@@ -26,11 +26,12 @@
  *          OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *          SOFTWARE.
  */
+#include <inttypes.h>
 #include "../../../PTAM/C/_ptam.h"
 #include "../logger.h"
-#include <inttypes.h>
 
-void EVENT_LOG_SDD_TEST(void)
+void
+EVENT_LOG_SDD_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
 
@@ -58,7 +59,7 @@ void EVENT_LOG_SDD_TEST(void)
     uint8_t state = get_event_state(evt_log_sdd_res);
     const char* ID = get_event_id(evt_log_sdd_res);
 
-    printf("%s %"SCNu64 "%s", "Captured time: ", time, "\n");
+    printf("%s %" SCNu64 "%s", "Captured time: ", time, "\n");
     printf("%s %d %s", "Captured state: ", state, "\n");
     printf("%s %s %s", "Captured ID: ", ID, "\n\n");
 
@@ -70,7 +71,8 @@ void EVENT_LOG_SDD_TEST(void)
     printf("\n-----------------------------------------------------------\n");
 }
 
-void EVENT_LOG_SSL_TEST(void)
+void
+EVENT_LOG_SSL_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
 
@@ -86,7 +88,7 @@ void EVENT_LOG_SSL_TEST(void)
     uint8_t state = get_event_state(evt_log_ssl_res);
     const char* ID = get_event_id(evt_log_ssl_res);
 
-    printf("%s %"SCNu64 "%s", "Captured time: ", time, "\n");
+    printf("%s %" SCNu64 "%s", "Captured time: ", time, "\n");
     printf("%s %d %s", "Captured state: ", state, "\n");
     printf("%s %s %s", "Captured ID: ", ID, "\n\n");
 
@@ -96,7 +98,8 @@ void EVENT_LOG_SSL_TEST(void)
     printf("\n-----------------------------------------------------------\n");
 }
 
-void EVENT_LOG_SEL_TEST(void)
+void
+EVENT_LOG_SEL_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
 
@@ -115,14 +118,15 @@ void EVENT_LOG_SEL_TEST(void)
 
     uint8_t state = get_event_state(evt_log_sel_res);
 
-    printf("%d %s", state, "\n");
+    printf("Machine State: %d %s", state, "\n");
 
     deleteContainer("state");
     printf("\n");
     printf("\n-----------------------------------------------------------\n");
 }
 
-void LOG_EVENT_COMMON(void)
+void
+LOG_EVENT_COMMON(void)
 {
     printf("\n-----------------------------------------------------------\n");
     const char* data = "Data message test";
@@ -138,10 +142,24 @@ void LOG_EVENT_COMMON(void)
     printf("\n-----------------------------------------------------------\n");
 }
 
-void app_main(void)
+#ifdef ESP_TARGET
+void
+app_main(void)
 {
     EVENT_LOG_SDD_TEST();
     EVENT_LOG_SSL_TEST();
     EVENT_LOG_SEL_TEST();
     LOG_EVENT_COMMON();
 }
+#else
+int
+main(void)
+{
+    EVENT_LOG_SDD_TEST();
+    EVENT_LOG_SSL_TEST();
+    EVENT_LOG_SEL_TEST();
+    LOG_EVENT_COMMON();
+
+    return 0x00;
+}
+#endif

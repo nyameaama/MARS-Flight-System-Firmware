@@ -37,6 +37,7 @@
 #include <string.h>
 #include "include/logtypes.h"
 
+
 /**
  * @brief Sensor Data Dump(SDD) is ran periodically to collect system data
  *
