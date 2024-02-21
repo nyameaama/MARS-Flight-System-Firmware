@@ -55,7 +55,7 @@ static QueueHandle_t s_example_espnow_queue;
 static uint8_t s_example_broadcast_mac[ESP_NOW_ETH_ALEN] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 static uint16_t s_example_espnow_seq[EXAMPLE_ESPNOW_DATA_MAX] = { 0, 0 };
 
-//static void example_espnow_deinit(example_espnow_send_param_t *send_param);
+//static void example_espnow_deinit(espnow_send_param_t *send_param);
 
 /* WiFi should start before using ESPNOW */
 static void example_wifi_init(void)
@@ -124,10 +124,10 @@ static void example_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const u
 /* Parse received ESPNOW data. */
 int example_espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq, int *magic)
 {
-    example_espnow_data_t *buf = (example_espnow_data_t *)data;
+    espnow_data_t *buf = (espnow_data_t *)data;
     uint16_t crc, crc_cal = 0;
 
-    if (data_len < sizeof(example_espnow_data_t)) {
+    if (data_len < sizeof(espnow_data_t)) {
         ESP_LOGE(TAG, "Receive ESPNOW data too short, len:%d", data_len);
         return -1;
     }
@@ -147,11 +147,11 @@ int example_espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, 
 }
 
 /* Prepare ESPNOW data to be sent. */
-void example_espnow_data_prepare(example_espnow_send_param_t *send_param)
+void example_espnow_data_prepare(espnow_send_param_t *send_param)
 {
-    example_espnow_data_t *buf = (example_espnow_data_t *)send_param->buffer;
+    espnow_data_t *buf = (espnow_data_t *)send_param->buffer;
 
-    assert(send_param->len >= sizeof(example_espnow_data_t));
+    assert(send_param->len >= sizeof(espnow_data_t));
 
     buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? EXAMPLE_ESPNOW_DATA_BROADCAST : EXAMPLE_ESPNOW_DATA_UNICAST;
     buf->state = send_param->state;
@@ -159,7 +159,7 @@ void example_espnow_data_prepare(example_espnow_send_param_t *send_param)
     buf->crc = 0;
     buf->magic = send_param->magic;
     /* Fill all remaining bytes after the data with random values */
-    esp_fill_random(buf->payload, send_param->len - sizeof(example_espnow_data_t));
+    esp_fill_random(buf->payload, send_param->len - sizeof(espnow_data_t));
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }
 
@@ -176,7 +176,7 @@ static void example_espnow_task(void *pvParameter)
     ESP_LOGI(TAG, "Start sending broadcast data");
 
     /* Start sending broadcast ESPNOW data. */
-    example_espnow_send_param_t *send_param = (example_espnow_send_param_t *)pvParameter;
+    espnow_send_param_t *send_param = (espnow_send_param_t *)pvParameter;
     if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
         ESP_LOGE(TAG, "Send error");
         example_espnow_deinit(send_param);
@@ -303,7 +303,7 @@ static void example_espnow_task(void *pvParameter)
 
 static esp_err_t example_espnow_init(void)
 {
-    example_espnow_send_param_t *send_param;
+    espnow_send_param_t *send_param;
 
     s_example_espnow_queue = xQueueCreate(ESPNOW_QUEUE_SIZE, sizeof(example_espnow_event_t));
     if (s_example_espnow_queue == NULL) {
@@ -339,14 +339,14 @@ static esp_err_t example_espnow_init(void)
     free(peer);
 
     /* Initialize sending parameters. */
-    send_param = malloc(sizeof(example_espnow_send_param_t));
+    send_param = malloc(sizeof(espnow_send_param_t));
     if (send_param == NULL) {
         ESP_LOGE(TAG, "Malloc send parameter fail");
         vSemaphoreDelete(s_example_espnow_queue);
         esp_now_deinit();
         return ESP_FAIL;
     }
-    memset(send_param, 0, sizeof(example_espnow_send_param_t));
+    memset(send_param, 0, sizeof(espnow_send_param_t));
     send_param->unicast = false;
     send_param->broadcast = true;
     send_param->state = 0;
@@ -370,7 +370,7 @@ static esp_err_t example_espnow_init(void)
     return ESP_OK;
 }
 
-static void example_espnow_deinit(example_espnow_send_param_t *send_param)
+static void example_espnow_deinit(espnow_send_param_t *send_param)
 {
     free(send_param->buffer);
     free(send_param);

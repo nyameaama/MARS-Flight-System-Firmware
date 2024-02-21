@@ -91,7 +91,7 @@ typedef struct {
     uint16_t crc;                         //CRC16 value of ESPNOW data.
     uint32_t magic;                       //Magic number which is used to determine which device to send unicast ESPNOW data.
     uint8_t payload[0];                   //Real payload of ESPNOW data.
-} __attribute__((packed)) example_espnow_data_t;
+} __attribute__((packed)) espnow_data_t;
 
 /* Parameters of sending ESPNOW data. */
 typedef struct {
@@ -104,7 +104,7 @@ typedef struct {
     int len;                              //Length of ESPNOW data to be sent, unit: byte.
     uint8_t *buffer;                      //Buffer pointing to ESPNOW data.
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
-} example_espnow_send_param_t;
+} espnow_send_param_t;
 
 static void example_wifi_init(void);
 
@@ -114,13 +114,13 @@ static void example_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const u
 
 int example_espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq, int *magic);
 
-void example_espnow_data_prepare(example_espnow_send_param_t *send_param);
+void example_espnow_data_prepare(espnow_send_param_t *send_param);
 
 static void example_espnow_task(void *pvParameter);
 
 static esp_err_t example_espnow_init(void);
 
-static void example_espnow_deinit(example_espnow_send_param_t *send_param);
+static void example_espnow_deinit(espnow_send_param_t *send_param);
 
 
 #endif /* __sender_h_ */

@@ -1,12 +1,12 @@
 /**
- * @file logger_config.h
- * @brief logger configuration file containing macros
+ * @file sender.c
+ * @brief ESP-NOW sender function prototypes 
  *
  *
- * @date November 10th, 2023
+ * @date Febuary 20th, 2024
  * @copyright Copyright (c) 2023 Limitless Aeronautics
  *
- * @author Lukas Jackson (LukasJacksonEG@gmail.com)
+ * @author Lukas R. Jackson
  *
  * @license MIT License
  *          Copyright (c) 2023 limitless Aeronautics
@@ -26,46 +26,6 @@
  *          OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *          SOFTWARE.
  */
-#ifndef logger_config_h
-#define logger_config_h
 
-#include <stdio.h>
-#include <iostream>
-#include <sstream>
+#include "sender.h"
 
-// Logger version
-#define LOGGER_VERSION 1.00
-
-// Logger verbosity
-#ifdef LOG_VERBOSITY_LOW
-
-#include <stdio.h>
-#include <sstream>
-
-#define Message "LOG_VERBOSITY_LOW ACTIVE \n\n"
-
-// Define a macro for logging with severity levels
-#define LOG(level, format, ...) \
-    printf("[%s] %s:%d - " format "\n", level, __FILE__, __LINE__, ##__VA_ARGS__)
-
-// Define specific macros for different log levels
-#define LOG_DEBUG(format, ...)               \
-    do                                       \
-    {                                        \
-        LOG("DEBUG", format, ##__VA_ARGS__); \
-    } while (0)
-#define LOG_INFO(format, ...) LOG("INFO", format, ##__VA_ARGS__)
-#define LOG_WARN(format, ...) LOG("WARN", format, ##__VA_ARGS__)
-#define LOG_ERROR(format, ...) LOG("ERROR", format, ##__VA_ARGS__)
-
-#endif /* LOG_VERBOSITY_LOW */
-
-#ifdef LOG_VERBOSITY_MEDIUM
-
-#endif /* LOG_VERBOSITY_MEDIUM */
-
-#ifdef LOG_VERBOSITY_HIGH
-
-#endif /* LOG_VERBOSITY_HIGH */
-
-#endif /* logger_config_h */
