@@ -1,4 +1,4 @@
-# Makefile for memory_allocator
+# Makefile for logger 
 
 # Compiler and flags
 CC = gcc
