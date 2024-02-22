@@ -28,6 +28,10 @@ esp_err_t i2c_master_init(void);
 
 void ICM_INIT();
 
+int setBank();
+
+void reset();
+
 /*!
 * @brief This function converts lsb to meter per second squared for 16 bit accelerometer at
 * range 2G, 4G, 8G or 16G.

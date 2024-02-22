@@ -13,7 +13,7 @@ static const char *TAG = "icm-42688_p";
 #define I2C_MASTER_SCL_IO           22                         /*!< GPIO number used for I2C master clock */
 #define I2C_MASTER_SDA_IO           21                         /*!< GPIO number used for I2C master data  */
 #define I2C_MASTER_NUM              0                          /*!< I2C master i2c port number, the number of i2c peripheral interfaces available will depend on the chip */
-#define I2C_MASTER_FREQ_HZ          400000                     /*!< I2C master clock frequency */
+#define I2C_MASTER_FREQ_HZ          200000                     /*!< I2C master clock frequency */
 #define I2C_MASTER_TX_BUF_DISABLE   0                          /*!< I2C master doesn't need buffer */
 #define I2C_MASTER_RX_BUF_DISABLE   0                          /*!< I2C master doesn't need buffer */
 #define I2C_MASTER_TIMEOUT_MS       1000
@@ -23,6 +23,7 @@ static const char *TAG = "icm-42688_p";
 
 #define icm42688p_PWR_MGMT_REG_ADDR         0x6E        /*!< Register addresses of the power managment register */
 int ret = 0;
+uint8_t _bank = 0; ///< current user bank
 
 /*! Earth's gravity in m/s^2 */
 #define GRAVITY_EARTH  (9.80665f)
@@ -61,18 +62,20 @@ float gyro_z_int16 = 0;
  */
 typedef enum
 {
-    ACC_X_LSB      = 0X20,
-    ACC_X_MSB      = 0X1F,
-    ACC_Y_LSB      = 0X22,
-    ACC_Y_MSB      = 0X21,
-    ACC_Z_LSB      = 0X24,
-    ACC_Z_MSB      = 0X23,
-    GYRO_X_LSB     = 0X26,
-    GYRO_X_MSB     = 0X25,
-    GYRO_Y_LSB     = 0X28,
-    GYRO_Y_MSB     = 0X27,
-    GYRO_Z_LSB     = 0X2A,
-    GYRO_Z_MSB     = 0X29,
+    ACC_X_LSB      = 0x20,
+    ACC_X_MSB      = 0x1F,
+    ACC_Y_LSB      = 0x22,
+    ACC_Y_MSB      = 0x21,
+    ACC_Z_LSB      = 0x24,
+    ACC_Z_MSB      = 0x23,
+    GYRO_X_LSB     = 0x26,
+    GYRO_X_MSB     = 0x25,
+    GYRO_Y_LSB     = 0x28,
+    GYRO_Y_MSB     = 0x27,
+    GYRO_Z_LSB     = 0x2A,
+    GYRO_Z_MSB     = 0x29,
+    UB0_REG_DEVICE_CONFIG = 0x11,
+    REG_BANK_SEL   = 0x76,
 
 }icm42688p_register_address;
 
@@ -119,9 +122,15 @@ void ICM_INIT(){
     ESP_ERROR_CHECK(i2c_master_init());
     ESP_LOGI(TAG, "I2C initialized successfully");
 
+    reset();
+
     /* Read the icm42688p WHO_AM_I register, on power up the register should have the value 0x47 */
-    ESP_ERROR_CHECK(icm42688p_register_read(icm42688p_WHO_AM_I_REG_ADDR, data, 1));
+    esp_err_t err = icm42688p_register_read(icm42688p_WHO_AM_I_REG_ADDR, data, 1);
     ESP_LOGI(TAG, "WHO_AM_I = %X", data[0]);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Error reading WHO_AM_I register: %d", err);
+    
+    }
 
     /* Accel mode to low noise and gyro to standby mode to on both sensors */
 	uint8_t read_sensor_mode;
@@ -130,6 +139,24 @@ void ICM_INIT(){
 
     ESP_ERROR_CHECK(icm42688p_register_write_byte(icm42688p_PWR_MGMT_REG_ADDR, read_sensor_mode));
 	vTaskDelay(50 / portTICK_PERIOD_MS);
+}
+
+int setBank(uint8_t bank){
+     // if we are already on this bank, bail
+    if (_bank == bank) return 1;
+
+    _bank = bank;
+
+    return icm42688p_register_write_byte(REG_BANK_SEL, bank);
+}
+
+void reset(){
+    setBank(0);
+
+    icm42688p_register_write_byte(UB0_REG_DEVICE_CONFIG, 0x01);
+
+    // wait for ICM42688 to come back up
+    vTaskDelay(1);
 }
 
 /*!
