@@ -1,5 +1,5 @@
 /**
- * @file receiver.h
+ * @file receiver-main.c
  * @brief ESP-NOW receiver function prototypes 
  *
  * @date February 19th, 2024
