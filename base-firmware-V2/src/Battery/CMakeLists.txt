@@ -23,10 +23,4 @@ SOFTWARE.
 ]]
 
 target_sources(app PRIVATE
-		     ${CMAKE_CURRENT_SOURCE_DIR}/_state.c)
-
-target_sources(app PRIVATE
-		     ${CMAKE_CURRENT_SOURCE_DIR}/sys_controller.c)
-
-target_sources(app PRIVATE
-		     ${CMAKE_CURRENT_SOURCE_DIR}/VBV.c)
+		     ${CMAKE_CURRENT_SOURCE_DIR}/_battery.c)

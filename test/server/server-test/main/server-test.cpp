@@ -12,6 +12,7 @@
 #include"../components/HALX/MotorController.h"
 #include"../components/HALX/_battery.h"
 #include"../components/HALX/HMC5883L.h"
+#include"../components/HALX/icm42688.h"
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "esp_event.h"
@@ -50,15 +51,18 @@ extern "C" {
     }
     ESP_ERROR_CHECK(ret);
 
+    ICM_INIT();
+    double x = accel_read_rawX();
+    ESP_LOGI("TAG","BATT: %f",x);
     //ESP_LOGI(TAG, "ESP_WIFI_MODE_AP");
     //wifi_init_softap();
-        BroadcastedServer server;
-        server.wifi_init_softap();
+        //BroadcastedServer server;
+        //server.wifi_init_softap();
 
 
-    SSD1306_Init();
+    //SSD1306_Init();
     //displayBOOT();
-    printf("SSD1306 Initialized..\n");
+    //printf("SSD1306 Initialized..\n");
     /*char strp[16];
     char strp2[16];
     sprintf(strp, "ERROR-S");
@@ -69,16 +73,16 @@ extern "C" {
     SSD1306_Puts(strp2, &Font_11x18, SSD1306_COLOR_WHITE);
     printf("printed text\n");
     SSD1306_UpdateScreen();*/
-    displayStandByClientSuccess();
-    vTaskDelay(1);
+    //displayStandByClientSuccess();
+    //vTaskDelay(1);
 
-    BATTERY *battObj = new BATTERY();
+    /*BATTERY *battObj = new BATTERY();
     while(1){ 
         restart_after_idle_task();
         ESP_LOGI("TAG","BATT: %f",battObj -> batteryInterfaceInit());
         ESP_LOGI("TAG","CURR: %f",battObj -> returnBatteryCurrentDraw());
          vTaskDelay(pdMS_TO_TICKS(1000));  // Check every 1 second
-    }
+    }*/
 
     /*SD_FILESYSTEM *sdobj = new SD_FILESYSTEM();
     const char *file = MOUNT_POINT"/init_config.txt";

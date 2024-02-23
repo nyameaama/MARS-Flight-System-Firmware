@@ -1,4 +1,4 @@
-idf_component_register(SRCS "I2Cdev.cpp" "HMC5883L.cpp" "_battery.cpp" "_SD_FileSystem.cpp"
+idf_component_register(SRCS "icm42688.cpp" "I2Cdev.cpp" "HMC5883L.cpp" "_battery.cpp" "_SD_FileSystem.cpp"
                             "servoControl.cpp" 
                             "MotorController.cpp" 
                             "minmea.cpp"
