@@ -144,7 +144,7 @@ LOG_EVENT_COMMON(void)
     printf("\n-----------------------------------------------------------\n");
 }
 
-#ifdef ESP_TARGET
+
 void
 app_main(void)
 {
@@ -154,7 +154,7 @@ app_main(void)
     EVENT_LOG_SEL_TEST();
     LOG_EVENT_COMMON();
 }
-#else
+
 int
 main(void)
 {
@@ -166,4 +166,3 @@ main(void)
 
     return 0x00;
 }
-#endif

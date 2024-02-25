@@ -105,6 +105,17 @@ typedef struct
     uint8_t payload[0];  // Real payload of ESPNOW data.
 } __attribute__((packed)) espnow_data_t;
 
+typedef struct
+{
+    uint8_t type;      // Broadcast or unicast ESPNOW data.
+    uint8_t state;     // Indicate that if has received broadcast ESPNOW data or not.
+    uint16_t seq_num;  // Sequence number of ESPNOW data.
+    uint16_t crc;      // CRC16 value of ESPNOW data.
+    uint32_t
+        magic;  // Magic number which is used to determine which device to send unicast ESPNOW data.
+    uint8_t payload[0];  // Real payload of ESPNOW data.
+} __attribute__((packed)) log_data_t;
+
 /* Parameters of sending ESPNOW data. */
 typedef struct
 {
@@ -120,10 +131,7 @@ typedef struct
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];  // MAC address of destination device.
 } espnow_send_param_t;
 
-typedef struct
-{
-    char log_data[1024];
-} log_data_t;
+void delay(int seconds);
 
 static void sender_wifi_init(void);
 

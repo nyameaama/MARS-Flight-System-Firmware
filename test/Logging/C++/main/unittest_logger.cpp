@@ -30,7 +30,7 @@
  *          SOFTWARE.
  */
 
-#include "../../statemachine/_ptam.h"
+#include "../../../statemachine/_ptam.cpp"
 #include "../logger.hpp"
 
 extern "C" {
