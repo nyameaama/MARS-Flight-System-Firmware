@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "logger.h": "c",
+        "_ptam.h": "c"
+    }
+}

@@ -26,8 +26,8 @@
  *          OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *          SOFTWARE.
  */
-#ifndef i2c_slave_h
-#define i2c_slave_h
+#ifndef i2c_master_hpp
+#define i2c_master_hpp
 
 /**
  * @brief I2C Communication Overview
@@ -876,4 +876,4 @@ int slave_read_buffer(i2c_port_t i2c_num, uint8_t *data, size_t max_size, TickTy
  */
 esp_err_t reset_rx_fifo(i2c_port_t i2c_num);
 
-#endif
+#endif /* I2C_master.hpp */
