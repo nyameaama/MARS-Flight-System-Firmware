@@ -30,6 +30,10 @@
 #ifndef __receiver_h_
 #define __receiver_h_
 
+#include <inttypes.h>
+#include <stdbool.h>
+#include "esp_now.h"
+
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
 #define ESPNOW_WIFI_MODE WIFI_MODE_STA

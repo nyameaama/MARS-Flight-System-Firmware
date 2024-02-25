@@ -10,3 +10,7 @@
 build/
 build_1/
 sdkconfig.old
+*.json
+*.sqlite
+*.db
+*.so

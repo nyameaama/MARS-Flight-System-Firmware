@@ -32,47 +32,6 @@
 
 #define MAX_LOG_EVENTS 3
 
-int secondary()
-{
-    // Get the string from EVENT_LOG_SDD
-    const char* str1 = EVENT_LOG_SDD();
-
-    // Check if the string is not NULL
-    if (str1 != NULL)
-    {
-        // Get the length of the string
-        size_t length1 = strlen(str1);
-
-        // Allocate memory for the array
-        char* outputArray = malloc(length1 + 1);  // +1 for null terminator
-
-        // Check if memory allocation is successful
-        if (outputArray != NULL)
-        {
-            // Copy the string into the array
-            strcpy(outputArray, str1);
-
-            // Print or manipulate the array as needed
-            printf("Copied array: %s\n", outputArray);
-
-            // Free the memory allocated for the array
-            free(outputArray);
-        }
-        else
-        {
-            printf("Memory allocation failed.\n");
-        }
-
-        // Free the memory allocated for the string
-        free((void*)str1);
-    }
-    else
-    {
-        printf("EVENT_LOG_SDD returned NULL.\n");
-    }
-
-    return 0;
-}
 void
 EVENT_LOG_SDD_TEST(void)
 {
@@ -189,6 +148,7 @@ LOG_EVENT_COMMON(void)
 void
 app_main(void)
 {
+    printf("ESP-Target MAIN()");
     EVENT_LOG_SDD_TEST();
     EVENT_LOG_SSL_TEST();
     EVENT_LOG_SEL_TEST();
@@ -198,11 +158,11 @@ app_main(void)
 int
 main(void)
 {
+    printf("Normal MAIN() ");
     EVENT_LOG_SDD_TEST();
     EVENT_LOG_SSL_TEST();
     EVENT_LOG_SEL_TEST();
     LOG_EVENT_COMMON();
-    secondary();
 
     return 0x00;
 }
