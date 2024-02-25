@@ -28,8 +28,8 @@
  */
 
 #include <stdio.h>
-#include "../abort.h"
 #include <string.h>
+#include "../abort.h"
 
 void
 PITCH_TEST(void)
@@ -113,10 +113,10 @@ VerifyPathWithinBoundary(void)
 {
     vector3d_t initloc = {0.0, 0.0, 0.0};    // Replace with a valid initial location.
     vector3d_t targetloc = {1.0, 1.0, 0.0};  // Replace with a valid target location.
-    double boundaryRadius = 0.1;        // Replace with a valid boundary radius.
+    double boundaryRadius = 0.1;             // Replace with a valid boundary radius.
 
-    const vector3d_t *initlocation = &initloc;
-    const vector3d_t *targetlocation = &targetloc;
+    const vector3d_t* initlocation = &initloc;
+    const vector3d_t* targetlocation = &targetloc;
 
     // Call the VERIFY_PATH function with the distance within the boundary radius.
     weighted_t result = VERIFY_PATH(initlocation, targetlocation, boundaryRadius);

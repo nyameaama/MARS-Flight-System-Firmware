@@ -27,10 +27,11 @@
  *          SOFTWARE.
  */
 
-#include "../abort.h"
 #include <iostream>
+#include "../abort.h"
 
-void PITCH_TEST(void)
+void
+PITCH_TEST(void)
 {
     VAMS vams;
     double accel_x = 0.1;
@@ -58,7 +59,8 @@ void PITCH_TEST(void)
     }
 }
 
-void YAW_TEST(void)
+void
+YAW_TEST(void)
 {
     VAMS vams;
     double magn_x = 1.0;
@@ -82,12 +84,14 @@ void YAW_TEST(void)
     }
 }
 
-void ROLL_TEST(void)
+void
+ROLL_TEST(void)
 {
     VAMS vams;
-    double validRoll = 0.0; // Replace with a valid roll value.
+    double validRoll = 0.0;  // Replace with a valid roll value.
 
-    weighted_t result = vams.VERIFY_ROLL(0.0, 0.0, 9.8); // Replace with valid accelerometer values.
+    weighted_t result =
+        vams.VERIFY_ROLL(0.0, 0.0, 9.8);  // Replace with valid accelerometer values.
 
     // Print the value of Vector data
     std::cout << "\n\n---------------------------------------------------------------";
@@ -96,7 +100,8 @@ void ROLL_TEST(void)
     std::cout << "result vstatus: " << result.vstatus << "\n\n";
     std::cout << "---------------------------------------------------------------\n\n";
 
-    if (result.name == "Roll_Verif" && result.data == validRoll && result.vstatus == NO_LOSS_OF_CONTROL)
+    if (result.name == "Roll_Verif" && result.data == validRoll &&
+        result.vstatus == NO_LOSS_OF_CONTROL)
     {
         std::cout << "ROLL_TEST: Passed\n";
     }
@@ -106,12 +111,13 @@ void ROLL_TEST(void)
     }
 }
 
-void VerifyPathWithinBoundary(void)
+void
+VerifyPathWithinBoundary(void)
 {
     VAMS vams;
-    Vector3D initloc{0.0, 0.0, 0.0};   // Replace with a valid initial location.
-    Vector3D targetloc{1.0, 1.0, 0.0}; // Replace with a valid target location.
-    double boundaryRadius = 0.1;       // Replace with a valid boundary radius.
+    Vector3D initloc{0.0, 0.0, 0.0};    // Replace with a valid initial location.
+    Vector3D targetloc{1.0, 1.0, 0.0};  // Replace with a valid target location.
+    double boundaryRadius = 0.1;        // Replace with a valid boundary radius.
 
     // Call the VERIFY_PATH function with the distance within the boundary radius.
     weighted_t result = vams.VERIFY_PATH(initloc, targetloc, boundaryRadius);
@@ -132,7 +138,8 @@ void VerifyPathWithinBoundary(void)
     }
 }
 
-void VAMS_MATRIX_WithNoLossOfControl(void)
+void
+VAMS_MATRIX_WithNoLossOfControl(void)
 {
     VAMS vams;
 
@@ -155,14 +162,31 @@ void VAMS_MATRIX_WithNoLossOfControl(void)
     }
 }
 
-extern "C"
+#ifdef ESP_TARGET
+extern "C" {
+void
+app_main(void)
 {
-    void app_main(void)
-    {
-        PITCH_TEST();
-        YAW_TEST();
-        ROLL_TEST();
-        VerifyPathWithinBoundary();
-        VAMS_MATRIX_WithNoLossOfControl();
-    }
+    PITCH_TEST();
+    YAW_TEST();
+    ROLL_TEST();
+    VerifyPathWithinBoundary();
+    VAMS_MATRIX_WithNoLossOfControl();
 }
+}
+#else
+extern "C" {
+int
+main(void)
+{
+    PITCH_TEST();
+    YAW_TEST();
+    ROLL_TEST();
+    VerifyPathWithinBoundary();
+    VAMS_MATRIX_WithNoLossOfControl();
+
+    return 0;
+}
+}
+
+#endif
