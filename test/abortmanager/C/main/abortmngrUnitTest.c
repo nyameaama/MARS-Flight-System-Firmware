@@ -158,8 +158,6 @@ VAMS_MATRIX_WithNoLossOfControl(void)
         printf("VAMS_MATRIX_WithNoLossOfControl: %d\n", FAILED);
     }
 }
-
-#ifdef ESP_TARGET
 void
 app_main(void)
 {
@@ -169,7 +167,7 @@ app_main(void)
     VerifyPathWithinBoundary();
     VAMS_MATRIX_WithNoLossOfControl();
 }
-#else
+
 int
 main(void)
 {
@@ -181,4 +179,3 @@ main(void)
 
     return 0;
 }
-#endif
