@@ -1,5 +1,5 @@
 /**
- * @file sender.h
+ * @file sender-main.c
  * @brief ESP-NOW sender function prototypes 
  *
  *
