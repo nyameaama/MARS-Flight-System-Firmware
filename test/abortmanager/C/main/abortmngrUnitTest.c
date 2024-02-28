@@ -129,11 +129,11 @@ VerifyPathWithinBoundary(void)
 
     if (result.name == "Path_verif" && result.vstatus == NOT_OFF_COURSE)
     {
-        printf("VerifyPathWithinBoundary: %d\n", PASSED);
+        printf("\nVerifyPathWithinBoundary: %d\n", PASSED);
     }
     else
     {
-        printf("VerifyPathWithinBoundary: %d\n", FAILED);
+        printf("\nVerifyPathWithinBoundary: %d\n", FAILED);
     }
 }
 
@@ -151,11 +151,11 @@ VAMS_MATRIX_WithNoLossOfControl(void)
 
     if (decision == NO_LOSS_OF_CONTROL)
     {
-        printf("VAMS_MATRIX_WithNoLossOfControl: %d\n", PASSED);
+        printf("\nVAMS_MATRIX_WithNoLossOfControl: %d\n", PASSED);
     }
     else
     {
-        printf("VAMS_MATRIX_WithNoLossOfControl: %d\n", FAILED);
+        printf("\nVAMS_MATRIX_WithNoLossOfControl: %d\n", FAILED);
     }
 }
 void
