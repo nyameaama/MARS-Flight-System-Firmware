@@ -230,8 +230,6 @@ test_pressure_suite()
     printf("\n\n---------------------------------------------------------------\n\n");
 }
 
-#ifdef ESP_TARGET
-
 void
 app_main(void)
 {
@@ -246,7 +244,6 @@ app_main(void)
     test_temperature_suite();
     test_pressure_suite();
 }
-#else
 
 int
 main(void)
@@ -262,7 +259,5 @@ main(void)
     test_temperature_suite();
     test_pressure_suite();
 
-    return 0;
+    return 0x00;
 }
-
-#endif
