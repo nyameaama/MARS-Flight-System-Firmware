@@ -158,6 +158,7 @@ VAMS_MATRIX_WithNoLossOfControl(void)
         printf("\nVAMS_MATRIX_WithNoLossOfControl: %d\n", FAILED);
     }
 }
+
 void
 app_main(void)
 {
