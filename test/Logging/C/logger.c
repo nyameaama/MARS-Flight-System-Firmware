@@ -29,6 +29,10 @@
 
 #include "../../PTAM/C/_ptam.h"
 #include "logger.h"
+#include <string.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #pragma GCC diagnostic ignored "-Wformat-truncation"
 

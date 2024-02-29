@@ -30,11 +30,7 @@
 #ifndef __LOGGING__H_
 #define __LOGGING__H_
 
-#include <inttypes.h>  //Replace with homemade inttypes
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <inttypes.h>  //Replace with custom inttypes
 #include "include/logtypes.h"
 
 /**

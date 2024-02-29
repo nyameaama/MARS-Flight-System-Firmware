@@ -7,6 +7,11 @@
 .vscode/settings.json
 *.o
 .gdb_history
+*.gdb
 build/
 build_1/
 sdkconfig.old
+*.json
+*.sqlite
+*.db
+*.so
