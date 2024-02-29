@@ -28,6 +28,7 @@
  */
 
 #include <stdlib.h>
+#include <stdint.h>
 #include <time.h>
 #include <string.h>
 #include <assert.h>
@@ -45,6 +46,7 @@
 #include "esp_crc.h"
 #include "../sender.h"
 #include "../../Logging/C/logger.h"
+#include "../../PTAM/C/_ptam.h"
 
 #define ESPNOW_MAXDELAY 512
 
@@ -184,11 +186,42 @@ static void espnow_task(void *pvParameter)
 
     /* Start sending broadcast ESPNOW data. */
     espnow_send_param_t *send_param = (espnow_send_param_t *)pvParameter;
+
+    double stateVal = 3.14;
+    storeData("stateDescript", "LOG_SDD_DATA", STRING);
+    storeData("state", &stateVal, DOUBLE);
+    // printf("Made entry LOG-EVENT-SDD_TEST");
+
+    // Store the sensor data
+    double WingFL = 111;
+    double WingFR = 222;
+    double WingRL = 333;
+    double WingRR = 444;
+    storeData("WingFL", &WingFL, DOUBLE);
+    storeData("WingFR", &WingFR, DOUBLE);
+    storeData("WingRL", &WingRL, DOUBLE);
+    storeData("WingRR", &WingRR, DOUBLE);
+
+    const char* Log_sdd = EVENT_LOG_SDD();
+
+    size_t length = strlen(Log_sdd);
+    
+    uint8_t *Log_holder = (uint8_t *)malloc(length);
+
+    if(Log_holder == NULL)
+    {
+        printf("An error ocurred for memory allocation");
+    }
+    
+    send_param->buffer = convertChar(Log_sdd, Log_holder, length);
+    const char* log_dump = convertUint(send_param->buffer, length);
+    printf("Log dump from send param buffer: %s", log_dump);
     if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
         ESP_LOGE(TAG, "Send error");
         espnow_deinit(send_param);
         vTaskDelete(NULL);
     }
+    //free(Log_holder);
 
     while (xQueueReceive(s_espnow_queue, &evt, portMAX_DELAY) == pdTRUE) {
         switch (evt.id) {
@@ -230,6 +263,7 @@ static void espnow_task(void *pvParameter)
                 }
                 break;
             }
+            
             case ESPNOW_RECV_CB:
             {
                 espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;

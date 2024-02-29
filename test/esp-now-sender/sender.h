@@ -131,7 +131,9 @@ typedef struct
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];  // MAC address of destination device.
 } espnow_send_param_t;
 
-void delay(int seconds);
+//void delay(int seconds);
+
+//uint8_t custom_payload[] = {0x01, 0x02, 0x03, 0x04};  // Replace this with your own payload
 
 static void sender_wifi_init(void);
 
@@ -149,7 +151,11 @@ static esp_err_t espnow_init(void);
 
 static void espnow_deinit(espnow_send_param_t* send_param);
 
-espnow_send_param_t convert_logs(const char* log);
+uint8_t *convertChar(const char* charptr, uint8_t *uint8ptr, size_t length);
+
+const char* convertUint(const uint8_t *uint8data, size_t length);
+
+uint8_t convert_logs(const char* log);
 
 // void prepare_espnow_data(espnow_send_param_t *send_param, const char* data, size_t data)
 
