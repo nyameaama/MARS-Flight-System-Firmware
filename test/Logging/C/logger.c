@@ -27,12 +27,12 @@
  *          SOFTWARE.
  */
 
-#include "../../PTAM/C/_ptam.h"
-#include "logger.h"
-#include <string.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "../../PTAM/C/_ptam.h"
+#include "logger.h"
 
 #pragma GCC diagnostic ignored "-Wformat-truncation"
 
@@ -51,48 +51,42 @@ EVENT_LOG_SDD(void)
     const char* ID = (const char*)retrieveData("stateDescript", &datatype);
     if (ID == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %s\n", ID);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", state_data);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* FLS = (const double*)retrieveData("WingFL", &datatype);
     if (FLS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", FLS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* FRS = (const double*)retrieveData("WingFR", &datatype);
     if (FRS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", FRS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* RLS = (const double*)retrieveData("WingRL", &datatype);
     if (RLS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", RLS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* RRS = (const double*)retrieveData("WingRR", &datatype);
     if (RRS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", RRS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
@@ -154,7 +148,6 @@ EVENT_LOG_SSL(void)
     const char* state = (const char*)retrieveData("stateDescript", &datatype);
     if (state == NULL)
     {
-        // Add logger config LOG macro use here
         printf("LOG SSL error: %p\n", state);
         return ID;
     }
@@ -162,7 +155,6 @@ EVENT_LOG_SSL(void)
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        // Add logger config LOG macro use here
         printf("LOG SSL error: %p\n", state_data);
         return ID;
     }
@@ -218,7 +210,6 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        // Add logger config LOG macro use here
         printf("LOG SEL error: %p\n", state_data);
         return ID;
     }
@@ -257,6 +248,39 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     }
 
     // Copy the result to the allocated memory
+    strcpy(formatted_output, buffer);
+
+    return formatted_output;
+}
+
+const char*
+SERVO_EVENT_LOG(double throttle, double SERVO_FR, double SERVO_FL, double SERVO_RR, double SERVO_RL)
+{
+    DataType datatype;
+    const char* servo_evt = "SERVO_EVENT_LOG";
+
+    char buffer[512];
+    snprintf(buffer, sizeof(buffer), "\n\n%s:\n", servo_evt);
+    strcat(buffer, "\t{\n");
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-THROTTLE: %f\n",
+             throttle);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer),
+             "\t\tFRONT-RIGHT-SERVO: %f\n", SERVO_FR);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tFRONT-LEFT-SERVO: %f\n",
+             SERVO_FL);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tREAR-RIGHT-SERVO: %f\n",
+             SERVO_RR);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tREAR-LEFT-SERVO: %f\n",
+             SERVO_RL);
+    strcat(buffer, "\t}\n\n\0");
+
+    char* formatted_output = malloc(strlen(buffer) + 1);
+    if (formatted_output == NULL)
+    {
+        // Handle allocation failure
+        LOG_ERROR(CRITICAL, "Formatted string returned NULL...");
+        return NULL;
+    }
     strcpy(formatted_output, buffer);
 
     return formatted_output;

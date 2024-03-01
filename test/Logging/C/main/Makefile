@@ -14,5 +14,15 @@ OBJS = $(SRCS:.c=.o)
 Logger_Testing_target = Logger_Unit_Testing_Suite
 
 # Rule to build Logger_Unit_Testing_Suite
-log_test:
-	$(CC) $(CFLAGS) -o $(Logger_Testing_target) $(SRCS)
+log_test: $(OBJS)
+	$(CC) $(CFLAGS) -o $(Logger_Testing_target) $(OBJS)
+
+# Rule to compile source files into object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean rule to remove generated files
+clean:
+	rm -f $(Logger_Testing_target) $(OBJS)
+
+.PHONY: clean

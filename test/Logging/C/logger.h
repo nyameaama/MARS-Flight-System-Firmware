@@ -33,6 +33,35 @@
 #include <inttypes.h>  //Replace with custom inttypes
 #include "include/logtypes.h"
 
+// Define color escape codes for log output
+
+#define BBLK "\e[1;30m"
+#define BRED "\e[1;31m"
+#define BGRN "\e[1;32m"
+#define BYEL "\e[1;33m"
+#define BBLU "\e[1;34m"
+#define BMAG "\e[1;35m"
+#define BCYN "\e[1;36m"
+#define BWHT "\e[1;37m"  // Bold white text
+#define RESET_TEXT "\033[0m"
+
+// Define log labels and messages
+static const char* INFO = BBLU "MESSAGE" RESET_TEXT;
+static const char* WARNING = BYEL "WARNING" RESET_TEXT;
+static const char* CRITICAL = BRED "CRITICAL" RESET_TEXT;
+
+static const char* ERROR_MSG = BRED "LOG" RESET_TEXT;
+static const char* WARNING_MSG = BYEL "LOG" RESET_TEXT;
+static const char* INFO_MSG = BBLU "LOG" RESET_TEXT;
+
+// Define log macros
+#define LOG_MSG(label, message) \
+    printf("%s %s: " BWHT "%s" RESET_TEXT "\n", label, INFO_MSG, message)
+#define LOG_ERROR(label, message) \
+    printf("%s %s: " BWHT "%s" RESET_TEXT "\n", label, ERROR_MSG, message)
+#define LOG_WARNING(label, message) \
+    printf("%s %s: " BWHT "%s" RESET_TEXT "\n", label, WARNING_MSG, message)
+
 /**
  * @brief Sensor Data Dump(SDD) is ran periodically to collect system data
  *
@@ -57,6 +86,19 @@ const char* EVENT_LOG_SSL(void);
  */
 const char* EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType,
                           const char* additionalInfo);
+
+/**
+ * @brief Servo event log is ran to pass various servo data and throttle
+ *
+ * @param throttle
+ * @param servo1
+ * @param servo2
+ * @param servo3
+ * @param servo4
+ * @return uint8_t
+ */
+const char* SERVO_EVENT_LOG(double throttle, double SERVO_FR, double SERVO_FL, double SERVO_RR,
+                            double SERVO_RL);
 
 /**
  * @brief converts MarsExceptionType to string

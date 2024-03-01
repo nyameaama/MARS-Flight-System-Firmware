@@ -30,8 +30,6 @@
 #include "../../../PTAM/C/_ptam.h"
 #include "../logger.h"
 
-#define MAX_LOG_EVENTS 3
-
 void
 EVENT_LOG_SDD_TEST(void)
 {
@@ -120,10 +118,27 @@ EVENT_LOG_SEL_TEST(void)
 
     uint8_t state = get_event_state(evt_log_sel_res);
 
-    printf("%d %s", state, "\n");
+    printf("State data: %d %s", state, "\n");
 
     deleteContainer("state");
     printf("\n");
+    printf("\n-----------------------------------------------------------\n");
+}
+
+void
+SERVO_EVENT_LOG_TEST(void)
+{
+    printf("\n-----------------------------------------------------------\n");
+    double throttle = 50;
+    double SERVO_FR = 100;
+    double SERVO_FL = 150;
+    double SERVO_RR = 200;
+    double SERVO_RL = 250;
+
+    const char* formatted_string =
+        SERVO_EVENT_LOG(throttle, SERVO_FR, SERVO_FL, SERVO_RR, SERVO_RL);
+
+    printf(formatted_string);
     printf("\n-----------------------------------------------------------\n");
 }
 
@@ -144,11 +159,24 @@ LOG_EVENT_COMMON(void)
     printf("\n-----------------------------------------------------------\n");
 }
 
-void app_main(void)
+void
+app_main(void)
 {
-    printf("ESP-Target MAIN()");
     EVENT_LOG_SDD_TEST();
     EVENT_LOG_SSL_TEST();
     EVENT_LOG_SEL_TEST();
+    SERVO_EVENT_LOG_TEST();
     LOG_EVENT_COMMON();
+}
+
+int
+main(void)
+{
+    EVENT_LOG_SDD_TEST();
+    EVENT_LOG_SSL_TEST();
+    EVENT_LOG_SEL_TEST();
+    SERVO_EVENT_LOG_TEST();
+    LOG_EVENT_COMMON();
+
+    return 0x0;
 }

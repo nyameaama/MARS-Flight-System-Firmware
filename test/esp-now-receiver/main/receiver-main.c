@@ -28,6 +28,7 @@
 
 #include "../receiver.h"
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -156,6 +157,8 @@ espnow_task(void* pvParameter)
             {
                 ESP_LOGI(TAG, "Receive %dth broadcast data from: " MACSTR ", len: %d", recv_seq,
                          MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
+
+                printf("Received data: %.*s\n", recv_cb->data_len, recv_cb->data);
 
                 /* If MAC address does not exist in peer list, add it to peer list. */
                 if (esp_now_is_peer_exist(recv_cb->mac_addr) == false)
