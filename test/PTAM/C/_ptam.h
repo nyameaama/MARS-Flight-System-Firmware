@@ -24,12 +24,14 @@ SOFTWARE.*/
 #include <stdio.h>
 #include <string.h>
 
-typedef enum {
+typedef enum
+{
     STRING,
     DOUBLE
 } DataType;
 
-struct DataContainer {
+struct DataContainer
+{
     char name[MAX_DATA_SIZE];
     char stringData[MAX_DATA_SIZE];
     double doubleData;
@@ -37,7 +39,9 @@ struct DataContainer {
 };
 
 void storeData(const char* containerName, const void* data, DataType dataType);
+
 const void* retrieveData(const char* containerName, DataType* dataType);
+
 void deleteContainer(const char* containerName);
 
-#endif // DATA_MODULE_H
+#endif  // DATA_MODULE_H

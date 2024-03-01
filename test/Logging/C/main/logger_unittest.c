@@ -30,8 +30,6 @@
 #include "../../../PTAM/C/_ptam.h"
 #include "../logger.h"
 
-#define MAX_LOG_EVENTS 3
-
 void
 EVENT_LOG_SDD_TEST(void)
 {
@@ -144,11 +142,22 @@ LOG_EVENT_COMMON(void)
     printf("\n-----------------------------------------------------------\n");
 }
 
-void app_main(void)
+void
+app_main(void)
 {
-    printf("ESP-Target MAIN()");
     EVENT_LOG_SDD_TEST();
     EVENT_LOG_SSL_TEST();
     EVENT_LOG_SEL_TEST();
     LOG_EVENT_COMMON();
+}
+
+int
+main(void)
+{
+    EVENT_LOG_SDD_TEST();
+    EVENT_LOG_SSL_TEST();
+    EVENT_LOG_SEL_TEST();
+    LOG_EVENT_COMMON();
+
+    return 0x0;
 }

@@ -27,12 +27,12 @@
  *          SOFTWARE.
  */
 
-#include "../../PTAM/C/_ptam.h"
-#include "logger.h"
-#include <string.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "../../PTAM/C/_ptam.h"
+#include "logger.h"
 
 #pragma GCC diagnostic ignored "-Wformat-truncation"
 
@@ -51,48 +51,43 @@ EVENT_LOG_SDD(void)
     const char* ID = (const char*)retrieveData("stateDescript", &datatype);
     if (ID == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %s\n", ID);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", state_data);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* FLS = (const double*)retrieveData("WingFL", &datatype);
     if (FLS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", FLS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* FRS = (const double*)retrieveData("WingFR", &datatype);
     if (FRS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", FRS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* RLS = (const double*)retrieveData("WingRL", &datatype);
     if (RLS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", RLS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* RRS = (const double*)retrieveData("WingRR", &datatype);
     if (RRS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", RRS);
+
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
@@ -154,7 +149,6 @@ EVENT_LOG_SSL(void)
     const char* state = (const char*)retrieveData("stateDescript", &datatype);
     if (state == NULL)
     {
-        // Add logger config LOG macro use here
         printf("LOG SSL error: %p\n", state);
         return ID;
     }
@@ -162,7 +156,6 @@ EVENT_LOG_SSL(void)
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        // Add logger config LOG macro use here
         printf("LOG SSL error: %p\n", state_data);
         return ID;
     }
@@ -218,7 +211,6 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        // Add logger config LOG macro use here
         printf("LOG SEL error: %p\n", state_data);
         return ID;
     }
