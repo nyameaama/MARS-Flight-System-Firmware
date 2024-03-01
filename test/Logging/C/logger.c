@@ -86,7 +86,6 @@ EVENT_LOG_SDD(void)
     const double* RRS = (const double*)retrieveData("WingRR", &datatype);
     if (RRS == NULL)
     {
-
         LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
@@ -249,6 +248,39 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     }
 
     // Copy the result to the allocated memory
+    strcpy(formatted_output, buffer);
+
+    return formatted_output;
+}
+
+const char*
+SERVO_EVENT_LOG(double throttle, double SERVO_FR, double SERVO_FL, double SERVO_RR, double SERVO_RL)
+{
+    DataType datatype;
+    const char* servo_evt = "SERVO_EVENT_LOG";
+
+    char buffer[512];
+    snprintf(buffer, sizeof(buffer), "\n\n%s:\n", servo_evt);
+    strcat(buffer, "\t{\n");
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-THROTTLE: %f\n",
+             throttle);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer),
+             "\t\tFRONT-RIGHT-SERVO: %f\n", SERVO_FR);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tFRONT-LEFT-SERVO: %f\n",
+             SERVO_FL);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tREAR-RIGHT-SERVO: %f\n",
+             SERVO_RR);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tREAR-LEFT-SERVO: %f\n",
+             SERVO_RL);
+    strcat(buffer, "\t}\n\n\0");
+
+    char* formatted_output = malloc(strlen(buffer) + 1);
+    if (formatted_output == NULL)
+    {
+        // Handle allocation failure
+        LOG_ERROR(CRITICAL, "Formatted string returned NULL...");
+        return NULL;
+    }
     strcpy(formatted_output, buffer);
 
     return formatted_output;
