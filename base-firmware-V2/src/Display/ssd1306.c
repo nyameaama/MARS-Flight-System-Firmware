@@ -751,6 +751,7 @@ void ssd1306_I2C_Init() {
 		printf("SUCCESS I2C bus %s is ready!\n\r",dev_i2c.bus->name);
 	}
 }
+
 void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
     uint8_t dt[256];
     dt[0] = reg;
