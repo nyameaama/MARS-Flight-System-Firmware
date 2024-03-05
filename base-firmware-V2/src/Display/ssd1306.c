@@ -743,31 +743,31 @@ void SSD1306_OFF(void) {
 }
 
 void ssd1306_I2C_Init() {
+	printf("Init I2C");
 	if (!device_is_ready(dev_i2c.bus)) {
-		printk("I2C bus %s is not ready!\n\r",dev_i2c.bus->name);
+		printf("I2C bus %s is not ready!\n\r",dev_i2c.bus->name);
 		return;
+	}else{
+		printf("SUCCESS I2C bus %s is ready!\n\r",dev_i2c.bus->name);
 	}
 }
 
 void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
-	uint8_t dt[256];
-	uint8_t i;
-	dt[0] = reg;
-	for(i = 0; i < count; i++){
-		dt[i+1] = data[i];
-	}
-	uint8_t ret;
-	ret = i2c_write_dt(&dev_i2c, dt, sizeof(dt));
-	if(ret != 0){
-		printk("Failed to write to I2C device address");
-	}
+    uint8_t dt[256];
+    dt[0] = reg;
+    for(int i = 0; i < count; i++) {
+        dt[i+1] = data[i];
+    }
+    int ret = i2c_write_dt(&dev_i2c, dt, count + 1);
+    if(ret != 0) {
+        printf("Failed to write to I2C device address 0x%X", address);
+    }
 }
 
 void ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data) {
-	uint8_t msg[2] = {reg, data};
-	uint8_t ret;
-	ret = i2c_write_dt(&dev_i2c, msg, sizeof(data));
-	if(ret != 0){
-		printk("Failed to write to I2C device address");
-	}
+    uint8_t msg[2] = {reg, data};
+    int ret = i2c_write_dt(&dev_i2c, msg, sizeof(msg));
+    if(ret != 0) {
+        printf("Failed to write to I2C device address 0x%X", address);
+    }
 }

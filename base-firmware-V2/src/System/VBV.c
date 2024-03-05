@@ -27,7 +27,7 @@
  *          SOFTWARE.
  */
 
-#include "../../PTAM/C/_ptam.h"
+#include "../PTAM/_ptam.h"
 #include "VBV.h"
 
 

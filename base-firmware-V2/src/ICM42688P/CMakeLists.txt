@@ -22,19 +22,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
-cmake_minimum_required(VERSION 3.20.0)
-find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
-
-project(base-firmware-V2)
-
-target_sources(app PRIVATE src/main.c)
-
-# Application sources
-
-add_subdirectory(src/Fan_cooling)
-add_subdirectory(src/Display)
-add_subdirectory(src/ICM42688P)
-add_subdirectory(src/BMI088)
-add_subdirectory(src/System)
-add_subdirectory(src/Logging)
-add_subdirectory(src/PTAM)
+target_sources(app PRIVATE
+		     ${CMAKE_CURRENT_SOURCE_DIR}/icm42688.c)

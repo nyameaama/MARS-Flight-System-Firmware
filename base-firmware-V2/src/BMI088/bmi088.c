@@ -170,11 +170,10 @@ void IMU_INIT(){
 * @brief Read a sequence of bytes from a BM1088 accel sensor registers
 */
 void bm1088_accel_read(uint8_t reg_addr, uint8_t *data, size_t len){
-    for (size_t i = 0; i < len; i++) {
-        ret = i2c_write_read_dt(&dev_i2c_acc, reg_addr, 1, data, len);
-        if(ret != 0){
-            printk("Failed to write/read I2C device address");
-        }
+    uint8_t write_buf[1] = {reg_addr};
+    int ret = i2c_write_read_dt(&dev_i2c_acc, write_buf, sizeof(write_buf), data, len);
+    if (ret != 0) {
+        printk("Failed to write/read I2C device address");
     }
 }
 
@@ -182,11 +181,10 @@ void bm1088_accel_read(uint8_t reg_addr, uint8_t *data, size_t len){
 * @brief Read a sequence of bytes from a BM1088 gyro sensor registers
 */
 void bm1088_gyro_read(uint8_t reg_addr, uint8_t *data, size_t len){
-    for (size_t i = 0; i < len; i++) {
-        ret = i2c_write_read_dt(&dev_i2c_gyro, reg_addr, 1, data, len);
-        if(ret != 0){
-            printk("Failed to write/read I2C device address");
-        }
+    uint8_t write_buf[1] = {reg_addr};
+    int ret = i2c_write_read_dt(&dev_i2c_gyro, write_buf, sizeof(write_buf), data, len);
+    if (ret != 0) {
+        printk("Failed to write/read I2C device address");
     }
 }
 
@@ -206,7 +204,7 @@ void bm1088_accel_write_byte(uint8_t reg_addr, uint8_t data){
 */
 void bm1088_gyro_write_byte(uint8_t reg_addr, uint8_t data){
     uint8_t msg[2] = {reg_addr, data};
-	ret = i2c_write_dt(&dev_i2c_gyro, msg, sizeof(data));
+	ret = i2c_write_dt(&dev_i2c_acc, msg, sizeof(data));
 	if(ret != 0){
 		printk("Failed to write to I2C device address");
 	}

@@ -1,36 +1,32 @@
 &i2c1 {
     display: display@40{
         compatible = "i2c-device";
-        reg = < 0x40 >;
+        reg = < 0x3c >;
         label = "ONBOARD_DISPLAY";
     };
-};
 
-&i2c1 {
+    icm42688: icm42688@68{
+        compatible = "i2c-device";
+        reg = < 0x69 >;
+        label = "ICM-IMU";
+    };
+
     bmi088_acc: bmi088_acc@18{
         compatible = "i2c-device";
         reg = < 0x18 >;
         label = "accel_bmi088";
     };
-};
 
-&i2c1 {
     bmi088_gyro: bmi088_gyro@68{
         compatible = "i2c-device";
         reg = < 0x68 >;
         label = "gyro_bmi088";
     };
+
+    status = "okay";
+    zephyr,concat-buf-size = <2048>;
 };
 
 &adc {
 	status = "okay";
-};
-
-servo0: nrf-servo0 {
-    compatible = "nrf-servo";
-    pin = <27>;
-    init_value = <50>;
-    min_pulse_us = <1000>;
-    max_pulse_us = <2000>;
-    status = "okay";
 };
