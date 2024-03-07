@@ -102,15 +102,15 @@ EVENT_LOG_SDD(void)
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tDATA: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tDATA: %f\n",
              state_data);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FL-POS: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FL-POS: %f\n",
              FLS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FR-POS: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FR-POS: %f\n",
              FRS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RL-POS: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RL-POS: %f\n",
              RLS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RR-POS: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RR-POS: %f\n",
              RRS);  // Use %f for double
     strcat(buffer, "\t}\n\n\0");
 
@@ -171,7 +171,7 @@ EVENT_LOG_SSL(void)
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %d\n",
              state_data);  // Assuming state_data is an integer
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tSTATE: %s\n", state);
     strcat(buffer, "\t}\n\n\0");
@@ -228,7 +228,7 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %d\n",
              state_data);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tEXCEPTION-TYPE: %s\n",
              exceptionTypeStr);
