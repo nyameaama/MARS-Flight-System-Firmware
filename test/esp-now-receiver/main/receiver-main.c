@@ -49,7 +49,7 @@
 
 static const char* TAG = "esp_now-receiver";
 
-static QueueHandle_t s_example_espnow_queue;
+static QueueHandle_t s_espnow_queue;
 
 static uint8_t s_broadcast_mac[ESP_NOW_ETH_ALEN] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 static uint16_t s_example_espnow_seq[ESPNOW_DATA_MAX] = {0, 0};
@@ -99,7 +99,7 @@ espnow_recv_cb(const esp_now_recv_info_t* recv_info, const uint8_t* data, int le
     }
     memcpy(recv_cb->data, data, len);
     recv_cb->data_len = len;
-    if (xQueueSend(s_example_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE)
+    if (xQueueSend(s_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE)
     {
         ESP_LOGW(TAG, "Send receive queue fail");
         free(recv_cb->data);
@@ -133,7 +133,6 @@ espnow_data_parse(uint8_t* data, uint16_t data_len, uint8_t* state, uint16_t* se
 
     return -1;
 }
-
 static void
 espnow_task(void* pvParameter)
 {
@@ -143,7 +142,7 @@ espnow_task(void* pvParameter)
     int recv_magic = 0;
     int ret;
 
-    while (xQueueReceive(s_example_espnow_queue, &evt, portMAX_DELAY) == pdTRUE)
+    while (xQueueReceive(s_espnow_queue, &evt, portMAX_DELAY) == pdTRUE)
     {
         switch (evt.id)
         {
@@ -153,44 +152,13 @@ espnow_task(void* pvParameter)
             ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq,
                                     &recv_magic);
             free(recv_cb->data);
-            if (ret == ESPNOW_DATA_BROADCAST)
+
+            if (ret == ESPNOW_DATA_BROADCAST || ret == ESPNOW_DATA_UNICAST)
             {
-                ESP_LOGI(TAG, "Receive %dth broadcast data from: " MACSTR ", len: %d", recv_seq,
-                         MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
-
-                printf("Received data: %.*s\n", recv_cb->data_len, recv_cb->data);
-
-                /* If MAC address does not exist in peer list, add it to peer list. */
-                if (esp_now_is_peer_exist(recv_cb->mac_addr) == false)
-                {
-                    esp_now_peer_info_t* peer = malloc(sizeof(esp_now_peer_info_t));
-                    if (peer == NULL)
-                    {
-                        ESP_LOGE(TAG, "Malloc peer information fail");
-                    }
-                    else
-                    {
-                        memset(peer, 0, sizeof(esp_now_peer_info_t));
-                        peer->channel = CONFIG_ESPNOW_CHANNEL;
-                        peer->ifidx = ESPNOW_WIFI_IF;
-                        peer->encrypt = true;
-                        memcpy(peer->lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
-                        memcpy(peer->peer_addr, recv_cb->mac_addr, ESP_NOW_ETH_ALEN);
-                        ESP_ERROR_CHECK(esp_now_add_peer(peer));
-                        free(peer);
-                    }
-                }
-
-                /* Indicates that the device has received broadcast ESPNOW data. */
-                // (Optional: You can add further handling logic here)
-            }
-            else if (ret == ESPNOW_DATA_UNICAST)
-            {
-                ESP_LOGI(TAG, "Receive %dth unicast data from: " MACSTR ", len: %d", recv_seq,
-                         MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
-
-                /* If receive unicast ESPNOW data, handle it as needed. */
-                // (Optional: You can add further handling logic here)
+                // Print the received data content
+                printf("Received data from MAC: " MACSTR ", len: %d\n", MAC2STR(recv_cb->mac_addr),
+                       recv_cb->data_len);
+                printf("Data Content: %.*s\n", recv_cb->data_len, recv_cb->data);
             }
             else
             {
@@ -208,8 +176,8 @@ espnow_task(void* pvParameter)
 static esp_err_t
 espnow_init(void)
 {
-    s_example_espnow_queue = xQueueCreate(ESPNOW_QUEUE_SIZE, sizeof(espnow_event_t));
-    if (s_example_espnow_queue == NULL)
+    s_espnow_queue = xQueueCreate(ESPNOW_QUEUE_SIZE, sizeof(espnow_event_t));
+    if (s_espnow_queue == NULL)
     {
         ESP_LOGE(TAG, "Create mutex fail");
         return ESP_FAIL;
@@ -230,7 +198,7 @@ espnow_init(void)
     if (peer == NULL)
     {
         ESP_LOGE(TAG, "Malloc peer information fail");
-        vSemaphoreDelete(s_example_espnow_queue);
+        vSemaphoreDelete(s_espnow_queue);
         esp_now_deinit();
         return ESP_FAIL;
     }

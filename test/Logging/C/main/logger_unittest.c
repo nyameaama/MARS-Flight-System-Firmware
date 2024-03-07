@@ -34,6 +34,7 @@ void
 EVENT_LOG_SDD_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "EVENT_LOG_SDD TEST CASE");
 
     //  Store the machine data
     double stateVal = 3.14;
@@ -63,6 +64,8 @@ EVENT_LOG_SDD_TEST(void)
     printf("%s %d %s", "Captured state: ", state, "\n");
     printf("%s %s %s", "Captured ID: ", ID, "\n\n");
 
+    deleteContainer("stateDescript");
+    deleteContainer("state");
     deleteContainer("WingFL");
     deleteContainer("WingFR");
     deleteContainer("WingRL");
@@ -75,8 +78,9 @@ void
 EVENT_LOG_SSL_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "EVENT_LOG_SSL TEST CASE");
 
-    double stateVal = 4.14;
+    double stateVal = 100;
     storeData("stateDescript", "LOG_SSL_DATA", DOUBLE);
     storeData("state", &stateVal, DOUBLE);
 
@@ -102,6 +106,7 @@ void
 EVENT_LOG_SEL_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "EVENT_LOG_SEL TEST CASE");
 
     double stateVal = 5.14;
     storeData("state", &stateVal, DOUBLE);
@@ -129,6 +134,7 @@ void
 SERVO_EVENT_LOG_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "SERVO_EVENT_LOG TEST CASE");
     double throttle = 50;
     double SERVO_FR = 100;
     double SERVO_FL = 150;
@@ -146,8 +152,9 @@ void
 LOG_EVENT_COMMON(void)
 {
     printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "LOG_EVENT_COMMON TEST CASE");
     const char* data = "Data message test";
-    data = LOG_INFO("LOG_INFO", data);
+    data = LOG_INFO("LOG_MSG", data);
     const char* info_get = get_info(data);
 
     printf("%s %sData: ", data, "\n");

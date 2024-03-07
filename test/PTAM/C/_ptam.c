@@ -100,7 +100,6 @@ retrieveData(const char* containerName, DataType* dataType)
         case STRING:
             return container->stringData;
         case DOUBLE:
-            printf("\nData container contents: %f %s",container->doubleData, "\n");
             return &(container->doubleData);
         default:
             // Error: datatype
