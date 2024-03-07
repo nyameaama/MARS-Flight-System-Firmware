@@ -146,14 +146,14 @@ EVENT_LOG_SSL(void)
     const char* state = (const char*)retrieveData("stateDescript", &datatype);
     if (state == NULL)
     {
-        printf("LOG SSL error: %p\n", state);
+        LOG_ERROR(CRITICAL, "LOG SSL ACCESSED NULL MEMORY");
         return ID;
     }
 
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        printf("LOG SSL error: %ls\n", state_data);
+        LOG_ERROR(CRITICAL, "LOG SSL ACCESSED NULL MEMORY");
         return ID;
     }
 
@@ -208,7 +208,7 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        printf("LOG SEL error: %ls\n", state_data);
+        LOG_ERROR(CRITICAL, "LOG SEL ACCESSED NULL MEMORY");
         return ID;
     }
 

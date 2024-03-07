@@ -64,6 +64,8 @@ EVENT_LOG_SDD_TEST(void)
     printf("%s %d %s", "Captured state: ", state, "\n");
     printf("%s %s %s", "Captured ID: ", ID, "\n\n");
 
+    deleteContainer("stateDescript");
+    deleteContainer("state");
     deleteContainer("WingFL");
     deleteContainer("WingFR");
     deleteContainer("WingRL");
@@ -78,7 +80,7 @@ EVENT_LOG_SSL_TEST(void)
     printf("\n-----------------------------------------------------------\n");
     LOG_MSG(INFO, "EVENT_LOG_SSL TEST CASE");
 
-    double stateVal = 4.14;
+    double stateVal = 100;
     storeData("stateDescript", "LOG_SSL_DATA", DOUBLE);
     storeData("state", &stateVal, DOUBLE);
 
