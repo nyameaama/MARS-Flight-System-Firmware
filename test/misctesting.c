@@ -1,34 +1,88 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#define BBLK "\e[1;30m"
-#define BRED "\e[1;31m"
-#define BGRN "\e[1;32m"
-#define BYEL "\e[1;33m"
-#define BBLU "\e[1;34m"
-#define BMAG "\e[1;35m"
-#define BCYN "\e[1;36m"
-#define BWHT "\e[1;37m"   // Bold white text
-#define RESET_TEXT "\033[0m"
+#define SIZE 100
+void enqueue();
+void dequeue();
+void show();
+int inp_arr[SIZE];
+int Rear = -1;
+int Front = -1;
 
-// Define log labels and messages
-static const char* INFO     = BBLU "MESSAGE" RESET_TEXT;
-static const char* WARNING  = BYEL "WARNING" RESET_TEXT;
-static const char* CRITICAL = BRED "CRITICAL" RESET_TEXT;
+int
+main()
+{
+    int ch;
+    while (1)
+    {
+        printf("1.Enqueue Operation\n");
+        printf("2.Dequeue Operation\n");
+        printf("3.Display the Queue\n");
+        printf("4.Exit\n");
+        printf("Enter your choice of operations : ");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            enqueue();
+            break;
+        case 2:
+            dequeue();
+            break;
+        case 3:
+            show();
+            break;
+        case 4:
+            exit(0);
+        default:
+            printf("Incorrect choice \n");
+        }
+    }
+}
 
-static const char* ERROR_MSG    = BRED "LOG" RESET_TEXT;
-static const char* WARNING_MSG  = BYEL "LOG" RESET_TEXT;
-static const char* INFO_MSG     = BBLU "LOG" RESET_TEXT;
+void
+enqueue()
+{
+    int insert_item;
+    if (Rear == SIZE - 1)
+        printf("Overflow \n");
+    else
+    {
+        if (Front == -1)
 
-// Define log macros
-#define LOG_MSG(label, message) printf("%s %s: " BWHT "%s" RESET_TEXT "\n", label, INFO_MSG, message)
-#define LOG_ERROR(label, message) printf("%s %s: " BWHT "%s" RESET_TEXT "\n", label, ERROR_MSG, message)
-#define LOG_WARNING(label, message) printf("%s %s: " BWHT "%s" RESET_TEXT "\n", label, WARNING_MSG, message)
+            Front = 0;
+        printf("Element to be inserted in the Queue\n : ");
+        scanf("%d", &insert_item);
+        Rear = Rear + 1;
+        inp_arr[Rear] = insert_item;
+    }
+}
 
-int main() {
-    // Test the log macros
-    LOG_MSG(INFO, "This is an informational message");
-    LOG_ERROR(CRITICAL, "This is an error message");
-    LOG_WARNING(WARNING, "This is a warning message");
+void
+dequeue()
+{
+    if (Front == -1 || Front > Rear)
+    {
+        printf("Underflow \n");
+        return;
+    }
+    else
+    {
+        printf("Element deleted from the Queue: %d\n", inp_arr[Front]);
+        Front = Front + 1;
+    }
+}
 
-    return 0x00000000000;
+void
+show()
+{
+    if (Front == -1)
+        printf("Empty Queue \n");
+    else
+    {
+        printf("Queue: \n");
+        for (int i = Front; i <= Rear; i++)
+            printf("%d ", inp_arr[i]);
+        printf("\n");
+    }
 }
