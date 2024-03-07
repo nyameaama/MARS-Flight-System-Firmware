@@ -62,7 +62,13 @@ SOFTWARE.*/
 #define SSD1306_HEIGHT 64
 #endif
 
+/* All following bytes will contain commands */
+#define SSD1306_CONTROL_ALL_BYTES_CMD		0x00
+/* All following bytes will contain data */
+#define SSD1306_CONTROL_ALL_BYTES_DATA		0x40
+
 /**
+ * 
  * @brief  SSD1306 color enumeration
  */
 typedef enum
