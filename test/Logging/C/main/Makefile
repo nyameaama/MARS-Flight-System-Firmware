@@ -2,7 +2,7 @@
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wunused-variable -Wextra -std=c11 -pedantic -ggdb
+CFLAGS = -Wall -Wunused-variable -Wextra -std=gnu11 -pedantic -ggdb
 
 # Source files
 SRCS = ../../../PTAM/C/_ptam.c ../logger.c logger_unittest.c

@@ -34,8 +34,6 @@
 #include "../../PTAM/C/_ptam.h"
 #include "logger.h"
 
-#pragma GCC diagnostic ignored "-Wformat-truncation"
-
 /**
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
  *
@@ -102,16 +100,16 @@ EVENT_LOG_SDD(void)
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tDATA: %f\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tDATA: %ls\n",
              state_data);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FL-POS: %f\n",
-             FLS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FR-POS: %f\n",
-             FRS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RL-POS: %f\n",
-             RLS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RR-POS: %f\n",
-             RRS);  // Use %f for double
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FL-POS: %lf\n",
+             *FLS);  // Use %f for double
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FR-POS: %lf\n",
+             *FRS);  // Use %f for double
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RL-POS: %lf\n",
+             *RLS);  // Use %f for double
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RR-POS: %lf\n",
+             *RRS);  // Use %f for double
     strcat(buffer, "\t}\n\n\0");
 
     // Allocate memory for the result
@@ -155,7 +153,7 @@ EVENT_LOG_SSL(void)
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        printf("LOG SSL error: %p\n", state_data);
+        printf("LOG SSL error: %ls\n", state_data);
         return ID;
     }
 
@@ -171,7 +169,7 @@ EVENT_LOG_SSL(void)
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %d\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %ls\n",
              state_data);  // Assuming state_data is an integer
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tSTATE: %s\n", state);
     strcat(buffer, "\t}\n\n\0");
@@ -210,7 +208,7 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        printf("LOG SEL error: %p\n", state_data);
+        printf("LOG SEL error: %ls\n", state_data);
         return ID;
     }
 
@@ -228,7 +226,7 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %d\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %ls\n",
              state_data);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tEXCEPTION-TYPE: %s\n",
              exceptionTypeStr);
@@ -256,7 +254,6 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
 const char*
 SERVO_EVENT_LOG(double throttle, double SERVO_FR, double SERVO_FL, double SERVO_RR, double SERVO_RL)
 {
-    DataType datatype;
     const char* servo_evt = "SERVO_EVENT_LOG";
 
     char buffer[512];
@@ -393,7 +390,7 @@ get_event_time(const char* formatted_data)
 }
 
 /**
- * @brief Converts timestampt into H-M-S-M format
+ * @brief Converts timestamp into H-M-S-M format
  *
  * @param ms
  * @return const char*
@@ -412,8 +409,12 @@ convert_time(uint64_t ms)
     // Extract remaining milliseconds
     int remaining_milliseconds = ms % 1000;
 
+    // Calculate the required size for the time string
+    size_t buffer_size =
+        snprintf(NULL, 0, "%02d:%02d:%02d.%03d", hours, minutes, secs, remaining_milliseconds) + 1;
+
     // Allocate memory for the time string
-    char* time_string = malloc(12);  // Sufficient space for "HH:MM:SS.SSS\0"
+    char* time_string = malloc(buffer_size);
     if (time_string == NULL)
     {
         printf("Formatted string returned NULL...");
@@ -421,7 +422,8 @@ convert_time(uint64_t ms)
     }
 
     // Format and build the time string
-    snprintf(time_string, 12, "%02d:%02d:%02d.%03d", hours, minutes, secs, remaining_milliseconds);
+    snprintf(time_string, buffer_size, "%02d:%02d:%02d.%03d", hours, minutes, secs,
+             remaining_milliseconds);
 
     return time_string;
 }
