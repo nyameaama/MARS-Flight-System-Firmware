@@ -34,6 +34,7 @@
 #include "../../PTAM/C/_ptam.h"
 #include "logger.h"
 
+
 /**
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
  *

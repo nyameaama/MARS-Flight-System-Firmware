@@ -31,11 +31,6 @@
 #ifndef LOGTYPES_H_
 #define LOGTYPES_H_
 
-#include <stdio.h>
-#include <inttypes.h>  // For uint types
-// #include <cstdio>   // Include the C standard I/O library for printf
-#include <string.h>
-
 // Define the enum for mars_exception_t
 typedef enum {
     ROUTINE_SOFT_FAIL,

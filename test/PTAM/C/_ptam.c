@@ -16,8 +16,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-#include "_ptam.h"
 #include <stdio.h>
+#include "_ptam.h"
 
 struct DataContainer dataContainers[MAX_DATA_SIZE];
 int numContainers = 0;
