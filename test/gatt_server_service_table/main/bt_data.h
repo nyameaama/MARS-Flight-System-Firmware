@@ -1,6 +1,8 @@
 #ifndef READ_CHARACTERISTICS_H
 #define READ_CHARACTERISTICS_H
 
+#include <stdio.h>
+
 char* readDataCharacteristic1(void);
 char* readDataCharacteristic2(void);
 char* readDataCharacteristic3(void);

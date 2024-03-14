@@ -154,10 +154,10 @@ static struct gatts_profile_inst heart_rate_profile_tab[PROFILE_NUM] = {
 };
 
 /* Service */
-static const uint16_t GATTS_SERVICE_UUID_TEST       = 0x180F; //0x13d4;
-static const uint16_t GATTS_CHAR_UUID_TEST_1        = 0xFF01;
-static const uint16_t GATTS_CHAR_UUID_TEST_2        = 0xFF02;
-static const uint16_t GATTS_CHAR_UUID_TEST_3        = 0xFF03;
+static const uint16_t GATTS_SERVICE_UUID_TEST       = 0x13d4; //0x180F; //000013d4-0000-1000-8000-00805f9b34fb
+static const uint16_t GATTS_CHAR_UUID_TEST_1        = 0xFF01; //0000ff01-0000-1000-8000-00805f9b34fb
+static const uint16_t GATTS_CHAR_UUID_TEST_2        = 0xFF02; //0000ff02-0000-1000-8000-00805f9b34fb
+static const uint16_t GATTS_CHAR_UUID_TEST_3        = 0xFF03; //0000ff03-0000-1000-8000-00805f9b34fb
 static const uint16_t GATTS_CHAR_UUID_TEST_4        = 0xFF04;
 static const uint16_t GATTS_CHAR_UUID_TEST_5        = 0xFF05;
 static const uint16_t GATTS_CHAR_UUID_TEST_6        = 0xFF06;
