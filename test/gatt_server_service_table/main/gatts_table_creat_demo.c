@@ -24,6 +24,8 @@
 #include "gatts_table_creat_demo.h"
 #include "esp_gatt_common_api.h"
 
+#include"bt_data.h"
+
 #define GATTS_TABLE_TAG "GATTS_TABLE_DEMO"
 
 #define PROFILE_NUM                 1
@@ -152,10 +154,10 @@ static struct gatts_profile_inst heart_rate_profile_tab[PROFILE_NUM] = {
 };
 
 /* Service */
-static const uint16_t GATTS_SERVICE_UUID_TEST       = 0x180F; //0x13d4;
-static const uint16_t GATTS_CHAR_UUID_TEST_1        = 0xFF01;
-static const uint16_t GATTS_CHAR_UUID_TEST_2        = 0xFF02;
-static const uint16_t GATTS_CHAR_UUID_TEST_3        = 0xFF03;
+static const uint16_t GATTS_SERVICE_UUID_TEST       = 0x13d4; //0x180F; //000013d4-0000-1000-8000-00805f9b34fb
+static const uint16_t GATTS_CHAR_UUID_TEST_1        = 0xFF01; //0000ff01-0000-1000-8000-00805f9b34fb
+static const uint16_t GATTS_CHAR_UUID_TEST_2        = 0xFF02; //0000ff02-0000-1000-8000-00805f9b34fb
+static const uint16_t GATTS_CHAR_UUID_TEST_3        = 0xFF03; //0000ff03-0000-1000-8000-00805f9b34fb
 static const uint16_t GATTS_CHAR_UUID_TEST_4        = 0xFF04;
 static const uint16_t GATTS_CHAR_UUID_TEST_5        = 0xFF05;
 static const uint16_t GATTS_CHAR_UUID_TEST_6        = 0xFF06;
@@ -210,194 +212,194 @@ static const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] =
 {
     // Service Declaration
     [IDX_SVC]        =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&primary_service_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&primary_service_uuid, ESP_GATT_PERM_READ,
       sizeof(uint16_t), sizeof(GATTS_SERVICE_UUID_TEST), (uint8_t *)&GATTS_SERVICE_UUID_TEST}},
 
     /* Characteristic_1 Declaration */
     [IDX_CHAR_1]     =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_1 Value */
     [IDX_CHAR_VAL_1] =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_1, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_1, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_1), (uint8_t *)char_value_1}},
 
     /* Characteristic_2 Declaration */
     [IDX_CHAR_2]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_2 Value */
     [IDX_CHAR_VAL_2]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_2, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_2, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_2), (uint8_t *)char_value_2}},
 
     /* Characteristic_3 Declaration */
     [IDX_CHAR_3]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_3 Value */
     [IDX_CHAR_VAL_3]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_3, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_3, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_3), (uint8_t *)char_value_3}},
 
     /* Characteristics_4 Declaration */
     [IDX_CHAR_4]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_4 Value */
     [IDX_CHAR_VAL_4]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_4, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_4, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_4), (uint8_t *)char_value_4}},
     /* Characteristics_5 Declaration */
     [IDX_CHAR_5]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_5 Value */
     [IDX_CHAR_VAL_5]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_5, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_5, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_5), (uint8_t *)char_value_5}},
     /* Characteristics_6 Declaration */
     [IDX_CHAR_6]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_6 Value */
     [IDX_CHAR_VAL_6]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_6, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_6, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_6), (uint8_t *)char_value_6}},
     /* Characteristics_7 Declaration */
     [IDX_CHAR_7]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_7 Value */
     [IDX_CHAR_VAL_7]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_7, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_7, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_7), (uint8_t *)char_value_7}},
     /* Characteristics_8 Declaration */
     [IDX_CHAR_8]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_8 Value */
     [IDX_CHAR_VAL_8]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_8, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_8, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_8), (uint8_t *)char_value_8}},
     /* Characteristics_9 Declaration */
     [IDX_CHAR_9]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_9 Value */
     [IDX_CHAR_VAL_9]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_9, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_9, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_9), (uint8_t *)char_value_9}},
     /* Characteristics_10 Declaration */
     [IDX_CHAR_10]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_10 Value */
     [IDX_CHAR_VAL_10]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_10, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_10, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_10), (uint8_t *)char_value_10}},
 
     /* Characteristics_11 Declaration */
     [IDX_CHAR_11]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_11 Value */
     [IDX_CHAR_VAL_11]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_11, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_11, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_11), (uint8_t *)char_value_11}},
 
 
     /* Characteristics_12 Declaration */
     [IDX_CHAR_12]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_12 Value */
     [IDX_CHAR_VAL_12]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_12, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_12, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_12), (uint8_t *)char_value_12}},
     /* Characteristics_13 Declaration */
     [IDX_CHAR_13]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_13 Value */
     [IDX_CHAR_VAL_13]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_13, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_13, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_13), (uint8_t *)char_value_13}},
     /* Characteristics_14 Declaration */
     [IDX_CHAR_14]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_14 Value */
     [IDX_CHAR_VAL_14]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_14, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_14, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_14), (uint8_t *)char_value_14}},
     /* Characteristics_15 Declaration */
     [IDX_CHAR_15]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}},
 
     /* Characteristic_15 Value */
     [IDX_CHAR_VAL_15]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_15, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_15, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_15), (uint8_t *)char_value_15}},
     /* Characteristics_16 Declaration */
     [IDX_CHAR_16]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_write}},
 
     /* Characteristic_16 Value */
     [IDX_CHAR_VAL_16]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_16, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_16, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_16), (uint8_t *)char_value_16}},
     /* Characteristics_17 Declaration */
     [IDX_CHAR_17]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_write}},
 
     /* Characteristic_17 Value */
     [IDX_CHAR_VAL_17]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_17, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_17, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_17), (uint8_t *)char_value_17}},
     /* Characteristics_18 Declaration */
     [IDX_CHAR_18]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_write}},
 
     /* Characteristic_18 Value */
     [IDX_CHAR_VAL_18]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_18, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_18, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_18), (uint8_t *)char_value_18}},
     /* Characteristics_19 Declaration */
     [IDX_CHAR_19]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_write}},
 
     /* Characteristic_19 Value */
     [IDX_CHAR_VAL_19]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_19, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_19, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_19), (uint8_t *)char_value_19}},
     /* Characteristics_20 Declaration */
     [IDX_CHAR_20]      =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ,
       CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_write}},
 
     /* Characteristic_20 Value */
     [IDX_CHAR_VAL_20]  =
-    {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_20, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
+    {{ESP_GATT_RSP_BY_APP}, {ESP_UUID_LEN_16, (uint8_t *)&GATTS_CHAR_UUID_TEST_20, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
       GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(char_value_20), (uint8_t *)char_value_20}},
 };
 
@@ -561,6 +563,441 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
        	    break;
         case ESP_GATTS_READ_EVT:
             ESP_LOGI(GATTS_TABLE_TAG, "ESP_GATTS_READ_EVT");
+            //CHARACTERISTIC 1
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_1]) {
+              // Get Data
+              const char* output = readDataCharacteristic1(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 2
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_2]) {
+              // Get Data
+              const char* output = readDataCharacteristic2(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 3
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_3]) {
+              // Get Data
+              const char* output = readDataCharacteristic3(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 4
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_4]) {
+              // Get Data
+              const char* output = readDataCharacteristic4(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 5
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_5]) {
+              // Get Data
+              const char* output = readDataCharacteristic5(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 6
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_6]) {
+              // Get Data
+              const char* output = readDataCharacteristic6(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 7
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_7]) {
+              // Get Data
+              const char* output = readDataCharacteristic7(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 8
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_8]) {
+              // Get Data
+              const char* output = readDataCharacteristic8(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 9
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_9]) {
+              // Get Data
+              const char* output = readDataCharacteristic9(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 10
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_10]) {
+              // Get Data
+              const char* output = readDataCharacteristic10(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 11
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_11]) {
+              // Get Data
+              const char* output = readDataCharacteristic11(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 12
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_12]) {
+              // Get Data
+              const char* output = readDataCharacteristic12(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 13
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_13]) {
+              // Get Data
+              const char* output = readDataCharacteristic13(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 14
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_14]) {
+              // Get Data
+              const char* output = readDataCharacteristic14(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
+            //CHARACTERISTIC 15
+            if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_15]) {
+              // Get Data
+              const char* output = readDataCharacteristic15(); // Ensure this is null-terminated and remains valid
+              if (output == NULL) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
+                  return;
+              }
+
+              // Prepare the response
+              esp_gatt_rsp_t rsp;
+              memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+              rsp.attr_value.handle = param->read.handle;
+              rsp.attr_value.len = strlen(output);
+
+              // Make sure not to exceed the maximum length
+              if (rsp.attr_value.len > ESP_GATT_MAX_ATTR_LEN) {
+                  rsp.attr_value.len = ESP_GATT_MAX_ATTR_LEN;
+              }
+
+              memcpy(rsp.attr_value.value, output, rsp.attr_value.len);
+
+              // Send the response
+              esp_err_t ret = esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id, ESP_GATT_OK, &rsp);
+              if (ret != ESP_OK) {
+                  ESP_LOGE(GATTS_TABLE_TAG, "Send response failed: %s", esp_err_to_name(ret));
+              }
+            }
+
        	    break;
         case ESP_GATTS_WRITE_EVT:
             if (!param->write.is_prep){
