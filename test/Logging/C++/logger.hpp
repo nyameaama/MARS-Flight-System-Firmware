@@ -92,7 +92,7 @@ class Logger
      * @deprecated Please use convert_time() directly and pass milliseconds(ms).
      *
      */
-    [[deprecated("This function is useless, please use convert_time() directly and pass "
+    [[deprecated("This function is deprecated, please use convert_time() directly and pass "
                  "milliseconds(ms).")]] uint64_t
     get_timestamp(uint64_t milliseconds);
 

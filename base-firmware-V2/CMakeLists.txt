@@ -33,6 +33,7 @@ target_sources(app PRIVATE src/main.c)
 
 add_subdirectory(src/Fan_cooling)
 add_subdirectory(src/Display)
+add_subdirectory(src/ICM42688P)
 add_subdirectory(src/BMI088)
 add_subdirectory(src/System)
 add_subdirectory(src/Logging)

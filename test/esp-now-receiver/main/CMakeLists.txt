@@ -1,3 +1,4 @@
 idf_component_register(SRCS "receiver-main.c"
-                            #"../espnow.c"
+                            "receiver.c"
+                            
                     INCLUDE_DIRS ".")

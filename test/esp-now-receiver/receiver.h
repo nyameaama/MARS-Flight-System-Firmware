@@ -97,17 +97,6 @@ typedef struct {
     uint8_t payload[0];                   //Real payload of ESPNOW data.
 } __attribute__((packed)) espnow_data_t;
 
-typedef struct
-{
-    uint8_t type;      // Broadcast or unicast ESPNOW data.
-    uint8_t state;     // Indicate that if has received broadcast ESPNOW data or not.
-    uint16_t seq_num;  // Sequence number of ESPNOW data.
-    uint16_t crc;      // CRC16 value of ESPNOW data.
-    uint32_t
-        magic;  // Magic number which is used to determine which device to send unicast ESPNOW data.
-    uint8_t payload[0];  // Real payload of ESPNOW data.
-}__attribute__((packed)) log_data_t;
-
 /* Parameters of sending ESPNOW data. */
 typedef struct {
     bool unicast;                         //Send unicast ESPNOW data.
@@ -132,5 +121,9 @@ static void espnow_task(void *pvParameter);
 static esp_err_t espnow_init(void);
 
 static void espnow_deinit(espnow_send_param_t *send_param);
+
+uint8_t *convertChar(const char* charptr, uint8_t *uint8ptr, size_t length);
+
+const char* convertUint(const uint8_t *uint8data, size_t length);
 
 #endif /* __receiver_h_ */

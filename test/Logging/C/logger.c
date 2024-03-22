@@ -27,14 +27,13 @@
  *          SOFTWARE.
  */
 
-#include "../../PTAM/C/_ptam.h"
-#include "logger.h"
-#include <string.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "../../PTAM/C/_ptam.h"
+#include "logger.h"
 
-#pragma GCC diagnostic ignored "-Wformat-truncation"
 
 /**
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
@@ -51,48 +50,42 @@ EVENT_LOG_SDD(void)
     const char* ID = (const char*)retrieveData("stateDescript", &datatype);
     if (ID == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %s\n", ID);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", state_data);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* FLS = (const double*)retrieveData("WingFL", &datatype);
     if (FLS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", FLS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* FRS = (const double*)retrieveData("WingFR", &datatype);
     if (FRS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", FRS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* RLS = (const double*)retrieveData("WingRL", &datatype);
     if (RLS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", RLS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
     const double* RRS = (const double*)retrieveData("WingRR", &datatype);
     if (RRS == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SDD error: %p\n", RRS);
+        LOG_ERROR(CRITICAL, "LOG SDD ACCESSED NULL MEMORY");
         return ID;
     }
 
@@ -108,16 +101,16 @@ EVENT_LOG_SDD(void)
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tDATA: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tDATA: %d\n",
              state_data);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FL-POS: %p\n",
-             FLS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FR-POS: %p\n",
-             FRS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RL-POS: %p\n",
-             RLS);  // Use %f for double
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RR-POS: %p\n",
-             RRS);  // Use %f for double
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FL-POS: %lf\n",
+             *FLS);  // Use %f for double
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-FR-POS: %lf\n",
+             *FRS);  // Use %f for double
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RL-POS: %lf\n",
+             *RLS);  // Use %f for double
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tWING-RR-POS: %lf\n",
+             *RRS);  // Use %f for double
     strcat(buffer, "\t}\n\n\0");
 
     // Allocate memory for the result
@@ -141,7 +134,7 @@ EVENT_LOG_SDD(void)
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
  *
  * @param void
- * @return std::string
+ * @return const char *
  */
 const char*
 EVENT_LOG_SSL(void)
@@ -154,16 +147,14 @@ EVENT_LOG_SSL(void)
     const char* state = (const char*)retrieveData("stateDescript", &datatype);
     if (state == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SSL error: %p\n", state);
+        LOG_ERROR(CRITICAL, "LOG SSL ACCESSED NULL MEMORY");
         return ID;
     }
 
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SSL error: %p\n", state_data);
+        LOG_ERROR(CRITICAL, "LOG SSL ACCESSED NULL MEMORY");
         return ID;
     }
 
@@ -179,7 +170,7 @@ EVENT_LOG_SSL(void)
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %d\n",
              state_data);  // Assuming state_data is an integer
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tSTATE: %s\n", state);
     strcat(buffer, "\t}\n\n\0");
@@ -207,7 +198,7 @@ EVENT_LOG_SSL(void)
  * @param ID
  * @param exceptionType
  * @param additionalInfo
- * @return std::string
+ * @return const char*
  */
 const char*
 EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* additionalInfo)
@@ -218,8 +209,7 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     const int* state_data = (const int*)retrieveData("state", &datatype);
     if (state_data == NULL)
     {
-        // Add logger config LOG macro use here
-        printf("LOG SEL error: %p\n", state_data);
+        LOG_ERROR(CRITICAL, "LOG SEL ACCESSED NULL MEMORY");
         return ID;
     }
 
@@ -237,7 +227,7 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tID: %s\n", ID);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tTIME: %s\n",
              formatted_time);
-    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %p\n",
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-STATE: %d\n",
              state_data);
     snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tEXCEPTION-TYPE: %s\n",
              exceptionTypeStr);
@@ -257,6 +247,48 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     }
 
     // Copy the result to the allocated memory
+    strcpy(formatted_output, buffer);
+
+    return formatted_output;
+}
+
+/**
+ * @brief Servo event log is ran to pass various servo data and throttle
+ *
+ * @param throttle
+ * @param SERVO_FR
+ * @param SERVO_FL
+ * @param SERVO_RR
+ * @param SERVO_RL
+ * @return const char*
+ */
+const char*
+SERVO_EVENT_LOG(double throttle, double SERVO_FR, double SERVO_FL, double SERVO_RR, double SERVO_RL)
+{
+    const char* servo_evt = "SERVO_EVENT_LOG";
+
+    char buffer[512];
+    snprintf(buffer, sizeof(buffer), "\n\n%s:\n", servo_evt);
+    strcat(buffer, "\t{\n");
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tMACHINE-THROTTLE: %f\n",
+             throttle);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer),
+             "\t\tFRONT-RIGHT-SERVO: %f\n", SERVO_FR);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tFRONT-LEFT-SERVO: %f\n",
+             SERVO_FL);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tREAR-RIGHT-SERVO: %f\n",
+             SERVO_RR);
+    snprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), "\t\tREAR-LEFT-SERVO: %f\n",
+             SERVO_RL);
+    strcat(buffer, "\t}\n\n\0");
+
+    char* formatted_output = malloc(strlen(buffer) + 1);
+    if (formatted_output == NULL)
+    {
+        // Handle allocation failure
+        LOG_ERROR(CRITICAL, "Formatted string returned NULL...");
+        return NULL;
+    }
     strcpy(formatted_output, buffer);
 
     return formatted_output;
@@ -369,7 +401,7 @@ get_event_time(const char* formatted_data)
 }
 
 /**
- * @brief Converts timestampt into H-M-S-M format
+ * @brief Converts timestamp into H-M-S-M format
  *
  * @param ms
  * @return const char*
@@ -388,8 +420,12 @@ convert_time(uint64_t ms)
     // Extract remaining milliseconds
     int remaining_milliseconds = ms % 1000;
 
+    // Calculate the required size for the time string
+    size_t buffer_size =
+        snprintf(NULL, 0, "%02d:%02d:%02d.%03d", hours, minutes, secs, remaining_milliseconds) + 1;
+
     // Allocate memory for the time string
-    char* time_string = malloc(12);  // Sufficient space for "HH:MM:SS.SSS\0"
+    char* time_string = malloc(buffer_size);
     if (time_string == NULL)
     {
         printf("Formatted string returned NULL...");
@@ -397,7 +433,8 @@ convert_time(uint64_t ms)
     }
 
     // Format and build the time string
-    snprintf(time_string, 12, "%02d:%02d:%02d.%03d", hours, minutes, secs, remaining_milliseconds);
+    snprintf(time_string, buffer_size, "%02d:%02d:%02d.%03d", hours, minutes, secs,
+             remaining_milliseconds);
 
     return time_string;
 }

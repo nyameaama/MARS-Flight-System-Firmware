@@ -16,7 +16,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
-
+#include <stdio.h>
 #include "_ptam.h"
 
 struct DataContainer dataContainers[MAX_DATA_SIZE];
@@ -25,12 +25,16 @@ int numContainers = 0;
 //____________________________________________________________
 /* Utillity subroutines -> Retrieve container
 ===========================================================================
-|    
+|
 ===========================================================================
 */
-struct DataContainer* findContainer(const char* containerName) {
-    for (int i = 0; i < numContainers; ++i) {
-        if (strcmp(dataContainers[i].name, containerName) == 0) {
+struct DataContainer*
+findContainer(const char* containerName)
+{
+    for (int i = 0; i < numContainers; ++i)
+    {
+        if (strcmp(dataContainers[i].name, containerName) == 0)
+        {
             return &dataContainers[i];
         }
     }
@@ -40,16 +44,20 @@ struct DataContainer* findContainer(const char* containerName) {
 //____________________________________________________________
 /* Main subroutines -> stores value of datatypes (const char*, const void*, typedef)
 ===========================================================================
-|    Designated ID   This creates the PTAM register with this ID an can only be referenced with this ID string
-|    Data Value      Data value of types const char*, const void*, typedef
+|    Designated ID   This creates the PTAM register with this ID an can only be referenced with this
+ID string |    Data Value      Data value of types const char*, const void*, typedef
 ===========================================================================
 */
 
-void storeData(const char* containerName, const void* data, DataType dataType) {
+void
+storeData(const char* containerName, const void* data, DataType dataType)
+{
     struct DataContainer* container = findContainer(containerName);
-    if (container == NULL) {
-        if (numContainers >= MAX_DATA_SIZE) {
-            //Error: Maximum number of containers reached
+    if (container == NULL)
+    {
+        if (numContainers >= MAX_DATA_SIZE)
+        {
+            // Error: Maximum number of containers reached
             return;
         }
 
@@ -58,18 +66,19 @@ void storeData(const char* containerName, const void* data, DataType dataType) {
         container->name[MAX_DATA_SIZE - 1] = '\0';
     }
 
-    switch (dataType) {
-        case STRING:
-            strncpy(container->stringData, (const char*)data, MAX_DATA_SIZE - 1);
-            container->dataType = STRING;
-            break;
-        case DOUBLE:
-            container->doubleData = *((const double*)data);
-            container->dataType = DOUBLE;
-            break;
-        default:
-            //Error: datatype
-            break;
+    switch (dataType)
+    {
+    case STRING:
+        strncpy(container->stringData, (const char*)data, MAX_DATA_SIZE - 1);
+        container->dataType = STRING;
+        break;
+    case DOUBLE:
+        container->doubleData = *((const double*)data);
+        container->dataType = DOUBLE;
+        break;
+    default:
+        // Error: datatype
+        break;
     }
 }
 
@@ -79,22 +88,26 @@ void storeData(const char* containerName, const void* data, DataType dataType) {
 |   Designated ID   This references the PTAM container assigned with this ID
 ===========================================================================
 */
-const void* retrieveData(const char* containerName, DataType* dataType) {
+const void*
+retrieveData(const char* containerName, DataType* dataType)
+{
     struct DataContainer* container = findContainer(containerName);
-    if (container != NULL) {
+    if (container != NULL)
+    {
         *dataType = container->dataType;
-        switch (*dataType) {
-            case STRING:
-                return container->stringData;
-            case DOUBLE:
-                return &(container->doubleData);
-            default:
-                //Error: datatype
-                break;
+        switch (*dataType)
+        {
+        case STRING:
+            return container->stringData;
+        case DOUBLE:
+            return &(container->doubleData);
+        default:
+            // Error: datatype
+            break;
         }
     }
 
-    //Container not found
+    // Container not found
     return NULL;
 }
 
@@ -104,14 +117,19 @@ const void* retrieveData(const char* containerName, DataType* dataType) {
 |    Designated ID   This references the PTAM register assigned with this ID/container
 ===========================================================================
 */
-void deleteContainer(const char* containerName) {
+void
+deleteContainer(const char* containerName)
+{
     struct DataContainer* container = findContainer(containerName);
-    if (container != NULL) {
+    if (container != NULL)
+    {
         // Move the last container to the deleted position
         *container = dataContainers[numContainers - 1];
         numContainers--;
         printf("Container '%s' deleted\n", containerName);
-    } else {
+    }
+    else
+    {
         printf("Error: Container '%s' not found\n", containerName);
     }
 }

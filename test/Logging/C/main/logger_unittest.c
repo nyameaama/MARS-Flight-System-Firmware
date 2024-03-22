@@ -30,12 +30,11 @@
 #include "../../../PTAM/C/_ptam.h"
 #include "../logger.h"
 
-#define MAX_LOG_EVENTS 3
-
 void
 EVENT_LOG_SDD_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "EVENT_LOG_SDD TEST CASE");
 
     //  Store the machine data
     double stateVal = 3.14;
@@ -65,6 +64,8 @@ EVENT_LOG_SDD_TEST(void)
     printf("%s %d %s", "Captured state: ", state, "\n");
     printf("%s %s %s", "Captured ID: ", ID, "\n\n");
 
+    deleteContainer("stateDescript");
+    deleteContainer("state");
     deleteContainer("WingFL");
     deleteContainer("WingFR");
     deleteContainer("WingRL");
@@ -77,8 +78,9 @@ void
 EVENT_LOG_SSL_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "EVENT_LOG_SSL TEST CASE");
 
-    double stateVal = 4.14;
+    double stateVal = 100;
     storeData("stateDescript", "LOG_SSL_DATA", DOUBLE);
     storeData("state", &stateVal, DOUBLE);
 
@@ -104,6 +106,7 @@ void
 EVENT_LOG_SEL_TEST(void)
 {
     printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "EVENT_LOG_SEL TEST CASE");
 
     double stateVal = 5.14;
     storeData("state", &stateVal, DOUBLE);
@@ -120,7 +123,7 @@ EVENT_LOG_SEL_TEST(void)
 
     uint8_t state = get_event_state(evt_log_sel_res);
 
-    printf("Machine State: %d %s", state, "\n");
+    printf("State data: %d %s", state, "\n");
 
     deleteContainer("state");
     printf("\n");
@@ -128,11 +131,30 @@ EVENT_LOG_SEL_TEST(void)
 }
 
 void
+SERVO_EVENT_LOG_TEST(void)
+{
+    printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "SERVO_EVENT_LOG TEST CASE");
+    double throttle = 50;
+    double SERVO_FR = 100;
+    double SERVO_FL = 150;
+    double SERVO_RR = 200;
+    double SERVO_RL = 250;
+
+    const char* formatted_string =
+        SERVO_EVENT_LOG(throttle, SERVO_FR, SERVO_FL, SERVO_RR, SERVO_RL);
+
+    printf(formatted_string);
+    printf("\n-----------------------------------------------------------\n");
+}
+
+void
 LOG_EVENT_COMMON(void)
 {
     printf("\n-----------------------------------------------------------\n");
+    LOG_MSG(INFO, "LOG_EVENT_COMMON TEST CASE");
     const char* data = "Data message test";
-    data = LOG_INFO("LOG_INFO", data);
+    data = LOG_INFO("LOG_MSG", data);
     const char* info_get = get_info(data);
 
     printf("%s %sData: ", data, "\n");
@@ -144,25 +166,24 @@ LOG_EVENT_COMMON(void)
     printf("\n-----------------------------------------------------------\n");
 }
 
-
 void
 app_main(void)
 {
-    printf("ESP-Target MAIN()");
     EVENT_LOG_SDD_TEST();
     EVENT_LOG_SSL_TEST();
     EVENT_LOG_SEL_TEST();
+    SERVO_EVENT_LOG_TEST();
     LOG_EVENT_COMMON();
 }
 
 int
 main(void)
 {
-    printf("Normal MAIN() ");
     EVENT_LOG_SDD_TEST();
     EVENT_LOG_SSL_TEST();
     EVENT_LOG_SEL_TEST();
+    SERVO_EVENT_LOG_TEST();
     LOG_EVENT_COMMON();
 
-    return 0x00;
+    return 0x0;
 }

@@ -4,9 +4,10 @@
 .vscode/launch.json
 .vscode/ipch
 .DS_Store
-.vscode/settings.json
+*.vscode/
 *.o
 .gdb_history
+*.gdb
 build/
 build_1/
 sdkconfig.old
