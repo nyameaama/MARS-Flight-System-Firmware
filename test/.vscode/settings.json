@@ -1,6 +1,7 @@
 {
-    "files.associations": {
-        "logger.h": "c",
-        "_ptam.h": "c"
-    }
+  "files.associations": {
+    "logger.h": "c",
+    "_ptam.h": "c"
+  },
+  "C_Cpp_Runner.msvcBatchPath": ""
 }
