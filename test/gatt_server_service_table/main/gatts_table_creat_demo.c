@@ -154,7 +154,7 @@ static struct gatts_profile_inst heart_rate_profile_tab[PROFILE_NUM] = {
 };
 
 /* Service */
-static const uint16_t GATTS_SERVICE_UUID_TEST       = 0x13d4; //0x180F; //000013d4-0000-1000-8000-00805f9b34fb
+static const uint16_t GATTS_SERVICE_UUID_TEST       = 0x13d4; //000013d4-0000-1000-8000-00805f9b34fb
 static const uint16_t GATTS_CHAR_UUID_TEST_1        = 0xFF01; //0000ff01-0000-1000-8000-00805f9b34fb
 static const uint16_t GATTS_CHAR_UUID_TEST_2        = 0xFF02; //0000ff02-0000-1000-8000-00805f9b34fb
 static const uint16_t GATTS_CHAR_UUID_TEST_3        = 0xFF03; //0000ff03-0000-1000-8000-00805f9b34fb
@@ -567,6 +567,7 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
             if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_1]) {
               // Get Data
               const char* output = readDataCharacteristic1(); // Ensure this is null-terminated and remains valid
+              ESP_LOGE(GATTS_TABLE_TAG, "Characteristic output: %s", output);
               if (output == NULL) {
                   ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
                   return;
@@ -596,6 +597,7 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
             if (param->read.handle == heart_rate_handle_table[IDX_CHAR_VAL_2]) {
               // Get Data
               const char* output = readDataCharacteristic2(); // Ensure this is null-terminated and remains valid
+              ESP_LOGE(GATTS_TABLE_TAG, "Characteristic output: %s", output);
               if (output == NULL) {
                   ESP_LOGE(GATTS_TABLE_TAG, "Failed to get data for characteristic 1");
                   return;
