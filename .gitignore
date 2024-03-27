@@ -10,8 +10,11 @@
 *.gdb
 build/
 build_1/
+build_2/
 sdkconfig.old
 *.json
 *.sqlite
 *.db
 *.so
+*.west
+zephyr/
