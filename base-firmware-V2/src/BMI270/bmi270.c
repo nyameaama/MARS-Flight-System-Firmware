@@ -1,18 +1,27 @@
-#include <fcntl.h>
-#include <linux/i2c.h>
-#include <linux/i2c-dev.h>
 #include <stdio.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
 #include <string.h>
-
 #include "bmi270.h"
 
 extern const uint8_t bmi270_config_file[];
 
+#define BMI_270 DT_NODELABEL(bmi_270)
+
+static const struct i2c_dt_spec dev_i2c_270 = I2C_DT_SPEC_GET(BMI_270);
+
 /* ----------------------------------------------------
                      FUNCTIONS
 -----------------------------------------------------*/
+
+/**
+* @brief i2c master initialization
+*/
+void i2c_master_init(void){
+    //Only check the acc bus because both acc and gyro are on the same bus
+    if (!device_is_ready(dev_i2c_270.bus)) {
+		printf("I2C bus %s is not ready!\n\r",dev_i2c_270.bus->name);
+		return;
+	}
+}
 
 void print_binary(uint8_t num)
 {
@@ -25,22 +34,24 @@ void print_binary(uint8_t num)
 
 uint8_t read_register(struct bmi270 *sensor, uint8_t reg_addr)
 {
-    /*for (size_t i = 0; i < len; i++) {
-        ret = i2c_write_read_dt(&dev_i2c_acc, reg_addr, 1, data, len);
-        if(ret != 0){
-            printk("Failed to write/read I2C device address");
-        }
-    }*/
-    return  0;
+    char write_buf[1] = {reg_addr};
+    char read_buf[1] = {0};
+    uint8_t write_buf[1] = {reg_addr};
+    int ret = i2c_write_read_dt(&sensor, write_buf, sizeof(write_buf), read_buf, sizeof(read_buf));
+    if (ret != 0) {
+        printf("Failed to write/read I2C device address");
+    }
+    // Combine the read buffer to an integer value
+    uint8_t result = (uint8_t)read_buf[0];
+    return result;
 }
 
 int read_register_block(struct bmi270 *sensor, uint8_t reg_addr, uint8_t *data, uint8_t len)
 {
-    for (size_t i = 0; i < len; i++) {
-        ret = i2c_write_read_dt(&sensor, reg_addr, 1, data, len);
-        if(ret != 0){
-            printk("Failed to write/read I2C device address");
-        }
+    uint8_t write_buf[1] = {reg_addr};
+    int ret = i2c_write_read_dt(&sensor, write_buf, sizeof(write_buf), data, len);
+    if (ret != 0) {
+        printf("Failed to write/read I2C device address");
     }
     return 0;
 }
@@ -51,7 +62,7 @@ int write_register(struct bmi270 *sensor, uint8_t reg_addr, uint8_t value)
 	uint8_t ret;
 	ret = i2c_write_dt(&sensor, msg, sizeof(value));
 	if(ret != 0){
-		printk("Failed to write to I2C device address");
+		printf("Failed to write to I2C device address");
 	}
     return 0;
 }
@@ -59,16 +70,14 @@ int write_register(struct bmi270 *sensor, uint8_t reg_addr, uint8_t value)
 int write_register_block(struct bmi270 *sensor, uint8_t reg_addr, uint8_t len, const uint8_t *data)
 {
     uint8_t dt[256];
-	uint8_t i;
-	dt[0] = reg_addr;
-	for(i = 0; i < len; i++){
-		dt[i+1] = data[i];
-	}
-	uint8_t ret;
-	ret = i2c_write_dt(&sensor, dt, sizeof(dt));
-	if(ret != 0){
-		printk("Failed to write to I2C device address");
-	}
+    dt[0] = reg_addr;
+    for(int i = 0; i < len; i++) {
+        dt[i+1] = data[i];
+    }
+    int ret = i2c_write_dt(&sensor, dt, len + 1);
+    if(ret != 0) {
+        printf("Failed to write to I2C device address");
+    }
     return 0;
 }
 
@@ -88,7 +97,7 @@ int load_config_file(struct bmi270 *sensor)
     {
         printf("0x%x --> Initializing...\n", sensor->i2c_addr);
         write_register(sensor, PWR_CONF, 0x00);
-        //usleep(450);
+        k_msleep(450);
         write_register(sensor, INIT_CTRL, 0x00);
 
         for (int i = 0; i < 256; i++)
@@ -96,11 +105,11 @@ int load_config_file(struct bmi270 *sensor)
             write_register(sensor, INIT_ADDR_0, 0x00);
             write_register(sensor, INIT_ADDR_1, i);
             write_register_block(sensor, INIT_DATA, 32, &bmi270_config_file[i * 32]);
-            //usleep(20);
+            k_msleep(20);
         }
 
         write_register(sensor, INIT_CTRL, 0x01);
-        //usleep(20000);
+        k_msleep(20000);
 
         sensor->internal_status = read_register(sensor, INTERNAL_STATUS);
     }
@@ -110,24 +119,7 @@ int load_config_file(struct bmi270 *sensor)
 
 int bmi270_init(struct bmi270 *sensor)
 {
-    /*
-    // Open I2C bus
-    if ((sensor->i2c_fd = open(I2C_DEVICE, O_RDWR)) < 0)
-    {
-        printf("Error: Could not open I2C bus for %s\n", I2C_DEVICE);
-        return -1;
-    }
-
-    // Set I2C address
-    if (ioctl(sensor->i2c_fd, I2C_SLAVE, sensor->i2c_addr) < 0)
-    {
-        printf("Error: Could not set I2C address to 0x%X\n", sensor->i2c_addr);
-        close(sensor->i2c_fd);
-        return -1;
-    }
-
-    printf("0x%X --> I2C setup successfull!\n", sensor->i2c_addr);
-
+    i2c_master_init();
     // Check if chip ID matches
     if ((sensor->chip_id = read_register(sensor, CHIP_ID_ADDRESS)) != BMI270_CHIP_ID)
     {
@@ -136,7 +128,7 @@ int bmi270_init(struct bmi270 *sensor)
     }
 
     printf("0x%X --> Chip ID: 0x%X\n", sensor->i2c_addr, sensor->chip_id);
-    */
+    
     load_config_file(sensor);
 
     return 0;

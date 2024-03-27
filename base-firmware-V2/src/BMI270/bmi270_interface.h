@@ -1,5 +1,4 @@
-#[[
-MIT License
+/*MIT License
 
 Copyright (c) 2023 limitless Aeronautics
 
@@ -19,23 +18,40 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-]]
+SOFTWARE.*/
 
-cmake_minimum_required(VERSION 3.20.0)
-find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+#ifndef BMI_IMU
+#define BMI_IMU
 
-project(base-firmware-V2)
+#include <math.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <zephyr/drivers/i2c.h>
+#include <zephyr/sys/printk.h>
+#include "bmi270.h"
+#include "bmi270_config_file.h"
 
-target_sources(app PRIVATE src/main.c)
+#define PITCH (uint8_t)0
+#define ROLL (uint8_t)1
+#define YAW (uint8_t)2
 
-# Application sources
+static void bmi270_init();
 
-add_subdirectory(src/Fan_cooling)
-add_subdirectory(src/Display)
-#add_subdirectory(src/ICM42688P)
-add_subdirectory(src/BMI088)
-add_subdirectory(src/System)
-add_subdirectory(src/Logging)
-add_subdirectory(src/PTAM)
-add_subdirectory(src/datalink)
+static double bmi270_read_accel_rawX();
+
+static double bmi270_read_accel_rawY();
+
+static double bmi270_read_accel_rawZ();
+
+static double bmi270_read_gyro_rawX();
+
+static double bmi270_read_gyro_rawY();
+
+static double bmi270_read_gyro_rawZ();
+
+static double linearInterpolate(double input, double input_start, double input_end,
+                                double output_start, double output_end);
+
+static double readAugmentedIMUData(uint8_t angle_type);
+
+#endif  // BMI_IMU

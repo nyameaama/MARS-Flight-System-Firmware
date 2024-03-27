@@ -4,6 +4,8 @@
 #define BMI270_H
 
 #include "bmi270_defs.h"
+#include <zephyr/drivers/i2c.h>
+#include <zephyr/sys/printk.h>
 
 /* ----------------------------------------------------
                      FUNCTIONS
