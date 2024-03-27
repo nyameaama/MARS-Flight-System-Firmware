@@ -11,7 +11,7 @@ project(NONE)
 # NORDIC SDK APP START
 target_sources(app PRIVATE
   src/main.c
-  bt_data/bt_data.c
+  bt_attributes/bt_data/bt_data.c
   bt_attributes/bt_attributes.c
 )
 
