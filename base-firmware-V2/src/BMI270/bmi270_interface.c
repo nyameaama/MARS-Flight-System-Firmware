@@ -26,7 +26,13 @@ SOFTWARE.*/
 #define NUM_DATA 14                     // Number of int values to send
 struct bmi270 sensor_upper = {.i2c_addr = I2C_PRIM_ADDR};
 
-static void bmi270_init(){
+/**
+ * @brief Initializes the BMI270 sensor.
+ * 
+ * Sets up the BMI270 sensor for reading accelerometer and gyroscope
+ * data, including configuring registers and setting default states.
+ */
+void bmi270_init(){
     if (bmi270_init(&sensor_upper) == -1){
         printf("Failed to initialize sensor_upper");
     }
@@ -62,42 +68,72 @@ static void bmi270_init(){
     enable_gyr_filter_perf(&sensor_lower);  
 }
 
-static double bmi270_read_accel_rawX(){
+/**
+ * @brief Reads raw X-axis acceleration data from BMI270.
+ * 
+ * @return double Returns the raw X-axis acceleration value.
+ */
+double bmi270_read_accel_rawX(){
     int16_t temp_acc[3];
     int32_t data_array[NUM_DATA];
     get_acc_raw(&sensor_upper, &temp_acc[0], &temp_acc[1], &temp_acc[2]);
     return (int32_t)temp_acc[0]; //accX
 }
 
-static double bmi270_read_accel_rawY(){
+/**
+ * @brief Reads raw Y-axis acceleration data from BMI270.
+ * 
+ * @return double Returns the raw Y-axis acceleration value.
+ */
+double bmi270_read_accel_rawY(){
     int16_t temp_acc[3];
     int32_t data_array[NUM_DATA];
     get_acc_raw(&sensor_upper, &temp_acc[0], &temp_acc[1], &temp_acc[2]);
     return (int32_t)temp_acc[1]; //accY
 }
 
-static double bmi270_read_accel_rawZ(){
+/**
+ * @brief Reads raw Z-axis acceleration data from BMI270.
+ * 
+ * @return double Returns the raw Z-axis acceleration value.
+ */
+double bmi270_read_accel_rawZ(){
     int16_t temp_acc[3];
     int32_t data_array[NUM_DATA];
     get_acc_raw(&sensor_upper, &temp_acc[0], &temp_acc[1], &temp_acc[2]);
     return (int32_t)temp_acc[2]; //accZ
 }
 
-static double bmi270_read_gyro_rawX(){
+/**
+ * @brief Reads raw X-axis gyroscope data from BMI270.
+ * 
+ * @return double Returns the raw X-axis gyroscope value.
+ */
+double bmi270_read_gyro_rawX(){
     int16_t temp_gyr[3];
     int32_t data_array[NUM_DATA];
     get_gyr_raw(&sensor_upper, &temp_gyr[0], &temp_gyr[1], &temp_gyr[2]);
     return (int32_t)temp_gyr[0]; //gyroX
 }
 
-static double bmi270_read_gyro_rawY(){
+/**
+ * @brief Reads raw Y-axis gyroscope data from BMI270.
+ * 
+ * @return double Returns the raw Y-axis gyroscope value.
+ */
+double bmi270_read_gyro_rawY(){
     int16_t temp_gyr[3];
     int32_t data_array[NUM_DATA];
     get_gyr_raw(&sensor_upper, &temp_gyr[0], &temp_gyr[1], &temp_gyr[2]);
     return (int32_t)temp_gyr[1]; //gyroY
 }
 
-static double bmi270_read_gyro_rawZ(){
+/**
+ * @brief Reads raw Z-axis gyroscope data from BMI270.
+ * 
+ * @return double Returns the raw Z-axis gyroscope value.
+ */
+double bmi270_read_gyro_rawZ(){
     int16_t temp_gyr[3];
     int32_t data_array[NUM_DATA];
     get_gyr_raw(&sensor_upper, &temp_gyr[0], &temp_gyr[1], &temp_gyr[2]);

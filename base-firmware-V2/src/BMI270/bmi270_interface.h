@@ -35,23 +35,54 @@ SOFTWARE.*/
 #define ROLL (uint8_t)1
 #define YAW (uint8_t)2
 
+/**
+ * @brief Initializes the BMI270 sensor.
+ * 
+ * Sets up the BMI270 sensor for reading accelerometer and gyroscope
+ * data, including configuring registers and setting default states.
+ */
 static void bmi270_init();
 
+/**
+ * @brief Reads raw X-axis acceleration data from BMI270.
+ * 
+ * @return double Returns the raw X-axis acceleration value.
+ */
 static double bmi270_read_accel_rawX();
 
+/**
+ * @brief Reads raw Y-axis acceleration data from BMI270.
+ * 
+ * @return double Returns the raw Y-axis acceleration value.
+ */
 static double bmi270_read_accel_rawY();
 
+/**
+ * @brief Reads raw Z-axis acceleration data from BMI270.
+ * 
+ * @return double Returns the raw Z-axis acceleration value.
+ */
 static double bmi270_read_accel_rawZ();
 
+/**
+ * @brief Reads raw X-axis gyroscope data from BMI270.
+ * 
+ * @return double Returns the raw X-axis gyroscope value.
+ */
 static double bmi270_read_gyro_rawX();
 
+/**
+ * @brief Reads raw Y-axis gyroscope data from BMI270.
+ * 
+ * @return double Returns the raw Y-axis gyroscope value.
+ */
 static double bmi270_read_gyro_rawY();
 
+/**
+ * @brief Reads raw Z-axis gyroscope data from BMI270.
+ * 
+ * @return double Returns the raw Z-axis gyroscope value.
+ */
 static double bmi270_read_gyro_rawZ();
-
-static double linearInterpolate(double input, double input_start, double input_end,
-                                double output_start, double output_end);
-
-static double readAugmentedIMUData(uint8_t angle_type);
 
 #endif  // BMI_IMU
