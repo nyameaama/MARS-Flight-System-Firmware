@@ -34,6 +34,7 @@
 #include "../../PTAM/C/_ptam.h"
 #include "logger.h"
 
+
 /**
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
  *
@@ -133,7 +134,7 @@ EVENT_LOG_SDD(void)
  * @brief Queries all required ptam registers, formats them, logs them, and returns the log
  *
  * @param void
- * @return std::string
+ * @return const char *
  */
 const char*
 EVENT_LOG_SSL(void)
@@ -197,7 +198,7 @@ EVENT_LOG_SSL(void)
  * @param ID
  * @param exceptionType
  * @param additionalInfo
- * @return std::string
+ * @return const char*
  */
 const char*
 EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* additionalInfo)
@@ -251,6 +252,16 @@ EVENT_LOG_SEL(const char* ID, MarsExceptionType exceptionType, const char* addit
     return formatted_output;
 }
 
+/**
+ * @brief Servo event log is ran to pass various servo data and throttle
+ *
+ * @param throttle
+ * @param SERVO_FR
+ * @param SERVO_FL
+ * @param SERVO_RR
+ * @param SERVO_RL
+ * @return const char*
+ */
 const char*
 SERVO_EVENT_LOG(double throttle, double SERVO_FR, double SERVO_FL, double SERVO_RR, double SERVO_RL)
 {
