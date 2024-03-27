@@ -5,10 +5,16 @@
         label = "ONBOARD_DISPLAY";
     };
 
-    icm42688: icm42688@68{
+    icm42688: icm42688@69{
         compatible = "i2c-device";
         reg = < 0x69 >;
         label = "ICM-IMU";
+    };
+
+    bmi_270: bmi_270@68{
+        compatible = "i2c-device";
+        reg = < 0x68 >;  //<-- PROBLEM
+        label = "BMI270-IMU"; 
     };
 
     bmi088_acc: bmi088_acc@18{

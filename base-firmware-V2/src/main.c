@@ -23,6 +23,7 @@ SOFTWARE.*/
 #include <zephyr/kernel.h>
 #include "Display/ssd1306.h"
 #include "System/_state.h"
+#include "datalink/bt_data/bt_data.h"
 
 uint8_t DRONE_STATE = 1;
 
@@ -35,6 +36,8 @@ int main(void){
 void INIT_CORE0(){
     SSD1306_Init();
     displayBOOT();
+
+    ble_gatt_start();
 
     //FAN_COOLING *cool = new FAN_COOLING();
     //cool -> init_relay();
